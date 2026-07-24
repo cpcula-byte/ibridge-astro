@@ -1,0 +1,442 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    number: "01",
+    title: "IB Curriculum Design and Vertical Alignment",
+    summary:
+      "We help schools build clear, coherent and sustainable curriculum structures from MYP through to the DP.",
+    features: [
+      "MYP and DP curriculum mapping",
+      "Unit architecture and central idea design",
+      "Subject and interdisciplinary vertical alignment",
+      "Knowledge, skills and conceptual progression",
+      "Curriculum documentation and implementation guidance",
+    ],
+  },
+  {
+    number: "02",
+    title: "Assessment and Feedback Systems",
+    summary:
+      "We develop assessment systems that reflect learning goals, support student progress and align with IB requirements.",
+    features: [
+      "Formative and summative assessment design",
+      "Alignment between criteria and assessment tasks",
+      "Authentic and inquiry-based assessment",
+      "Student-accessible feedback structures",
+      "Internal standardisation and teacher calibration",
+    ],
+  },
+  {
+    number: "03",
+    title: "Professional Development",
+    summary:
+      "We provide workshops, collaborative planning, coaching and professional learning linked directly to classroom practice.",
+    features: [
+      "Customised professional workshops",
+      "Collaborative planning and unit design",
+      "Classroom observation and instructional coaching",
+      "Subject-team professional learning",
+      "Training for new teachers and curriculum leaders",
+    ],
+  },
+  {
+    number: "04",
+    title: "AI Integration in Education",
+    summary:
+      "We help schools integrate generative artificial intelligence safely, effectively and purposefully.",
+    features: [
+      "AI policies and guiding principles",
+      "Teacher AI literacy development",
+      "AI-supported curriculum design and feedback",
+      "Authentic assessment and academic integrity",
+      "Responsible AI guidance for students",
+    ],
+  },
+  {
+    number: "05",
+    title: "Student Learning Programmes",
+    summary:
+      "We combine academic learning, self-regulation, resilience and preparation for IB study.",
+    features: [
+      "Academic writing and reading strategies",
+      "MYP and DP learning preparation",
+      "Self-management and time planning",
+      "Attention, motivation and stress regulation",
+      "Reflection, metacognition and learning habits",
+    ],
+  },
+  {
+    number: "06",
+    title: "Research and Educational Consultancy",
+    summary:
+      "We use research evidence and data to support programme design, implementation, evaluation and improvement.",
+    features: [
+      "Research design and ethical planning",
+      "Surveys, interviews and data collection",
+      "Educational programme evaluation",
+      "Data analysis and report writing",
+      "School development and strategic consultancy",
+    ],
+  },
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Needs Analysis",
+    description:
+      "Understand the school, teachers, students, curriculum structure and current challenges.",
+  },
+  {
+    number: "02",
+    title: "Programme Design",
+    description:
+      "Define goals, implementation steps, timelines, resources and indicators of success.",
+  },
+  {
+    number: "03",
+    title: "Implementation Support",
+    description:
+      "Support implementation through curriculum design, workshops, coaching, collaborative planning and documentation.",
+  },
+  {
+    number: "04",
+    title: "Evaluation and Improvement",
+    description:
+      "Review impact using teacher, student and school evidence, then refine the next stage of development.",
+  },
+];
+
+const partnershipModels = [
+  {
+    title: "Single Workshop",
+    description:
+      "Suitable for focused training, curriculum introductions or professional development on a specific topic.",
+  },
+  {
+    title: "Short-term Project",
+    description:
+      "Suitable for completing a defined curriculum, assessment, research or systems-development task.",
+  },
+  {
+    title: "Semester Partnership",
+    description:
+      "Provides one semester of curriculum design, coaching, collaborative planning and follow-up support.",
+  },
+  {
+    title: "Long-term School Partnership",
+    description:
+      "Builds multi-year systems for curriculum development, professional learning, research and continuous improvement.",
+  },
+];
+---
+
+<BaseLayout
+  locale="en"
+  title="Services"
+  description="iBridge Education provides IB curriculum design, assessment development, professional learning, AI integration, student programmes and educational research consultancy."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our Services</span>
+
+      <h1>Transforming educational ideas into practical programmes</h1>
+
+      <p class="lead">
+        iBridge Education provides comprehensive support from strategic
+        planning and curriculum design to professional development,
+        research, evaluation and continuous improvement.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-introduction">
+        <div>
+          <span class="eyebrow">What We Offer</span>
+
+          <h2 class="section-title">
+            Six core areas of service
+          </h2>
+        </div>
+
+        <p class="lead">
+          Each service can be delivered independently or combined into
+          a comprehensive school-development programme. Partnerships are
+          adapted to the school's context, student needs, teacher experience
+          and curriculum goals.
+        </p>
+      </div>
+
+      <div class="service-list">
+        {
+          services.map((service) => (
+            <article class="service-card">
+              <div class="service-heading">
+                <span class="service-number">{service.number}</span>
+
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.summary}</p>
+                </div>
+              </div>
+
+              <ul class="check-list service-features">
+                {
+                  service.features.map((feature) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Our Process</span>
+
+      <h2 class="section-title">
+        From understanding needs to continuous improvement
+      </h2>
+
+      <p class="lead">
+        We use a clear and traceable process to ensure that each programme
+        moves beyond planning and becomes part of classroom and school practice.
+      </p>
+
+      <div class="grid-4 process-grid">
+        {
+          process.map((step) => (
+            <article class="card process-card">
+              <div class="process-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Partnership Models</span>
+
+      <h2 class="section-title">
+        Flexible ways to work together
+      </h2>
+
+      <p class="lead">
+        Choose from a single workshop, a defined short-term project,
+        a semester partnership or a long-term school partnership.
+      </p>
+
+      <div class="grid-4 partnership-grid">
+        {
+          partnershipModels.map((model) => (
+            <article class="card partnership-card">
+              <h3>{model.title}</h3>
+              <p>{model.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container consultation-panel">
+      <div>
+        <span class="eyebrow">Customised Support</span>
+
+        <h2 class="section-title">
+          Every educational context requires an appropriate solution
+        </h2>
+
+        <p class="lead">
+          We do not use one fixed model for every school. Each partnership
+          begins with the organisation's actual needs, resources, timeline
+          and goals to create a practical, measurable and sustainable approach.
+        </p>
+      </div>
+
+      <div class="consultation-actions">
+        <a class="button button-primary" href="/en/contact">
+          Discuss a Partnership
+        </a>
+
+        <a class="button button-secondary" href="/en/about">
+          Learn About Our Approach
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .section-introduction {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .service-list {
+      margin-top: 50px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .service-card {
+      padding: 34px;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: start;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(23, 88, 168, 0.24);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .service-heading {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .service-number {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 16px;
+
+      font-size: 0.83rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+    }
+
+    .service-heading h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.55rem;
+    }
+
+    .service-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .service-features {
+      padding: 22px;
+      background: var(--soft);
+      border-radius: 18px;
+    }
+
+    .process-grid,
+    .partnership-grid {
+      margin-top: 44px;
+    }
+
+    .process-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .process-card h3,
+    .partnership-card h3 {
+      color: var(--navy);
+    }
+
+    .consultation-panel {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .consultation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 210px;
+    }
+
+    @media (max-width: 980px) {
+      .section-introduction,
+      .service-card,
+      .consultation-panel {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .consultation-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .service-card {
+        padding: 24px;
+      }
+
+      .service-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .consultation-panel {
+        padding: 32px 24px;
+      }
+
+      .consultation-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

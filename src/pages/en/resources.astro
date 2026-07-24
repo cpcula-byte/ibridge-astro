@@ -1,0 +1,647 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const resourceCategories = [
+  {
+    icon: "CUR",
+    title: "Curriculum Design Resources",
+    description:
+      "Tools that support coherent, concept-based curriculum planning with clear learning progression.",
+    resources: [
+      "MYP and DP curriculum-mapping templates",
+      "Unit-planning and central-idea tools",
+      "Vertical-alignment checklists",
+      "Knowledge, skills and concept progression maps",
+      "Interdisciplinary curriculum-design guidance",
+    ],
+  },
+  {
+    icon: "ASM",
+    title: "Assessment and Feedback Resources",
+    description:
+      "Resources for designing tasks that reflect learning goals, support progress and strengthen assessment reliability.",
+    resources: [
+      "Formative-assessment planning tools",
+      "Summative-task design templates",
+      "Criteria-alignment checklists",
+      "Student feedback language and structures",
+      "Teacher standardisation discussion tools",
+    ],
+  },
+  {
+    icon: "AI",
+    title: "Artificial Intelligence Resources",
+    description:
+      "Practical tools that support responsible use of generative artificial intelligence by schools, teachers and students.",
+    resources: [
+      "School AI principles and policies",
+      "Teacher AI-literacy checklists",
+      "Responsible-use guidance for students",
+      "AI and academic-integrity discussion tools",
+      "Generative AI assessment-design guidance",
+    ],
+  },
+  {
+    icon: "WRT",
+    title: "Writing and Language Resources",
+    description:
+      "Resources that develop academic writing, text analysis, communication and interdisciplinary language learning.",
+    resources: [
+      "Paragraph and argument-planning tools",
+      "Text-type convention checklists",
+      "Academic vocabulary and linking-language resources",
+      "Writing feedback and revision tools",
+      "MYP-to-DP writing-alignment frameworks",
+    ],
+  },
+  {
+    icon: "WEL",
+    title: "Student Wellbeing and Learning Strategies",
+    description:
+      "Student-support tools informed by positive psychology, applied neuroscience and self-regulated learning.",
+    resources: [
+      "Stress and emotional-regulation activities",
+      "Personal-strength reflection tools",
+      "Time-management and goal-setting resources",
+      "Attention and learning-habit checklists",
+      "Metacognition and learning-reflection templates",
+    ],
+  },
+  {
+    icon: "RES",
+    title: "Educational Research Tools",
+    description:
+      "Resources that help teachers, schools and researchers plan, conduct and evaluate educational and action research.",
+    resources: [
+      "Research-question planning tools",
+      "Survey and interview-design guidance",
+      "Research-ethics checklists",
+      "Data-analysis planning templates",
+      "Programme-evaluation report structures",
+    ],
+  },
+];
+
+const featuredResources = [
+  {
+    type: "Curriculum Tool",
+    title: "Five-year MYP Vertical Alignment Planner",
+    description:
+      "A planning tool for mapping concepts, skills, text types, assessment and DP preparation across year levels.",
+    status: "Coming Soon",
+  },
+  {
+    type: "Teacher Guide",
+    title: "Generative AI and Authentic Assessment Guide",
+    description:
+      "Guidance for redesigning writing, research, reflection and oral tasks in response to generative AI.",
+    status: "Coming Soon",
+  },
+  {
+    type: "Student Resource",
+    title: "Learning Resilience and Self-regulation Workbook",
+    description:
+      "A student workbook combining stress management, goal setting, attention, reflection and learning strategies.",
+    status: "In Development",
+  },
+];
+
+const accessPrinciples = [
+  {
+    number: "01",
+    title: "Practical",
+    description:
+      "Every resource must directly support curriculum, teaching, assessment, research or student learning.",
+  },
+  {
+    number: "02",
+    title: "Clear",
+    description:
+      "Resources include a clear purpose, instructions, examples and intended audience.",
+  },
+  {
+    number: "03",
+    title: "Adaptable",
+    description:
+      "Teachers and schools can modify resources for different subjects, levels and local contexts.",
+  },
+  {
+    number: "04",
+    title: "Evidence-informed",
+    description:
+      "Content combines research evidence, professional practice and international educational experience.",
+  },
+];
+
+const audiences = [
+  "IB MYP and DP teachers",
+  "Curriculum leaders and subject coordinators",
+  "International schools and educational organisations",
+  "Students and families",
+  "Educational researchers and postgraduate students",
+  "Professional-learning and teacher-training teams",
+];
+---
+
+<BaseLayout
+  locale="en"
+  title="Resources"
+  description="Explore iBridge Education resources for curriculum design, assessment, artificial intelligence, writing, student wellbeing and educational research."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">iBridge Resources</span>
+
+      <h1>Transforming educational expertise into practical tools</h1>
+
+      <p class="lead">
+        iBridge Education provides resources for curriculum, assessment,
+        professional learning, artificial intelligence, writing,
+        student wellbeing and educational research.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container resource-intro">
+      <div>
+        <span class="eyebrow">Resource Library</span>
+
+        <h2 class="section-title">
+          A professional resource library for educational practice
+        </h2>
+      </div>
+
+      <div class="resource-copy">
+        <p>
+          The resource library will gradually provide downloadable curriculum
+          templates, checklists, teacher guides, student learning tools,
+          research documents and professional-development materials.
+        </p>
+
+        <p>
+          Every resource begins with an authentic educational need and is
+          designed so that it can be adapted for different schools,
+          subjects, year levels and student profiles.
+        </p>
+
+        <p>
+          Some resources will be freely available, while more extensive
+          professional toolkits and training materials will be provided
+          through iBridge projects, programmes and partnerships.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Resource Categories</span>
+
+      <h2 class="section-title">
+        Six core resource categories
+      </h2>
+
+      <p class="lead">
+        Explore resources according to teaching, curriculum leadership,
+        student support or research needs.
+      </p>
+
+      <div class="resource-category-grid">
+        {
+          resourceCategories.map((category) => (
+            <article class="resource-category-card">
+              <div class="category-heading">
+                <span class="category-icon">{category.icon}</span>
+
+                <div>
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </div>
+              </div>
+
+              <ul class="resource-list">
+                {
+                  category.resources.map((resource) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{resource}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Featured Resources</span>
+
+      <h2 class="section-title">
+        Resources currently in development
+      </h2>
+
+      <p class="lead">
+        The following resources will be added gradually in both
+        Traditional Chinese and English.
+      </p>
+
+      <div class="featured-grid">
+        {
+          featuredResources.map((resource) => (
+            <article class="featured-card">
+              <div class="featured-top">
+                <span class="resource-type">{resource.type}</span>
+                <span class="resource-status">{resource.status}</span>
+              </div>
+
+              <h3>{resource.title}</h3>
+              <p>{resource.description}</p>
+
+              <button
+                class="resource-button"
+                type="button"
+                disabled
+                aria-disabled="true"
+              >
+                Download Not Yet Available
+              </button>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Resource Principles</span>
+
+      <h2 class="section-title">
+        Principles guiding iBridge resources
+      </h2>
+
+      <div class="grid-4 principle-grid">
+        {
+          accessPrinciples.map((principle) => (
+            <article class="card principle-card">
+              <div class="principle-number">{principle.number}</div>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container audience-layout">
+      <div>
+        <span class="eyebrow">Who These Resources Support</span>
+
+        <h2 class="section-title">
+          Designed for different educational roles
+        </h2>
+
+        <p class="lead">
+          Resources can support individual planning, subject-team development,
+          professional learning, school improvement, student support
+          and educational research.
+        </p>
+      </div>
+
+      <div class="audience-list">
+        {
+          audiences.map((audience) => (
+            <div class="audience-item">
+              <span class="check-mark">✓</span>
+              <span>{audience}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container contribution-panel">
+      <div>
+        <span class="eyebrow">Resource Collaboration</span>
+
+        <h2 class="section-title">
+          Sharing, collaboration and co-development
+        </h2>
+
+        <p class="lead">
+          Teachers, schools, educational organisations and researchers
+          are welcome to suggest resource needs, provide feedback or
+          discuss collaborative development and research.
+        </p>
+      </div>
+
+      <div class="contribution-actions">
+        <a class="button button-primary" href="/en/contact">
+          Suggest a Resource
+        </a>
+
+        <a class="button button-secondary" href="/en/research">
+          Explore Our Research
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .resource-intro {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .resource-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .resource-copy p {
+      margin-bottom: 22px;
+    }
+
+    .resource-category-grid {
+      margin-top: 48px;
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .resource-category-card {
+      padding: 30px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .resource-category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .category-heading {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .category-icon {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 17px;
+
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+    }
+
+    .category-heading h3 {
+      margin-bottom: 10px;
+      color: var(--navy);
+      font-size: 1.4rem;
+    }
+
+    .category-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .resource-list {
+      margin: 24px 0 0;
+      padding: 20px;
+
+      display: grid;
+      gap: 13px;
+
+      list-style: none;
+      background: var(--soft);
+      border-radius: 17px;
+    }
+
+    .resource-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+    }
+
+    .featured-grid {
+      margin-top: 44px;
+
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .featured-card {
+      padding: 30px;
+
+      display: flex;
+      flex-direction: column;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+    }
+
+    .featured-top {
+      margin-bottom: 22px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .resource-type,
+    .resource-status {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .resource-type {
+      color: var(--teal);
+      background: var(--teal-light);
+    }
+
+    .resource-status {
+      color: var(--navy);
+      background: var(--soft-blue);
+    }
+
+    .featured-card h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .featured-card p {
+      margin-bottom: 26px;
+      color: var(--muted);
+    }
+
+    .resource-button {
+      margin-top: auto;
+      min-height: 46px;
+      padding: 11px 18px;
+
+      color: var(--muted);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+
+      font: inherit;
+      font-weight: 750;
+      cursor: not-allowed;
+    }
+
+    .principle-grid {
+      margin-top: 44px;
+    }
+
+    .principle-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .principle-card h3 {
+      color: var(--navy);
+    }
+
+    .audience-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .audience-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .audience-item {
+      min-height: 66px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-small);
+
+      font-weight: 700;
+    }
+
+    .contribution-panel {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .contribution-actions {
+      min-width: 210px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .resource-intro,
+      .audience-layout,
+      .contribution-panel {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contribution-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .resource-category-grid,
+      .audience-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .resource-category-card,
+      .featured-card {
+        padding: 24px;
+      }
+
+      .category-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .contribution-panel {
+        padding: 32px 24px;
+      }
+
+      .contribution-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

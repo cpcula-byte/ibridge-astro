@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="聯絡我們"
+  description="聯絡 iBridge Education，洽詢課程設計、教師培訓、AI 教育整合、研究合作與學生學習方案。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Contact iBridge</span>
+
+      <h1>開始一段教育合作對話</h1>
+
+      <p class="lead">
+        歡迎洽詢課程設計、教師培訓、AI 教育整合、
+        教育研究、學校顧問與學生學習方案。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <article class="panel">
+        <span class="eyebrow">聯絡方式</span>
+
+        <h2 class="section-title">與 iBridge Education 聯繫</h2>
+
+        <p class="lead">
+          請透過電子郵件說明你的學校、團隊或個人需求，
+          我們會根據合作方向回覆。
+        </p>
+
+        <ul class="check-list contact-details">
+          <li>
+            <span class="check-mark">✉</span>
+            <span>
+              <strong>電子郵件</strong><br />
+              <a href="mailto:hello@ibridge.info">hello@ibridge.info</a>
+            </span>
+          </li>
+
+          <li>
+            <span class="check-mark">⌂</span>
+            <span>
+              <strong>網站</strong><br />
+              <a href="https://ibridge.info">ibridge.info</a>
+            </span>
+          </li>
+
+          <li>
+            <span class="check-mark">◎</span>
+            <span>
+              <strong>服務地區</strong><br />
+              台灣及國際線上合作
+            </span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <span class="eyebrow">Enquiry</span>
+
+        <h2 class="section-title">合作需求</h2>
+
+        <form
+          class="contact-form"
+          action="mailto:hello@ibridge.info"
+          method="post"
+          enctype="text/plain"
+        >
+          <div class="form-field">
+            <label for="name">姓名</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+
+          <div class="form-field">
+            <label for="email">電子郵件</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="organisation">學校或機構</label>
+            <input id="organisation" name="organisation" type="text" />
+          </div>
+
+          <div class="form-field">
+            <label for="topic">洽詢主題</label>
+
+            <select id="topic" name="topic">
+              <option>課程設計</option>
+              <option>教師培訓</option>
+              <option>AI 教育整合</option>
+              <option>研究合作</option>
+              <option>學生學習方案</option>
+              <option>其他</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message">需求說明</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button class="button button-primary" type="submit">
+            傳送洽詢
+          </button>
+
+          <p class="notice">
+            此初始版本會開啟你的電子郵件程式。之後可改成 Cloudflare
+            Pages Functions 或表單服務，直接在網站提交資料。
+          </p>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <style>
+    .contact-details {
+      margin-top: 32px;
+    }
+
+    .contact-details strong {
+      color: var(--navy);
+    }
+
+    .contact-details a {
+      color: var(--blue);
+    }
+
+    @media (max-width: 680px) {
+      .contact-details li {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</BaseLayout>

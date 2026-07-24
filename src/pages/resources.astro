@@ -1,0 +1,638 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const resourceCategories = [
+  {
+    icon: "CUR",
+    title: "課程設計資源",
+    description:
+      "協助教師與課程領導者規劃連貫、概念導向且具有清楚學習進程的課程。",
+    resources: [
+      "MYP 與 DP 課程地圖範本",
+      "單元規劃與中央理念工具",
+      "垂直銜接檢核表",
+      "知識、技能與概念進程表",
+      "跨學科課程設計指南",
+    ],
+  },
+  {
+    icon: "ASM",
+    title: "評量與回饋資源",
+    description:
+      "支援教師設計能反映學習目標、促進進步並提高評量可信度的任務。",
+    resources: [
+      "形成性評量規劃工具",
+      "總結性任務設計範本",
+      "評量標準對齊檢核表",
+      "學生回饋句型與架構",
+      "教師標準化討論工具",
+    ],
+  },
+  {
+    icon: "AI",
+    title: "人工智慧教育資源",
+    description:
+      "提供學校、教師與學生負責任使用生成式人工智慧的實務工具。",
+    resources: [
+      "學校 AI 使用原則",
+      "教師 AI 素養檢核表",
+      "學生負責任使用指南",
+      "AI 與學術誠信討論工具",
+      "生成式 AI 評量設計建議",
+    ],
+  },
+  {
+    icon: "WRT",
+    title: "寫作與語言學習資源",
+    description:
+      "支援學生發展學術寫作、文本分析、溝通與跨學科語言能力。",
+    resources: [
+      "段落與論證規劃工具",
+      "文本類型慣例檢核表",
+      "學術詞彙與連接語資源",
+      "寫作回饋與修改工具",
+      "MYP 至 DP 寫作銜接框架",
+    ],
+  },
+  {
+    icon: "WEL",
+    title: "學生福祉與學習策略",
+    description:
+      "結合正向心理學、應用神經科學與自我調節學習的學生支持工具。",
+    resources: [
+      "壓力與情緒調節活動",
+      "個人優勢反思工具",
+      "時間管理與目標設定",
+      "注意力與學習習慣檢核表",
+      "後設認知與學習反思模板",
+    ],
+  },
+  {
+    icon: "RES",
+    title: "教育研究工具",
+    description:
+      "協助教師、學校與研究者規劃、執行及評估教育研究與行動研究。",
+    resources: [
+      "研究問題規劃工具",
+      "問卷與訪談設計指南",
+      "研究倫理檢核表",
+      "資料分析規劃範本",
+      "方案評估報告架構",
+    ],
+  },
+];
+
+const featuredResources = [
+  {
+    type: "課程工具",
+    title: "五年 MYP 課程垂直銜接規劃表",
+    description:
+      "協助學科團隊排列核心概念、技能、文本類型、評量與 DP 準備進程。",
+    status: "即將推出",
+  },
+  {
+    type: "教師指南",
+    title: "生成式 AI 與真實評量設計指南",
+    description:
+      "協助教師重新設計寫作、研究、反思與口語任務，降低不當 AI 使用風險。",
+    status: "即將推出",
+  },
+  {
+    type: "學生資源",
+    title: "學習韌性與自我調節工作手冊",
+    description:
+      "結合壓力管理、目標設定、注意力、反思與學習策略的學生手冊。",
+    status: "開發中",
+  },
+];
+
+const accessPrinciples = [
+  {
+    number: "01",
+    title: "實用",
+    description:
+      "資源必須能直接支援課程、課堂、評量、研究或學生學習。",
+  },
+  {
+    number: "02",
+    title: "清楚",
+    description:
+      "提供明確的使用目的、步驟、範例與適用對象。",
+  },
+  {
+    number: "03",
+    title: "可調整",
+    description:
+      "教師與學校可以依學生程度、學科與在地需求修改。",
+  },
+  {
+    number: "04",
+    title: "以證據為基礎",
+    description:
+      "內容結合研究證據、專業實踐與國際教育經驗。",
+  },
+];
+
+const audiences = [
+  "IB MYP 與 DP 教師",
+  "課程領導者與學科主管",
+  "國際學校與教育機構",
+  "學生與家長",
+  "教育研究者與研究生",
+  "教師培訓與專業學習團隊",
+];
+---
+
+<BaseLayout
+  title="資源"
+  description="探索 iBridge Education 的課程設計、評量、人工智慧、寫作、學生福祉與教育研究資源。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">iBridge Resources</span>
+
+      <h1>讓教育專業轉化為可直接使用的工具</h1>
+
+      <p class="lead">
+        iBridge Education 提供課程、評量、教師發展、人工智慧、
+        寫作、學生福祉與教育研究資源，支援學校與教師將理念帶入實踐。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container resource-intro">
+      <div>
+        <span class="eyebrow">Resource Library</span>
+
+        <h2 class="section-title">
+          為教育現場設計的專業資源庫
+        </h2>
+      </div>
+
+      <div class="resource-copy">
+        <p>
+          資源庫將逐步提供可下載的課程範本、檢核表、教師指南、
+          學生學習工具、研究文件與專業發展材料。
+        </p>
+
+        <p>
+          所有資源都以實際教育需求為出發點，並設計為可依不同學校、
+          學科、年級與學生程度調整。
+        </p>
+
+        <p>
+          部分資源將免費公開，較完整的專業工具包與培訓材料則會配合
+          iBridge 專案、課程或合作方案提供。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Resource Categories</span>
+
+      <h2 class="section-title">
+        六個核心資源類別
+      </h2>
+
+      <p class="lead">
+        可依教學、課程領導、學生支持或研究需求探索不同資源。
+      </p>
+
+      <div class="resource-category-grid">
+        {
+          resourceCategories.map((category) => (
+            <article class="resource-category-card">
+              <div class="category-heading">
+                <span class="category-icon">{category.icon}</span>
+
+                <div>
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </div>
+              </div>
+
+              <ul class="resource-list">
+                {
+                  category.resources.map((resource) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{resource}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Featured Resources</span>
+
+      <h2 class="section-title">
+        即將發布的重點資源
+      </h2>
+
+      <p class="lead">
+        以下內容將陸續加入網站，並提供繁體中文與英文版本。
+      </p>
+
+      <div class="featured-grid">
+        {
+          featuredResources.map((resource) => (
+            <article class="featured-card">
+              <div class="featured-top">
+                <span class="resource-type">{resource.type}</span>
+                <span class="resource-status">{resource.status}</span>
+              </div>
+
+              <h3>{resource.title}</h3>
+              <p>{resource.description}</p>
+
+              <button
+                class="resource-button"
+                type="button"
+                disabled
+                aria-disabled="true"
+              >
+                尚未開放下載
+              </button>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Resource Principles</span>
+
+      <h2 class="section-title">
+        iBridge 資源的設計原則
+      </h2>
+
+      <div class="grid-4 principle-grid">
+        {
+          accessPrinciples.map((principle) => (
+            <article class="card principle-card">
+              <div class="principle-number">{principle.number}</div>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container audience-layout">
+      <div>
+        <span class="eyebrow">Who These Resources Support</span>
+
+        <h2 class="section-title">
+          適合不同教育角色使用
+        </h2>
+
+        <p class="lead">
+          資源可用於個人備課、學科團隊規劃、教師培訓、
+          學校發展、學生支持或教育研究。
+        </p>
+      </div>
+
+      <div class="audience-list">
+        {
+          audiences.map((audience) => (
+            <div class="audience-item">
+              <span class="check-mark">✓</span>
+              <span>{audience}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container contribution-panel">
+      <div>
+        <span class="eyebrow">Resource Collaboration</span>
+
+        <h2 class="section-title">
+          分享、合作與共同開發
+        </h2>
+
+        <p class="lead">
+          歡迎教師、學校、教育機構與研究者提出資源需求、
+          分享使用回饋，或洽詢共同開發與研究合作。
+        </p>
+      </div>
+
+      <div class="contribution-actions">
+        <a class="button button-primary" href="/contact">
+          提出資源需求
+        </a>
+
+        <a class="button button-secondary" href="/research">
+          探索研究方向
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .resource-intro {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .resource-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .resource-copy p {
+      margin-bottom: 22px;
+    }
+
+    .resource-category-grid {
+      margin-top: 48px;
+
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .resource-category-card {
+      padding: 30px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .resource-category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .category-heading {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .category-icon {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 17px;
+
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+    }
+
+    .category-heading h3 {
+      margin-bottom: 10px;
+      color: var(--navy);
+      font-size: 1.4rem;
+    }
+
+    .category-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .resource-list {
+      margin: 24px 0 0;
+      padding: 20px;
+
+      display: grid;
+      gap: 13px;
+
+      list-style: none;
+      background: var(--soft);
+      border-radius: 17px;
+    }
+
+    .resource-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+    }
+
+    .featured-grid {
+      margin-top: 44px;
+
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .featured-card {
+      padding: 30px;
+
+      display: flex;
+      flex-direction: column;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+    }
+
+    .featured-top {
+      margin-bottom: 22px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .resource-type,
+    .resource-status {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .resource-type {
+      color: var(--teal);
+      background: var(--teal-light);
+    }
+
+    .resource-status {
+      color: var(--navy);
+      background: var(--soft-blue);
+    }
+
+    .featured-card h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .featured-card p {
+      margin-bottom: 26px;
+      color: var(--muted);
+    }
+
+    .resource-button {
+      margin-top: auto;
+      min-height: 46px;
+      padding: 11px 18px;
+
+      color: var(--muted);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+
+      font: inherit;
+      font-weight: 750;
+      cursor: not-allowed;
+    }
+
+    .principle-grid {
+      margin-top: 44px;
+    }
+
+    .principle-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .principle-card h3 {
+      color: var(--navy);
+    }
+
+    .audience-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .audience-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .audience-item {
+      min-height: 66px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-small);
+
+      font-weight: 700;
+    }
+
+    .contribution-panel {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .contribution-actions {
+      min-width: 210px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .resource-intro,
+      .audience-layout,
+      .contribution-panel {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contribution-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .resource-category-grid,
+      .audience-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .resource-category-card,
+      .featured-card {
+        padding: 24px;
+      }
+
+      .category-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .contribution-panel {
+        padding: 32px 24px;
+      }
+
+      .contribution-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,607 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const researchAreas = [
+  {
+    number: "01",
+    title: "應用神經科學與學習",
+    description:
+      "研究注意力、動機、壓力、自我調節與學習表現之間的關係，並將研究結果轉化為可實施的教育策略。",
+    topics: [
+      "注意力與認知負荷",
+      "壓力生理與學習",
+      "神經可塑性與學習信念",
+      "自我調節與執行功能",
+      "睡眠、情緒與學習表現",
+    ],
+  },
+  {
+    number: "02",
+    title: "正向心理學與學習韌性",
+    description:
+      "探討學生福祉、心理韌性、個人優勢與學術成長之間的關係，並發展適合學校情境的介入方案。",
+    topics: [
+      "個人優勢與學習身份",
+      "心理韌性與因應策略",
+      "感恩與正向情緒",
+      "情緒調節與壓力管理",
+      "學生福祉與學術表現",
+    ],
+  },
+  {
+    number: "03",
+    title: "人工智慧、寫作與評量",
+    description:
+      "研究生成式人工智慧如何影響寫作、作者身份、回饋、學術誠信與真實評量。",
+    topics: [
+      "AI 支援寫作與回饋",
+      "作者身份與原創性",
+      "人工智慧素養",
+      "真實評量設計",
+      "學術誠信與負責任使用",
+    ],
+  },
+  {
+    number: "04",
+    title: "國際課程與教師發展",
+    description:
+      "研究國際學校中的課程設計、教師專業學習、評量實踐與課程改革。",
+    topics: [
+      "IB MYP 與 DP 課程設計",
+      "教師專業學習",
+      "評量素養與標準化",
+      "跨學科與概念導向學習",
+      "課程改革與實施",
+    ],
+  },
+];
+
+const researchProcess = [
+  {
+    number: "01",
+    title: "界定問題",
+    description:
+      "從學校、教師與學生的實際需求出發，建立清楚、具意義且可研究的問題。",
+  },
+  {
+    number: "02",
+    title: "設計研究",
+    description:
+      "選擇適合的研究方法、參與者、資料來源、測量工具與倫理程序。",
+  },
+  {
+    number: "03",
+    title: "蒐集與分析資料",
+    description:
+      "結合量化與質性資料，以系統化方式理解教育方案的實施與影響。",
+  },
+  {
+    number: "04",
+    title: "轉化研究結果",
+    description:
+      "將研究結果轉化為教師能使用、學生能受益、學校能持續改善的實際策略。",
+  },
+];
+
+const methods = [
+  {
+    title: "量化研究",
+    description:
+      "使用問卷、量表、學習成果、出席率、評量數據與統計分析檢視方案影響。",
+  },
+  {
+    title: "質性研究",
+    description:
+      "透過訪談、焦點小組、觀察、反思日誌與文本分析理解參與者經驗。",
+  },
+  {
+    title: "混合方法研究",
+    description:
+      "整合量化與質性資料，建立更完整且具脈絡的教育理解。",
+  },
+  {
+    title: "行動研究",
+    description:
+      "協助教師與學校在實際教學環境中規劃、實施、評估並改善教育方案。",
+  },
+];
+
+const currentThemes = [
+  {
+    label: "學生福祉",
+    title: "將正向心理學與神經科學融入寫作課程",
+    description:
+      "探討結構化的反思、優勢、自我調節與壓力管理活動，是否能改善學生福祉、參與度與學習表現。",
+  },
+  {
+    label: "AI 與評量",
+    title: "生成式人工智慧時代的真實寫作評量",
+    description:
+      "研究學校如何重新設計寫作任務、回饋流程與學術誠信原則，以回應生成式 AI 的影響。",
+  },
+  {
+    label: "課程設計",
+    title: "從 MYP 到 DP 的寫作與思考能力銜接",
+    description:
+      "研究如何建立跨年級、跨學科且能支持 DP 學習要求的寫作與思考能力發展序列。",
+  },
+];
+
+const outputs = [
+  "研究設計與倫理文件",
+  "問卷、訪談與資料蒐集工具",
+  "統計分析與質性分析",
+  "教育方案成效報告",
+  "教師實施指南",
+  "學校發展建議",
+  "研討會與專業分享",
+  "學術論文與研究摘要",
+];
+---
+
+<BaseLayout
+  title="研究"
+  description="iBridge Education 進行應用神經科學、正向心理學、人工智慧、寫作、評量與國際教育研究。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Research at iBridge</span>
+
+      <h1>以研究證據支持更好的教育決策</h1>
+
+      <p class="lead">
+        iBridge Education 將教育研究、學習科學與課堂實踐連結，
+        協助學校理解問題、評估方案影響並建立持續改善的教育系統。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container research-intro">
+      <div>
+        <span class="eyebrow">Our Research Approach</span>
+
+        <h2 class="section-title">
+          研究不只是蒐集資料，而是改善教育的工具
+        </h2>
+      </div>
+
+      <div class="research-copy">
+        <p>
+          教育研究的價值不只在於回答理論問題，也在於協助學校、
+          教師與學生理解目前正在發生什麼，以及哪些改變真正有效。
+        </p>
+
+        <p>
+          我們的研究從實際教育問題出發，重視研究倫理、方法品質、
+          參與者經驗與結果的實際應用。
+        </p>
+
+        <p>
+          最終目標不是只產生一份報告，而是將證據轉化為課程、
+          教學、評量與學生支持的具體改善。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Research Areas</span>
+
+      <h2 class="section-title">
+        四個核心研究領域
+      </h2>
+
+      <p class="lead">
+        我們的研究集中在學習、學生福祉、人工智慧與國際教育實踐之間的交會。
+      </p>
+
+      <div class="research-area-list">
+        {
+          researchAreas.map((area) => (
+            <article class="research-area-card">
+              <div class="research-area-heading">
+                <span class="research-number">{area.number}</span>
+
+                <div>
+                  <h3>{area.title}</h3>
+                  <p>{area.description}</p>
+                </div>
+              </div>
+
+              <ul class="research-topic-list">
+                {
+                  area.topics.map((topic) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Research Process</span>
+
+      <h2 class="section-title">
+        從問題界定到實際改善
+      </h2>
+
+      <p class="lead">
+        每項研究都採用清楚且可追蹤的流程，
+        確保研究問題、方法、分析與實際應用彼此一致。
+      </p>
+
+      <div class="grid-4 process-grid">
+        {
+          researchProcess.map((step) => (
+            <article class="card process-card">
+              <div class="process-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Research Methods</span>
+
+      <h2 class="section-title">
+        適合教育情境的研究方法
+      </h2>
+
+      <p class="lead">
+        研究方法會依照問題、參與者、資料來源與實施環境選擇，
+        而不是使用固定模式。
+      </p>
+
+      <div class="grid-4 method-grid">
+        {
+          methods.map((method) => (
+            <article class="card method-card">
+              <h3>{method.title}</h3>
+              <p>{method.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Current Themes</span>
+
+      <h2 class="section-title">
+        目前關注的研究主題
+      </h2>
+
+      <div class="theme-grid">
+        {
+          currentThemes.map((theme) => (
+            <article class="theme-card">
+              <span class="theme-label">{theme.label}</span>
+              <h3>{theme.title}</h3>
+              <p>{theme.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container output-layout">
+      <div>
+        <span class="eyebrow">Research Outputs</span>
+
+        <h2 class="section-title">
+          從研究資料到可使用的成果
+        </h2>
+
+        <p class="lead">
+          研究成果會依據合作目標，以適合學校、教師、
+          研究機構或專業社群使用的形式呈現。
+        </p>
+      </div>
+
+      <div class="output-list">
+        {
+          outputs.map((output) => (
+            <div class="output-item">
+              <span class="check-mark">✓</span>
+              <span>{output}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container research-cta">
+      <div>
+        <span class="eyebrow">Research Partnership</span>
+
+        <h2 class="section-title">
+          將學校中的問題轉化為有價值的研究
+        </h2>
+
+        <p class="lead">
+          歡迎學校、教師團隊、教育機構與研究人員洽詢研究設計、
+          方案評估、資料分析與共同研究合作。
+        </p>
+      </div>
+
+      <div class="research-actions">
+        <a class="button button-primary" href="/contact">
+          洽詢研究合作
+        </a>
+
+        <a class="button button-secondary" href="/services">
+          查看顧問服務
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .research-intro {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .research-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .research-copy p {
+      margin-bottom: 22px;
+    }
+
+    .research-area-list {
+      margin-top: 48px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .research-area-card {
+      padding: 34px;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+    }
+
+    .research-area-heading {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .research-number {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 16px;
+
+      font-size: 0.83rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+    }
+
+    .research-area-heading h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.5rem;
+    }
+
+    .research-area-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .research-topic-list {
+      margin: 0;
+      padding: 22px;
+
+      display: grid;
+      gap: 14px;
+
+      list-style: none;
+      background: var(--soft);
+      border-radius: 18px;
+    }
+
+    .research-topic-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .process-grid,
+    .method-grid {
+      margin-top: 44px;
+    }
+
+    .process-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .process-card h3,
+    .method-card h3 {
+      color: var(--navy);
+    }
+
+    .theme-grid {
+      margin-top: 44px;
+
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .theme-card {
+      padding: 30px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+    }
+
+    .theme-label {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 6px 11px;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 999px;
+
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .theme-card h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .theme-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .output-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .output-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .output-item {
+      min-height: 64px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-small);
+
+      font-weight: 700;
+    }
+
+    .research-cta {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .research-actions {
+      min-width: 210px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .research-intro,
+      .research-area-card,
+      .output-layout,
+      .research-cta {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .theme-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .research-area-card {
+        padding: 24px;
+      }
+
+      .research-area-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .output-list {
+        grid-template-columns: 1fr;
+      }
+
+      .research-cta {
+        padding: 32px 24px;
+      }
+
+      .research-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

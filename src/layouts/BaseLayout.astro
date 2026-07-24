@@ -1,0 +1,325 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: "zh-tw" | "en";
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  locale = "zh-tw",
+  image = "/favicon.svg",
+  noindex = false,
+} = Astro.props;
+
+const siteName = "iBridge Education";
+const siteUrl = "https://ibridge.info";
+
+const normalisePath = (path: string) => {
+  if (path === "/") return "/";
+  return path.endsWith("/") ? path.slice(0, -1) : path;
+};
+
+const currentPath = normalisePath(Astro.url.pathname);
+
+const zhPath =
+  locale === "en"
+    ? currentPath.replace(/^\/en(?=\/|$)/, "") || "/"
+    : currentPath;
+
+const enPath =
+  locale === "en"
+    ? currentPath
+    : currentPath === "/"
+      ? "/en"
+      : `/en${currentPath}`;
+
+const canonicalPath =
+  locale === "en"
+    ? enPath
+    : zhPath;
+
+const canonicalUrl =
+  canonicalPath === "/"
+    ? `${siteUrl}/`
+    : `${siteUrl}${canonicalPath}`;
+
+const zhUrl =
+  zhPath === "/"
+    ? `${siteUrl}/`
+    : `${siteUrl}${zhPath}`;
+
+const enUrl =
+  enPath === "/en"
+    ? `${siteUrl}/en/`
+    : `${siteUrl}${enPath}`;
+
+const socialImageUrl = image.startsWith("http")
+  ? image
+  : `${siteUrl}${image}`;
+
+const pageTitle =
+  title === siteName
+    ? siteName
+    : `${title} | ${siteName}`;
+
+const htmlLanguage =
+  locale === "en"
+    ? "en"
+    : "zh-Hant";
+
+const organisationSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  email: "mailto:cpc.ula@gmail.com",
+  description:
+    locale === "en"
+      ? "iBridge Education connects international curriculum, educational research and practical innovation."
+      : "iBridge Education 連結國際課程、教育研究與實務創新。",
+};
+
+const webpageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: pageTitle,
+  description,
+  url: canonicalUrl,
+  inLanguage: htmlLanguage,
+  isPartOf: {
+    "@type": "WebSite",
+    name: siteName,
+    url: siteUrl,
+  },
+};
+---
+
+<!doctype html>
+<html lang={htmlLanguage}>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>{pageTitle}</title>
+
+    <meta
+      name="description"
+      content={description}
+    />
+
+    <meta
+      name="robots"
+      content={
+        noindex
+          ? "noindex, nofollow"
+          : "index, follow"
+      }
+    />
+
+    <meta
+      name="author"
+      content="iBridge Education"
+    />
+
+    <meta
+      name="theme-color"
+      content="#0b6675"
+    />
+
+    <meta
+      name="color-scheme"
+      content="light"
+    />
+
+    <link
+      rel="canonical"
+      href={canonicalUrl}
+    />
+
+    <link
+      rel="alternate"
+      hreflang="zh-Hant"
+      href={zhUrl}
+    />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={enUrl}
+    />
+
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={zhUrl}
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:site_name"
+      content={siteName}
+    />
+
+    <meta
+      property="og:title"
+      content={pageTitle}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    <meta
+      property="og:url"
+      content={canonicalUrl}
+    />
+
+    <meta
+      property="og:image"
+      content={socialImageUrl}
+    />
+
+    <meta
+      property="og:locale"
+      content={
+        locale === "en"
+          ? "en_US"
+          : "zh_TW"
+      }
+    />
+
+    <meta
+      property="og:locale:alternate"
+      content={
+        locale === "en"
+          ? "zh_TW"
+          : "en_US"
+      }
+    />
+
+    <meta
+      name="twitter:card"
+      content="summary"
+    />
+
+    <meta
+      name="twitter:title"
+      content={pageTitle}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+
+    <meta
+      name="twitter:image"
+      content={socialImageUrl}
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organisationSchema)}
+    ></script>
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(webpageSchema)}
+    ></script>
+  </head>
+
+  <body>
+    <a
+      class="skip-link"
+      href="#main-content"
+    >
+      {
+        locale === "en"
+          ? "Skip to main content"
+          : "跳至主要內容"
+      }
+    </a>
+
+    <Header locale={locale} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 92px;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+      }
+
+      main {
+        min-height: 65vh;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 9999;
+
+        padding: 11px 16px;
+
+        color: #ffffff;
+        background: #08345f;
+        border-radius: 9px;
+
+        font-weight: 800;
+        text-decoration: none;
+
+        transform: translateY(-160%);
+        transition: transform 0.2s ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      :focus-visible {
+        outline: 3px solid rgba(15, 124, 130, 0.45);
+        outline-offset: 3px;
+      }
+    </style>
+  </body>
+</html>

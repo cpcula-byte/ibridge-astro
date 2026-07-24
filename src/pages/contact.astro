@@ -1,0 +1,713 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { contactFormEndpoint } from "../config/forms";
+
+const enquiryTypes = [
+  "IB 課程設計與垂直銜接",
+  "評量與回饋系統",
+  "教師專業發展",
+  "AI 教育整合",
+  "學生學習方案",
+  "教育研究與方案評估",
+  "資源合作",
+  "其他",
+];
+
+const contactDetails = [
+  {
+    label: "電子郵件",
+    value: "cpc.ula@gmail.com",
+    href: "mailto:cpc.ula@gmail.com",
+  },
+  {
+    label: "網站",
+    value: "ibridge.info",
+    href: "https://ibridge.info",
+  },
+  {
+    label: "服務地區",
+    value: "台灣及國際線上合作",
+  },
+  {
+    label: "回覆時間",
+    value: "一般於 2–3 個工作天內回覆",
+  },
+];
+
+const preparationItems = [
+  "你的姓名與聯絡方式",
+  "學校、機構或團隊名稱",
+  "希望合作的服務領域",
+  "目前面對的主要需求或問題",
+  "預計開始時間與合作時程",
+  "希望採用線上或實體合作",
+];
+---
+
+<BaseLayout
+  title="聯絡我們"
+  description="聯絡 iBridge Education，洽詢 IB 課程設計、教師培訓、AI 教育整合、研究合作與學生學習方案。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Contact iBridge</span>
+
+      <h1>開始一段教育合作對話</h1>
+
+      <p class="lead">
+        歡迎學校、教師、教育機構、研究者、學生與家長聯絡我們，
+        洽詢課程設計、教師發展、AI 教育、研究與學習支援方案。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-layout">
+      <div class="contact-information">
+        <span class="eyebrow">Contact Information</span>
+
+        <h2 class="section-title">
+          與 iBridge Education 聯繫
+        </h2>
+
+        <p class="lead">
+          請透過右側表單說明需求。我們會先了解你的教育情境、
+          目標與預計時程，再提出適合的後續合作方式。
+        </p>
+
+        <div class="contact-detail-list">
+          {
+            contactDetails.map((item) => (
+              <article class="contact-detail">
+                <span class="contact-icon" aria-hidden="true">
+                  iB
+                </span>
+
+                <div>
+                  <h3>{item.label}</h3>
+
+                  {
+                    item.href ? (
+                      <a href={item.href}>{item.value}</a>
+                    ) : (
+                      <p>{item.value}</p>
+                    )
+                  }
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="form-panel">
+        <span class="eyebrow">Enquiry Form</span>
+
+        <h2 class="section-title">
+          說明你的合作需求
+        </h2>
+
+        <p class="form-introduction">
+          標示星號的欄位為必填。請勿在表單中提交學生姓名、
+          健康資料、成績或其他敏感個人資料。
+        </p>
+
+        <form
+          class="contact-form"
+          action={contactFormEndpoint}
+          method="POST"
+          accept-charset="UTF-8"
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="iBridge Education 中文網站新洽詢"
+          />
+
+          <input
+            type="hidden"
+            name="language"
+            value="繁體中文"
+          />
+
+          <input
+            class="hidden-field"
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">
+                姓名
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="email">
+                電子郵件
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="organisation">
+                學校或機構
+              </label>
+
+              <input
+                id="organisation"
+                name="organisation"
+                type="text"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="role">
+                職位或角色
+              </label>
+
+              <input
+                id="role"
+                name="role"
+                type="text"
+                placeholder="例如：教師、課程主管、家長"
+              />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="enquiry-type">
+                洽詢類型
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <select
+                id="enquiry-type"
+                name="enquiry_type"
+                required
+              >
+                <option value="" selected disabled>
+                  請選擇
+                </option>
+
+                {
+                  enquiryTypes.map((type) => (
+                    <option value={type}>{type}</option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="timeline">
+                預計開始時間
+              </label>
+
+              <select id="timeline" name="timeline">
+                <option value="">
+                  尚未確定
+                </option>
+
+                <option value="一個月內">
+                  一個月內
+                </option>
+
+                <option value="1–3 個月">
+                  1–3 個月
+                </option>
+
+                <option value="3–6 個月">
+                  3–6 個月
+                </option>
+
+                <option value="六個月後">
+                  六個月後
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="message">
+              需求說明
+              <span aria-hidden="true">*</span>
+            </label>
+
+            <textarea
+              id="message"
+              name="message"
+              rows="8"
+              minlength="20"
+              required
+              placeholder="請簡要說明你的背景、需求、目標與希望討論的內容。"
+            ></textarea>
+
+            <small>
+              建議至少填寫 20 個字。
+            </small>
+          </div>
+
+          <label class="consent-field">
+            <input
+              type="checkbox"
+              name="privacy_consent"
+              value="同意"
+              required
+            />
+
+            <span>
+              我同意 iBridge Education 使用我提供的資料回覆本次洽詢。
+              我了解不應透過此表單提交敏感個人資料。
+            </span>
+          </label>
+
+          <button
+            class="button button-primary submit-button"
+            type="submit"
+          >
+            傳送洽詢
+          </button>
+
+          <div
+            class="submission-message"
+            id="submission-message"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+          <p class="form-notice">
+            表單資料將透過 Formspree 傳送至
+            iBridge Education 的指定電子郵件信箱。
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container preparation-layout">
+      <div>
+        <span class="eyebrow">Before You Contact Us</span>
+
+        <h2 class="section-title">
+          提供這些資訊可以加快初步回覆
+        </h2>
+
+        <p class="lead">
+          不需要準備正式提案，但較清楚的背景資訊能協助我們判斷
+          適合的服務方式、預計時程與下一步。
+        </p>
+      </div>
+
+      <div class="preparation-list">
+        {
+          preparationItems.map((item) => (
+            <div class="preparation-item">
+              <span class="check-mark">✓</span>
+              <span>{item}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container privacy-panel">
+      <div>
+        <span class="eyebrow">Privacy</span>
+
+        <h2 class="section-title">
+          聯絡表單使用原則
+        </h2>
+      </div>
+
+      <div class="privacy-copy">
+        <p>
+          表單資料僅用於處理本次洽詢、安排後續聯絡及判斷可能的合作方式。
+        </p>
+
+        <p>
+          請勿提交學生全名、身份證件、健康紀錄、心理資料、
+          個別成績或其他不必要的敏感資訊。
+        </p>
+
+        <p>
+          若後續合作需要交換研究資料、學生資料或學校文件，
+          將另外確認保密、研究倫理與資料處理方式。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector(".contact-form");
+    const messageBox = document.querySelector("#submission-message");
+    const submitButton = document.querySelector(".submit-button");
+
+    if (
+      form instanceof HTMLFormElement &&
+      messageBox instanceof HTMLElement &&
+      submitButton instanceof HTMLButtonElement
+    ) {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "傳送中…";
+
+        messageBox.className = "submission-message";
+        messageBox.textContent = "";
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            const data = await response
+              .json()
+              .catch(() => null);
+
+            const errors = Array.isArray(data?.errors)
+              ? data.errors
+                  .map((error: { message?: string }) => error.message)
+                  .filter(Boolean)
+                  .join(" ")
+              : "";
+
+            throw new Error(
+              errors || "訊息無法送出，請稍後再試。",
+            );
+          }
+
+          form.reset();
+
+          messageBox.classList.add("success");
+          messageBox.textContent =
+            "你的訊息已成功送出。我們會盡快回覆。";
+        } catch (error) {
+          messageBox.classList.add("error");
+
+          messageBox.textContent =
+            error instanceof Error
+              ? error.message
+              : "訊息無法送出，請稍後再試。";
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "傳送洽詢";
+        }
+      });
+    }
+  </script>
+
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .contact-information {
+      position: sticky;
+      top: 110px;
+    }
+
+    .contact-detail-list {
+      margin-top: 34px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-detail {
+      padding: 19px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 15px;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(
+        135deg,
+        var(--navy),
+        var(--teal)
+      );
+      border-radius: 14px;
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .contact-detail h3 {
+      margin-bottom: 3px;
+      color: var(--navy);
+      font-size: 0.86rem;
+    }
+
+    .contact-detail p,
+    .contact-detail a {
+      margin: 0;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-detail a:hover {
+      color: var(--teal);
+    }
+
+    .form-panel {
+      padding: 38px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .form-introduction {
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field label {
+      color: var(--navy);
+      font-size: 0.92rem;
+      font-weight: 780;
+    }
+
+    .form-field label span {
+      color: #a93838;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 15px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      font: inherit;
+      outline: none;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .form-field textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(15, 124, 130, 0.1);
+    }
+
+    .form-field small {
+      color: var(--muted);
+    }
+
+    .consent-field {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .consent-field input {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--teal);
+    }
+
+    .submit-button {
+      justify-self: start;
+      min-width: 170px;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .submission-message {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 13px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .submission-message.success {
+      display: block;
+      color: #17623b;
+      background: #e7f7ee;
+      border: 1px solid #abdcc0;
+    }
+
+    .submission-message.error {
+      display: block;
+      color: #8a2828;
+      background: #fff0f0;
+      border: 1px solid #edb6b6;
+    }
+
+    .form-notice {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .hidden-field {
+      position: absolute !important;
+      left: -10000px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+    }
+
+    .preparation-layout,
+    .privacy-panel {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .preparation-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .preparation-item {
+      min-height: 66px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-small);
+      font-weight: 700;
+    }
+
+    .privacy-panel {
+      padding: 42px;
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.11),
+          transparent 30%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+    }
+
+    .privacy-copy {
+      color: var(--muted);
+    }
+
+    .privacy-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 980px) {
+      .contact-layout,
+      .preparation-layout,
+      .privacy-panel {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .contact-information {
+        position: static;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .form-panel,
+      .privacy-panel {
+        padding: 27px 22px;
+      }
+
+      .form-grid,
+      .preparation-list {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+    }
+  </style>
+</BaseLayout>

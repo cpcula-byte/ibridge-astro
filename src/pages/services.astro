@@ -1,0 +1,437 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    number: "01",
+    title: "IB 課程設計與垂直銜接",
+    summary:
+      "協助學校建立從 MYP 到 DP 清楚、連貫且可持續發展的課程架構。",
+    features: [
+      "MYP 與 DP 課程地圖",
+      "單元架構與中央理念設計",
+      "學科內與跨學科垂直銜接",
+      "核心知識、技能與概念序列",
+      "課程文件與教師實施指南",
+    ],
+  },
+  {
+    number: "02",
+    title: "評量與回饋系統",
+    summary:
+      "建立能真正反映學習目標、支持學生進步並符合 IB 要求的評量系統。",
+    features: [
+      "形成性與總結性評量設計",
+      "評量標準與任務對齊",
+      "真實情境與探究型任務",
+      "學生可理解的回饋架構",
+      "校內標準化與教師共識建立",
+    ],
+  },
+  {
+    number: "03",
+    title: "教師專業發展",
+    summary:
+      "提供能直接連結課堂實務的工作坊、共同備課、教練與專業學習方案。",
+    features: [
+      "客製化教師工作坊",
+      "共同備課與單元設計",
+      "課堂觀察與教學教練",
+      "學科團隊專業學習",
+      "新進教師與課程領導培訓",
+    ],
+  },
+  {
+    number: "04",
+    title: "AI 教育整合",
+    summary:
+      "協助學校安全、有效且具教育目的地整合生成式人工智慧。",
+    features: [
+      "AI 使用政策與原則",
+      "教師 AI 素養培訓",
+      "AI 支援課程設計與回饋",
+      "真實評量與學術誠信",
+      "學生負責任使用 AI 的指引",
+    ],
+  },
+  {
+    number: "05",
+    title: "學生學習方案",
+    summary:
+      "結合學術能力、自我調節、心理韌性與 IB 學習準備。",
+    features: [
+      "學術寫作與閱讀策略",
+      "MYP 與 DP 學習準備",
+      "自我管理與時間規劃",
+      "注意力、動機與壓力調節",
+      "反思、後設認知與學習習慣",
+    ],
+  },
+  {
+    number: "06",
+    title: "研究與教育顧問",
+    summary:
+      "以研究證據與資料支持教育方案設計、實施、評估與持續改善。",
+    features: [
+      "研究設計與倫理規劃",
+      "問卷、訪談與資料蒐集",
+      "教育方案成效評估",
+      "資料分析與報告撰寫",
+      "學校發展與策略顧問",
+    ],
+  },
+];
+
+const process = [
+  {
+    number: "01",
+    title: "需求診斷",
+    description:
+      "了解學校、教師、學生、課程架構與目前面對的挑戰。",
+  },
+  {
+    number: "02",
+    title: "方案設計",
+    description:
+      "建立合作目標、實施步驟、時間規劃、資源與成功指標。",
+  },
+  {
+    number: "03",
+    title: "實施支援",
+    description:
+      "透過課程設計、工作坊、教練、共同備課與文件支持方案落地。",
+  },
+  {
+    number: "04",
+    title: "評估改善",
+    description:
+      "根據教師、學生與學校資料檢視影響，並調整下一階段方案。",
+  },
+];
+
+const partnershipModels = [
+  {
+    title: "單次工作坊",
+    description:
+      "適合針對特定主題提供集中培訓、課程介紹或教師專業發展。",
+  },
+  {
+    title: "短期專案",
+    description:
+      "適合完成特定課程、評量、研究或制度建置任務。",
+  },
+  {
+    title: "學期合作",
+    description:
+      "提供一學期的課程設計、教師教練、共同備課與追蹤支持。",
+  },
+  {
+    title: "長期學校夥伴關係",
+    description:
+      "建立跨年度課程、教師發展、研究與持續改善系統。",
+  },
+];
+---
+
+<BaseLayout
+  title="服務"
+  description="iBridge Education 提供 IB 課程設計、評量系統、教師培訓、AI 教育整合、學生方案及教育研究顧問服務。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Our Services</span>
+
+      <h1>將教育理念轉化為可實施的方案</h1>
+
+      <p class="lead">
+        iBridge Education 提供從策略規劃、課程設計、教師培訓，
+        到研究評估與持續改善的完整教育支援。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-introduction">
+        <div>
+          <span class="eyebrow">What We Offer</span>
+
+          <h2 class="section-title">
+            六個核心服務領域
+          </h2>
+        </div>
+
+        <p class="lead">
+          每項服務都可以獨立進行，也可以整合成完整的學校發展方案。
+          合作內容會依據學校背景、學生需求、教師經驗與課程目標調整。
+        </p>
+      </div>
+
+      <div class="service-list">
+        {
+          services.map((service) => (
+            <article class="service-card">
+              <div class="service-heading">
+                <span class="service-number">{service.number}</span>
+
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.summary}</p>
+                </div>
+              </div>
+
+              <ul class="check-list service-features">
+                {
+                  service.features.map((feature) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Our Process</span>
+
+      <h2 class="section-title">
+        從需求理解到持續改善
+      </h2>
+
+      <p class="lead">
+        我們採用清楚且可追蹤的合作流程，確保方案不只停留在計畫，
+        而能真正進入課堂與學校日常運作。
+      </p>
+
+      <div class="grid-4 process-grid">
+        {
+          process.map((step) => (
+            <article class="card process-card">
+              <div class="process-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Partnership Models</span>
+
+      <h2 class="section-title">
+        彈性的合作模式
+      </h2>
+
+      <p class="lead">
+        可依照需求選擇單次培訓、短期專案、學期合作或長期夥伴關係。
+      </p>
+
+      <div class="grid-4 partnership-grid">
+        {
+          partnershipModels.map((model) => (
+            <article class="card partnership-card">
+              <h3>{model.title}</h3>
+              <p>{model.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container consultation-panel">
+      <div>
+        <span class="eyebrow">Customised Support</span>
+
+        <h2 class="section-title">
+          每個教育場域都需要適合自己的方案
+        </h2>
+
+        <p class="lead">
+          我們不提供一套適用所有學校的固定模式。
+          合作會從實際需求、資源、時間與目標出發，
+          建立可實施、可評估且能持續發展的方案。
+        </p>
+      </div>
+
+      <div class="consultation-actions">
+        <a class="button button-primary" href="/contact">
+          洽詢合作方案
+        </a>
+
+        <a class="button button-secondary" href="/about">
+          認識我們的理念
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .section-introduction {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .service-list {
+      margin-top: 50px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .service-card {
+      padding: 34px;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: start;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(23, 88, 168, 0.24);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .service-heading {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .service-number {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--teal);
+      background: var(--teal-light);
+      border-radius: 16px;
+
+      font-size: 0.83rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+    }
+
+    .service-heading h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 1.55rem;
+    }
+
+    .service-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .service-features {
+      padding: 22px;
+      background: var(--soft);
+      border-radius: 18px;
+    }
+
+    .process-grid,
+    .partnership-grid {
+      margin-top: 44px;
+    }
+
+    .process-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .process-card h3,
+    .partnership-card h3 {
+      color: var(--navy);
+    }
+
+    .consultation-panel {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .consultation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 210px;
+    }
+
+    @media (max-width: 980px) {
+      .section-introduction,
+      .service-card,
+      .consultation-panel {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .consultation-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .service-card {
+        padding: 24px;
+      }
+
+      .service-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .consultation-panel {
+        padding: 32px 24px;
+      }
+
+      .consultation-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

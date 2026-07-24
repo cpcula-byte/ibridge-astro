@@ -1,0 +1,635 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const programmes = [
+  {
+    number: "01",
+    category: "學生學習方案",
+    title: "IB 學術寫作與思考能力課程",
+    description:
+      "協助學生建立從段落寫作、論證、文本分析到跨學科學術表達的完整能力。",
+    audience: "MYP 與 DP 學生",
+    format: "短期密集課程、學期課程或校內方案",
+    outcomes: [
+      "清楚建立主張、證據與推理",
+      "分析文本慣例與作者選擇",
+      "發展學術詞彙與正式語體",
+      "提升修改、反思與自我評估能力",
+      "銜接 DP English、TOK 與跨學科寫作要求",
+    ],
+  },
+  {
+    number: "02",
+    category: "學生學習方案",
+    title: "學習韌性與自我調節課程",
+    description:
+      "結合正向心理學、應用神經科學與學習策略，協助學生建立更穩定的學習習慣。",
+    audience: "國中、高中與 IB 學生",
+    format: "班級課程、工作坊或學期介入方案",
+    outcomes: [
+      "了解注意力、壓力與學習之間的關係",
+      "建立時間管理與目標設定策略",
+      "練習情緒調節與壓力因應",
+      "發展後設認知與反思能力",
+      "提升學習信心與持續投入程度",
+    ],
+  },
+  {
+    number: "03",
+    category: "教師專業發展",
+    title: "IB 課程設計與垂直銜接工作坊",
+    description:
+      "協助教師與學科團隊建立清楚、連貫且能支持 MYP 至 DP 發展的課程架構。",
+    audience: "教師、學科主管與課程領導者",
+    format: "單次工作坊、系列培訓或共同備課",
+    outcomes: [
+      "建立五年課程地圖",
+      "排列知識、技能與概念進程",
+      "改善單元中央理念與學習脈絡",
+      "對齊形成性與總結性評量",
+      "建立跨年級共同語言與課程共識",
+    ],
+  },
+  {
+    number: "04",
+    category: "教師專業發展",
+    title: "AI 素養與真實評量工作坊",
+    description:
+      "協助教師理解生成式 AI 的教育影響，並重新設計任務、回饋與學術誠信原則。",
+    audience: "教師、課程主管與學校領導者",
+    format: "工作坊、政策諮詢或學期專案",
+    outcomes: [
+      "理解生成式 AI 的基本能力與限制",
+      "建立教師與學生 AI 使用原則",
+      "重新設計較難被 AI 取代的真實任務",
+      "改善寫作、研究與反思評量",
+      "建立負責任使用與學術誠信框架",
+    ],
+  },
+  {
+    number: "05",
+    category: "學校發展方案",
+    title: "完整課程與評量系統建置",
+    description:
+      "為學校建立從課程地圖、單元規劃、評量設計到教師實施支持的完整系統。",
+    audience: "國際學校、雙語學校與教育機構",
+    format: "一學期至跨年度合作",
+    outcomes: [
+      "完成課程架構與文件系統",
+      "建立評量與回饋共同標準",
+      "提升教師共同規劃效率",
+      "改善跨年級與跨學科銜接",
+      "建立可持續追蹤與改善機制",
+    ],
+  },
+  {
+    number: "06",
+    category: "研究與評估方案",
+    title: "教育介入與方案成效評估",
+    description:
+      "協助學校設計、實施並評估課程、教師發展或學生支持方案的實際影響。",
+    audience: "學校、研究團隊與教育機構",
+    format: "短期評估、學期研究或長期合作",
+    outcomes: [
+      "建立清楚的研究問題與成功指標",
+      "設計問卷、訪談與資料蒐集工具",
+      "分析量化與質性資料",
+      "撰寫成效報告與改善建議",
+      "建立後續追蹤與持續改善計畫",
+    ],
+  },
+];
+
+const deliveryFormats = [
+  {
+    title: "校內實體方案",
+    description:
+      "由 iBridge 與學校共同規劃，適合需要密集互動、共同備課、課堂觀察或學生課程的合作。",
+  },
+  {
+    title: "國際線上方案",
+    description:
+      "透過視訊、數位文件與線上協作進行，適合跨地區教師團隊、學校與研究夥伴。",
+  },
+  {
+    title: "混合式方案",
+    description:
+      "結合實體啟動、線上追蹤、文件回饋與定期檢視，適合中長期學校發展。",
+  },
+  {
+    title: "客製化專案",
+    description:
+      "依學校目標、學生程度、教師經驗、時間與預算建立專屬方案。",
+  },
+];
+
+const designPrinciples = [
+  {
+    number: "01",
+    title: "從需求出發",
+    description:
+      "方案內容依實際教育問題設計，而不是直接套用固定課程。",
+  },
+  {
+    number: "02",
+    title: "清楚的學習成果",
+    description:
+      "每個方案都建立可理解、可觀察且可評估的目標。",
+  },
+  {
+    number: "03",
+    title: "重視實施",
+    description:
+      "提供教材、工具、示範、回饋與追蹤支持，確保方案能落地。",
+  },
+  {
+    number: "04",
+    title: "持續改善",
+    description:
+      "根據參與者回饋與實際資料調整後續內容與實施方式。",
+  },
+];
+
+const partnershipSteps = [
+  {
+    number: "01",
+    title: "初步洽詢",
+    description:
+      "說明學校背景、參與對象、主要需求與預計時程。",
+  },
+  {
+    number: "02",
+    title: "需求會談",
+    description:
+      "進一步確認目標、現有資源、限制與成功標準。",
+  },
+  {
+    number: "03",
+    title: "方案提案",
+    description:
+      "提供課程內容、合作形式、時程、成果與評估方式。",
+  },
+  {
+    number: "04",
+    title: "正式實施",
+    description:
+      "依計畫進行課程、工作坊、教練、研究或系統建置。",
+  },
+];
+---
+
+<BaseLayout
+  title="課程與方案"
+  description="探索 iBridge Education 的學生學習、教師專業發展、學校課程建置、AI 教育與研究評估方案。"
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">iBridge Programmes</span>
+
+      <h1>為學生、教師與學校設計可持續的教育方案</h1>
+
+      <p class="lead">
+        iBridge Education 將課程設計、學習科學、教師發展、
+        人工智慧與教育研究整合成可直接實施的專業方案。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container programme-intro">
+      <div>
+        <span class="eyebrow">Programme Overview</span>
+
+        <h2 class="section-title">
+          不只提供單次活動，而是建立真正的學習進程
+        </h2>
+      </div>
+
+      <div class="programme-copy">
+        <p>
+          每項方案都從參與者的實際需求出發，建立清楚的學習成果、
+          課程內容、實施方式與評估工具。
+        </p>
+
+        <p>
+          方案可以提供給學生、教師團隊、課程主管或整個學校，
+          並依年級、學科、時間與發展階段調整。
+        </p>
+
+        <p>
+          我們重視的不只是參與者完成了什麼活動，而是他們能否將所學
+          轉化為更好的學習、教學與組織實踐。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Core Programmes</span>
+
+      <h2 class="section-title">
+        六項核心課程與合作方案
+      </h2>
+
+      <div class="programme-list">
+        {
+          programmes.map((programme) => (
+            <article class="programme-card">
+              <div class="programme-main">
+                <div class="programme-top">
+                  <span class="programme-number">{programme.number}</span>
+
+                  <span class="programme-category">
+                    {programme.category}
+                  </span>
+                </div>
+
+                <h3>{programme.title}</h3>
+
+                <p>{programme.description}</p>
+
+                <dl class="programme-meta">
+                  <div>
+                    <dt>適合對象</dt>
+                    <dd>{programme.audience}</dd>
+                  </div>
+
+                  <div>
+                    <dt>進行方式</dt>
+                    <dd>{programme.format}</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div class="programme-outcomes">
+                <h4>主要成果</h4>
+
+                <ul>
+                  {
+                    programme.outcomes.map((outcome) => (
+                      <li>
+                        <span class="check-mark">✓</span>
+                        <span>{outcome}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Delivery Formats</span>
+
+      <h2 class="section-title">
+        彈性的實施方式
+      </h2>
+
+      <p class="lead">
+        方案可依地區、參與人數、目標與時間採用實體、線上、
+        混合或完全客製化形式。
+      </p>
+
+      <div class="grid-4 format-grid">
+        {
+          deliveryFormats.map((format) => (
+            <article class="card format-card">
+              <h3>{format.title}</h3>
+              <p>{format.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Design Principles</span>
+
+      <h2 class="section-title">
+        每項方案的設計原則
+      </h2>
+
+      <div class="grid-4 principle-grid">
+        {
+          designPrinciples.map((principle) => (
+            <article class="card principle-card">
+              <div class="principle-number">{principle.number}</div>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Partnership Process</span>
+
+      <h2 class="section-title">
+        從洽詢到正式實施
+      </h2>
+
+      <div class="partnership-grid">
+        {
+          partnershipSteps.map((step) => (
+            <article class="partnership-step">
+              <span>{step.number}</span>
+
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container programme-cta">
+      <div>
+        <span class="eyebrow">Custom Programme</span>
+
+        <h2 class="section-title">
+          建立符合你學校需求的專屬方案
+        </h2>
+
+        <p class="lead">
+          請提供參與對象、主要目標、預計時間與目前面對的問題，
+          我們將協助評估適合的課程或合作模式。
+        </p>
+      </div>
+
+      <div class="programme-actions">
+        <a class="button button-primary" href="/contact">
+          洽詢課程方案
+        </a>
+
+        <a class="button button-secondary" href="/services">
+          查看完整服務
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .programme-intro {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .programme-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .programme-copy p {
+      margin-bottom: 22px;
+    }
+
+    .programme-list {
+      margin-top: 48px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .programme-card {
+      padding: 34px;
+
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-small);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .programme-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .programme-top {
+      margin-bottom: 20px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .programme-number,
+    .programme-category {
+      display: inline-flex;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .programme-number {
+      color: var(--teal);
+      background: var(--teal-light);
+    }
+
+    .programme-category {
+      color: var(--navy);
+      background: var(--soft-blue);
+    }
+
+    .programme-main h3 {
+      margin-bottom: 13px;
+      color: var(--navy);
+      font-size: 1.55rem;
+    }
+
+    .programme-main > p {
+      color: var(--muted);
+    }
+
+    .programme-meta {
+      margin: 25px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .programme-meta div {
+      padding: 14px 16px;
+      background: var(--soft);
+      border-radius: 14px;
+    }
+
+    .programme-meta dt {
+      margin-bottom: 4px;
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .programme-meta dd {
+      margin: 0;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .programme-outcomes {
+      padding: 25px;
+      background: var(--soft);
+      border-radius: 20px;
+    }
+
+    .programme-outcomes h4 {
+      margin-bottom: 18px;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .programme-outcomes ul {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+
+    .programme-outcomes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .format-grid,
+    .principle-grid {
+      margin-top: 44px;
+    }
+
+    .format-card h3,
+    .principle-card h3 {
+      color: var(--navy);
+    }
+
+    .principle-number {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .partnership-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .partnership-step {
+      padding: 24px;
+
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 17px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .partnership-step > span {
+      color: var(--teal);
+      font-weight: 850;
+    }
+
+    .partnership-step h3 {
+      margin-bottom: 7px;
+      color: var(--navy);
+    }
+
+    .partnership-step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .programme-cta {
+      padding: 52px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(15, 124, 130, 0.13),
+          transparent 28%
+        ),
+        linear-gradient(145deg, #f8fbff, #edf7ff);
+
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .programme-actions {
+      min-width: 210px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .programme-intro,
+      .programme-card,
+      .programme-cta {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .programme-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .partnership-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .programme-card {
+        padding: 24px;
+      }
+
+      .programme-cta {
+        padding: 32px 24px;
+      }
+
+      .programme-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

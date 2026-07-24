@@ -1,0 +1,73 @@
+---
+const currentYear = new Date().getFullYear();
+
+const websiteLinks = [
+  { label: "關於我們", href: "/about" },
+  { label: "服務", href: "/services" },
+  { label: "研究", href: "/research" },
+];
+
+const resourceLinks = [
+  { label: "課程與方案", href: "/programmes" },
+  { label: "資源中心", href: "/resources" },
+  { label: "聯絡我們", href: "/contact" },
+];
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand footer-logo" href="/" aria-label="iBridge Education 首頁">
+        <span class="brand-mark">iB</span>
+        <span class="brand-name">iBridge Education</span>
+      </a>
+
+      <p>
+        Connecting learning, research and innovation.
+      </p>
+
+      <p class="footer-description">
+        連結國際教育、研究與實務創新，協助學校、教師與學生建立面向未來的學習經驗。
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h2>網站</h2>
+
+      {
+        websiteLinks.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))
+      }
+    </div>
+
+    <div class="footer-column">
+      <h2>資源</h2>
+
+      {
+        resourceLinks.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))
+      }
+    </div>
+
+    <div class="footer-column">
+      <h2>聯絡方式</h2>
+
+      <a href="mailto:hello@ibridge.info">
+        hello@ibridge.info
+      </a>
+
+      <a href="https://ibridge.info">
+        ibridge.info
+      </a>
+
+      <span>台灣・提供國際合作</span>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© {currentYear} iBridge Education</span>
+    <span>保留所有權利</span>
+  </div>
+</footer>

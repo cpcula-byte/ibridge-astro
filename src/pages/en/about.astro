@@ -1,0 +1,416 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const principles = [
+  {
+    number: "01",
+    title: "Learning at the Centre",
+    description:
+      "Every curriculum, assessment and educational programme begins with what learners genuinely need to understand, apply and continue developing.",
+  },
+  {
+    number: "02",
+    title: "Evidence-Informed Decisions",
+    description:
+      "We combine educational research, applied neuroscience, positive psychology and classroom evidence to create programmes that can be evaluated and improved.",
+  },
+  {
+    number: "03",
+    title: "Connecting Ideas and Practice",
+    description:
+      "We do not stop at recommendations. We translate ideas into practical systems that teachers can use, students can engage with and schools can sustain.",
+  },
+  {
+    number: "04",
+    title: "Respecting Each Context",
+    description:
+      "Every partnership is designed around the school's culture, student needs, curriculum structure and stage of development rather than a standardised model.",
+  },
+];
+
+const expertise = [
+  "IB MYP and DP curriculum design",
+  "Language, writing and interdisciplinary learning",
+  "Professional learning and instructional coaching",
+  "Assessment, feedback and vertical alignment",
+  "AI integration and authentic assessment",
+  "Positive psychology and learning resilience",
+  "Applied neuroscience and self-regulation",
+  "Educational research and programme evaluation",
+];
+
+const collaborationSteps = [
+  {
+    number: "01",
+    title: "Understand the Context",
+    description:
+      "Identify the needs, priorities and constraints affecting the school, teachers, students and curriculum.",
+  },
+  {
+    number: "02",
+    title: "Co-design the Approach",
+    description:
+      "Establish clear goals, implementation steps, resources, assessments and indicators of success.",
+  },
+  {
+    number: "03",
+    title: "Support Implementation",
+    description:
+      "Bring the plan into practice through curriculum design, professional learning, coaching and collaborative planning.",
+  },
+  {
+    number: "04",
+    title: "Evaluate and Improve",
+    description:
+      "Use evidence and feedback to examine impact and refine the next stage of development.",
+  },
+];
+---
+
+<BaseLayout
+  locale="en"
+  title="About Us"
+  description="Learn about the mission, educational principles, areas of expertise and partnership approach of iBridge Education."
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">About iBridge</span>
+
+      <h1>
+        Connecting educational ideas, research and classroom practice
+      </h1>
+
+      <p class="lead">
+        iBridge Education helps schools, teachers and students transform
+        international education, research evidence and practical innovation
+        into sustainable learning experiences.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-intro">
+      <div>
+        <span class="eyebrow">Our Mission</span>
+
+        <h2 class="section-title">
+          Making educational innovation work in practice
+        </h2>
+      </div>
+
+      <div class="about-copy">
+        <p>
+          Education is full of valuable ideas. The real challenge is turning
+          those ideas into curricula and systems that teachers can implement,
+          students can understand and schools can sustain.
+        </p>
+
+        <p>
+          iBridge Education therefore focuses on connection: connecting
+          research with teaching, curriculum with assessment, student
+          wellbeing with academic development, and artificial intelligence
+          with meaningful educational purposes.
+        </p>
+
+        <p>
+          Our work does not end with a single workshop or a short-term
+          recommendation. We help educational partners establish clear,
+          coherent and measurable practices that can continue to improve
+          over time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="eyebrow">Our Principles</span>
+
+      <h2 class="section-title">
+        Four principles that guide our work
+      </h2>
+
+      <div class="grid-4 principle-grid">
+        {
+          principles.map((principle) => (
+            <article class="card">
+              <div class="principle-number">{principle.number}</div>
+
+              <h3>{principle.title}</h3>
+
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container expertise-layout">
+      <div>
+        <span class="eyebrow">Areas of Expertise</span>
+
+        <h2 class="section-title">
+          Integrated educational expertise
+        </h2>
+
+        <p class="lead">
+          iBridge Education brings curriculum design, professional
+          development, learning science, student support and educational
+          research together within one partnership framework.
+        </p>
+      </div>
+
+      <div class="expertise-list">
+        {
+          expertise.map((item) => (
+            <div class="expertise-item">
+              <span class="check-mark">✓</span>
+              <span>{item}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container collaboration">
+      <div>
+        <span class="eyebrow">How We Work</span>
+
+        <h2 class="section-title">
+          From understanding needs to continuous improvement
+        </h2>
+
+        <p class="lead">
+          Each partnership follows a structured process while remaining
+          flexible enough to respond to the context of the school or
+          organisation.
+        </p>
+      </div>
+
+      <div class="collaboration-steps">
+        {
+          collaborationSteps.map((step) => (
+            <article>
+              <span>{step.number}</span>
+
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-section">
+    <div class="container">
+      <div class="final-cta">
+        <div>
+          <span class="eyebrow cta-eyebrow">
+            Work With iBridge
+          </span>
+
+          <h2>
+            Transform educational ideas into sustainable practice
+          </h2>
+
+          <p>
+            We welcome enquiries from schools, educational organisations,
+            teaching teams and research partners.
+          </p>
+        </div>
+
+        <a class="button cta-button" href="/en/contact">
+          Start a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .about-intro {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .about-copy p {
+      margin-bottom: 22px;
+    }
+
+    .principle-grid {
+      margin-top: 44px;
+    }
+
+    .principle-number {
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .expertise-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .expertise-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .expertise-item {
+      min-height: 66px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-small);
+
+      font-weight: 700;
+    }
+
+    .collaboration {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .collaboration-steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .collaboration-steps article {
+      padding: 22px;
+
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .collaboration-steps article > span {
+      color: var(--teal);
+      font-weight: 850;
+    }
+
+    .collaboration-steps h3 {
+      margin-bottom: 7px;
+      color: var(--navy);
+    }
+
+    .collaboration-steps p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .final-cta-section {
+      padding-top: 36px;
+    }
+
+    .final-cta {
+      padding: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255, 255, 255, 0.15),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--teal)
+        );
+
+      border-radius: 30px;
+      box-shadow: var(--shadow-large);
+    }
+
+    .final-cta h2 {
+      max-width: 760px;
+      margin-bottom: 14px;
+
+      color: var(--white);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .final-cta p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .cta-eyebrow {
+      color: #bff7ef;
+    }
+
+    .cta-button {
+      flex: 0 0 auto;
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    @media (max-width: 980px) {
+      .about-intro,
+      .expertise-layout,
+      .collaboration {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .expertise-list {
+        grid-template-columns: 1fr;
+      }
+
+      .final-cta {
+        padding: 32px 24px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+    }
+  </style>
+</BaseLayout>

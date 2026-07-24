@@ -1,0 +1,709 @@
+---
+interface Props {
+  locale?: "zh-tw" | "en";
+}
+
+const { locale = "zh-tw" } = Astro.props;
+
+const isEnglish = locale === "en";
+
+const currentPath =
+  Astro.url.pathname === "/"
+    ? "/"
+    : Astro.url.pathname.replace(/\/$/, "");
+
+const zhPath = isEnglish
+  ? currentPath.replace(/^\/en(?=\/|$)/, "") || "/"
+  : currentPath;
+
+const enPath = isEnglish
+  ? currentPath
+  : currentPath === "/"
+    ? "/en"
+    : `/en${currentPath}`;
+
+const languageSwitchHref = isEnglish ? zhPath : enPath;
+
+const navigation = isEnglish
+  ? [
+      {
+        label: "Home",
+        href: "/en",
+        route: "/en",
+      },
+      {
+        label: "About",
+        href: "/en/about",
+        route: "/en/about",
+      },
+      {
+        label: "Services",
+        href: "/en/services",
+        route: "/en/services",
+      },
+      {
+        label: "Programmes",
+        href: "/en/programmes",
+        route: "/en/programmes",
+      },
+      {
+        label: "Research",
+        href: "/en/research",
+        route: "/en/research",
+      },
+      {
+        label: "Resources",
+        href: "/en/resources",
+        route: "/en/resources",
+      },
+      {
+        label: "Contact",
+        href: "/en/contact",
+        route: "/en/contact",
+      },
+    ]
+  : [
+      {
+        label: "首頁",
+        href: "/",
+        route: "/",
+      },
+      {
+        label: "關於我們",
+        href: "/about",
+        route: "/about",
+      },
+      {
+        label: "服務",
+        href: "/services",
+        route: "/services",
+      },
+      {
+        label: "課程與方案",
+        href: "/programmes",
+        route: "/programmes",
+      },
+      {
+        label: "研究",
+        href: "/research",
+        route: "/research",
+      },
+      {
+        label: "資源",
+        href: "/resources",
+        route: "/resources",
+      },
+      {
+        label: "聯絡我們",
+        href: "/contact",
+        route: "/contact",
+      },
+    ];
+
+const isActiveRoute = (route: string) => {
+  if (route === "/" || route === "/en") {
+    return currentPath === route;
+  }
+
+  return (
+    currentPath === route ||
+    currentPath.startsWith(`${route}/`)
+  );
+};
+
+const consultationHref = isEnglish
+  ? "/en/contact"
+  : "/contact";
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <a
+      class="brand"
+      href={isEnglish ? "/en" : "/"}
+      aria-label={
+        isEnglish
+          ? "iBridge Education English homepage"
+          : "iBridge Education 繁體中文首頁"
+      }
+    >
+      <span class="brand-mark" aria-hidden="true">
+        iB
+      </span>
+
+      <span class="brand-name">
+        iBridge Education
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label={
+        isEnglish
+          ? "Open navigation menu"
+          : "開啟導覽選單"
+      }
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div
+      class="navigation-wrapper"
+      id="primary-navigation"
+    >
+      <nav
+        class="primary-navigation"
+        aria-label={
+          isEnglish
+            ? "Primary navigation"
+            : "主要導覽"
+        }
+      >
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "navigation-link",
+                {
+                  active: isActiveRoute(item.route),
+                },
+              ]}
+              aria-current={
+                isActiveRoute(item.route)
+                  ? "page"
+                  : undefined
+              }
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="header-actions">
+        <a
+          class="language-switch"
+          href={languageSwitchHref}
+          hreflang={isEnglish ? "zh-Hant" : "en"}
+          lang={isEnglish ? "zh-Hant" : "en"}
+        >
+          {
+            isEnglish
+              ? "繁中"
+              : "EN"
+          }
+        </a>
+
+        <a
+          class="consultation-button"
+          href={consultationHref}
+        >
+          {
+            isEnglish
+              ? "Book a Consultation"
+              : "預約諮詢"
+          }
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div
+  class="menu-overlay"
+  id="menu-overlay"
+  aria-hidden="true"
+></div>
+
+<script>
+  const menuToggle =
+    document.querySelector("#menu-toggle");
+
+  const navigationWrapper =
+    document.querySelector("#primary-navigation");
+
+  const menuOverlay =
+    document.querySelector("#menu-overlay");
+
+  const closeMenu = () => {
+    if (
+      !(menuToggle instanceof HTMLButtonElement) ||
+      !(navigationWrapper instanceof HTMLElement) ||
+      !(menuOverlay instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false",
+    );
+
+    navigationWrapper.classList.remove("open");
+    menuOverlay.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  };
+
+  const openMenu = () => {
+    if (
+      !(menuToggle instanceof HTMLButtonElement) ||
+      !(navigationWrapper instanceof HTMLElement) ||
+      !(menuOverlay instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "true",
+    );
+
+    navigationWrapper.classList.add("open");
+    menuOverlay.classList.add("open");
+    document.body.classList.add("menu-open");
+  };
+
+  if (
+    menuToggle instanceof HTMLButtonElement &&
+    navigationWrapper instanceof HTMLElement &&
+    menuOverlay instanceof HTMLElement
+  ) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen =
+        menuToggle.getAttribute("aria-expanded") ===
+        "true";
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    menuOverlay.addEventListener(
+      "click",
+      closeMenu,
+    );
+
+    navigationWrapper
+      .querySelectorAll("a")
+      .forEach((link) => {
+        link.addEventListener(
+          "click",
+          closeMenu,
+        );
+      });
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      },
+    );
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth > 1080) {
+          closeMenu();
+        }
+      },
+    );
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .header-container {
+    width: min(100% - 40px, 1440px);
+    min-height: 82px;
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--white);
+    background:
+      linear-gradient(
+        135deg,
+        var(--navy),
+        var(--teal)
+      );
+
+    border-radius: 13px;
+
+    font-size: 0.76rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+  }
+
+  .brand-name {
+    white-space: nowrap;
+
+    font-family:
+      Georgia,
+      "Times New Roman",
+      serif;
+
+    font-size: 1.05rem;
+    font-weight: 750;
+  }
+
+  .navigation-wrapper {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  .primary-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .navigation-link {
+    position: relative;
+
+    padding: 10px 10px;
+
+    color: var(--navy);
+    border-radius: 10px;
+
+    font-size: 0.88rem;
+    font-weight: 720;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .navigation-link:hover {
+    color: var(--teal);
+    background: var(--soft);
+  }
+
+  .navigation-link.active {
+    color: var(--teal);
+    background: var(--teal-light);
+  }
+
+  .navigation-link.active::after {
+    content: "";
+
+    position: absolute;
+    right: 11px;
+    bottom: 5px;
+    left: 11px;
+
+    height: 2px;
+
+    background: var(--teal);
+    border-radius: 99px;
+  }
+
+  .header-actions {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .language-switch {
+    min-width: 50px;
+    padding: 10px 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .language-switch:hover {
+    color: var(--teal);
+    background: var(--soft);
+    border-color: rgba(15, 124, 130, 0.3);
+  }
+
+  .consultation-button {
+    min-height: 44px;
+    padding: 11px 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+    background:
+      linear-gradient(
+        135deg,
+        #1758a8,
+        var(--teal)
+      );
+
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(13, 74, 119, 0.17);
+
+    font-size: 0.84rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .consultation-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(13, 74, 119, 0.23);
+  }
+
+  .menu-toggle {
+    display: none;
+
+    width: 46px;
+    height: 46px;
+    padding: 11px;
+
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: var(--white);
+
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 100%;
+    height: 2px;
+
+    display: block;
+
+    background: var(--navy);
+    border-radius: 99px;
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .menu-toggle span + span {
+    margin-top: 6px;
+  }
+
+  .menu-toggle[aria-expanded="true"]
+    span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"]
+    span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"]
+    span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 890;
+
+    display: none;
+
+    background: rgba(4, 23, 44, 0.42);
+    backdrop-filter: blur(3px);
+  }
+
+  .menu-overlay.open {
+    display: block;
+  }
+
+  @media (max-width: 1180px) {
+    .header-container {
+      width: min(100% - 30px, 1440px);
+    }
+
+    .navigation-wrapper {
+      gap: 14px;
+    }
+
+    .navigation-link {
+      padding-inline: 7px;
+      font-size: 0.82rem;
+    }
+
+    .consultation-button {
+      padding-inline: 14px;
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .header-container {
+      min-height: 74px;
+    }
+
+    .menu-toggle {
+      position: relative;
+      z-index: 1010;
+      display: block;
+    }
+
+    .navigation-wrapper {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1000;
+
+      width: min(88vw, 390px);
+      height: 100dvh;
+      padding:
+        98px
+        24px
+        30px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 26px;
+
+      overflow-y: auto;
+
+      background: var(--white);
+      border-left: 1px solid var(--line);
+      box-shadow: -18px 0 50px rgba(6, 29, 53, 0.16);
+
+      transform: translateX(105%);
+      visibility: hidden;
+
+      transition:
+        transform 0.25s ease,
+        visibility 0.25s ease;
+    }
+
+    .navigation-wrapper.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .primary-navigation {
+      display: grid;
+      gap: 7px;
+    }
+
+    .navigation-link {
+      width: 100%;
+      padding: 14px 15px;
+
+      display: block;
+
+      font-size: 1rem;
+    }
+
+    .navigation-link.active::after {
+      display: none;
+    }
+
+    .header-actions {
+      display: grid;
+      gap: 11px;
+    }
+
+    .language-switch,
+    .consultation-button {
+      width: 100%;
+      min-height: 48px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .header-container {
+      width: min(100% - 24px, 1440px);
+    }
+
+    .brand-name {
+      max-width: 185px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.96rem;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+    }
+
+    .navigation-wrapper {
+      width: 92vw;
+    }
+  }
+</style>
+
+<style is:global>
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>

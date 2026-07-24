@@ -1,0 +1,536 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  {
+    icon: "IB",
+    title: "IB 課程與評量",
+    description:
+      "協助學校建立連貫的 MYP、DP 與跨學科課程，並設計符合學習目標的評量系統。",
+  },
+  {
+    icon: "AI",
+    title: "AI 教育整合",
+    description:
+      "將生成式人工智慧安全、有效且具學習目的地整合進入課程、教學與評量。",
+  },
+  {
+    icon: "PD",
+    title: "教師專業培訓",
+    description:
+      "提供教師工作坊、共同備課、教練與客製化專業成長方案。",
+  },
+  {
+    icon: "R",
+    title: "研究與教育顧問",
+    description:
+      "支援研究設計、方案評估、資料分析、課程改善與學校發展。",
+  },
+];
+
+const researchAreas = [
+  {
+    number: "01",
+    title: "應用神經科學",
+    description:
+      "探討注意力、動機、壓力、自我調節與學習表現之間的關係。",
+  },
+  {
+    number: "02",
+    title: "正向心理學與韌性",
+    description:
+      "將優勢、福祉、情緒調節與心理韌性轉化為可實施的教育方案。",
+  },
+  {
+    number: "03",
+    title: "AI、寫作與評量",
+    description:
+      "研究生成式 AI 對寫作、作者身份、回饋與真實評量造成的影響。",
+  },
+];
+
+const audiences = [
+  "國際學校與教育機構",
+  "課程領導者與教師團隊",
+  "IB MYP 與 DP 學生",
+  "研究人員與教育合作夥伴",
+];
+---
+
+<BaseLayout
+  title="iBridge Education"
+  description="iBridge Education 連結國際教育、應用神經科學、人工智慧與教育實踐，為學校、教師與學生提供課程設計、教師培訓、研究與顧問服務。"
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="eyebrow">International Education · Research · Innovation</span>
+
+        <h1>
+          連結學習，
+          <span>開創未來</span>
+        </h1>
+
+        <p class="hero-copy">
+          iBridge Education 連結國際課程、教育研究與實務創新，
+          協助學校、教師與學生建立更有深度、更具韌性，
+          也更面向未來的學習經驗。
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="/services">
+            探索我們的服務
+          </a>
+
+          <a class="button button-secondary" href="/about">
+            認識 iBridge
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="iBridge Education 品牌視覺">
+        <div class="bridge-graphic">
+          <div class="bridge-title">
+            <span>iBridge</span>
+            <small>Learning · Research · Innovation</small>
+          </div>
+
+          <div class="bridge">
+            <div class="bridge-arch"></div>
+            <div class="bridge-deck"></div>
+            <div class="bridge-support bridge-support-left"></div>
+            <div class="bridge-support bridge-support-right"></div>
+          </div>
+
+          <div class="bridge-labels">
+            <span>Learning</span>
+            <span>Research</span>
+            <span>Innovation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <span class="eyebrow">我們的專業</span>
+
+      <h2 class="section-title">
+        為學校、教師與學生提供完整教育支援
+      </h2>
+
+      <p class="lead">
+        從策略規劃、課程設計到課堂實施，
+        我們協助教育團隊建立清楚、連貫、可評估且能持續發展的方案。
+      </p>
+
+      <div class="grid-4 services-grid">
+        {
+          services.map((service) => (
+            <article class="card reveal">
+              <div class="card-icon">{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container grid-2">
+      <article class="panel reveal">
+        <span class="eyebrow">Schools & Teachers</span>
+
+        <h2 class="section-title">
+          建立可持續的教育改變
+        </h2>
+
+        <p class="lead">
+          我們與學校領導者、課程主管及教師共同工作，
+          將教育理念轉化為真正能在課堂中實施的課程、評量與專業學習。
+        </p>
+
+        <ul class="check-list panel-list">
+          <li>
+            <span class="check-mark">✓</span>
+            <span>課程架構與垂直銜接</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>評量設計與回饋系統</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>教師專業學習與教練</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>AI 教育政策與課堂實施</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="panel reveal">
+        <span class="eyebrow">Students & Learning</span>
+
+        <h2 class="section-title">
+          培養獨立而有韌性的學習者
+        </h2>
+
+        <p class="lead">
+          我們將學術寫作、IB 準備、學習策略與心理韌性結合，
+          協助學生發展能長期支持學習的知識、技能與習慣。
+        </p>
+
+        <ul class="check-list panel-list">
+          <li>
+            <span class="check-mark">✓</span>
+            <span>學術寫作與溝通</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>自我調節與反思</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>注意力、動機與壓力管理</span>
+          </li>
+
+          <li>
+            <span class="check-mark">✓</span>
+            <span>IB MYP 與 DP 學習準備</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-blue">
+    <div class="container">
+      <span class="eyebrow">Research Focus</span>
+
+      <h2 class="section-title">
+        以證據連結教育理想與實務
+      </h2>
+
+      <p class="lead">
+        研究不是教育工作的附加項目，而是理解問題、
+        評估影響與持續改善的重要基礎。
+      </p>
+
+      <div class="grid-3 research-grid">
+        {
+          researchAreas.map((area) => (
+            <article class="card reveal">
+              <div class="research-number">{area.number}</div>
+              <h3>{area.title}</h3>
+              <p>{area.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="section-action">
+        <a class="button button-secondary" href="/research">
+          查看研究方向
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container audience-layout">
+      <div>
+        <span class="eyebrow">Who We Support</span>
+
+        <h2 class="section-title">
+          與重視深度學習的教育夥伴合作
+        </h2>
+
+        <p class="lead">
+          iBridge Education 提供可依學校背景、學生需求與發展階段調整的合作模式。
+        </p>
+      </div>
+
+      <div class="audience-list">
+        {
+          audiences.map((audience) => (
+            <div class="audience-item reveal">
+              <span class="check-mark">✓</span>
+              <span>{audience}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-section">
+    <div class="container">
+      <div class="final-cta reveal">
+        <div>
+          <span class="eyebrow cta-eyebrow">Start a Conversation</span>
+
+          <h2>
+            一起建立更有深度、更具韌性的學習經驗
+          </h2>
+
+          <p>
+            歡迎洽詢課程設計、教師培訓、AI 教育整合、
+            教育研究、學校顧問與學生學習方案。
+          </p>
+        </div>
+
+        <a class="button cta-button" href="/contact">
+          聯絡 iBridge
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      },
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+  </script>
+
+  <style>
+    .services-grid,
+    .research-grid {
+      margin-top: 44px;
+    }
+
+    .panel-list {
+      margin-top: 30px;
+    }
+
+    .bridge-graphic {
+      width: min(100%, 430px);
+      text-align: center;
+    }
+
+    .bridge-title {
+      margin-bottom: 48px;
+    }
+
+    .bridge-title span {
+      display: block;
+      color: var(--navy);
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      font-weight: 850;
+      letter-spacing: -0.05em;
+    }
+
+    .bridge-title small {
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    .bridge {
+      position: relative;
+      height: 150px;
+      margin-bottom: 32px;
+    }
+
+    .bridge-arch {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+
+      width: 74%;
+      height: 130px;
+
+      border: 26px solid var(--blue);
+      border-bottom: 0;
+      border-radius: 180px 180px 0 0;
+
+      transform: translateX(-50%);
+    }
+
+    .bridge-deck {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 21px;
+
+      height: 17px;
+      background: var(--teal);
+      border-radius: 999px;
+    }
+
+    .bridge-support {
+      position: absolute;
+      bottom: 0;
+
+      width: 18px;
+      height: 48px;
+
+      background: var(--navy);
+      border-radius: 999px;
+    }
+
+    .bridge-support-left {
+      left: 22%;
+    }
+
+    .bridge-support-right {
+      right: 22%;
+    }
+
+    .bridge-labels {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bridge-labels span {
+      padding: 7px 12px;
+
+      color: var(--navy);
+      background: var(--soft-blue);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .research-number {
+      color: var(--teal);
+      font-size: 0.85rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+    }
+
+    .section-action {
+      margin-top: 36px;
+    }
+
+    .audience-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      align-items: start;
+      gap: 72px;
+    }
+
+    .audience-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .audience-item {
+      min-height: 66px;
+      padding: 17px 20px;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+
+      font-weight: 700;
+      box-shadow: var(--shadow-small);
+    }
+
+    .final-cta-section {
+      padding-top: 36px;
+    }
+
+    .final-cta {
+      padding: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255, 255, 255, 0.15),
+          transparent 28%
+        ),
+        linear-gradient(135deg, var(--navy), var(--teal));
+
+      border-radius: 30px;
+      box-shadow: var(--shadow-large);
+    }
+
+    .final-cta h2 {
+      max-width: 760px;
+      margin-bottom: 14px;
+
+      color: var(--white);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .final-cta p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .cta-eyebrow {
+      color: #bff7ef;
+    }
+
+    .cta-button {
+      flex: 0 0 auto;
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    @media (max-width: 980px) {
+      .audience-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .final-cta {
+        padding: 32px 24px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+    }
+  </style>
+</BaseLayout>

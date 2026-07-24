@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "iBridge Education",
+  "short_name": "iBridge",
+  "description": "iBridge Education connects international curriculum, educational research and practical innovation. iBridge Education 連結國際課程、教育研究與實務創新。",
+  "lang": "zh-Hant",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b6675",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
