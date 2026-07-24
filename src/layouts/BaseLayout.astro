@@ -4,103 +4,86 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   locale?: "zh-tw" | "en";
+  canonical?: string;
   image?: string;
   noindex?: boolean;
 }
 
 const {
-  title,
-  description,
+  title = "iBridge Education",
+  description = "iBridge Education connects international education, educational research and practical innovation.",
   locale = "zh-tw",
+  canonical,
   image = "/favicon.svg",
   noindex = false,
 } = Astro.props;
 
-const siteName = "iBridge Education";
 const siteUrl = "https://ibridge.info";
+const pathname = Astro.url.pathname;
+
+const isEnglish =
+  locale === "en" ||
+  pathname === "/en" ||
+  pathname.startsWith("/en/");
+
+const htmlLanguage = isEnglish ? "en" : "zh-Hant";
 
 const normalisePath = (path: string) => {
-  if (path === "/") return "/";
-  return path.endsWith("/") ? path.slice(0, -1) : path;
+  if (!path) return "/";
+
+  const pathWithoutTrailingSlash =
+    path.length > 1 && path.endsWith("/")
+      ? path.slice(0, -1)
+      : path;
+
+  return pathWithoutTrailingSlash || "/";
 };
 
-const currentPath = normalisePath(Astro.url.pathname);
+const currentPath = normalisePath(pathname);
 
-const zhPath =
-  locale === "en"
-    ? currentPath.replace(/^\/en(?=\/|$)/, "") || "/"
-    : currentPath;
+const traditionalChinesePath = isEnglish
+  ? normalisePath(currentPath.replace(/^\/en(?=\/|$)/, "") || "/")
+  : currentPath;
 
-const enPath =
-  locale === "en"
-    ? currentPath
-    : currentPath === "/"
-      ? "/en"
-      : `/en${currentPath}`;
-
-const canonicalPath =
-  locale === "en"
-    ? enPath
-    : zhPath;
+const englishPath = isEnglish
+  ? currentPath
+  : currentPath === "/"
+    ? "/en"
+    : `/en${currentPath}`;
 
 const canonicalUrl =
-  canonicalPath === "/"
-    ? `${siteUrl}/`
-    : `${siteUrl}${canonicalPath}`;
+  canonical ??
+  `${siteUrl}${currentPath === "/" ? "/" : currentPath}`;
 
-const zhUrl =
-  zhPath === "/"
-    ? `${siteUrl}/`
-    : `${siteUrl}${zhPath}`;
+const traditionalChineseUrl =
+  `${siteUrl}${
+    traditionalChinesePath === "/"
+      ? "/"
+      : traditionalChinesePath
+  }`;
 
-const enUrl =
-  enPath === "/en"
-    ? `${siteUrl}/en/`
-    : `${siteUrl}${enPath}`;
+const englishUrl =
+  `${siteUrl}${
+    englishPath === "/en"
+      ? "/en/"
+      : englishPath
+  }`;
 
 const socialImageUrl = image.startsWith("http")
   ? image
-  : `${siteUrl}${image}`;
+  : `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`;
 
-const pageTitle =
-  title === siteName
-    ? siteName
-    : `${title} | ${siteName}`;
+const fullTitle =
+  title === "iBridge Education"
+    ? title
+    : `${title} | iBridge Education`;
 
-const htmlLanguage =
-  locale === "en"
-    ? "en"
-    : "zh-Hant";
-
-const organisationSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: siteName,
-  url: siteUrl,
-  logo: `${siteUrl}/favicon.svg`,
-  email: "mailto:cpc.ula@gmail.com",
-  description:
-    locale === "en"
-      ? "iBridge Education connects international curriculum, educational research and practical innovation."
-      : "iBridge Education 連結國際課程、教育研究與實務創新。",
-};
-
-const webpageSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: pageTitle,
-  description,
-  url: canonicalUrl,
-  inLanguage: htmlLanguage,
-  isPartOf: {
-    "@type": "WebSite",
-    name: siteName,
-    url: siteUrl,
-  },
-};
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large";
 ---
 
 <!doctype html>
@@ -110,28 +93,17 @@ const webpageSchema = {
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-
-    <title>{pageTitle}</title>
-
-    <meta
-      name="description"
-      content={description}
+      content="width=device-width, initial-scale=1"
     />
 
     <meta
       name="robots"
-      content={
-        noindex
-          ? "noindex, nofollow"
-          : "index, follow"
-      }
+      content={robotsContent}
     />
 
     <meta
-      name="author"
-      content="iBridge Education"
+      name="description"
+      content={description}
     />
 
     <meta
@@ -144,6 +116,8 @@ const webpageSchema = {
       content="light"
     />
 
+    <title>{fullTitle}</title>
+
     <link
       rel="canonical"
       href={canonicalUrl}
@@ -152,19 +126,19 @@ const webpageSchema = {
     <link
       rel="alternate"
       hreflang="zh-Hant"
-      href={zhUrl}
+      href={traditionalChineseUrl}
     />
 
     <link
       rel="alternate"
       hreflang="en"
-      href={enUrl}
+      href={englishUrl}
     />
 
     <link
       rel="alternate"
       hreflang="x-default"
-      href={zhUrl}
+      href={traditionalChineseUrl}
     />
 
     <link
@@ -185,12 +159,12 @@ const webpageSchema = {
 
     <meta
       property="og:site_name"
-      content={siteName}
+      content="iBridge Education"
     />
 
     <meta
       property="og:title"
-      content={pageTitle}
+      content={fullTitle}
     />
 
     <meta
@@ -210,30 +184,22 @@ const webpageSchema = {
 
     <meta
       property="og:locale"
-      content={
-        locale === "en"
-          ? "en_US"
-          : "zh_TW"
-      }
+      content={isEnglish ? "en_US" : "zh_TW"}
     />
 
     <meta
       property="og:locale:alternate"
-      content={
-        locale === "en"
-          ? "zh_TW"
-          : "en_US"
-      }
+      content={isEnglish ? "zh_TW" : "en_US"}
     />
 
     <meta
       name="twitter:card"
-      content="summary"
+      content="summary_large_image"
     />
 
     <meta
       name="twitter:title"
-      content={pageTitle}
+      content={fullTitle}
     />
 
     <meta
@@ -246,15 +212,7 @@ const webpageSchema = {
       content={socialImageUrl}
     />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(organisationSchema)}
-    ></script>
-
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(webpageSchema)}
-    ></script>
+    <slot name="head" />
   </head>
 
   <body>
@@ -262,64 +220,53 @@ const webpageSchema = {
       class="skip-link"
       href="#main-content"
     >
-      {
-        locale === "en"
-          ? "Skip to main content"
-          : "跳至主要內容"
-      }
+      {isEnglish ? "Skip to main content" : "跳至主要內容"}
     </a>
 
-    <Header locale={locale} />
+    <Header locale={isEnglish ? "en" : "zh-tw"} />
 
     <main id="main-content">
       <slot />
     </main>
 
-    <Footer locale={locale} />
-
-    <style is:global>
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 92px;
-      }
-
-      body {
-        margin: 0;
-        min-width: 320px;
-        overflow-x: hidden;
-      }
-
-      main {
-        min-height: 65vh;
-      }
-
-      .skip-link {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        z-index: 9999;
-
-        padding: 11px 16px;
-
-        color: #ffffff;
-        background: #08345f;
-        border-radius: 9px;
-
-        font-weight: 800;
-        text-decoration: none;
-
-        transform: translateY(-160%);
-        transition: transform 0.2s ease;
-      }
-
-      .skip-link:focus {
-        transform: translateY(0);
-      }
-
-      :focus-visible {
-        outline: 3px solid rgba(15, 124, 130, 0.45);
-        outline-offset: 3px;
-      }
-    </style>
+    <Footer locale={isEnglish ? "en" : "zh-tw"} />
   </body>
 </html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    background: #ffffff;
+    color: #102f50;
+  }
+
+  main {
+    min-height: 60vh;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #073b62;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 12px 32px rgba(7, 47, 76, 0.2);
+    transform: translateY(-160%);
+    transition: transform 160ms ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+</style>
