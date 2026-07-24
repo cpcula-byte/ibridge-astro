@@ -1,73 +1,362 @@
 ---
+const pathname = Astro.url.pathname;
+const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
+
 const currentYear = new Date().getFullYear();
 
-const websiteLinks = [
-  { label: "關於我們", href: "/about" },
-  { label: "服務", href: "/services" },
-  { label: "研究", href: "/research" },
-];
-
-const resourceLinks = [
-  { label: "課程與方案", href: "/programmes" },
-  { label: "資源中心", href: "/resources" },
-  { label: "聯絡我們", href: "/contact" },
-];
+const content = isEnglish
+  ? {
+      description:
+        "Connecting international education, educational research and practical innovation to create deeper, more resilient and future-ready learning experiences.",
+      navigationTitle: "Explore",
+      contactTitle: "Contact",
+      legalTitle: "Information",
+      navigation: [
+        { label: "Home", href: "/en/" },
+        { label: "About", href: "/en/about" },
+        { label: "Services", href: "/en/services" },
+        { label: "Programmes", href: "/en/programmes" },
+        { label: "Research", href: "/en/research" },
+        { label: "Resources", href: "/en/resources" },
+        { label: "Contact", href: "/en/contact" },
+      ],
+      contact: [
+        {
+          label: "Email",
+          value: "hello@ibridge.info",
+          href: "mailto:hello@ibridge.info",
+        },
+        {
+          label: "Website",
+          value: "ibridge.info",
+          href: "https://ibridge.info",
+        },
+        {
+          label: "Service Area",
+          value: "Taiwan and international collaboration",
+          href: null,
+        },
+      ],
+      legal: [
+        { label: "Privacy Notice", href: "/en/contact#privacy" },
+        { label: "Traditional Chinese", href: "/" },
+      ],
+      copyright: `© ${currentYear} iBridge Education. All rights reserved.`,
+      tagline: "Learning · Research · Innovation",
+    }
+  : {
+      description:
+        "連結國際教育、教育研究與實務創新，建立更有深度、更具韌性，也更面向未來的學習經驗。",
+      navigationTitle: "網站導覽",
+      contactTitle: "聯絡資訊",
+      legalTitle: "相關資訊",
+      navigation: [
+        { label: "首頁", href: "/" },
+        { label: "關於我們", href: "/about" },
+        { label: "服務", href: "/services" },
+        { label: "課程與方案", href: "/programmes" },
+        { label: "研究", href: "/research" },
+        { label: "資源", href: "/resources" },
+        { label: "聯絡我們", href: "/contact" },
+      ],
+      contact: [
+        {
+          label: "電子郵件",
+          value: "hello@ibridge.info",
+          href: "mailto:hello@ibridge.info",
+        },
+        {
+          label: "網站",
+          value: "ibridge.info",
+          href: "https://ibridge.info",
+        },
+        {
+          label: "服務地區",
+          value: "台灣及國際線上合作",
+          href: null,
+        },
+      ],
+      legal: [
+        { label: "隱私權說明", href: "/contact#privacy" },
+        { label: "English", href: "/en/" },
+      ],
+      copyright: `© ${currentYear} iBridge Education。保留所有權利。`,
+      tagline: "學習 · 研究 · 創新",
+    };
 ---
 
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-brand">
-      <a class="brand footer-logo" href="/" aria-label="iBridge Education 首頁">
-        <span class="brand-mark">iB</span>
-        <span class="brand-name">iBridge Education</span>
-      </a>
+  <div class="footer-main">
+    <div class="footer-container">
+      <section class="footer-brand" aria-labelledby="footer-brand-title">
+        <a
+          class="footer-logo"
+          href={isEnglish ? "/en/" : "/"}
+          aria-label={isEnglish ? "iBridge Education home" : "iBridge Education 首頁"}
+        >
+          <span class="footer-logo-mark" aria-hidden="true">iB</span>
 
-      <p>
-        Connecting learning, research and innovation.
-      </p>
+          <span class="footer-logo-text">
+            <strong id="footer-brand-title">iBridge Education</strong>
+            <small>{content.tagline}</small>
+          </span>
+        </a>
 
-      <p class="footer-description">
-        連結國際教育、研究與實務創新，協助學校、教師與學生建立面向未來的學習經驗。
-      </p>
-    </div>
+        <p>{content.description}</p>
+      </section>
 
-    <div class="footer-column">
-      <h2>網站</h2>
+      <nav class="footer-column" aria-label={content.navigationTitle}>
+        <h2>{content.navigationTitle}</h2>
 
-      {
-        websiteLinks.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))
-      }
-    </div>
+        <ul>
+          {
+            content.navigation.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-    <div class="footer-column">
-      <h2>資源</h2>
+      <section class="footer-column">
+        <h2>{content.contactTitle}</h2>
 
-      {
-        resourceLinks.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))
-      }
-    </div>
+        <ul class="contact-list">
+          {
+            content.contact.map((item) => (
+              <li>
+                <span>{item.label}</span>
 
-    <div class="footer-column">
-      <h2>聯絡方式</h2>
+                {
+                  item.href ? (
+                    <a href={item.href}>{item.value}</a>
+                  ) : (
+                    <strong>{item.value}</strong>
+                  )
+                }
+              </li>
+            ))
+          }
+        </ul>
+      </section>
 
-      <a href="mailto:hello@ibridge.info">
-        hello@ibridge.info
-      </a>
+      <nav class="footer-column" aria-label={content.legalTitle}>
+        <h2>{content.legalTitle}</h2>
 
-      <a href="https://ibridge.info">
-        ibridge.info
-      </a>
-
-      <span>台灣・提供國際合作</span>
+        <ul>
+          {
+            content.legal.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
   </div>
 
-  <div class="container footer-bottom">
-    <span>© {currentYear} iBridge Education</span>
-    <span>保留所有權利</span>
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <p>{content.copyright}</p>
+
+      <p>{content.tagline}</p>
+    </div>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    background:
+      radial-gradient(
+        circle at 12% 15%,
+        rgba(28, 145, 150, 0.16),
+        transparent 27%
+      ),
+      linear-gradient(145deg, #072f4c 0%, #0a4361 52%, #08757b 100%);
+    color: #ffffff;
+  }
+
+  .footer-main {
+    padding: 72px 24px 54px;
+  }
+
+  .footer-container {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(280px, 1.7fr) repeat(3, minmax(150px, 1fr));
+    gap: 52px;
+  }
+
+  .footer-brand {
+    max-width: 430px;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .footer-logo-mark {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #164f79, #0b8c8e);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .footer-logo-text strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .footer-logo-text small {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .footer-brand p {
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+
+  .footer-column h2 {
+    margin: 0 0 22px;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+  }
+
+  .footer-column ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-column li + li {
+    margin-top: 12px;
+  }
+
+  .footer-column a {
+    color: rgba(255, 255, 255, 0.74);
+    text-decoration: none;
+    line-height: 1.5;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .footer-column a:hover,
+  .footer-column a:focus-visible {
+    color: #ffffff;
+  }
+
+  .contact-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .contact-list span {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.78rem;
+  }
+
+  .contact-list strong {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(3, 26, 43, 0.3);
+  }
+
+  .footer-bottom-container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 980px) {
+    .footer-container {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .footer-main {
+      padding: 56px 22px 42px;
+    }
+
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 28px;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+
+    .footer-bottom-container {
+      width: min(100% - 44px, 1180px);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+      grid-column: auto;
+    }
+
+    .footer-logo-text strong {
+      font-size: 1.2rem;
+    }
+  }
+</style>
