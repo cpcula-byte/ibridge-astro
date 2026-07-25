@@ -1,137 +1,555 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const principles = [
+  {
+    number: "01",
+    title: "清楚勝過複雜",
+    description:
+      "將研究、課程架構與教育理念轉化為教師、學生與學校可以理解及實施的行動。",
+  },
+  {
+    number: "02",
+    title: "脈絡決定方法",
+    description:
+      "沒有單一方法適用所有學校。方案必須回應學生、教師、課程與組織的真實情境。",
+  },
+  {
+    number: "03",
+    title: "證據支持判斷",
+    description:
+      "研究提供方向，但專業判斷、實務經驗與持續評估同樣重要。",
+  },
+  {
+    number: "04",
+    title: "發展重於短期成果",
+    description:
+      "教育的價值不只在立即表現，也在於建立思考、韌性、獨立性與長期學習能力。",
+  },
+];
+
+const expertise = [
+  "國際課程與單元設計",
+  "教師專業發展",
+  "英語與學術寫作",
+  "正向心理學與學生福祉",
+  "教育神經科學",
+  "人工智慧教育應用",
+  "自我調節與後設認知",
+  "學校課程與方案評估",
+];
 ---
 
 <BaseLayout
-  title="聯絡我們"
-  description="聯絡 iBridge Education，洽詢課程設計、教師培訓、AI 教育整合、研究合作與學生學習方案。"
+  title="關於我們"
+  description="了解 iBridge Education 的教育理念、專業領域與合作方式，以及我們如何連結國際教育、研究與實務創新。"
+  locale="zh-tw"
+  zhPath="/about"
+  enPath="/en/about"
+  pageType="AboutPage"
+  breadcrumbs={[
+    {
+      name: "首頁",
+      path: "/",
+    },
+    {
+      name: "關於我們",
+      path: "/about",
+    },
+  ]}
 >
   <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">Contact iBridge</span>
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow">關於 iBridge Education</p>
 
-      <h1>開始一段教育合作對話</h1>
+        <h1>
+          在研究與實務之間，
+          <span>建立真正有意義的連結。</span>
+        </h1>
+      </div>
 
-      <p class="lead">
-        歡迎洽詢課程設計、教師培訓、AI 教育整合、
-        教育研究、學校顧問與學生學習方案。
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container grid-2">
-      <article class="panel">
-        <span class="eyebrow">聯絡方式</span>
-
-        <h2 class="section-title">與 iBridge Education 聯繫</h2>
-
-        <p class="lead">
-          請透過電子郵件說明你的學校、團隊或個人需求，
-          我們會根據合作方向回覆。
+      <div class="hero-copy">
+        <p>
+          iBridge Education 致力於將國際教育、教育研究與實務創新轉化為
+          清楚、可行且具長期價值的學習經驗。
         </p>
 
-        <ul class="check-list contact-details">
-          <li>
-            <span class="check-mark">✉</span>
-            <span>
-              <strong>電子郵件</strong><br />
-              <a href="mailto:hello@ibridge.info">hello@ibridge.info</a>
-            </span>
-          </li>
-
-          <li>
-            <span class="check-mark">⌂</span>
-            <span>
-              <strong>網站</strong><br />
-              <a href="https://ibridge.info">ibridge.info</a>
-            </span>
-          </li>
-
-          <li>
-            <span class="check-mark">◎</span>
-            <span>
-              <strong>服務地區</strong><br />
-              台灣及國際線上合作
-            </span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="panel">
-        <span class="eyebrow">Enquiry</span>
-
-        <h2 class="section-title">合作需求</h2>
-
-        <form
-          class="contact-form"
-          action="mailto:hello@ibridge.info"
-          method="post"
-          enctype="text/plain"
-        >
-          <div class="form-field">
-            <label for="name">姓名</label>
-            <input id="name" name="name" type="text" required />
-          </div>
-
-          <div class="form-field">
-            <label for="email">電子郵件</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <div class="form-field">
-            <label for="organisation">學校或機構</label>
-            <input id="organisation" name="organisation" type="text" />
-          </div>
-
-          <div class="form-field">
-            <label for="topic">洽詢主題</label>
-
-            <select id="topic" name="topic">
-              <option>課程設計</option>
-              <option>教師培訓</option>
-              <option>AI 教育整合</option>
-              <option>研究合作</option>
-              <option>學生學習方案</option>
-              <option>其他</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="message">需求說明</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-
-          <button class="button button-primary" type="submit">
-            傳送洽詢
-          </button>
-
-          <p class="notice">
-            此初始版本會開啟你的電子郵件程式。之後可改成 Cloudflare
-            Pages Functions 或表單服務，直接在網站提交資料。
-          </p>
-        </form>
-      </article>
+        <p>
+          我們與學校、教師及教育團隊合作，協助他們設計課程、
+          發展專業能力、整合科技，並建立更具深度與韌性的學習環境。
+        </p>
+      </div>
     </div>
   </section>
 
-  <style>
-    .contact-details {
-      margin-top: 32px;
-    }
+  <section class="mission-section">
+    <div class="container mission-grid">
+      <div class="mission-marker" aria-hidden="true">iB</div>
 
-    .contact-details strong {
-      color: var(--navy);
-    }
+      <div class="mission-content">
+        <p class="section-label">我們的使命</p>
 
-    .contact-details a {
-      color: var(--blue);
-    }
+        <h2>
+          讓教育研究不只停留在概念，
+          而能進入課程、教室與學生的真實經驗。
+        </h2>
 
-    @media (max-width: 680px) {
-      .contact-details li {
-        align-items: flex-start;
-      }
-    }
-  </style>
+        <div class="mission-copy">
+          <p>
+            許多教育理念具有價值，但如果缺乏清楚架構、實施方式與持續支持，
+            就難以在真實學校環境中產生長期影響。
+          </p>
+
+          <p>
+            iBridge Education 的角色，是協助教育工作者在理論與實務之間
+            建立橋樑，將複雜內容轉化為可理解、可調整及可持續的教育方案。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles-section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">我們的原則</p>
+        <h2>穩健的教育創新，始於清楚的價值與判斷。</h2>
+      </div>
+
+      <div class="principle-grid">
+        {
+          principles.map((principle) => (
+            <article class="principle-card">
+              <span>{principle.number}</span>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise-section">
+    <div class="container expertise-grid">
+      <div class="expertise-copy">
+        <p class="section-label">專業領域</p>
+
+        <h2>跨領域，但始終以學習品質為核心。</h2>
+
+        <p>
+          我們的工作整合課程設計、語言學習、教師發展、
+          教育研究、人工智慧與學生福祉。不同領域不是各自獨立，
+          而是共同影響學生如何理解、參與及持續學習。
+        </p>
+      </div>
+
+      <div class="expertise-list">
+        {
+          expertise.map((item, index) => (
+            <div class="expertise-item">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item}</strong>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="approach-section">
+    <div class="container approach-card">
+      <div>
+        <p class="section-label light-label">合作方式</p>
+
+        <h2>先理解情境，再設計方案。</h2>
+
+        <p>
+          每一項合作都從組織脈絡、學習者需求、現有資源與發展階段開始。
+          我們不提供制式答案，而是共同建立最適合該環境的方向。
+        </p>
+      </div>
+
+      <ol>
+        <li>
+          <span>01</span>
+          <div>
+            <h3>理解需求</h3>
+            <p>釐清學校、教師、學生與課程目前面對的問題。</p>
+          </div>
+        </li>
+
+        <li>
+          <span>02</span>
+          <div>
+            <h3>建立方向</h3>
+            <p>設定清楚目標、成功標準與可行的發展步驟。</p>
+          </div>
+        </li>
+
+        <li>
+          <span>03</span>
+          <div>
+            <h3>共同設計</h3>
+            <p>發展課程、工具、專業學習或研究方案。</p>
+          </div>
+        </li>
+
+        <li>
+          <span>04</span>
+          <div>
+            <h3>評估與調整</h3>
+            <p>根據實施結果、回饋與證據持續改善。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-card">
+      <div>
+        <p class="eyebrow">開始對話</p>
+        <h2>討論您的學校、課程或教育計畫。</h2>
+      </div>
+
+      <a href="/contact">聯絡 iBridge</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .page-hero {
+    padding: 112px 0 102px;
+    background:
+      linear-gradient(125deg, #f5faf9 0%, #eaf7f4 100%);
+  }
+
+  .page-hero-grid {
+    display: grid;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: 90px;
+    align-items: end;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 18px;
+    color: #0b6675;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    color: #0a355b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 6.3vw, 5.8rem);
+    line-height: 0.99;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 14px;
+    color: #0b6675;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 22px;
+    padding-bottom: 10px;
+  }
+
+  .hero-copy p,
+  .mission-copy p,
+  .expertise-copy > p,
+  .approach-card > div > p {
+    margin: 0;
+    color: #587286;
+    font-size: 1.03rem;
+    line-height: 1.85;
+  }
+
+  .mission-section,
+  .principles-section,
+  .expertise-section,
+  .approach-section {
+    padding: 104px 0;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 70px;
+  }
+
+  .mission-marker {
+    color: rgba(11, 102, 117, 0.14);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 0.9;
+  }
+
+  .mission-content h2,
+  .section-heading h2,
+  .expertise-copy h2,
+  .approach-card h2,
+  .cta-card h2 {
+    max-width: 900px;
+    font-size: clamp(2.35rem, 4vw, 4.15rem);
+    line-height: 1.08;
+  }
+
+  .mission-copy {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 42px;
+    margin-top: 42px;
+  }
+
+  .principles-section {
+    background: #f7fafb;
+  }
+
+  .section-heading {
+    max-width: 850px;
+    margin-bottom: 50px;
+  }
+
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .principle-card {
+    min-height: 285px;
+    padding: 28px;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 18px;
+    background: #ffffff;
+  }
+
+  .principle-card > span {
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .principle-card h3 {
+    margin: 58px 0 16px;
+    color: #123e60;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.45rem;
+  }
+
+  .principle-card p {
+    margin: 0;
+    color: #61798b;
+    line-height: 1.75;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 90px;
+    align-items: start;
+  }
+
+  .expertise-copy > p {
+    margin-top: 28px;
+  }
+
+  .expertise-list {
+    border-top: 1px solid rgba(10, 53, 91, 0.13);
+  }
+
+  .expertise-item {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    padding: 21px 0;
+    border-bottom: 1px solid rgba(10, 53, 91, 0.13);
+  }
+
+  .expertise-item span {
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .expertise-item strong {
+    color: #173f60;
+  }
+
+  .approach-section {
+    padding-top: 20px;
+  }
+
+  .approach-card {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 76px;
+    padding: 64px;
+    border-radius: 28px;
+    background: #082f52;
+  }
+
+  .light-label {
+    color: #76d0c8;
+  }
+
+  .approach-card h2 {
+    color: #ffffff;
+  }
+
+  .approach-card > div > p {
+    margin-top: 25px;
+    color: #bfd0dc;
+  }
+
+  .approach-card ol {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .approach-card li {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 18px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+  }
+
+  .approach-card li:first-child {
+    border-top: 0;
+  }
+
+  .approach-card li > span {
+    color: #76d0c8;
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .approach-card h3 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 1.08rem;
+  }
+
+  .approach-card li p {
+    margin: 0;
+    color: #bccbd7;
+    line-height: 1.65;
+  }
+
+  .cta-section {
+    padding: 20px 0 100px;
+  }
+
+  .cta-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: center;
+    padding: 54px 60px;
+    border-radius: 24px;
+    background:
+      linear-gradient(115deg, #edf8f5 0%, #dcefeb 100%);
+  }
+
+  .cta-card h2 {
+    max-width: 760px;
+    font-size: clamp(2.15rem, 3.6vw, 3.7rem);
+  }
+
+  .cta-card a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 25px;
+    border-radius: 999px;
+    background: #0a4d70;
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .page-hero-grid,
+    .mission-grid,
+    .expertise-grid,
+    .approach-card {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .principle-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-card {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      width: min(100% - 30px, 1180px);
+    }
+
+    .page-hero {
+      padding: 82px 0 74px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 14vw, 4.2rem);
+    }
+
+    .mission-section,
+    .principles-section,
+    .expertise-section,
+    .approach-section {
+      padding: 76px 0;
+    }
+
+    .mission-copy,
+    .principle-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mission-marker {
+      font-size: 5rem;
+    }
+
+    .approach-card,
+    .cta-card {
+      padding: 34px 26px;
+    }
+
+    .cta-section {
+      padding-bottom: 74px;
+    }
+  }
+</style>

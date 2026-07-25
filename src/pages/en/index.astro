@@ -3,288 +3,252 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const services = [
   {
-    icon: "IB",
-    title: "IB Curriculum and Assessment",
-    description:
-      "We help schools develop coherent MYP, DP and interdisciplinary curricula supported by purposeful assessment systems.",
-  },
-  {
-    icon: "AI",
-    title: "AI in Education",
-    description:
-      "We support the safe, effective and purposeful integration of generative AI into curriculum, teaching and assessment.",
-  },
-  {
-    icon: "PD",
-    title: "Professional Development",
-    description:
-      "We provide workshops, collaborative planning, instructional coaching and customised professional learning programmes.",
-  },
-  {
-    icon: "R",
-    title: "Research and Consultancy",
-    description:
-      "We support research design, programme evaluation, data analysis, curriculum improvement and school development.",
-  },
-];
-
-const researchAreas = [
-  {
     number: "01",
-    title: "Applied Neuroscience",
+    title: "Curriculum and Learning Design",
     description:
-      "Exploring the relationships between attention, motivation, stress, self-regulation and academic learning.",
+      "Coherent and practical curriculum design shaped by school context, learner needs and international education frameworks.",
+    link: "/en/services",
   },
   {
     number: "02",
-    title: "Positive Psychology and Resilience",
+    title: "Professional Development",
     description:
-      "Translating strengths, wellbeing, emotional regulation and resilience into practical educational programmes.",
+      "Workshops, consultancy and collaborative planning that connect research, technology and classroom practice.",
+    link: "/en/services",
   },
   {
     number: "03",
-    title: "AI, Writing and Assessment",
+    title: "Educational Research and Innovation",
     description:
-      "Investigating how generative AI affects writing, authorship, feedback and authentic assessment.",
+      "Translating educational research, neuroscience, positive psychology and artificial intelligence into usable practice.",
+    link: "/en/research",
   },
 ];
 
-const audiences = [
-  "International schools and educational organisations",
-  "Curriculum leaders and teaching teams",
-  "IB MYP and DP students",
-  "Researchers and educational partners",
+const principles = [
+  {
+    title: "Learner-centred",
+    description:
+      "We begin with the learner’s experience, developmental stage, language profile and actual educational needs.",
+  },
+  {
+    title: "Research-informed",
+    description:
+      "Credible evidence is translated into clear and practical approaches that can work in real school settings.",
+  },
+  {
+    title: "Long-term development",
+    description:
+      "We value thinking, communication, self-management, resilience and independent learning alongside immediate outcomes.",
+  },
+  {
+    title: "Sustainable systems",
+    description:
+      "We help schools and teachers build structures that can continue, adapt and grow beyond a single intervention.",
+  },
+];
+
+const programmes = [
+  "International curriculum planning and review",
+  "MYP and DP vertical alignment",
+  "English and academic writing programmes",
+  "Teacher training and professional workshops",
+  "Artificial intelligence in education",
+  "Student learning and resilience programmes",
 ];
 ---
 
 <BaseLayout
-  locale="en"
   title="iBridge Education"
-  description="iBridge Education connects international education, applied neuroscience, artificial intelligence and educational practice through curriculum design, professional development, research and consultancy."
+  description="iBridge Education connects international education, educational research and practical innovation through curriculum design, professional development, AI integration and student learning programmes."
+  locale="en"
+  zhPath="/"
+  enPath="/en/"
+  pageType="WebPage"
+  breadcrumbs={[
+    {
+      name: "Home",
+      path: "/en/",
+    },
+  ]}
 >
   <section class="hero">
-    <div class="container hero-grid">
+    <div class="hero-background" aria-hidden="true">
+      <span class="hero-circle hero-circle-one"></span>
+      <span class="hero-circle hero-circle-two"></span>
+      <span class="hero-line"></span>
+    </div>
+
+    <div class="container hero-container">
       <div class="hero-content">
-        <span class="eyebrow">
-          International Education · Research · Innovation
-        </span>
+        <p class="eyebrow">International Education · Research · Innovation</p>
 
         <h1>
-          Connecting Learning,
-          <span>Creating the Future</span>
+          Connecting learning, research and innovation
+          <span>to build deeper and more resilient education.</span>
         </h1>
 
-        <p class="hero-copy">
-          iBridge Education connects international curricula,
-          educational research and practical innovation to help
-          schools, teachers and students build deeper, more resilient
-          and future-ready learning experiences.
+        <p class="hero-description">
+          iBridge Education helps schools, teachers and learners translate
+          international curricula, educational research, artificial intelligence
+          and classroom practice into clear, sustainable and meaningful programmes.
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="/en/services">
-            Explore Our Services
+          <a class="button button-primary" href="/en/contact">
+            Book a Consultation
           </a>
 
           <a class="button button-secondary" href="/en/about">
-            About iBridge
+            Discover iBridge
           </a>
         </div>
       </div>
 
-      <div
-        class="hero-visual"
-        aria-label="iBridge Education brand illustration"
-      >
-        <div class="bridge-graphic">
-          <div class="bridge-title">
-            <span>iBridge</span>
-            <small>Learning · Research · Innovation</small>
-          </div>
+      <aside class="hero-panel" aria-label="iBridge Education areas of work">
+        <p class="panel-label">What we connect</p>
 
-          <div class="bridge">
-            <div class="bridge-arch"></div>
-            <div class="bridge-deck"></div>
-            <div
-              class="bridge-support bridge-support-left"
-            ></div>
-            <div
-              class="bridge-support bridge-support-right"
-            ></div>
-          </div>
+        <ul>
+          <li>
+            <span>01</span>
+            <strong>Curriculum and learning design</strong>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>Professional development</strong>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Educational research</strong>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>Artificial intelligence in education</strong>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
 
-          <div class="bridge-labels">
-            <span>Learning</span>
-            <span>Research</span>
-            <span>Innovation</span>
-          </div>
+  <section class="intro-section">
+    <div class="container intro-grid">
+      <div>
+        <p class="section-label">Our position</p>
+
+        <h2>
+          Educational ideas must become
+          <span>meaningful learning experiences.</span>
+        </h2>
+      </div>
+
+      <div class="intro-copy">
+        <p>
+          iBridge Education works between educational research and school practice.
+          We help educators clarify objectives, build curriculum structures,
+          design learning experiences and evaluate whether programmes genuinely
+          respond to learner needs.
+        </p>
+
+        <p>
+          We value rigour without unnecessary complexity. Every partnership is
+          designed to be clear, practical, sustainable and responsive to the
+          organisation’s context.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Professional services</p>
+          <h2>From strategic planning to classroom practice</h2>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section" id="services">
-    <div class="container">
-      <span class="eyebrow">Our Expertise</span>
-
-      <h2 class="section-title">
-        Comprehensive educational support for schools,
-        teachers and students
-      </h2>
-
-      <p class="lead">
-        From strategic planning and curriculum design to classroom
-        implementation, we help educational teams create clear,
-        coherent, measurable and sustainable programmes.
-      </p>
-
-      <div class="grid-4 services-grid">
-        {
-          services.map((service) => (
-            <article class="card reveal">
-              <div class="card-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-soft">
-    <div class="container grid-2">
-      <article class="panel reveal">
-        <span class="eyebrow">Schools and Teachers</span>
-
-        <h2 class="section-title">
-          Building sustainable educational change
-        </h2>
-
-        <p class="lead">
-          We work with school leaders, curriculum coordinators and
-          teachers to transform educational ideas into practical
-          curricula, assessment systems and professional learning.
-        </p>
-
-        <ul class="check-list panel-list">
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Curriculum architecture and vertical alignment</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Assessment design and feedback systems</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Professional learning and instructional coaching</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>AI policy and classroom implementation</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="panel reveal">
-        <span class="eyebrow">Students and Learning</span>
-
-        <h2 class="section-title">
-          Developing independent and resilient learners
-        </h2>
-
-        <p class="lead">
-          We combine academic writing, IB preparation, learning
-          strategies and psychological resilience to help students
-          develop knowledge, skills and habits that support long-term
-          learning.
-        </p>
-
-        <ul class="check-list panel-list">
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Academic writing and communication</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Self-regulation and reflection</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>Attention, motivation and stress management</span>
-          </li>
-
-          <li>
-            <span class="check-mark">✓</span>
-            <span>IB MYP and DP preparation</span>
-          </li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="section section-blue">
-    <div class="container">
-      <span class="eyebrow">Research Focus</span>
-
-      <h2 class="section-title">
-        Connecting educational ideals with evidence
-      </h2>
-
-      <p class="lead">
-        Research is not an additional part of educational work.
-        It is essential for understanding problems, evaluating impact
-        and supporting continuous improvement.
-      </p>
-
-      <div class="grid-3 research-grid">
-        {
-          researchAreas.map((area) => (
-            <article class="card reveal">
-              <div class="research-number">{area.number}</div>
-              <h3>{area.title}</h3>
-              <p>{area.description}</p>
-            </article>
-          ))
-        }
-      </div>
-
-      <div class="section-action">
-        <a class="button button-secondary" href="/en/research">
-          Explore Our Research
+        <a class="text-link" href="/en/services">
+          Explore all services
+          <span aria-hidden="true">→</span>
         </a>
       </div>
+
+      <div class="service-grid">
+        {
+          services.map((service) => (
+            <article class="service-card">
+              <div class="service-number">{service.number}</div>
+
+              <h3>{service.title}</h3>
+
+              <p>{service.description}</p>
+
+              <a href={service.link}>
+                Learn more
+                <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container audience-layout">
-      <div>
-        <span class="eyebrow">Who We Support</span>
+  <section class="principles-section">
+    <div class="container principles-layout">
+      <div class="principles-intro">
+        <p class="section-label light-label">Our principles</p>
 
-        <h2 class="section-title">
-          Working with educational partners who value deep learning
-        </h2>
+        <h2>Thoughtful, rigorous and focused on long-term development.</h2>
 
-        <p class="lead">
-          iBridge Education provides flexible partnership models
-          designed around each organisation's context, student needs
-          and stage of development.
+        <p>
+          Educational innovation should not be driven by novelty alone.
+          It should be grounded in clear purposes, credible evidence,
+          professional judgement and authentic learning needs.
         </p>
+
+        <a class="button button-light" href="/en/about">
+          Read about our approach
+        </a>
       </div>
 
-      <div class="audience-list">
+      <div class="principles-grid">
         {
-          audiences.map((audience) => (
-            <div class="audience-item reveal">
-              <span class="check-mark">✓</span>
-              <span>{audience}</span>
+          principles.map((principle, index) => (
+            <article class="principle-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="programmes-section">
+    <div class="container programmes-grid">
+      <div class="programme-copy">
+        <p class="section-label">Areas of partnership</p>
+
+        <h2>Flexible programmes shaped around each educational context.</h2>
+
+        <p>
+          iBridge Education supports one-off workshops, curriculum reviews
+          and consultancy, as well as longer-term curriculum development,
+          professional learning and research partnerships.
+        </p>
+
+        <a class="button button-primary" href="/en/programmes">
+          Explore programmes
+        </a>
+      </div>
+
+      <div class="programme-list">
+        {
+          programmes.map((programme, index) => (
+            <div class="programme-item">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{programme}</strong>
             </div>
           ))
         }
@@ -292,272 +256,646 @@ const audiences = [
     </div>
   </section>
 
-  <section class="section final-cta-section">
-    <div class="container">
-      <div class="final-cta reveal">
-        <div>
-          <span class="eyebrow cta-eyebrow">
-            Start a Conversation
-          </span>
+  <section class="research-section">
+    <div class="container research-card">
+      <div class="research-number">R</div>
 
-          <h2>
-            Build deeper and more resilient learning experiences
-          </h2>
+      <div class="research-content">
+        <p class="section-label">Research and practice</p>
 
-          <p>
-            Contact us to discuss curriculum design, professional
-            development, AI integration, educational research,
-            school consultancy or student learning programmes.
-          </p>
-        </div>
+        <h2>Making educational research understandable and usable.</h2>
 
-        <a class="button cta-button" href="/en/contact">
-          Contact iBridge
+        <p>
+          Our areas of interest include positive psychology, educational
+          neuroscience, self-regulated learning, artificial intelligence,
+          international curriculum design and student wellbeing.
+          We focus on how research can create value in real schools.
+        </p>
+
+        <a class="text-link" href="/en/research">
+          Explore our research
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
   </section>
 
-  <script>
-    const revealElements =
-      document.querySelectorAll(".reveal");
+  <section class="cta-section">
+    <div class="container cta-card">
+      <div>
+        <p class="eyebrow cta-eyebrow">Start a conversation</p>
 
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-      },
-    );
+        <h2>Build deeper and more resilient learning experiences.</h2>
 
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
-  </script>
+        <p>
+          Contact us to discuss curriculum design, professional development,
+          AI integration, educational research, school consultancy or
+          student learning programmes.
+        </p>
+      </div>
 
-  <style>
-    .services-grid,
-    .research-grid {
-      margin-top: 44px;
+      <a class="button button-white" href="/en/contact">
+        Contact iBridge
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 112px 0 104px;
+    background:
+      linear-gradient(120deg, #f6fbfa 0%, #edf8f6 54%, #e6f4f3 100%);
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-circle {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(11, 102, 117, 0.18);
+    border-radius: 999px;
+  }
+
+  .hero-circle-one {
+    width: 520px;
+    height: 520px;
+    top: -230px;
+    right: -110px;
+  }
+
+  .hero-circle-two {
+    width: 350px;
+    height: 350px;
+    right: 160px;
+    bottom: -245px;
+  }
+
+  .hero-line {
+    position: absolute;
+    width: 660px;
+    height: 1px;
+    right: -100px;
+    top: 54%;
+    background: rgba(11, 102, 117, 0.2);
+    transform: rotate(-18deg);
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.55fr);
+    gap: 76px;
+    align-items: center;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 18px;
+    color: #0b6675;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    max-width: 850px;
+    margin: 0;
+    color: #0a355b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 6.2vw, 5.65rem);
+    font-weight: 600;
+    line-height: 0.99;
+    letter-spacing: -0.045em;
+  }
+
+  .hero h1 span {
+    display: block;
+    margin-top: 14px;
+    color: #0b6675;
+  }
+
+  .hero-description {
+    max-width: 730px;
+    margin: 34px 0 0;
+    color: #49677e;
+    font-size: 1.08rem;
+    line-height: 1.85;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      background 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary {
+    background: #0a4d70;
+    color: #ffffff;
+  }
+
+  .button-primary:hover {
+    background: #083e5b;
+  }
+
+  .button-secondary {
+    border-color: rgba(10, 53, 91, 0.22);
+    background: rgba(255, 255, 255, 0.64);
+    color: #0a355b;
+  }
+
+  .button-secondary:hover {
+    border-color: #0b6675;
+    background: #ffffff;
+  }
+
+  .hero-panel {
+    padding: 30px;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 24px 70px rgba(10, 53, 91, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .panel-label {
+    margin: 0 0 22px;
+    color: #668095;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .hero-panel ul {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero-panel li {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 1px solid rgba(10, 53, 91, 0.1);
+  }
+
+  .hero-panel li:first-child {
+    border-top: 0;
+  }
+
+  .hero-panel span {
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .hero-panel strong {
+    color: #183f61;
+    font-size: 0.98rem;
+  }
+
+  .intro-section,
+  .services-section,
+  .programmes-section,
+  .research-section {
+    padding: 104px 0;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .intro-grid h2,
+  .section-heading h2,
+  .principles-intro h2,
+  .programme-copy h2,
+  .research-content h2,
+  .cta-card h2 {
+    margin: 0;
+    color: #0a355b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.35rem, 4vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .intro-grid h2 span {
+    display: block;
+    color: #0b6675;
+  }
+
+  .intro-copy {
+    display: grid;
+    gap: 24px;
+    padding-top: 34px;
+  }
+
+  .intro-copy p,
+  .principles-intro > p,
+  .programme-copy > p,
+  .research-content > p,
+  .cta-card p {
+    margin: 0;
+    color: #577084;
+    font-size: 1.03rem;
+    line-height: 1.85;
+  }
+
+  .services-section {
+    background: #f7fafb;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2.3rem, 3.7vw, 3.8rem);
+  }
+
+  .text-link {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: #0a4d70;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .text-link:hover {
+    color: #0b6675;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    padding: 32px;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 20px;
+    background: #ffffff;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 55px rgba(10, 53, 91, 0.1);
+  }
+
+  .service-number {
+    margin-bottom: 54px;
+    color: #0b6675;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .service-card h3 {
+    margin: 0;
+    color: #123d5f;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.65rem;
+  }
+
+  .service-card p {
+    margin: 18px 0 30px;
+    color: #62798b;
+    line-height: 1.75;
+  }
+
+  .service-card a {
+    display: inline-flex;
+    gap: 8px;
+    margin-top: auto;
+    color: #0a4d70;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .principles-section {
+    padding: 110px 0;
+    background: #082d50;
+  }
+
+  .principles-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 86px;
+    align-items: start;
+  }
+
+  .light-label {
+    color: #7ed1ca;
+  }
+
+  .principles-intro h2 {
+    color: #ffffff;
+    font-size: clamp(2.4rem, 4vw, 4.15rem);
+  }
+
+  .principles-intro > p {
+    margin-top: 26px;
+    color: #c2d0dc;
+  }
+
+  .button-light {
+    margin-top: 34px;
+    border-color: rgba(255, 255, 255, 0.36);
+    color: #ffffff;
+  }
+
+  .button-light:hover {
+    background: #ffffff;
+    color: #082d50;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .principle-card {
+    padding: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .principle-card > span {
+    color: #6fc5c0;
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .principle-card h3 {
+    margin: 24px 0 12px;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+  }
+
+  .principle-card p {
+    margin: 0;
+    color: #bdcbd6;
+    line-height: 1.7;
+  }
+
+  .programmes-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 90px;
+    align-items: center;
+  }
+
+  .programme-copy h2 {
+    font-size: clamp(2.35rem, 3.8vw, 4rem);
+  }
+
+  .programme-copy > p {
+    margin-top: 26px;
+  }
+
+  .programme-copy .button {
+    margin-top: 34px;
+  }
+
+  .programme-list {
+    border-top: 1px solid rgba(10, 53, 91, 0.14);
+  }
+
+  .programme-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(10, 53, 91, 0.14);
+  }
+
+  .programme-item span {
+    color: #0b6675;
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .programme-item strong {
+    color: #173f60;
+    font-size: 1.02rem;
+  }
+
+  .research-section {
+    padding-top: 20px;
+  }
+
+  .research-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 58px;
+    padding: 66px;
+    border-radius: 28px;
+    background:
+      linear-gradient(135deg, #edf8f6 0%, #f8fbfc 100%);
+  }
+
+  .research-number {
+    color: rgba(11, 102, 117, 0.17);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 9rem;
+    line-height: 0.8;
+  }
+
+  .research-content h2 {
+    max-width: 790px;
+    font-size: clamp(2.2rem, 3.5vw, 3.7rem);
+  }
+
+  .research-content > p {
+    max-width: 780px;
+    margin-top: 24px;
+  }
+
+  .research-content .text-link {
+    margin-top: 26px;
+  }
+
+  .cta-section {
+    padding: 20px 0 100px;
+  }
+
+  .cta-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    align-items: center;
+    padding: 58px 62px;
+    border-radius: 26px;
+    background:
+      linear-gradient(115deg, #0a355b 0%, #0b6675 68%, #18828d 100%);
+  }
+
+  .cta-card > div {
+    max-width: 760px;
+  }
+
+  .cta-eyebrow {
+    color: #a8e4df;
+  }
+
+  .cta-card h2 {
+    color: #ffffff;
+    font-size: clamp(2.2rem, 3.8vw, 3.9rem);
+  }
+
+  .cta-card p {
+    margin-top: 22px;
+    color: #d3e2e7;
+  }
+
+  .button-white {
+    flex: 0 0 auto;
+    background: #ffffff;
+    color: #0a355b;
+  }
+
+  .button-white:hover {
+    background: #eaf7f5;
+  }
+
+  @media (max-width: 980px) {
+    .hero-container,
+    .intro-grid,
+    .principles-layout,
+    .programmes-grid {
+      grid-template-columns: 1fr;
+      gap: 54px;
     }
 
-    .panel-list {
-      margin-top: 30px;
+    .hero-panel {
+      max-width: 620px;
     }
 
-    .bridge-graphic {
-      width: min(100%, 430px);
-      text-align: center;
+    .service-grid {
+      grid-template-columns: 1fr;
     }
 
-    .bridge-title {
-      margin-bottom: 48px;
+    .service-card {
+      min-height: auto;
     }
 
-    .bridge-title span {
-      display: block;
-      color: var(--navy);
-      font-size: clamp(2.4rem, 5vw, 4.4rem);
-      font-weight: 850;
-      letter-spacing: -0.05em;
+    .service-number {
+      margin-bottom: 30px;
     }
 
-    .bridge-title small {
-      color: var(--muted);
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-    }
-
-    .bridge {
-      position: relative;
-      height: 150px;
-      margin-bottom: 32px;
-    }
-
-    .bridge-arch {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-
-      width: 74%;
-      height: 130px;
-
-      border: 26px solid var(--blue);
-      border-bottom: 0;
-      border-radius: 180px 180px 0 0;
-
-      transform: translateX(-50%);
-    }
-
-    .bridge-deck {
-      position: absolute;
-      left: 8%;
-      right: 8%;
-      bottom: 21px;
-
-      height: 17px;
-      background: var(--teal);
-      border-radius: 999px;
-    }
-
-    .bridge-support {
-      position: absolute;
-      bottom: 0;
-
-      width: 18px;
-      height: 48px;
-
-      background: var(--navy);
-      border-radius: 999px;
-    }
-
-    .bridge-support-left {
-      left: 22%;
-    }
-
-    .bridge-support-right {
-      right: 22%;
-    }
-
-    .bridge-labels {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .bridge-labels span {
-      padding: 7px 12px;
-
-      color: var(--navy);
-      background: var(--soft-blue);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-
-      font-size: 0.78rem;
-      font-weight: 700;
+    .research-card {
+      grid-template-columns: 1fr;
     }
 
     .research-number {
-      color: var(--teal);
-      font-size: 0.85rem;
-      font-weight: 850;
-      letter-spacing: 0.1em;
+      font-size: 5.5rem;
     }
 
-    .section-action {
-      margin-top: 36px;
+    .cta-card {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .container {
+      width: min(100% - 30px, 1180px);
     }
 
-    .audience-layout {
-      display: grid;
-      grid-template-columns: 1fr 0.85fr;
-      align-items: start;
-      gap: 72px;
+    .hero {
+      padding: 82px 0 76px;
     }
 
-    .audience-list {
-      display: grid;
-      gap: 14px;
+    .hero h1 {
+      font-size: clamp(2.65rem, 14vw, 4.2rem);
     }
 
-    .audience-item {
-      min-height: 66px;
-      padding: 17px 20px;
-
-      display: flex;
-      align-items: center;
-      gap: 14px;
-
-      color: var(--navy);
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-
-      font-weight: 700;
-      box-shadow: var(--shadow-small);
+    .intro-section,
+    .services-section,
+    .programmes-section,
+    .research-section {
+      padding: 76px 0;
     }
 
-    .final-cta-section {
-      padding-top: 36px;
+    .section-heading {
+      align-items: flex-start;
+      flex-direction: column;
     }
 
-    .final-cta {
-      padding: 54px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-
-      color: var(--white);
-      background:
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(255, 255, 255, 0.15),
-          transparent 28%
-        ),
-        linear-gradient(
-          135deg,
-          var(--navy),
-          var(--teal)
-        );
-
-      border-radius: 30px;
-      box-shadow: var(--shadow-large);
+    .principles-grid {
+      grid-template-columns: 1fr;
     }
 
-    .final-cta h2 {
-      max-width: 760px;
-      margin-bottom: 14px;
-
-      color: var(--white);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: -0.04em;
+    .research-card,
+    .cta-card {
+      padding: 34px 26px;
     }
 
-    .final-cta p {
-      max-width: 720px;
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.78);
+    .cta-section {
+      padding-bottom: 74px;
     }
-
-    .cta-eyebrow {
-      color: #bff7ef;
-    }
-
-    .cta-button {
-      flex: 0 0 auto;
-      color: var(--navy);
-      background: var(--white);
-    }
-
-    @media (max-width: 980px) {
-      .audience-layout {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-
-      .final-cta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .final-cta {
-        padding: 32px 24px;
-      }
-
-      .cta-button {
-        width: 100%;
-      }
-    }
-  </style>
-</BaseLayout>
+  }
+</style>
