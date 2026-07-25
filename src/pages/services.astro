@@ -4,189 +4,212 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const services = [
   {
     number: "01",
-    title: "IB 課程設計與垂直銜接",
+    title: "課程與教學設計",
     summary:
-      "協助學校建立從 MYP 到 DP 清楚、連貫且可持續發展的課程架構。",
-    features: [
-      "MYP 與 DP 課程地圖",
-      "單元架構與中央理念設計",
-      "學科內與跨學科垂直銜接",
-      "核心知識、技能與概念序列",
-      "課程文件與教師實施指南",
+      "協助學校與教師建立連貫、具挑戰性且符合學生需求的課程架構。",
+    details: [
+      "MYP 與 DP 課程規劃",
+      "單元與學習活動設計",
+      "課程垂直銜接",
+      "學習目標與評量對齊",
+      "跨學科課程發展",
+      "課程文件與教材檢視",
     ],
   },
   {
     number: "02",
-    title: "評量與回饋系統",
+    title: "教師專業發展",
     summary:
-      "建立能真正反映學習目標、支持學生進步並符合 IB 要求的評量系統。",
-    features: [
-      "形成性與總結性評量設計",
-      "評量標準與任務對齊",
-      "真實情境與探究型任務",
-      "學生可理解的回饋架構",
-      "校內標準化與教師共識建立",
+      "提供實務導向的工作坊、共同規劃與持續專業學習支持。",
+    details: [
+      "課程與教學工作坊",
+      "評量與回饋設計",
+      "探究式學習",
+      "差異化教學",
+      "學術寫作教學",
+      "教師共同備課與顧問支持",
     ],
   },
   {
     number: "03",
-    title: "教師專業發展",
+    title: "人工智慧教育整合",
     summary:
-      "提供能直接連結課堂實務的工作坊、共同備課、教練與專業學習方案。",
-    features: [
-      "客製化教師工作坊",
-      "共同備課與單元設計",
-      "課堂觀察與教學教練",
-      "學科團隊專業學習",
-      "新進教師與課程領導培訓",
+      "協助教育工作者安全、有效且有目的地將人工智慧融入教學。",
+    details: [
+      "生成式人工智慧教學應用",
+      "教師 AI 素養培訓",
+      "AI 支援課程規劃",
+      "學術誠信與使用規範",
+      "AI 輔助回饋與評量",
+      "校本人工智慧使用框架",
     ],
   },
   {
     number: "04",
-    title: "AI 教育整合",
+    title: "教育研究與方案評估",
     summary:
-      "協助學校安全、有效且具教育目的地整合生成式人工智慧。",
-    features: [
-      "AI 使用政策與原則",
-      "教師 AI 素養培訓",
-      "AI 支援課程設計與回饋",
-      "真實評量與學術誠信",
-      "學生負責任使用 AI 的指引",
+      "將研究問題、資料蒐集與實務需求整合為可執行的教育研究方案。",
+    details: [
+      "研究設計與規劃",
+      "問卷與訪談工具設計",
+      "方案成效評估",
+      "學生學習資料分析",
+      "研究與教學實務連結",
+      "教育研究報告與建議",
     ],
   },
   {
     number: "05",
-    title: "學生學習方案",
+    title: "學生學習與韌性方案",
     summary:
-      "結合學術能力、自我調節、心理韌性與 IB 學習準備。",
-    features: [
-      "學術寫作與閱讀策略",
-      "MYP 與 DP 學習準備",
-      "自我管理與時間規劃",
-      "注意力、動機與壓力調節",
-      "反思、後設認知與學習習慣",
+      "建立支持學生自我調節、後設認知、學習信心與心理韌性的課程。",
+    details: [
+      "自我調節學習",
+      "後設認知與反思",
+      "正向心理學",
+      "壓力與情緒調節",
+      "學習習慣與時間管理",
+      "學術信心與韌性培養",
     ],
   },
   {
     number: "06",
-    title: "研究與教育顧問",
+    title: "學校與課程顧問服務",
     summary:
-      "以研究證據與資料支持教育方案設計、實施、評估與持續改善。",
-    features: [
-      "研究設計與倫理規劃",
-      "問卷、訪談與資料蒐集",
-      "教育方案成效評估",
-      "資料分析與報告撰寫",
-      "學校發展與策略顧問",
+      "依據學校發展階段與實際需求，提供彈性且具系統性的顧問支持。",
+    details: [
+      "課程整體檢視",
+      "教育方案規劃",
+      "國際課程發展",
+      "教師團隊專業成長",
+      "學校改進計畫",
+      "長期合作與追蹤支持",
     ],
   },
 ];
 
-const process = [
+const processSteps = [
   {
     number: "01",
-    title: "需求診斷",
+    title: "需求釐清",
     description:
-      "了解學校、教師、學生、課程架構與目前面對的挑戰。",
+      "了解學校、教師、學生與課程目前的情況、優勢與主要挑戰。",
   },
   {
     number: "02",
-    title: "方案設計",
+    title: "目標與範圍設定",
     description:
-      "建立合作目標、實施步驟、時間規劃、資源與成功指標。",
+      "共同確定合作目的、優先事項、工作範圍與可衡量的成果。",
   },
   {
     number: "03",
-    title: "實施支援",
+    title: "方案設計",
     description:
-      "透過課程設計、工作坊、教練、共同備課與文件支持方案落地。",
+      "依據教育脈絡設計課程、工作坊、研究或顧問支持方案。",
   },
   {
     number: "04",
-    title: "評估改善",
+    title: "實施與支持",
     description:
-      "根據教師、學生與學校資料檢視影響，並調整下一階段方案。",
+      "提供教學資源、專業引導、共同規劃與持續回饋。",
+  },
+  {
+    number: "05",
+    title: "評估與調整",
+    description:
+      "根據資料、觀察與參與者回饋，持續改善合作內容與成效。",
   },
 ];
 
-const partnershipModels = [
+const partnershipTypes = [
   {
     title: "單次工作坊",
     description:
-      "適合針對特定主題提供集中培訓、課程介紹或教師專業發展。",
+      "適合針對特定教學、課程、評量或人工智慧主題進行集中培訓。",
   },
   {
     title: "短期專案",
     description:
-      "適合完成特定課程、評量、研究或制度建置任務。",
+      "適合單元設計、課程檢視、教師培訓或特定教育方案的發展。",
   },
   {
-    title: "學期合作",
+    title: "長期顧問合作",
     description:
-      "提供一學期的課程設計、教師教練、共同備課與追蹤支持。",
-  },
-  {
-    title: "長期學校夥伴關係",
-    description:
-      "建立跨年度課程、教師發展、研究與持續改善系統。",
+      "適合需要持續課程發展、教師支持、研究評估或學校改進的組織。",
   },
 ];
 ---
 
 <BaseLayout
-  title="服務"
-  description="iBridge Education 提供 IB 課程設計、評量系統、教師培訓、AI 教育整合、學生方案及教育研究顧問服務。"
+  title="專業服務"
+  description="iBridge Education 提供課程設計、教師專業發展、人工智慧教育整合、教育研究、學生學習方案與學校顧問服務。"
+  locale="zh-tw"
+  zhPath="/services"
+  enPath="/en/services"
+  pageType="CollectionPage"
+  breadcrumbs={[
+    {
+      name: "首頁",
+      path: "/",
+    },
+    {
+      name: "專業服務",
+      path: "/services",
+    },
+  ]}
 >
   <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">Our Services</span>
+    <div class="hero-decoration" aria-hidden="true">
+      <span class="shape shape-one"></span>
+      <span class="shape shape-two"></span>
+    </div>
 
-      <h1>將教育理念轉化為可實施的方案</h1>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">專業服務</p>
 
-      <p class="lead">
-        iBridge Education 提供從策略規劃、課程設計、教師培訓，
-        到研究評估與持續改善的完整教育支援。
-      </p>
+        <h1>
+          從教育理念出發，
+          <span>建立能夠真正實施的方案。</span>
+        </h1>
+      </div>
+
+      <div class="hero-copy">
+        <p>
+          iBridge Education 與學校、教育團隊及教師合作，
+          將課程目標、教育研究與創新方法轉化為清楚、可行且可持續的實務。
+        </p>
+
+        <p>
+          合作內容可依據組織規模、學生需求、教師經驗與發展階段進行調整。
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="services-section">
     <div class="container">
-      <div class="section-introduction">
-        <div>
-          <span class="eyebrow">What We Offer</span>
+      <div class="section-heading">
+        <p class="section-label">服務領域</p>
 
-          <h2 class="section-title">
-            六個核心服務領域
-          </h2>
-        </div>
-
-        <p class="lead">
-          每項服務都可以獨立進行，也可以整合成完整的學校發展方案。
-          合作內容會依據學校背景、學生需求、教師經驗與課程目標調整。
-        </p>
+        <h2>完整支援課程、教師、學生與學校發展。</h2>
       </div>
 
-      <div class="service-list">
+      <div class="services-grid">
         {
           services.map((service) => (
             <article class="service-card">
-              <div class="service-heading">
-                <span class="service-number">{service.number}</span>
-
-                <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.summary}</p>
-                </div>
+              <div class="service-header">
+                <span>{service.number}</span>
+                <h3>{service.title}</h3>
               </div>
 
-              <ul class="check-list service-features">
+              <p class="service-summary">{service.summary}</p>
+
+              <ul>
                 {
-                  service.features.map((feature) => (
-                    <li>
-                      <span class="check-mark">✓</span>
-                      <span>{feature}</span>
-                    </li>
+                  service.details.map((detail) => (
+                    <li>{detail}</li>
                   ))
                 }
               </ul>
@@ -197,241 +220,579 @@ const partnershipModels = [
     </div>
   </section>
 
-  <section class="section section-soft">
-    <div class="container">
-      <span class="eyebrow">Our Process</span>
+  <section class="approach-section">
+    <div class="container approach-grid">
+      <div class="approach-copy">
+        <p class="section-label light-label">合作流程</p>
 
-      <h2 class="section-title">
-        從需求理解到持續改善
-      </h2>
+        <h2>每一項服務都從理解實際教育情境開始。</h2>
 
-      <p class="lead">
-        我們採用清楚且可追蹤的合作流程，確保方案不只停留在計畫，
-        而能真正進入課堂與學校日常運作。
-      </p>
+        <p>
+          我們不使用單一制式方案，而是依據學校目標、現有資源、
+          學生需求與教師專業經驗，建立最合適的合作方式。
+        </p>
 
-      <div class="grid-4 process-grid">
+        <a href="/contact" class="light-button">
+          討論合作需求
+        </a>
+      </div>
+
+      <ol class="process-list">
         {
-          process.map((step) => (
-            <article class="card process-card">
-              <div class="process-number">{step.number}</div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
+          processSteps.map((step) => (
+            <li>
+              <span>{step.number}</span>
+
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </div>
   </section>
 
-  <section class="section section-blue">
+  <section class="partnership-section">
     <div class="container">
-      <span class="eyebrow">Partnership Models</span>
+      <div class="partnership-heading">
+        <div>
+          <p class="section-label">合作形式</p>
+          <h2>依據需求選擇合適的合作深度。</h2>
+        </div>
 
-      <h2 class="section-title">
-        彈性的合作模式
-      </h2>
-
-      <p class="lead">
-        可依照需求選擇單次培訓、短期專案、學期合作或長期夥伴關係。
-      </p>
-
-      <div class="grid-4 partnership-grid">
-        {
-          partnershipModels.map((model) => (
-            <article class="card partnership-card">
-              <h3>{model.title}</h3>
-              <p>{model.description}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container consultation-panel">
-      <div>
-        <span class="eyebrow">Customised Support</span>
-
-        <h2 class="section-title">
-          每個教育場域都需要適合自己的方案
-        </h2>
-
-        <p class="lead">
-          我們不提供一套適用所有學校的固定模式。
-          合作會從實際需求、資源、時間與目標出發，
-          建立可實施、可評估且能持續發展的方案。
+        <p>
+          合作可以從單次專業學習活動開始，
+          也可以延伸為跨學期或跨學年的持續課程與組織發展。
         </p>
       </div>
 
-      <div class="consultation-actions">
-        <a class="button button-primary" href="/contact">
-          洽詢合作方案
-        </a>
-
-        <a class="button button-secondary" href="/about">
-          認識我們的理念
-        </a>
+      <div class="partnership-grid">
+        {
+          partnershipTypes.map((type, index) => (
+            <article class="partnership-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{type.title}</h3>
+              <p>{type.description}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <style>
-    .section-introduction {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 72px;
-      align-items: start;
-    }
+  <section class="audience-section">
+    <div class="container audience-card">
+      <div class="audience-copy">
+        <p class="section-label">適合合作的對象</p>
 
-    .service-list {
-      margin-top: 50px;
-      display: grid;
-      gap: 22px;
-    }
+        <h2>支援不同階段的教育組織與專業團隊。</h2>
+      </div>
 
-    .service-card {
-      padding: 34px;
+      <div class="audience-list">
+        <div>
+          <span>01</span>
+          <strong>國際學校與雙語學校</strong>
+        </div>
 
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 48px;
-      align-items: start;
+        <div>
+          <span>02</span>
+          <strong>學校領導與課程統籌團隊</strong>
+        </div>
 
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-large);
-      box-shadow: var(--shadow-small);
+        <div>
+          <span>03</span>
+          <strong>教師與學科部門</strong>
+        </div>
 
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-    }
+        <div>
+          <span>04</span>
+          <strong>教育機構與培訓組織</strong>
+        </div>
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(23, 88, 168, 0.24);
-      box-shadow: var(--shadow-medium);
-    }
+        <div>
+          <span>05</span>
+          <strong>研究團隊與教育專案</strong>
+        </div>
 
-    .service-heading {
-      display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
+        <div>
+          <span>06</span>
+          <strong>學生學習與福祉方案團隊</strong>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    .service-number {
-      width: 52px;
-      height: 52px;
+  <section class="cta-section">
+    <div class="container cta-card">
+      <div>
+        <p class="eyebrow cta-eyebrow">開始合作</p>
 
-      display: grid;
-      place-items: center;
+        <h2>討論最適合您的學校或教育團隊的服務方案。</h2>
 
-      color: var(--teal);
-      background: var(--teal-light);
-      border-radius: 16px;
+        <p>
+          請提供目前需求、目標、參與對象及預計時程，
+          我們將協助整理合適的合作方向。
+        </p>
+      </div>
 
-      font-size: 0.83rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-    }
-
-    .service-heading h3 {
-      margin-bottom: 12px;
-      color: var(--navy);
-      font-size: 1.55rem;
-    }
-
-    .service-heading p {
-      margin-bottom: 0;
-      color: var(--muted);
-    }
-
-    .service-features {
-      padding: 22px;
-      background: var(--soft);
-      border-radius: 18px;
-    }
-
-    .process-grid,
-    .partnership-grid {
-      margin-top: 44px;
-    }
-
-    .process-number {
-      margin-bottom: 18px;
-      color: var(--teal);
-      font-size: 0.84rem;
-      font-weight: 850;
-      letter-spacing: 0.1em;
-    }
-
-    .process-card h3,
-    .partnership-card h3 {
-      color: var(--navy);
-    }
-
-    .consultation-panel {
-      padding: 52px;
-
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 48px;
-      align-items: center;
-
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(15, 124, 130, 0.13),
-          transparent 28%
-        ),
-        linear-gradient(145deg, #f8fbff, #edf7ff);
-
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow-medium);
-    }
-
-    .consultation-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-width: 210px;
-    }
-
-    @media (max-width: 980px) {
-      .section-introduction,
-      .service-card,
-      .consultation-panel {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .consultation-actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .service-card {
-        padding: 24px;
-      }
-
-      .service-heading {
-        grid-template-columns: 1fr;
-      }
-
-      .consultation-panel {
-        padding: 32px 24px;
-      }
-
-      .consultation-actions {
-        flex-direction: column;
-      }
-    }
-  </style>
+      <a href="/contact">聯絡 iBridge</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 112px 0 104px;
+    background:
+      linear-gradient(125deg, #f5faf9 0%, #e9f6f3 100%);
+  }
+
+  .hero-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .shape {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(11, 102, 117, 0.17);
+    border-radius: 999px;
+  }
+
+  .shape-one {
+    width: 520px;
+    height: 520px;
+    top: -270px;
+    right: -80px;
+  }
+
+  .shape-two {
+    width: 250px;
+    height: 250px;
+    right: 250px;
+    bottom: -165px;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.16fr 0.84fr;
+    gap: 90px;
+    align-items: end;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 18px;
+    color: #0b6675;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    color: #0a355b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 6.3vw, 5.8rem);
+    line-height: 0.99;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 14px;
+    color: #0b6675;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 22px;
+    padding-bottom: 8px;
+  }
+
+  .hero-copy p,
+  .approach-copy > p,
+  .partnership-heading > p,
+  .cta-card p {
+    margin: 0;
+    color: #587286;
+    font-size: 1.03rem;
+    line-height: 1.85;
+  }
+
+  .services-section,
+  .approach-section,
+  .partnership-section,
+  .audience-section {
+    padding: 104px 0;
+  }
+
+  .section-heading {
+    max-width: 900px;
+    margin-bottom: 50px;
+  }
+
+  .section-heading h2,
+  .approach-copy h2,
+  .partnership-heading h2,
+  .audience-copy h2,
+  .cta-card h2 {
+    font-size: clamp(2.35rem, 4vw, 4.15rem);
+    line-height: 1.08;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    padding: 34px;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 18px 50px rgba(10, 53, 91, 0.05);
+  }
+
+  .service-header {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .service-header > span {
+    padding-top: 6px;
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .service-header h3 {
+    margin: 0;
+    color: #123e60;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.72rem;
+    line-height: 1.2;
+  }
+
+  .service-summary {
+    margin: 24px 0;
+    color: #5c7487;
+    line-height: 1.75;
+  }
+
+  .service-card ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 18px;
+    margin: 0;
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(10, 53, 91, 0.1);
+    list-style: none;
+  }
+
+  .service-card li {
+    position: relative;
+    padding-left: 16px;
+    color: #294d69;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  .service-card li::before {
+    position: absolute;
+    top: 0.62em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: #0b6675;
+    content: "";
+  }
+
+  .approach-section {
+    background: #082f52;
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 86px;
+    align-items: start;
+  }
+
+  .light-label {
+    color: #78d1ca;
+  }
+
+  .approach-copy h2 {
+    color: #ffffff;
+  }
+
+  .approach-copy > p {
+    margin-top: 26px;
+    color: #c1d0dc;
+  }
+
+  .light-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    margin-top: 34px;
+    padding: 0 24px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+      background 180ms ease,
+      color 180ms ease;
+  }
+
+  .light-button:hover {
+    background: #ffffff;
+    color: #082f52;
+  }
+
+  .process-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process-list li {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    padding: 23px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+  }
+
+  .process-list li:first-child {
+    border-top: 0;
+  }
+
+  .process-list li > span {
+    color: #78d1ca;
+    font-size: 0.73rem;
+    font-weight: 800;
+  }
+
+  .process-list h3 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 1.12rem;
+  }
+
+  .process-list p {
+    margin: 0;
+    color: #becdd9;
+    line-height: 1.7;
+  }
+
+  .partnership-section {
+    background: #f7fafb;
+  }
+
+  .partnership-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.75fr;
+    gap: 70px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  .partnership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .partnership-card {
+    min-height: 240px;
+    padding: 30px;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 20px;
+    background: #ffffff;
+  }
+
+  .partnership-card > span {
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .partnership-card h3 {
+    margin: 46px 0 16px;
+    color: #123e60;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+  }
+
+  .partnership-card p {
+    margin: 0;
+    color: #60788b;
+    line-height: 1.75;
+  }
+
+  .audience-section {
+    padding-top: 28px;
+  }
+
+  .audience-card {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 76px;
+    padding: 62px;
+    border-radius: 28px;
+    background:
+      linear-gradient(130deg, #edf8f6 0%, #f9fbfc 100%);
+  }
+
+  .audience-list {
+    border-top: 1px solid rgba(10, 53, 91, 0.14);
+  }
+
+  .audience-list > div {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 18px;
+    padding: 21px 0;
+    border-bottom: 1px solid rgba(10, 53, 91, 0.14);
+  }
+
+  .audience-list span {
+    color: #0b6675;
+    font-size: 0.74rem;
+    font-weight: 800;
+  }
+
+  .audience-list strong {
+    color: #173f60;
+  }
+
+  .cta-section {
+    padding: 20px 0 100px;
+  }
+
+  .cta-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    align-items: center;
+    padding: 58px 62px;
+    border-radius: 26px;
+    background:
+      linear-gradient(115deg, #0a355b 0%, #0b6675 68%, #18828d 100%);
+  }
+
+  .cta-card > div {
+    max-width: 790px;
+  }
+
+  .cta-eyebrow {
+    color: #a8e4df;
+  }
+
+  .cta-card h2 {
+    color: #ffffff;
+  }
+
+  .cta-card p {
+    margin-top: 22px;
+    color: #d3e2e7;
+  }
+
+  .cta-card > a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 25px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #0a355b;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid,
+    .approach-grid,
+    .partnership-heading,
+    .audience-card {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .partnership-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .container {
+      width: min(100% - 30px, 1180px);
+    }
+
+    .page-hero {
+      padding: 82px 0 74px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 14vw, 4.2rem);
+    }
+
+    .services-section,
+    .approach-section,
+    .partnership-section,
+    .audience-section {
+      padding: 76px 0;
+    }
+
+    .services-grid,
+    .service-card ul {
+      grid-template-columns: 1fr;
+    }
+
+    .service-card,
+    .audience-card,
+    .cta-card {
+      padding: 32px 25px;
+    }
+
+    .cta-section {
+      padding-bottom: 74px;
+    }
+  }
+</style>
