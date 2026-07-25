@@ -1,92 +1,131 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
 import "../styles/global.css";
 
 interface Props {
+  /**
+   * 頁面標題。
+   *
+   * 繁中範例：
+   * title="關於我們"
+   *
+   * 英文範例：
+   * title="About Us"
+   */
   title?: string;
+
+  /**
+   * 頁面描述，用於 Google 搜尋結果及社群分享。
+   */
   description?: string;
+
+  /**
+   * 頁面語言。
+   */
   locale?: "zh-tw" | "en";
-  canonical?: string;
+
+  /**
+   * 對應的繁中頁面路徑。
+   *
+   * 例如：
+   * 首頁：/
+   * 關於我們：/about
+   * 資源中心：/resources
+   */
+  zhPath?: string;
+
+  /**
+   * 對應的英文頁面路徑。
+   *
+   * 例如：
+   * 首頁：/en/
+   * 關於我們：/en/about
+   * 資源中心：/en/resources
+   */
+  enPath?: string;
+
+  /**
+   * 社群分享圖片。
+   *
+   * 目前可以使用：
+   * /favicon.svg
+   *
+   * 日後可更換為：
+   * /images/og-default.png
+   */
   image?: string;
+
+  /**
+   * 是否禁止搜尋引擎建立索引。
+   *
+   * 404 頁面應使用：
+   * noindex={true}
+   */
   noindex?: boolean;
+
+  /**
+   * Open Graph 頁面類型。
+   */
+  type?: "website" | "article";
+
+  /**
+   * 文章發布日期。
+   * 只用於 type="article"。
+   */
+  publishedTime?: string;
+
+  /**
+   * 文章最後更新日期。
+   * 只用於 type="article"。
+   */
+  modifiedTime?: string;
 }
 
-const {
-  title = "iBridge Education",
-  description = "iBridge Education connects international education, educational research and practical innovation.",
-  locale = "zh-tw",
-  canonical,
-  image = "/favicon.svg",
-  noindex = false,
-} = Astro.props;
-
-const siteUrl = "https://ibridge.info";
 const pathname = Astro.url.pathname;
 
-const isEnglish =
-  locale === "en" ||
+const pathnameIsEnglish =
   pathname === "/en" ||
+  pathname === "/en/" ||
   pathname.startsWith("/en/");
 
-const htmlLanguage = isEnglish ? "en" : "zh-Hant";
+const requestedLocale = Astro.props.locale;
 
-const normalisePath = (path: string) => {
-  if (!path) return "/";
+const isEnglish =
+  requestedLocale === "en" ||
+  (requestedLocale !== "zh-tw" && pathnameIsEnglish);
 
-  const pathWithoutTrailingSlash =
-    path.length > 1 && path.endsWith("/")
-      ? path.slice(0, -1)
-      : path;
+const resolvedLocale: "zh-tw" | "en" =
+  isEnglish ? "en" : "zh-tw";
 
-  return pathWithoutTrailingSlash || "/";
-};
+const defaultTitle = isEnglish
+  ? "iBridge Education"
+  : "iBridge Education";
 
-const currentPath = normalisePath(pathname);
+const defaultDescription = isEnglish
+  ? "iBridge Education connects international education, educational research and practical innovation."
+  : "iBridge Education 連結國際教育、教育研究與實務創新，協助學校、教師與學生建立更深入且更具韌性的學習經驗。";
 
-const traditionalChinesePath = isEnglish
-  ? normalisePath(currentPath.replace(/^\/en(?=\/|$)/, "") || "/")
-  : currentPath;
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  zhPath,
+  enPath,
+  image = "/favicon.svg",
+  noindex = false,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
 
-const englishPath = isEnglish
-  ? currentPath
-  : currentPath === "/"
-    ? "/en"
-    : `/en${currentPath}`;
-
-const canonicalUrl =
-  canonical ??
-  `${siteUrl}${currentPath === "/" ? "/" : currentPath}`;
-
-const traditionalChineseUrl =
-  `${siteUrl}${
-    traditionalChinesePath === "/"
-      ? "/"
-      : traditionalChinesePath
-  }`;
-
-const englishUrl =
-  `${siteUrl}${
-    englishPath === "/en"
-      ? "/en/"
-      : englishPath
-  }`;
-
-const socialImageUrl = image.startsWith("http")
-  ? image
-  : `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`;
-
-const fullTitle =
-  title === "iBridge Education"
-    ? title
-    : `${title} | iBridge Education`;
-
-const robotsContent = noindex
-  ? "noindex, nofollow"
-  : "index, follow, max-image-preview:large";
+const htmlLanguage = isEnglish
+  ? "en"
+  : "zh-Hant";
 ---
 
 <!doctype html>
+
 <html lang={htmlLanguage}>
   <head>
     <meta charset="UTF-8" />
@@ -97,48 +136,13 @@ const robotsContent = noindex
     />
 
     <meta
-      name="robots"
-      content={robotsContent}
-    />
-
-    <meta
-      name="description"
-      content={description}
-    />
-
-    <meta
-      name="theme-color"
-      content="#0b6675"
-    />
-
-    <meta
       name="color-scheme"
       content="light"
     />
 
-    <title>{fullTitle}</title>
-
-    <link
-      rel="canonical"
-      href={canonicalUrl}
-    />
-
-    <link
-      rel="alternate"
-      hreflang="zh-Hant"
-      href={traditionalChineseUrl}
-    />
-
-    <link
-      rel="alternate"
-      hreflang="en"
-      href={englishUrl}
-    />
-
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={traditionalChineseUrl}
+    <meta
+      name="format-detection"
+      content="telephone=no"
     />
 
     <link
@@ -152,66 +156,28 @@ const robotsContent = noindex
       href="/site.webmanifest"
     />
 
-    <meta
-      property="og:type"
-      content="website"
+    <SEO
+      title={title}
+      description={description}
+      locale={resolvedLocale}
+      zhPath={zhPath}
+      enPath={enPath}
+      image={image}
+      noindex={noindex}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
     />
 
-    <meta
-      property="og:site_name"
-      content="iBridge Education"
-    />
+    <!--
+      個別頁面可以使用 slot="head" 加入額外內容。
 
-    <meta
-      property="og:title"
-      content={fullTitle}
-    />
+      範例：
 
-    <meta
-      property="og:description"
-      content={description}
-    />
-
-    <meta
-      property="og:url"
-      content={canonicalUrl}
-    />
-
-    <meta
-      property="og:image"
-      content={socialImageUrl}
-    />
-
-    <meta
-      property="og:locale"
-      content={isEnglish ? "en_US" : "zh_TW"}
-    />
-
-    <meta
-      property="og:locale:alternate"
-      content={isEnglish ? "zh_TW" : "en_US"}
-    />
-
-    <meta
-      name="twitter:card"
-      content="summary_large_image"
-    />
-
-    <meta
-      name="twitter:title"
-      content={fullTitle}
-    />
-
-    <meta
-      name="twitter:description"
-      content={description}
-    />
-
-    <meta
-      name="twitter:image"
-      content={socialImageUrl}
-    />
-
+      <Fragment slot="head">
+        <meta name="keywords" content="..." />
+      </Fragment>
+    -->
     <slot name="head" />
   </head>
 
@@ -220,16 +186,20 @@ const robotsContent = noindex
       class="skip-link"
       href="#main-content"
     >
-      {isEnglish ? "Skip to main content" : "跳至主要內容"}
+      {
+        isEnglish
+          ? "Skip to main content"
+          : "跳至主要內容"
+      }
     </a>
 
-    <Header locale={isEnglish ? "en" : "zh-tw"} />
+    <Header locale={resolvedLocale} />
 
     <main id="main-content">
       <slot />
     </main>
 
-    <Footer locale={isEnglish ? "en" : "zh-tw"} />
+    <Footer locale={resolvedLocale} />
   </body>
 </html>
 
@@ -256,6 +226,7 @@ const robotsContent = noindex
     left: 12px;
     z-index: 9999;
     padding: 12px 18px;
+    border: 0;
     border-radius: 8px;
     background: #ffffff;
     color: #073b62;
@@ -268,5 +239,7 @@ const robotsContent = noindex
 
   .skip-link:focus {
     transform: translateY(0);
+    outline: 3px solid #0b6675;
+    outline-offset: 3px;
   }
 </style>
