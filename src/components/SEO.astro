@@ -1,0 +1,304 @@
+---
+export interface Props {
+  /**
+   * 頁面主要標題。
+   * 不需要自行加入「| iBridge Education」。
+   */
+  title: string;
+
+  /**
+   * 搜尋結果及社群分享使用的頁面描述。
+   */
+  description: string;
+
+  /**
+   * 目前頁面語言。
+   */
+  locale?: "zh-tw" | "en";
+
+  /**
+   * 目前頁面的繁中路徑。
+   *
+   * 例如：
+   * 首頁：/
+   * 關於：/about
+   * 資源：/resources
+   */
+  zhPath?: string;
+
+  /**
+   * 目前頁面的英文路徑。
+   *
+   * 例如：
+   * 首頁：/en/
+   * 關於：/en/about
+   * 資源：/en/resources
+   */
+  enPath?: string;
+
+  /**
+   * 社群分享圖片。
+   * 日後會改成正式的 1200 × 630 PNG 圖片。
+   */
+  image?: string;
+
+  /**
+   * 是否禁止搜尋引擎建立索引。
+   * 404 或測試頁面應設定為 true。
+   */
+  noindex?: boolean;
+
+  /**
+   * Open Graph 頁面類型。
+   */
+  type?: "website" | "article";
+
+  /**
+   * 可選：文章發布時間。
+   * 只適用於 article。
+   */
+  publishedTime?: string;
+
+  /**
+   * 可選：文章更新時間。
+   * 只適用於 article。
+   */
+  modifiedTime?: string;
+}
+
+const {
+  title,
+  description,
+  locale = "zh-tw",
+  zhPath,
+  enPath,
+  image = "/favicon.svg",
+  noindex = false,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
+
+const siteName = "iBridge Education";
+const baseUrl = Astro.site ?? new URL("https://ibridge.info");
+
+const cleanPath = (path: string): string => {
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  return `/${path.replace(/^\/+|\/+$/g, "")}`;
+};
+
+const currentPath = cleanPath(Astro.url.pathname);
+
+const resolvedZhPath = cleanPath(
+  zhPath ??
+    (currentPath === "/en"
+      ? "/"
+      : currentPath.startsWith("/en/")
+        ? currentPath.replace(/^\/en/, "")
+        : currentPath),
+);
+
+const resolvedEnPath = cleanPath(
+  enPath ??
+    (currentPath === "/"
+      ? "/en/"
+      : currentPath === "/en"
+        ? "/en/"
+        : currentPath.startsWith("/en/")
+          ? currentPath
+          : `/en${currentPath}`),
+);
+
+const canonicalPath =
+  locale === "en"
+    ? resolvedEnPath
+    : resolvedZhPath;
+
+const canonicalUrl = new URL(canonicalPath, baseUrl);
+const zhUrl = new URL(resolvedZhPath, baseUrl);
+const enUrl = new URL(resolvedEnPath, baseUrl);
+const imageUrl = new URL(image, baseUrl);
+
+const fullTitle =
+  title.includes(siteName)
+    ? title
+    : `${title} | ${siteName}`;
+
+const htmlLocale =
+  locale === "en"
+    ? "en_US"
+    : "zh_TW";
+
+const alternateLocale =
+  locale === "en"
+    ? "zh_TW"
+    : "en_US";
+
+const robotsContent = noindex
+  ? "noindex, nofollow, noarchive"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+---
+
+<!-- 基本 SEO / Basic SEO -->
+<title>{fullTitle}</title>
+
+<meta
+  name="description"
+  content={description}
+/>
+
+<meta
+  name="robots"
+  content={robotsContent}
+/>
+
+<meta
+  name="googlebot"
+  content={robotsContent}
+/>
+
+<meta
+  name="author"
+  content="iBridge Education"
+/>
+
+<meta
+  name="application-name"
+  content="iBridge Education"
+/>
+
+<meta
+  name="theme-color"
+  content="#0a355b"
+/>
+
+<!-- Canonical 標準網址 -->
+<link
+  rel="canonical"
+  href={canonicalUrl}
+/>
+
+<!-- 多語言替代頁面 / Language alternatives -->
+<link
+  rel="alternate"
+  hreflang="zh-Hant"
+  href={zhUrl}
+/>
+
+<link
+  rel="alternate"
+  hreflang="zh-TW"
+  href={zhUrl}
+/>
+
+<link
+  rel="alternate"
+  hreflang="en"
+  href={enUrl}
+/>
+
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={zhUrl}
+/>
+
+<!-- Sitemap -->
+<link
+  rel="sitemap"
+  type="application/xml"
+  href="/sitemap.xml"
+/>
+
+<!-- Open Graph -->
+<meta
+  property="og:type"
+  content={type}
+/>
+
+<meta
+  property="og:site_name"
+  content={siteName}
+/>
+
+<meta
+  property="og:title"
+  content={fullTitle}
+/>
+
+<meta
+  property="og:description"
+  content={description}
+/>
+
+<meta
+  property="og:url"
+  content={canonicalUrl}
+/>
+
+<meta
+  property="og:image"
+  content={imageUrl}
+/>
+
+<meta
+  property="og:image:alt"
+  content={title}
+/>
+
+<meta
+  property="og:locale"
+  content={htmlLocale}
+/>
+
+<meta
+  property="og:locale:alternate"
+  content={alternateLocale}
+/>
+
+<!-- X / Twitter -->
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+/>
+
+<meta
+  name="twitter:title"
+  content={fullTitle}
+/>
+
+<meta
+  name="twitter:description"
+  content={description}
+/>
+
+<meta
+  name="twitter:image"
+  content={imageUrl}
+/>
+
+<meta
+  name="twitter:image:alt"
+  content={title}
+/>
+
+{
+  type === "article" && publishedTime && (
+    <meta
+      property="article:published_time"
+      content={publishedTime}
+    />
+  )
+}
+
+{
+  type === "article" && modifiedTime && (
+    <meta
+      property="article:modified_time"
+      content={modifiedTime}
+    />
+  )
+}

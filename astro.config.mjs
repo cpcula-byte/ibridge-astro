@@ -5,16 +5,19 @@ export default defineConfig({
 
   output: "static",
 
+  trailingSlash: "never",
+
   i18n: {
-    locales: [
-      "zh-tw",
-      "en",
-    ],
+    locales: ["zh-tw", "en"],
 
     defaultLocale: "zh-tw",
 
     routing: {
       prefixDefaultLocale: false,
     },
+  },
+
+  build: {
+    format: "directory",
   },
 });
