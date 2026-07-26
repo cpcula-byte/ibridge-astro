@@ -3,201 +3,179 @@ interface Props {
   locale?: "zh-tw" | "en";
 }
 
-const { locale } = Astro.props;
+const {
+  locale = "zh-tw",
+} = Astro.props;
 
-const pathname = Astro.url.pathname;
-
-const isEnglish =
-  locale === "en" ||
-  pathname === "/en" ||
-  pathname.startsWith("/en/");
+const isEnglish = locale === "en";
 
 const currentYear = new Date().getFullYear();
 
-const footerContent = isEnglish
+const content = isEnglish
   ? {
-      homeLabel: "iBridge Education English homepage",
-      description:
-        "Connecting international education, educational research and practical innovation to support schools, teachers and learners.",
+      brandLabel: "iBridge Education English homepage",
       tagline: "Learning · Research · Innovation",
-
-      navigationTitle: "Explore",
-      navigation: [
-        {
-          label: "Home",
-          href: "/en/",
-        },
-        {
-          label: "About",
-          href: "/en/about",
-        },
-        {
-          label: "Services",
-          href: "/en/services",
-        },
-        {
-          label: "Programmes",
-          href: "/en/programmes",
-        },
-        {
-          label: "Research",
-          href: "/en/research",
-        },
-        {
-          label: "Resources",
-          href: "/en/resources",
-        },
-        {
-          label: "Contact",
-          href: "/en/contact",
-        },
-      ],
-
+      description:
+        "Connecting international education, curriculum design, educational research and practical innovation to support schools, educators and learners.",
+      exploreTitle: "Explore",
       resourcesTitle: "Resources",
-      resources: [
-        {
-          label: "Programmes",
-          href: "/en/programmes",
-        },
-        {
-          label: "Resource Centre",
-          href: "/en/resources",
-        },
-        {
-          label: "Research",
-          href: "/en/research",
-        },
-        {
-          label: "Contact Us",
-          href: "/en/contact",
-        },
-      ],
-
       contactTitle: "Contact",
-      emailLabel: "Email",
-      websiteLabel: "Website",
-      locationLabel: "Service Area",
-      location: "Taiwan and international collaboration",
-
-      privacyLabel: "Privacy Notice",
-      privacyHref: "/en/contact#privacy",
-
-      languageLabel: "繁體中文",
-      languageHref: "/",
-
+      legalTitle: "Information",
+      home: "Home",
+      about: "About",
+      services: "Services",
+      programmes: "Programmes",
+      research: "Research",
+      resources: "Resources",
+      contact: "Contact",
+      privacy: "Privacy Policy",
+      email: "Email",
+      website: "Website",
+      serviceArea: "Service Area",
+      serviceAreaValue: "Taiwan and international partnerships",
       copyright: `© ${currentYear} iBridge Education. All rights reserved.`,
+      languageSwitch: "繁體中文",
+      languageSwitchLabel: "切換至繁體中文",
+      homePath: "/en/",
+      aboutPath: "/en/about/",
+      servicesPath: "/en/services/",
+      programmesPath: "/en/programmes/",
+      researchPath: "/en/research/",
+      resourcesPath: "/en/resources/",
+      contactPath: "/en/contact/",
+      privacyPath: "/en/privacy/",
+      languagePath: "/",
     }
   : {
-      homeLabel: "iBridge Education 首頁",
-      description:
-        "連結國際教育、教育研究與實務創新，協助學校、教師與學生建立面向未來的學習經驗。",
+      brandLabel: "iBridge Education 繁體中文首頁",
       tagline: "學習 · 研究 · 創新",
-
-      navigationTitle: "網站",
-      navigation: [
-        {
-          label: "首頁",
-          href: "/",
-        },
-        {
-          label: "關於我們",
-          href: "/about",
-        },
-        {
-          label: "服務",
-          href: "/services",
-        },
-        {
-          label: "課程與方案",
-          href: "/programmes",
-        },
-        {
-          label: "研究",
-          href: "/research",
-        },
-        {
-          label: "資源",
-          href: "/resources",
-        },
-        {
-          label: "聯絡我們",
-          href: "/contact",
-        },
-      ],
-
-      resourcesTitle: "資源",
-      resources: [
-        {
-          label: "課程與方案",
-          href: "/programmes",
-        },
-        {
-          label: "資源中心",
-          href: "/resources",
-        },
-        {
-          label: "教育研究",
-          href: "/research",
-        },
-        {
-          label: "聯絡我們",
-          href: "/contact",
-        },
-      ],
-
-      contactTitle: "聯絡方式",
-      emailLabel: "電子郵件",
-      websiteLabel: "網站",
-      locationLabel: "服務地區",
-      location: "台灣及國際線上合作",
-
-      privacyLabel: "隱私權說明",
-      privacyHref: "/contact#privacy",
-
-      languageLabel: "English",
-      languageHref: "/en/",
-
+      description:
+        "連結國際教育、課程設計、教育研究與實務創新，為學校、教師與學習者提供專業支持。",
+      exploreTitle: "探索網站",
+      resourcesTitle: "教育內容",
+      contactTitle: "聯絡資訊",
+      legalTitle: "網站資訊",
+      home: "首頁",
+      about: "關於我們",
+      services: "服務",
+      programmes: "課程方案",
+      research: "教育研究",
+      resources: "教育資源",
+      contact: "聯絡我們",
+      privacy: "隱私權政策",
+      email: "電子郵件",
+      website: "網站",
+      serviceArea: "服務區域",
+      serviceAreaValue: "臺灣及國際合作",
       copyright: `© ${currentYear} iBridge Education。保留所有權利。`,
+      languageSwitch: "English",
+      languageSwitchLabel: "Switch to English",
+      homePath: "/",
+      aboutPath: "/about/",
+      servicesPath: "/services/",
+      programmesPath: "/programmes/",
+      researchPath: "/research/",
+      resourcesPath: "/resources/",
+      contactPath: "/contact/",
+      privacyPath: "/privacy/",
+      languagePath: "/en/",
     };
+
+const exploreLinks = [
+  {
+    label: content.home,
+    href: content.homePath,
+  },
+  {
+    label: content.about,
+    href: content.aboutPath,
+  },
+  {
+    label: content.services,
+    href: content.servicesPath,
+  },
+  {
+    label: content.contact,
+    href: content.contactPath,
+  },
+];
+
+const resourceLinks = [
+  {
+    label: content.programmes,
+    href: content.programmesPath,
+  },
+  {
+    label: content.research,
+    href: content.researchPath,
+  },
+  {
+    label: content.resources,
+    href: content.resourcesPath,
+  },
+];
+
+const legalLinks = [
+  {
+    label: content.privacy,
+    href: content.privacyPath,
+  },
+];
 ---
 
 <footer class="site-footer">
+  <div class="footer-accent" aria-hidden="true"></div>
+
   <div class="footer-main">
-    <div class="footer-container">
+    <div class="footer-container footer-grid">
       <section class="footer-brand">
         <a
           class="footer-logo"
-          href={isEnglish ? "/en/" : "/"}
-          aria-label={footerContent.homeLabel}
+          href={content.homePath}
+          aria-label={content.brandLabel}
         >
-          <span class="footer-logo-mark" aria-hidden="true">iB</span>
+          <span class="footer-logo-main">
+            iBridge
+          </span>
 
-          <span class="footer-logo-name">
-            iBridge Education
+          <span class="footer-logo-secondary">
+            Education
           </span>
         </a>
 
         <p class="footer-tagline">
-          {footerContent.tagline}
+          {content.tagline}
         </p>
 
         <p class="footer-description">
-          {footerContent.description}
+          {content.description}
         </p>
+
+        <a
+          class="language-link"
+          href={content.languagePath}
+          aria-label={content.languageSwitchLabel}
+          hreflang={isEnglish ? "zh-Hant" : "en"}
+        >
+          <span aria-hidden="true">文</span>
+          {content.languageSwitch}
+        </a>
       </section>
 
       <nav
         class="footer-column"
-        aria-label={footerContent.navigationTitle}
+        aria-label={content.exploreTitle}
       >
-        <h2>{footerContent.navigationTitle}</h2>
+        <h2>
+          {content.exploreTitle}
+        </h2>
 
         <ul>
           {
-            footerContent.navigation.map((item) => (
+            exploreLinks.map((link) => (
               <li>
-                <a href={item.href}>
-                  {item.label}
+                <a href={link.href}>
+                  {link.label}
                 </a>
               </li>
             ))
@@ -207,16 +185,18 @@ const footerContent = isEnglish
 
       <nav
         class="footer-column"
-        aria-label={footerContent.resourcesTitle}
+        aria-label={content.resourcesTitle}
       >
-        <h2>{footerContent.resourcesTitle}</h2>
+        <h2>
+          {content.resourcesTitle}
+        </h2>
 
         <ul>
           {
-            footerContent.resources.map((item) => (
+            resourceLinks.map((link) => (
               <li>
-                <a href={item.href}>
-                  {item.label}
+                <a href={link.href}>
+                  {link.label}
                 </a>
               </li>
             ))
@@ -225,11 +205,14 @@ const footerContent = isEnglish
       </nav>
 
       <section class="footer-column footer-contact">
-        <h2>{footerContent.contactTitle}</h2>
+        <h2>
+          {content.contactTitle}
+        </h2>
 
         <dl>
           <div>
-            <dt>{footerContent.emailLabel}</dt>
+            <dt>{content.email}</dt>
+
             <dd>
               <a href="mailto:hello@ibridge.info">
                 hello@ibridge.info
@@ -238,7 +221,8 @@ const footerContent = isEnglish
           </div>
 
           <div>
-            <dt>{footerContent.websiteLabel}</dt>
+            <dt>{content.website}</dt>
+
             <dd>
               <a href="https://ibridge.info">
                 ibridge.info
@@ -247,8 +231,11 @@ const footerContent = isEnglish
           </div>
 
           <div>
-            <dt>{footerContent.locationLabel}</dt>
-            <dd>{footerContent.location}</dd>
+            <dt>{content.serviceArea}</dt>
+
+            <dd>
+              {content.serviceAreaValue}
+            </dd>
           </div>
         </dl>
       </section>
@@ -256,20 +243,26 @@ const footerContent = isEnglish
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-bottom-container">
-      <p>{footerContent.copyright}</p>
+    <div class="footer-container footer-bottom-inner">
+      <p>
+        {content.copyright}
+      </p>
 
       <nav
-        class="footer-bottom-links"
-        aria-label={isEnglish ? "Footer information" : "頁尾資訊"}
+        class="footer-legal"
+        aria-label={content.legalTitle}
       >
-        <a href={footerContent.privacyHref}>
-          {footerContent.privacyLabel}
-        </a>
-
-        <a href={footerContent.languageHref}>
-          {footerContent.languageLabel}
-        </a>
+        <ul>
+          {
+            legalLinks.map((link) => (
+              <li>
+                <a href={link.href}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </nav>
     </div>
   </div>
@@ -277,35 +270,72 @@ const footerContent = isEnglish
 
 <style>
   .site-footer {
-    background:
-      radial-gradient(
-        circle at 90% 12%,
-        rgba(22, 145, 151, 0.18),
-        transparent 28%
-      ),
-      linear-gradient(
-        145deg,
-        #071f3b 0%,
-        #082d4f 54%,
-        #074e63 100%
-      );
+    position: relative;
+    overflow: hidden;
+    background: #7b1422;
     color: #ffffff;
   }
 
+  .footer-accent {
+    width: 100%;
+    height: 5px;
+    background:
+      linear-gradient(
+        90deg,
+        #c48a2c 0%,
+        #c48a2c 18%,
+        #a51c30 18%,
+        #a51c30 58%,
+        #315c6b 58%,
+        #315c6b 100%
+      );
+  }
+
   .footer-main {
-    padding: 58px 24px 46px;
+    position: relative;
+    padding: 76px 0 66px;
+  }
+
+  .footer-main::before {
+    position: absolute;
+    top: -260px;
+    right: -210px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    content: "";
+    pointer-events: none;
+  }
+
+  .footer-main::after {
+    position: absolute;
+    right: 80px;
+    bottom: -220px;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(196, 138, 44, 0.15);
+    border-radius: 999px;
+    content: "";
+    pointer-events: none;
   }
 
   .footer-container {
-    width: min(1180px, 100%);
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 48px));
     margin: 0 auto;
+  }
+
+  .footer-grid {
     display: grid;
     grid-template-columns:
       minmax(260px, 1.55fr)
-      minmax(140px, 0.8fr)
-      minmax(150px, 0.9fr)
+      minmax(145px, 0.72fr)
+      minmax(145px, 0.72fr)
       minmax(220px, 1fr);
-    gap: 48px;
+    gap: 56px;
+    align-items: start;
   }
 
   .footer-brand {
@@ -314,189 +344,243 @@ const footerContent = isEnglish
 
   .footer-logo {
     display: inline-flex;
-    align-items: center;
-    gap: 13px;
+    flex-direction: column;
     color: #ffffff;
+    line-height: 0.9;
     text-decoration: none;
   }
 
-  .footer-logo-mark {
-    width: 46px;
-    height: 46px;
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
-    border-radius: 14px;
-    background: linear-gradient(
-      145deg,
-      #15547b,
-      #07878a
-    );
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.17);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.95rem;
+  .footer-logo-main {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 700;
+    letter-spacing: -0.055em;
   }
 
-  .footer-logo-name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.22rem;
+  .footer-logo-secondary {
+    margin-top: 8px;
+    color: #f2c66d;
+    font-size: 0.84rem;
     font-weight: 700;
-    line-height: 1.2;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
   }
 
   .footer-tagline {
-    margin: 21px 0 0;
-    color: rgba(255, 255, 255, 0.82);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.94rem;
-    line-height: 1.6;
+    margin: 24px 0 0;
+    color: #f2c66d;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
 
   .footer-description {
-    margin: 12px 0 0;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.91rem;
-    line-height: 1.72;
+    max-width: 420px;
+    margin: 20px 0 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+
+  .language-link {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 9px;
+    margin-top: 28px;
+    padding: 0 17px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease;
+  }
+
+  .language-link span {
+    color: #f2c66d;
+  }
+
+  .language-link:hover {
+    border-color: #c48a2c;
+    background: #c48a2c;
+    color: #1f2933;
+  }
+
+  .language-link:hover span {
+    color: #1f2933;
   }
 
   .footer-column h2 {
-    margin: 0 0 21px;
-    color: #ffffff;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
+    margin: 3px 0 22px;
+    color: #f2c66d;
+    font-size: 0.76rem;
     font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   .footer-column ul {
+    display: grid;
+    gap: 13px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .footer-column li + li {
-    margin-top: 12px;
+  .footer-column li {
+    margin: 0;
   }
 
   .footer-column a {
-    color: rgba(255, 255, 255, 0.71);
-    text-decoration: none;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.94rem;
     line-height: 1.5;
-    transition:
-      color 160ms ease,
-      opacity 160ms ease;
+    text-decoration: none;
+    transition: color 150ms ease;
   }
 
-  .footer-column a:hover,
-  .footer-column a:focus-visible {
+  .footer-column a:hover {
     color: #ffffff;
   }
 
   .footer-contact dl {
+    display: grid;
+    gap: 20px;
     margin: 0;
   }
 
-  .footer-contact dl > div + div {
-    margin-top: 16px;
+  .footer-contact dl > div {
+    display: grid;
+    gap: 5px;
   }
 
   .footer-contact dt {
-    margin-bottom: 3px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.75rem;
+    color: #f2c66d;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .footer-contact dd {
     margin: 0;
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.88rem;
-    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .footer-contact dd a {
+    overflow-wrap: anywhere;
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.13);
-    background: rgba(2, 18, 34, 0.32);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(70, 9, 19, 0.26);
   }
 
-  .footer-bottom-container {
-    width: min(1180px, calc(100% - 48px));
-    margin: 0 auto;
-    padding: 20px 0;
+  .footer-bottom-inner {
     display: flex;
+    min-height: 76px;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 30px;
   }
 
   .footer-bottom p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.58);
-    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.8rem;
   }
 
-  .footer-bottom-links {
+  .footer-legal ul {
     display: flex;
     align-items: center;
-    gap: 21px;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .footer-bottom-links a {
-    color: rgba(255, 255, 255, 0.65);
+  .footer-legal a {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.8rem;
     text-decoration: none;
-    font-size: 0.76rem;
   }
 
-  .footer-bottom-links a:hover,
-  .footer-bottom-links a:focus-visible {
+  .footer-legal a:hover {
     color: #ffffff;
   }
 
   @media (max-width: 980px) {
-    .footer-container {
-      grid-template-columns: repeat(3, 1fr);
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
     }
 
-    .footer-brand {
+    .footer-contact {
       grid-column: 1 / -1;
-      max-width: 680px;
+    }
+
+    .footer-contact dl {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
     }
   }
 
   @media (max-width: 720px) {
     .footer-main {
-      padding: 50px 22px 40px;
+      padding: 62px 0 52px;
     }
 
     .footer-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 38px 28px;
+      width: min(100% - 30px, 1180px);
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 46px 30px;
     }
 
     .footer-brand {
       grid-column: 1 / -1;
+      max-width: none;
     }
 
-    .footer-bottom-container {
-      width: min(100% - 44px, 1180px);
-      flex-direction: column;
+    .footer-contact {
+      grid-column: 1 / -1;
+    }
+
+    .footer-contact dl {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .footer-bottom-inner {
+      min-height: auto;
       align-items: flex-start;
-      gap: 11px;
+      flex-direction: column;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .footer-legal ul {
+      flex-wrap: wrap;
+      gap: 14px 22px;
     }
   }
 
-  @media (max-width: 500px) {
-    .footer-container {
+  @media (max-width: 460px) {
+    .footer-grid {
       grid-template-columns: 1fr;
     }
 
-    .footer-brand {
+    .footer-brand,
+    .footer-contact {
       grid-column: auto;
-    }
-
-    .footer-bottom-links {
-      flex-wrap: wrap;
     }
   }
 </style>
