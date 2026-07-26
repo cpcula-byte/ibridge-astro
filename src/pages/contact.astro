@@ -1,23 +1,75 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { contactFormEndpoint } from "../config/forms";
 
 const enquiryTypes = [
-  "IB 課程設計與垂直銜接",
-  "評量與回饋系統",
-  "教師專業發展",
-  "AI 教育整合",
-  "學生學習方案",
+  "課程與單元設計",
+  "教師專業學習",
   "教育研究與方案評估",
+  "人工智慧教育應用",
+  "學生學習與韌性方案",
   "資源合作",
-  "其他",
+  "其他合作",
+];
+
+const contactTopics = [
+  {
+    number: "01",
+    title: "學校與課程合作",
+    description:
+      "適合希望進行課程檢視、課程地圖、單元設計、垂直銜接或長期課程發展的學校與教育機構。",
+  },
+  {
+    number: "02",
+    title: "教師專業學習",
+    description:
+      "適合規劃教師工作坊、共同備課、人工智慧培訓、評量設計或持續專業發展方案。",
+  },
+  {
+    number: "03",
+    title: "研究與方案評估",
+    description:
+      "適合教育研究、資料蒐集、研究工具設計、方案成效評估與研究成果轉化。",
+  },
+  {
+    number: "04",
+    title: "資源與內容合作",
+    description:
+      "適合教材、雙語教育資源、課程出版、網站內容與專業教育資源合作。",
+  },
+];
+
+const enquirySteps = [
+  {
+    number: "01",
+    title: "提供基本資訊",
+    description:
+      "說明您的學校、組織、角色、合作需求與預計參與對象。",
+  },
+  {
+    number: "02",
+    title: "確認需求與範圍",
+    description:
+      "釐清合作目標、時間、形式、成果與可用資源。",
+  },
+  {
+    number: "03",
+    title: "安排初步討論",
+    description:
+      "依需求安排線上會議、書面回覆或進一步資料交換。",
+  },
+  {
+    number: "04",
+    title: "提出合作方向",
+    description:
+      "提供建議方案、工作範圍、預計時程與下一步安排。",
+  },
 ];
 
 const contactDetails = [
   {
     label: "電子郵件",
-    value: "cpc.ula@gmail.com",
-    href: "mailto:cpc.ula@gmail.com",
+    value: "hello@ibridge.info",
+    href: "mailto:hello@ibridge.info",
   },
   {
     label: "網站",
@@ -25,236 +77,253 @@ const contactDetails = [
     href: "https://ibridge.info",
   },
   {
-    label: "服務地區",
-    value: "台灣及國際線上合作",
+    label: "服務區域",
+    value: "臺灣及國際合作",
+    href: null,
   },
   {
-    label: "回覆時間",
-    value: "一般於 2–3 個工作天內回覆",
+    label: "合作方式",
+    value: "線上、實體或混合模式",
+    href: null,
   },
-];
-
-const preparationItems = [
-  "你的姓名與聯絡方式",
-  "學校、機構或團隊名稱",
-  "希望合作的服務領域",
-  "目前面對的主要需求或問題",
-  "預計開始時間與合作時程",
-  "希望採用線上或實體合作",
 ];
 ---
 
 <BaseLayout
   title="聯絡我們"
-  description="聯絡 iBridge Education，洽詢 IB 課程設計、教師培訓、AI 教育整合、研究合作與學生學習方案。"
+  description="聯絡 iBridge Education，討論國際課程設計、教師專業學習、人工智慧教育、教育研究、學生韌性與教育資源合作。"
+  locale="zh-tw"
+  zhPath="/contact"
+  enPath="/en/contact"
+  pageType="ContactPage"
+  breadcrumbs={[
+    {
+      name: "首頁",
+      path: "/",
+    },
+    {
+      name: "聯絡我們",
+      path: "/contact",
+    },
+  ]}
 >
   <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow">Contact iBridge</span>
+    <div class="hero-decoration" aria-hidden="true">
+      <span class="hero-circle hero-circle-one"></span>
+      <span class="hero-circle hero-circle-two"></span>
+      <span class="hero-line"></span>
+    </div>
 
-      <h1>開始一段教育合作對話</h1>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">聯絡我們</p>
 
-      <p class="lead">
-        歡迎學校、教師、教育機構、研究者、學生與家長聯絡我們，
-        洽詢課程設計、教師發展、AI 教育、研究與學習支援方案。
-      </p>
+        <h1>
+          從清楚說明需求開始，
+          <span>建立適合教育情境的合作方式。</span>
+        </h1>
+      </div>
+
+      <div class="hero-copy">
+        <p>
+          歡迎學校、教師、教育機構與研究團隊聯絡 iBridge Education，
+          討論課程、培訓、研究、人工智慧或教育資源合作。
+        </p>
+
+        <p>
+          初次聯絡時，請簡要提供目前需求、參與對象、
+          預期成果與大致時間範圍。
+        </p>
+
+        <a class="hero-button" href="#contact-form">
+          填寫聯絡表單
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container contact-layout">
-      <div class="contact-information">
-        <span class="eyebrow">Contact Information</span>
+  <section class="contact-overview-section">
+    <div class="container overview-grid">
+      <div>
+        <p class="section-label">合作主題</p>
 
-        <h2 class="section-title">
-          與 iBridge Education 聯繫
+        <h2>
+          適合學校、教師、研究者與教育組織的合作需求。
+        </h2>
+      </div>
+
+      <div class="topic-grid">
+        {
+          contactTopics.map((topic) => (
+            <article class="topic-card">
+              <span>{topic.number}</span>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="contact-form"
+    class="form-section"
+  >
+    <div class="container form-layout">
+      <div class="form-introduction">
+        <p class="section-label">聯絡表單</p>
+
+        <h2>
+          請提供合作需求的基本資料。
         </h2>
 
-        <p class="lead">
-          請透過右側表單說明需求。我們會先了解你的教育情境、
-          目標與預計時程，再提出適合的後續合作方式。
+        <p>
+          表單送出後，系統將透過 Formspree 將內容寄送至
+          iBridge Education 的聯絡信箱。
         </p>
 
-        <div class="contact-detail-list">
-          {
-            contactDetails.map((item) => (
-              <article class="contact-detail">
-                <span class="contact-icon" aria-hidden="true">
-                  iB
-                </span>
+        <p>
+          請勿透過此表單傳送學生姓名、健康資料、
+          成績紀錄或其他敏感個人資訊。
+        </p>
 
-                <div>
-                  <h3>{item.label}</h3>
-
-                  {
-                    item.href ? (
-                      <a href={item.href}>{item.value}</a>
-                    ) : (
-                      <p>{item.value}</p>
-                    )
-                  }
-                </div>
-              </article>
-            ))
-          }
+        <div class="response-note">
+          <strong>回覆時間</strong>
+          <p>
+            一般詢問通常會在三至五個工作天內回覆。
+          </p>
         </div>
       </div>
 
-      <div class="form-panel">
-        <span class="eyebrow">Enquiry Form</span>
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="_subject"
+          value="iBridge Education 網站新詢問"
+        />
 
-        <h2 class="section-title">
-          說明你的合作需求
-        </h2>
+        <input
+          type="hidden"
+          name="_language"
+          value="zh-tw"
+        />
 
-        <p class="form-introduction">
-          標示星號的欄位為必填。請勿在表單中提交學生姓名、
-          健康資料、成績或其他敏感個人資料。
-        </p>
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="name">
+              姓名
+              <span aria-hidden="true">*</span>
+            </label>
 
-        <form
-          class="contact-form"
-          action={contactFormEndpoint}
-          method="POST"
-          accept-charset="UTF-8"
-        >
-          <input
-            type="hidden"
-            name="_subject"
-            value="iBridge Education 中文網站新洽詢"
-          />
-
-          <input
-            type="hidden"
-            name="language"
-            value="繁體中文"
-          />
-
-          <input
-            class="hidden-field"
-            type="text"
-            name="_gotcha"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-          />
-
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="name">
-                姓名
-                <span aria-hidden="true">*</span>
-              </label>
-
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                required
-              />
-            </div>
-
-            <div class="form-field">
-              <label for="email">
-                電子郵件
-                <span aria-hidden="true">*</span>
-              </label>
-
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-              />
-            </div>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
           </div>
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="organisation">
-                學校或機構
-              </label>
+          <div class="field-group">
+            <label for="email">
+              電子郵件
+              <span aria-hidden="true">*</span>
+            </label>
 
-              <input
-                id="organisation"
-                name="organisation"
-                type="text"
-                autocomplete="organization"
-              />
-            </div>
-
-            <div class="form-field">
-              <label for="role">
-                職位或角色
-              </label>
-
-              <input
-                id="role"
-                name="role"
-                type="text"
-                placeholder="例如：教師、課程主管、家長"
-              />
-            </div>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
           </div>
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="enquiry-type">
-                洽詢類型
-                <span aria-hidden="true">*</span>
-              </label>
+          <div class="field-group">
+            <label for="organisation">
+              學校或組織
+            </label>
 
-              <select
-                id="enquiry-type"
-                name="enquiry_type"
-                required
-              >
-                <option value="" selected disabled>
-                  請選擇
-                </option>
-
-                {
-                  enquiryTypes.map((type) => (
-                    <option value={type}>{type}</option>
-                  ))
-                }
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label for="timeline">
-                預計開始時間
-              </label>
-
-              <select id="timeline" name="timeline">
-                <option value="">
-                  尚未確定
-                </option>
-
-                <option value="一個月內">
-                  一個月內
-                </option>
-
-                <option value="1–3 個月">
-                  1–3 個月
-                </option>
-
-                <option value="3–6 個月">
-                  3–6 個月
-                </option>
-
-                <option value="六個月後">
-                  六個月後
-                </option>
-              </select>
-            </div>
+            <input
+              id="organisation"
+              name="organisation"
+              type="text"
+              autocomplete="organization"
+            />
           </div>
 
-          <div class="form-field">
+          <div class="field-group">
+            <label for="role">
+              您的角色
+            </label>
+
+            <input
+              id="role"
+              name="role"
+              type="text"
+              placeholder="例如：教師、課程統籌、學校領導"
+            />
+          </div>
+
+          <div class="field-group field-full">
+            <label for="enquiry-type">
+              詢問類型
+              <span aria-hidden="true">*</span>
+            </label>
+
+            <select
+              id="enquiry-type"
+              name="enquiry_type"
+              required
+            >
+              <option value="">
+                請選擇
+              </option>
+
+              {
+                enquiryTypes.map((type) => (
+                  <option value={type}>
+                    {type}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="participants">
+              預計參與對象
+            </label>
+
+            <input
+              id="participants"
+              name="participants"
+              type="text"
+              placeholder="例如：20 位教師、兩個年級"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="timeline">
+              預計時間
+            </label>
+
+            <input
+              id="timeline"
+              name="timeline"
+              type="text"
+              placeholder="例如：2026 年第一學期"
+            />
+          </div>
+
+          <div class="field-group field-full">
             <label for="message">
-              需求說明
+              合作需求
               <span aria-hidden="true">*</span>
             </label>
 
@@ -262,452 +331,662 @@ const preparationItems = [
               id="message"
               name="message"
               rows="8"
-              minlength="20"
               required
-              placeholder="請簡要說明你的背景、需求、目標與希望討論的內容。"
+              placeholder="請簡要說明目前情境、主要需求、預期成果與任何重要限制。"
             ></textarea>
-
-            <small>
-              建議至少填寫 20 個字。
-            </small>
           </div>
 
-          <label class="consent-field">
-            <input
-              type="checkbox"
-              name="privacy_consent"
-              value="同意"
-              required
-            />
+          <div class="field-group field-full consent-field">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                name="privacy_confirmation"
+                value="confirmed"
+                required
+              />
 
-            <span>
-              我同意 iBridge Education 使用我提供的資料回覆本次洽詢。
-              我了解不應透過此表單提交敏感個人資料。
-            </span>
-          </label>
+              <span>
+                我確認此表單未包含學生個人資料、健康資料、
+                成績紀錄或其他敏感資訊。
+              </span>
+            </label>
+          </div>
 
-          <button
-            class="button button-primary submit-button"
-            type="submit"
-          >
-            傳送洽詢
-          </button>
-
-          <div
-            class="submission-message"
-            id="submission-message"
-            role="status"
-            aria-live="polite"
-          ></div>
-
-          <p class="form-notice">
-            表單資料將透過 Formspree 傳送至
-            iBridge Education 的指定電子郵件信箱。
-          </p>
-        </form>
-      </div>
+          <div class="field-group field-full">
+            <button type="submit">
+              送出詢問
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 
-  <section class="section section-soft">
-    <div class="container preparation-layout">
-      <div>
-        <span class="eyebrow">Before You Contact Us</span>
+  <section class="process-section">
+    <div class="container process-grid">
+      <div class="process-introduction">
+        <p class="section-label light-label">
+          聯絡後流程
+        </p>
 
-        <h2 class="section-title">
-          提供這些資訊可以加快初步回覆
+        <h2>
+          從初步詢問到確認合作方向。
         </h2>
 
-        <p class="lead">
-          不需要準備正式提案，但較清楚的背景資訊能協助我們判斷
-          適合的服務方式、預計時程與下一步。
+        <p>
+          初次聯絡不代表正式承諾。
+          雙方會先確認需求、可行性與適合的合作方式。
         </p>
       </div>
 
-      <div class="preparation-list">
+      <ol class="process-list">
         {
-          preparationItems.map((item) => (
-            <div class="preparation-item">
-              <span class="check-mark">✓</span>
-              <span>{item}</span>
+          enquirySteps.map((step) => (
+            <li>
+              <span>{step.number}</span>
+
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="details-section">
+    <div class="container details-grid">
+      <div>
+        <p class="section-label">直接聯絡</p>
+
+        <h2>
+          也可以直接透過電子郵件聯絡。
+        </h2>
+
+        <p>
+          若表單無法正常使用，請將合作需求寄至
+          hello@ibridge.info。
+        </p>
+      </div>
+
+      <dl class="details-list">
+        {
+          contactDetails.map((detail) => (
+            <div>
+              <dt>{detail.label}</dt>
+
+              <dd>
+                {
+                  detail.href ? (
+                    <a href={detail.href}>
+                      {detail.value}
+                    </a>
+                  ) : (
+                    detail.value
+                  )
+                }
+              </dd>
             </div>
           ))
         }
-      </div>
+      </dl>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container privacy-panel">
+  <section class="privacy-section">
+    <div class="container privacy-card">
+      <div class="privacy-marker" aria-hidden="true">
+        P
+      </div>
+
       <div>
-        <span class="eyebrow">Privacy</span>
+        <p class="section-label">隱私與資料保護</p>
 
-        <h2 class="section-title">
-          聯絡表單使用原則
+        <h2>
+          僅提供處理詢問所需的基本資訊。
         </h2>
-      </div>
-
-      <div class="privacy-copy">
-        <p>
-          表單資料僅用於處理本次洽詢、安排後續聯絡及判斷可能的合作方式。
-        </p>
 
         <p>
-          請勿提交學生全名、身份證件、健康紀錄、心理資料、
-          個別成績或其他不必要的敏感資訊。
-        </p>
-
-        <p>
-          若後續合作需要交換研究資料、學生資料或學校文件，
-          將另外確認保密、研究倫理與資料處理方式。
+          表單內容僅用於回覆詢問與評估合作需求。
+          請不要填寫學生姓名、身分證件資料、醫療資訊、
+          個人成績或其他不必要的敏感資料。
         </p>
       </div>
     </div>
   </section>
+</BaseLayout>
 
-  <script>
-    const form = document.querySelector(".contact-form");
-    const messageBox = document.querySelector("#submission-message");
-    const submitButton = document.querySelector(".submit-button");
+<style>
+  .container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
 
-    if (
-      form instanceof HTMLFormElement &&
-      messageBox instanceof HTMLElement &&
-      submitButton instanceof HTMLButtonElement
-    ) {
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        submitButton.disabled = true;
-        submitButton.textContent = "傳送中…";
-
-        messageBox.className = "submission-message";
-        messageBox.textContent = "";
-
-        try {
-          const response = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: {
-              Accept: "application/json",
-            },
-          });
-
-          if (!response.ok) {
-            const data = await response
-              .json()
-              .catch(() => null);
-
-            const errors = Array.isArray(data?.errors)
-              ? data.errors
-                  .map((error: { message?: string }) => error.message)
-                  .filter(Boolean)
-                  .join(" ")
-              : "";
-
-            throw new Error(
-              errors || "訊息無法送出，請稍後再試。",
-            );
-          }
-
-          form.reset();
-
-          messageBox.classList.add("success");
-          messageBox.textContent =
-            "你的訊息已成功送出。我們會盡快回覆。";
-        } catch (error) {
-          messageBox.classList.add("error");
-
-          messageBox.textContent =
-            error instanceof Error
-              ? error.message
-              : "訊息無法送出，請稍後再試。";
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = "傳送洽詢";
-        }
-      });
-    }
-  </script>
-
-  <style>
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 0.82fr 1.18fr;
-      gap: 56px;
-      align-items: start;
-    }
-
-    .contact-information {
-      position: sticky;
-      top: 110px;
-    }
-
-    .contact-detail-list {
-      margin-top: 34px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .contact-detail {
-      padding: 19px;
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 15px;
-      align-items: center;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      box-shadow: var(--shadow-small);
-    }
-
-    .contact-icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: linear-gradient(
-        135deg,
-        var(--navy),
-        var(--teal)
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 112px 0 104px;
+    background:
+      radial-gradient(
+        circle at 88% 14%,
+        rgba(196, 138, 44, 0.1),
+        transparent 28%
+      ),
+      linear-gradient(
+        125deg,
+        #f7f1e3 0%,
+        #faf7f0 100%
       );
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 850;
-    }
+  }
 
-    .contact-detail h3 {
-      margin-bottom: 3px;
-      color: var(--navy);
-      font-size: 0.86rem;
-    }
+  .hero-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
 
-    .contact-detail p,
-    .contact-detail a {
-      margin: 0;
-      color: var(--muted);
-      overflow-wrap: anywhere;
-    }
+  .hero-circle {
+    position: absolute;
+    border: 1px solid rgba(165, 28, 48, 0.16);
+    border-radius: 999px;
+  }
 
-    .contact-detail a:hover {
-      color: var(--teal);
-    }
+  .hero-circle-one {
+    width: 520px;
+    height: 520px;
+    top: -270px;
+    right: -90px;
+  }
 
-    .form-panel {
-      padding: 38px;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      box-shadow: var(--shadow-medium);
+  .hero-circle-two {
+    width: 260px;
+    height: 260px;
+    right: 240px;
+    bottom: -175px;
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 58%;
+    right: -120px;
+    width: 700px;
+    height: 1px;
+    background: rgba(165, 28, 48, 0.16);
+    transform: rotate(-16deg);
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 90px;
+    align-items: end;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 18px;
+    color: #a51c30;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    color: #1f2933;
+    font-family:
+      "Neue Helvetica",
+      "Helvetica Neue",
+      Helvetica,
+      Arial,
+      "PingFang TC",
+      sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 6.2vw, 5.7rem);
+    line-height: 0.99;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 14px;
+    color: #a51c30;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 20px;
+  }
+
+  .hero-copy p,
+  .topic-card p,
+  .form-introduction > p,
+  .process-introduction > p,
+  .details-grid > div > p,
+  .privacy-card p {
+    margin: 0;
+    color: #52606d;
+    font-size: 1.03rem;
+    line-height: 1.85;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0 24px;
+    border-radius: 999px;
+    background: #a51c30;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .hero-button:hover {
+    background: #7b1422;
+    color: #ffffff;
+  }
+
+  .contact-overview-section,
+  .form-section,
+  .process-section,
+  .details-section,
+  .privacy-section {
+    padding: 104px 0;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 0.78fr 1.22fr;
+    gap: 76px;
+  }
+
+  .overview-grid h2,
+  .form-introduction h2,
+  .process-introduction h2,
+  .details-grid h2,
+  .privacy-card h2 {
+    font-size: clamp(2.35rem, 4vw, 4.1rem);
+    line-height: 1.08;
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .topic-card {
+    padding: 28px;
+    border: 1px solid #e4d7c5;
+    border-radius: 20px;
+    background: #faf7f0;
+  }
+
+  .topic-card > span {
+    color: #a51c30;
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  .topic-card h3 {
+    margin: 34px 0 13px;
+    color: #1f2933;
+    font-size: 1.35rem;
+  }
+
+  .topic-card p {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  .form-section {
+    background: #faf7f0;
+  }
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    gap: 72px;
+    align-items: start;
+  }
+
+  .form-introduction {
+    position: sticky;
+    top: 118px;
+  }
+
+  .form-introduction > p {
+    margin-top: 22px;
+  }
+
+  .response-note {
+    margin-top: 34px;
+    padding: 24px;
+    border: 1px solid #e4d7c5;
+    border-radius: 16px;
+    background: #f7f1e3;
+  }
+
+  .response-note strong {
+    color: #a51c30;
+  }
+
+  .response-note p {
+    margin: 8px 0 0;
+    color: #52606d;
+    line-height: 1.7;
+  }
+
+  .contact-form {
+    padding: 38px;
+    border: 1px solid #e4d7c5;
+    border-radius: 24px;
+    background: #f7f1e3;
+    box-shadow: 0 18px 48px rgba(31, 41, 51, 0.06);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .field-group {
+    display: grid;
+    gap: 9px;
+  }
+
+  .field-full {
+    grid-column: 1 / -1;
+  }
+
+  .field-group label {
+    margin: 0;
+    color: #1f2933;
+    font-weight: 700;
+  }
+
+  .field-group label > span {
+    color: #a51c30;
+  }
+
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    width: 100%;
+    border: 1px solid #e4d7c5;
+    border-radius: 10px;
+    background: #faf7f0;
+    color: #1f2933;
+  }
+
+  .field-group input,
+  .field-group select {
+    min-height: 52px;
+    padding: 0 15px;
+  }
+
+  .field-group textarea {
+    min-height: 190px;
+    padding: 15px;
+    resize: vertical;
+  }
+
+  .field-group input:focus,
+  .field-group select:focus,
+  .field-group textarea:focus {
+    border-color: #a51c30;
+    box-shadow: 0 0 0 4px rgba(165, 28, 48, 0.1);
+    outline: none;
+  }
+
+  .checkbox-label {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-weight: 300 !important;
+  }
+
+  .checkbox-label input {
+    width: 18px;
+    min-height: 18px;
+    margin-top: 3px;
+    accent-color: #a51c30;
+  }
+
+  .checkbox-label span {
+    color: #52606d !important;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .contact-form button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 26px;
+    border: 0;
+    border-radius: 999px;
+    background: #a51c30;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .contact-form button:hover {
+    background: #7b1422;
+  }
+
+  .process-section {
+    background:
+      linear-gradient(
+        120deg,
+        #7b1422 0%,
+        #56101a 100%
+      );
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 86px;
+  }
+
+  .light-label {
+    color: #f2c66d;
+  }
+
+  .process-introduction h2 {
+    color: #ffffff;
+  }
+
+  .process-introduction > p {
+    margin-top: 26px;
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .process-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process-list li {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 18px;
+    padding: 23px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .process-list li:first-child {
+    border-top: 0;
+  }
+
+  .process-list li > span {
+    color: #f2c66d;
+    font-size: 0.73rem;
+    font-weight: 700;
+  }
+
+  .process-list h3 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 1.12rem;
+  }
+
+  .process-list p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+  }
+
+  .details-section {
+    background: #f7f1e3;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 78px;
+  }
+
+  .details-grid > div > p {
+    margin-top: 24px;
+  }
+
+  .details-list {
+    margin: 0;
+    border-top: 1px solid #e4d7c5;
+  }
+
+  .details-list > div {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid #e4d7c5;
+  }
+
+  .details-list dt {
+    color: #a51c30;
+    font-weight: 700;
+  }
+
+  .details-list dd {
+    margin: 0;
+    color: #1f2933;
+  }
+
+  .details-list a {
+    color: #315c6b;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .details-list a:hover {
+    color: #a51c30;
+  }
+
+  .privacy-section {
+    padding-top: 20px;
+    background: #f7f1e3;
+  }
+
+  .privacy-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 60px;
+    padding: 58px 0;
+    border-top: 1px solid #e4d7c5;
+    border-bottom: 1px solid #e4d7c5;
+  }
+
+  .privacy-marker {
+    color: rgba(165, 28, 48, 0.14);
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 0.85;
+  }
+
+  .privacy-card p {
+    max-width: 850px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid,
+    .overview-grid,
+    .form-layout,
+    .process-grid,
+    .details-grid,
+    .privacy-card {
+      grid-template-columns: 1fr;
+      gap: 48px;
     }
 
     .form-introduction {
-      margin-bottom: 28px;
-      color: var(--muted);
+      position: static;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .container {
+      width: min(100% - 30px, 1180px);
+    }
+
+    .page-hero {
+      padding: 82px 0 74px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 14vw, 4.2rem);
+    }
+
+    .contact-overview-section,
+    .form-section,
+    .process-section,
+    .details-section,
+    .privacy-section {
+      padding: 76px 0;
+    }
+
+    .topic-grid,
+    .form-grid {
+      grid-template-columns: 1fr;
     }
 
     .contact-form {
-      display: grid;
-      gap: 22px;
+      padding: 28px 22px;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+    .field-full {
+      grid-column: auto;
     }
 
-    .form-field {
-      display: grid;
-      gap: 8px;
+    .details-list > div {
+      grid-template-columns: 1fr;
+      gap: 7px;
     }
 
-    .form-field label {
-      color: var(--navy);
-      font-size: 0.92rem;
-      font-weight: 780;
+    .privacy-marker {
+      font-size: 5rem;
     }
-
-    .form-field label span {
-      color: #a93838;
-    }
-
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      width: 100%;
-      min-height: 50px;
-      padding: 13px 15px;
-      color: var(--ink);
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      font: inherit;
-      outline: none;
-      transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .form-field textarea {
-      min-height: 170px;
-      resize: vertical;
-    }
-
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 4px rgba(15, 124, 130, 0.1);
-    }
-
-    .form-field small {
-      color: var(--muted);
-    }
-
-    .consent-field {
-      display: grid;
-      grid-template-columns: 20px 1fr;
-      gap: 12px;
-      align-items: start;
-      color: var(--muted);
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    .consent-field input {
-      width: 18px;
-      height: 18px;
-      margin-top: 3px;
-      accent-color: var(--teal);
-    }
-
-    .submit-button {
-      justify-self: start;
-      min-width: 170px;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .submit-button:disabled {
-      opacity: 0.65;
-      cursor: wait;
-      transform: none;
-    }
-
-    .submission-message {
-      display: none;
-      padding: 14px 16px;
-      border-radius: 13px;
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .submission-message.success {
-      display: block;
-      color: #17623b;
-      background: #e7f7ee;
-      border: 1px solid #abdcc0;
-    }
-
-    .submission-message.error {
-      display: block;
-      color: #8a2828;
-      background: #fff0f0;
-      border: 1px solid #edb6b6;
-    }
-
-    .form-notice {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    .hidden-field {
-      position: absolute !important;
-      left: -10000px !important;
-      width: 1px !important;
-      height: 1px !important;
-      overflow: hidden !important;
-    }
-
-    .preparation-layout,
-    .privacy-panel {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 72px;
-      align-items: start;
-    }
-
-    .preparation-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .preparation-item {
-      min-height: 66px;
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      color: var(--navy);
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: var(--shadow-small);
-      font-weight: 700;
-    }
-
-    .privacy-panel {
-      padding: 42px;
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          rgba(15, 124, 130, 0.11),
-          transparent 30%
-        ),
-        linear-gradient(145deg, #f8fbff, #edf7ff);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-    }
-
-    .privacy-copy {
-      color: var(--muted);
-    }
-
-    .privacy-copy p:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 980px) {
-      .contact-layout,
-      .preparation-layout,
-      .privacy-panel {
-        grid-template-columns: 1fr;
-        gap: 34px;
-      }
-
-      .contact-information {
-        position: static;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .form-panel,
-      .privacy-panel {
-        padding: 27px 22px;
-      }
-
-      .form-grid,
-      .preparation-list {
-        grid-template-columns: 1fr;
-      }
-
-      .submit-button {
-        width: 100%;
-      }
-    }
-  </style>
-</BaseLayout>
+  }
+</style>
