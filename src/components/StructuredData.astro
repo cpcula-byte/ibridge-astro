@@ -1,0 +1,177 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
+export interface Props {
+  locale?: "zh-tw" | "en";
+  title: string;
+  description: string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+}
+
+const {
+  locale = "zh-tw",
+  title,
+  description,
+  image,
+  breadcrumbs = [],
+  pageType = "WebPage",
+} = Astro.props;
+
+const siteUrl = "https://ibridge.info";
+const isEnglish = locale === "en";
+
+const normalisePath = (path: string): string => {
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  return `/${path.replace(/^\/+|\/+$/g, "")}`;
+};
+
+const currentPath = normalisePath(Astro.url.pathname);
+
+const canonicalUrl =
+  currentPath === "/"
+    ? `${siteUrl}/`
+    : `${siteUrl}${currentPath}`;
+
+const defaultImage = isEnglish
+  ? "/images/og-default-en.png"
+  : "/images/og-default-zh.png";
+
+const resolvedImage = image || defaultImage;
+
+const imageUrl = resolvedImage.startsWith("http")
+  ? resolvedImage
+  : `${siteUrl}${resolvedImage.startsWith("/") ? resolvedImage : `/${resolvedImage}`}`;
+
+const organisationId = `${siteUrl}/#organisation`;
+const websiteId = `${siteUrl}/#website`;
+const webpageId = `${canonicalUrl}#webpage`;
+
+const organisationDescription = isEnglish
+  ? "iBridge Education connects international education, curriculum design, educational research, professional development and practical innovation."
+  : "iBridge Education 連結國際教育、課程設計、教育研究、教師專業發展與實務創新。";
+
+const organisationSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "@id": organisationId,
+  name: "iBridge Education",
+  alternateName: "iBridge",
+  url: `${siteUrl}/`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/favicon.svg`,
+  },
+  image: {
+    "@type": "ImageObject",
+    url: imageUrl,
+    width: 1200,
+    height: 630,
+  },
+  description: organisationDescription,
+  email: "hello@ibridge.info",
+  areaServed: [
+    {
+      "@type": "Country",
+      name: "Taiwan",
+    },
+    {
+      "@type": "Place",
+      name: "International",
+    },
+  ],
+  knowsLanguage: [
+    {
+      "@type": "Language",
+      name: "Traditional Chinese",
+      alternateName: "zh-Hant",
+    },
+    {
+      "@type": "Language",
+      name: "English",
+      alternateName: "en",
+    },
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": websiteId,
+  name: "iBridge Education",
+  alternateName: "iBridge",
+  url: `${siteUrl}/`,
+  description: organisationDescription,
+  publisher: {
+    "@id": organisationId,
+  },
+  inLanguage: ["zh-Hant", "en"],
+};
+
+const webpageSchema = {
+  "@context": "https://schema.org",
+  "@type": pageType,
+  "@id": webpageId,
+  url: canonicalUrl,
+  name: title,
+  description,
+  inLanguage: isEnglish ? "en" : "zh-Hant",
+  isPartOf: {
+    "@id": websiteId,
+  },
+  about: {
+    "@id": organisationId,
+  },
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: imageUrl,
+    width: 1200,
+    height: 630,
+  },
+};
+
+const breadcrumbItems = breadcrumbs.map((item, index) => {
+  const itemPath = normalisePath(item.path);
+
+  return {
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item:
+      itemPath === "/"
+        ? `${siteUrl}/`
+        : `${siteUrl}${itemPath}`,
+  };
+});
+
+const breadcrumbSchema =
+  breadcrumbItems.length > 1
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}#breadcrumb`,
+        itemListElement: breadcrumbItems,
+      }
+    : null;
+
+const schemas = [
+  organisationSchema,
+  websiteSchema,
+  webpageSchema,
+  ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+];
+
+const jsonLd = JSON.stringify(schemas);
+---
+
+<script
+  type="application/ld+json"
+  set:html={jsonLd}
+></script>

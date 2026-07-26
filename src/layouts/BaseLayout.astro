@@ -2,85 +2,27 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
+import StructuredData from "../components/StructuredData.astro";
 import "../styles/global.css";
 
+interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
 interface Props {
-  /**
-   * 頁面標題。
-   *
-   * 繁中範例：
-   * title="關於我們"
-   *
-   * 英文範例：
-   * title="About Us"
-   */
   title?: string;
-
-  /**
-   * 頁面描述，用於 Google 搜尋結果及社群分享。
-   */
   description?: string;
-
-  /**
-   * 頁面語言。
-   */
   locale?: "zh-tw" | "en";
-
-  /**
-   * 對應的繁中頁面路徑。
-   *
-   * 例如：
-   * 首頁：/
-   * 關於我們：/about
-   * 資源中心：/resources
-   */
   zhPath?: string;
-
-  /**
-   * 對應的英文頁面路徑。
-   *
-   * 例如：
-   * 首頁：/en/
-   * 關於我們：/en/about
-   * 資源中心：/en/resources
-   */
   enPath?: string;
-
-  /**
-   * 社群分享圖片。
-   *
-   * 目前可以使用：
-   * /favicon.svg
-   *
-   * 日後可更換為：
-   * /images/og-default.png
-   */
   image?: string;
-
-  /**
-   * 是否禁止搜尋引擎建立索引。
-   *
-   * 404 頁面應使用：
-   * noindex={true}
-   */
   noindex?: boolean;
-
-  /**
-   * Open Graph 頁面類型。
-   */
   type?: "website" | "article";
-
-  /**
-   * 文章發布日期。
-   * 只用於 type="article"。
-   */
+  pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
   publishedTime?: string;
-
-  /**
-   * 文章最後更新日期。
-   * 只用於 type="article"。
-   */
   modifiedTime?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const pathname = Astro.url.pathname;
@@ -99,9 +41,7 @@ const isEnglish =
 const resolvedLocale: "zh-tw" | "en" =
   isEnglish ? "en" : "zh-tw";
 
-const defaultTitle = isEnglish
-  ? "iBridge Education"
-  : "iBridge Education";
+const defaultTitle = "iBridge Education";
 
 const defaultDescription = isEnglish
   ? "iBridge Education connects international education, educational research and practical innovation."
@@ -112,11 +52,13 @@ const {
   description = defaultDescription,
   zhPath,
   enPath,
-  image = "/favicon.svg",
+  image,
   noindex = false,
   type = "website",
+  pageType = "WebPage",
   publishedTime,
   modifiedTime,
+  breadcrumbs = [],
 } = Astro.props;
 
 const htmlLanguage = isEnglish
@@ -169,15 +111,19 @@ const htmlLanguage = isEnglish
       modifiedTime={modifiedTime}
     />
 
-    <!--
-      個別頁面可以使用 slot="head" 加入額外內容。
+    {
+      !noindex && (
+        <StructuredData
+          title={title}
+          description={description}
+          locale={resolvedLocale}
+          image={image}
+          pageType={pageType}
+          breadcrumbs={breadcrumbs}
+        />
+      )
+    }
 
-      範例：
-
-      <Fragment slot="head">
-        <meta name="keywords" content="..." />
-      </Fragment>
-    -->
     <slot name="head" />
   </head>
 
