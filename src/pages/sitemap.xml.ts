@@ -64,6 +64,12 @@ const pagePairs: PagePair[] = [
     priority: "0.4",
     changefreq: "yearly",
   },
+  {
+    zh: "/accessibility/",
+    en: "/en/accessibility/",
+    priority: "0.4",
+    changefreq: "yearly",
+  },
 ];
 
 const createUrl = (path: string): string => {

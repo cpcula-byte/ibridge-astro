@@ -30,6 +30,7 @@ const content = isEnglish
       contact: "Contact",
       privacy: "Privacy Policy",
       terms: "Terms of Use",
+      accessibility: "Accessibility Statement",
       email: "Email",
       website: "Website",
       serviceArea: "Service Area",
@@ -46,6 +47,7 @@ const content = isEnglish
       contactPath: "/en/contact/",
       privacyPath: "/en/privacy/",
       termsPath: "/en/terms/",
+      accessibilityPath: "/en/accessibility/",
       languagePath: "/",
     }
   : {
@@ -66,6 +68,7 @@ const content = isEnglish
       contact: "聯絡我們",
       privacy: "隱私權政策",
       terms: "使用條款",
+      accessibility: "無障礙聲明",
       email: "電子郵件",
       website: "網站",
       serviceArea: "服務區域",
@@ -82,6 +85,7 @@ const content = isEnglish
       contactPath: "/contact/",
       privacyPath: "/privacy/",
       termsPath: "/terms/",
+      accessibilityPath: "/accessibility/",
       languagePath: "/en/",
     };
 
@@ -127,6 +131,10 @@ const legalLinks = [
   {
     label: content.terms,
     href: content.termsPath,
+  },
+  {
+    label: content.accessibility,
+    href: content.accessibilityPath,
   },
 ];
 ---
@@ -507,8 +515,10 @@ const legalLinks = [
 
   .footer-legal ul {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 24px;
+    justify-content: flex-end;
+    gap: 14px 24px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -576,8 +586,7 @@ const legalLinks = [
     }
 
     .footer-legal ul {
-      flex-wrap: wrap;
-      gap: 14px 22px;
+      justify-content: flex-start;
     }
   }
 
