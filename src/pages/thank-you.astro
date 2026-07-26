@@ -1,0 +1,416 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="訊息已成功送出"
+  description="您的訊息已成功送交 iBridge Education。我們會查看內容並儘快回覆。"
+  locale="zh-tw"
+  noindex={true}
+>
+  <section class="success-page">
+    <div class="decoration" aria-hidden="true">
+      <span class="circle circle-one"></span>
+      <span class="circle circle-two"></span>
+      <span class="line"></span>
+    </div>
+
+    <div class="container">
+      <div class="success-card">
+        <div class="success-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 64 64"
+            role="presentation"
+          >
+            <circle
+              cx="32"
+              cy="32"
+              r="29"
+            />
+
+            <path
+              d="M19 33.5 28 42l17-20"
+            />
+          </svg>
+        </div>
+
+        <p class="eyebrow">
+          訊息已送出
+        </p>
+
+        <h1>
+          感謝您聯絡
+          <span>iBridge Education。</span>
+        </h1>
+
+        <p class="lead">
+          我們已收到您的訊息，並會在查看內容後儘快回覆。
+          請保留您所提供的電子郵件，以便我們與您聯絡。
+        </p>
+
+        <div class="information-card">
+          <h2>接下來會發生什麼？</h2>
+
+          <ol>
+            <li>
+              <span>01</span>
+
+              <div>
+                <h3>確認訊息內容</h3>
+                <p>
+                  我們會查看您提交的姓名、電子郵件、
+                  詢問主題及訊息內容。
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <span>02</span>
+
+              <div>
+                <h3>安排適當回覆</h3>
+                <p>
+                  我們會依課程設計、教師培訓、研究、
+                  教育資源或合作需求安排回覆。
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <span>03</span>
+
+              <div>
+                <h3>透過電子郵件聯絡</h3>
+                <p>
+                  回覆將寄送至您在表單中提供的電子郵件地址。
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="actions">
+          <a
+            class="primary-button"
+            href="/"
+          >
+            返回首頁
+          </a>
+
+          <a
+            class="secondary-button"
+            href="/resources/"
+          >
+            瀏覽教育資源
+          </a>
+        </div>
+
+        <div class="language-note">
+          <span>English confirmation page</span>
+
+          <a
+            href="/en/thank-you/"
+            hreflang="en"
+          >
+            View in English
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .success-page {
+    position: relative;
+    min-height: 78vh;
+    overflow: hidden;
+    padding: 110px 0;
+    background:
+      radial-gradient(
+        circle at 88% 12%,
+        rgba(196, 138, 44, 0.14),
+        transparent 28%
+      ),
+      linear-gradient(
+        135deg,
+        #f7f1e3 0%,
+        #faf7f0 100%
+      );
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    width: min(900px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .circle {
+    position: absolute;
+    border: 1px solid rgba(165, 28, 48, 0.14);
+    border-radius: 999px;
+  }
+
+  .circle-one {
+    top: -250px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+  }
+
+  .circle-two {
+    bottom: -190px;
+    left: -90px;
+    width: 340px;
+    height: 340px;
+  }
+
+  .line {
+    position: absolute;
+    top: 45%;
+    right: -150px;
+    width: 720px;
+    height: 1px;
+    background: rgba(49, 92, 107, 0.16);
+    transform: rotate(-17deg);
+  }
+
+  .success-card {
+    padding: 64px;
+    border: 1px solid #e4d7c5;
+    border-radius: 30px;
+    background: rgba(250, 247, 240, 0.96);
+    box-shadow: 0 28px 70px rgba(31, 41, 51, 0.1);
+  }
+
+  .success-icon {
+    width: 74px;
+    height: 74px;
+    margin-bottom: 30px;
+  }
+
+  .success-icon svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .success-icon circle {
+    fill: rgba(165, 28, 48, 0.08);
+    stroke: #a51c30;
+    stroke-width: 2;
+  }
+
+  .success-icon path {
+    fill: none;
+    stroke: #a51c30;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4;
+  }
+
+  .eyebrow {
+    margin: 0 0 18px;
+    color: #a51c30;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    color: #1f2933;
+    font-family:
+      "Helvetica Neue",
+      Helvetica,
+      Arial,
+      "PingFang TC",
+      sans-serif;
+    font-weight: 700;
+  }
+
+  h1 {
+    max-width: 760px;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 10px;
+    color: #a51c30;
+  }
+
+  .lead {
+    max-width: 690px;
+    margin: 28px 0 0;
+    color: #52606d;
+    font-size: 1.06rem;
+    line-height: 1.85;
+  }
+
+  .information-card {
+    margin-top: 48px;
+    padding: 34px;
+    border: 1px solid #e4d7c5;
+    border-radius: 20px;
+    background: #f7f1e3;
+  }
+
+  .information-card h2 {
+    margin-bottom: 28px;
+    font-size: 1.45rem;
+  }
+
+  .information-card ol {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .information-card li {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-top: 1px solid #e4d7c5;
+  }
+
+  .information-card li:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .information-card li:last-child {
+    padding-bottom: 0;
+  }
+
+  .information-card li > span {
+    padding-top: 4px;
+    color: #a51c30;
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  .information-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+  }
+
+  .information-card p {
+    margin: 0;
+    color: #52606d;
+    line-height: 1.7;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  .actions a {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .actions a:hover {
+    transform: translateY(-2px);
+  }
+
+  .primary-button {
+    border: 1px solid #a51c30;
+    background: #a51c30;
+    color: #ffffff;
+  }
+
+  .primary-button:hover {
+    border-color: #7b1422;
+    background: #7b1422;
+  }
+
+  .secondary-button {
+    border: 1px solid #315c6b;
+    background: transparent;
+    color: #315c6b;
+  }
+
+  .secondary-button:hover {
+    background: #315c6b;
+    color: #ffffff;
+  }
+
+  .language-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 32px;
+    padding-top: 25px;
+    border-top: 1px solid #e4d7c5;
+    color: #52606d;
+    font-size: 0.88rem;
+  }
+
+  .language-note a {
+    color: #315c6b;
+    font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .success-page {
+      padding: 76px 0;
+    }
+
+    .container {
+      width: min(100% - 30px, 900px);
+    }
+
+    .success-card {
+      padding: 38px 25px;
+      border-radius: 22px;
+    }
+
+    .information-card {
+      padding: 25px;
+    }
+
+    .information-card li {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .actions a {
+      width: 100%;
+    }
+  }
+</style>
