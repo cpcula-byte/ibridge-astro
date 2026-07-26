@@ -20,7 +20,7 @@ const content = isEnglish
       exploreTitle: "Explore",
       resourcesTitle: "Resources",
       contactTitle: "Contact",
-      legalTitle: "Information",
+      legalTitle: "Legal information",
       home: "Home",
       about: "About",
       services: "Services",
@@ -29,6 +29,7 @@ const content = isEnglish
       resources: "Resources",
       contact: "Contact",
       privacy: "Privacy Policy",
+      terms: "Terms of Use",
       email: "Email",
       website: "Website",
       serviceArea: "Service Area",
@@ -44,6 +45,7 @@ const content = isEnglish
       resourcesPath: "/en/resources/",
       contactPath: "/en/contact/",
       privacyPath: "/en/privacy/",
+      termsPath: "/en/terms/",
       languagePath: "/",
     }
   : {
@@ -54,7 +56,7 @@ const content = isEnglish
       exploreTitle: "探索網站",
       resourcesTitle: "教育內容",
       contactTitle: "聯絡資訊",
-      legalTitle: "網站資訊",
+      legalTitle: "法律與網站資訊",
       home: "首頁",
       about: "關於我們",
       services: "服務",
@@ -63,6 +65,7 @@ const content = isEnglish
       resources: "教育資源",
       contact: "聯絡我們",
       privacy: "隱私權政策",
+      terms: "使用條款",
       email: "電子郵件",
       website: "網站",
       serviceArea: "服務區域",
@@ -78,6 +81,7 @@ const content = isEnglish
       resourcesPath: "/resources/",
       contactPath: "/contact/",
       privacyPath: "/privacy/",
+      termsPath: "/terms/",
       languagePath: "/en/",
     };
 
@@ -119,6 +123,10 @@ const legalLinks = [
   {
     label: content.privacy,
     href: content.privacyPath,
+  },
+  {
+    label: content.terms,
+    href: content.termsPath,
   },
 ];
 ---
