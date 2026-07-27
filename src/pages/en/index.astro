@@ -72,61 +72,33 @@ const programmes = [
     },
   ]}
 >
-  <section class="hero">
-    <div class="hero-background" aria-hidden="true">
-      <span class="hero-circle hero-circle-one"></span>
-      <span class="hero-circle hero-circle-two"></span>
-      <span class="hero-line"></span>
-    </div>
+  <section class="visual-hero" aria-labelledby="home-hero-title">
+    <div class="container visual-hero-container">
+      <h1 id="home-hero-title" class="sr-only">
+        iBridge Education: Connecting Learning, Research and Innovation
+      </h1>
 
-    <div class="container hero-container">
-      <div class="hero-content">
-        <p class="eyebrow">International Education · Research · Innovation</p>
+      <picture class="visual-hero-picture">
+        <img
+          src="/images/home/hero-en.png"
+          alt="iBridge Education: Connecting Learning, Research and Innovation. International Education, Curriculum Design and Professional Development."
+          width="1792"
+          height="1024"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
 
-        <h1>
-          Connecting learning, research and innovation
-          <span>to build deeper and more resilient education.</span>
-        </h1>
+      <div class="visual-hero-actions" aria-label="Primary home page actions">
+        <a class="button button-primary" href="/en/contact/">
+          Book a Consultation
+        </a>
 
-        <p class="hero-description">
-          iBridge Education helps schools, teachers and learners translate
-          international curricula, educational research, artificial intelligence
-          and classroom practice into clear, sustainable and meaningful programmes.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button button-primary" href="/en/contact">
-            Book a Consultation
-          </a>
-
-          <a class="button button-secondary" href="/en/about">
-            Discover iBridge
-          </a>
-        </div>
+        <a class="button button-secondary" href="/en/about/">
+          Discover iBridge
+        </a>
       </div>
-
-      <aside class="hero-panel" aria-label="iBridge Education areas of work">
-        <p class="panel-label">What we connect</p>
-
-        <ul>
-          <li>
-            <span>01</span>
-            <strong>Curriculum and learning design</strong>
-          </li>
-          <li>
-            <span>02</span>
-            <strong>Professional development</strong>
-          </li>
-          <li>
-            <span>03</span>
-            <strong>Educational research</strong>
-          </li>
-          <li>
-            <span>04</span>
-            <strong>Artificial intelligence in education</strong>
-          </li>
-        </ul>
-      </aside>
     </div>
   </section>
 
@@ -898,4 +870,78 @@ const programmes = [
       padding-bottom: 74px;
     }
   }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .visual-hero {
+    position: relative;
+    padding: 34px 0 46px;
+    background:
+      linear-gradient(180deg, #f7fbfc 0%, #edf6f7 100%);
+  }
+
+  .visual-hero-container {
+    display: grid;
+    gap: 22px;
+  }
+
+  .visual-hero-picture {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(10, 53, 91, 0.1);
+    border-radius: 28px;
+    background: #ffffff;
+    box-shadow: 0 24px 70px rgba(10, 53, 91, 0.12);
+  }
+
+  .visual-hero-picture img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 7 / 4;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .visual-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  @media (max-width: 680px) {
+    .visual-hero {
+      padding: 20px 0 34px;
+    }
+
+    .visual-hero-picture {
+      border-radius: 18px;
+    }
+
+    .visual-hero-picture img {
+      aspect-ratio: 4 / 3;
+      object-position: center;
+    }
+
+    .visual-hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .visual-hero-actions .button {
+      width: 100%;
+    }
+  }
+
 </style>
