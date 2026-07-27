@@ -3,296 +3,459 @@ interface Props {
   locale?: "zh-tw" | "en";
 }
 
-const { locale = "zh-tw" } = Astro.props;
+const { locale } = Astro.props;
 
-const isEnglish = locale === "en";
+const currentPath = Astro.url.pathname;
 
-const currentPath =
-  Astro.url.pathname === "/"
-    ? "/"
-    : Astro.url.pathname.replace(/\/$/, "");
+const isEnglish =
+  locale === "en" ||
+  currentPath === "/en" ||
+  currentPath.startsWith("/en/");
 
-const zhPath = isEnglish
-  ? currentPath.replace(/^\/en(?=\/|$)/, "") || "/"
-  : currentPath;
+function normalisePath(pathname: string): string {
+  if (!pathname || pathname === "") {
+    return "/";
+  }
 
-const enPath = isEnglish
-  ? currentPath
-  : currentPath === "/"
-    ? "/en"
-    : `/en${currentPath}`;
+  if (pathname === "/en") {
+    return "/en/";
+  }
 
-const languageSwitchHref = isEnglish ? zhPath : enPath;
+  if (
+    pathname !== "/" &&
+    !pathname.endsWith("/") &&
+    !pathname.includes(".")
+  ) {
+    return `${pathname}/`;
+  }
 
-const navigation = isEnglish
+  return pathname;
+}
+
+function createChinesePath(pathname: string): string {
+  const normalisedPath = normalisePath(pathname);
+
+  if (
+    normalisedPath === "/en/" ||
+    normalisedPath === "/en"
+  ) {
+    return "/";
+  }
+
+  if (normalisedPath.startsWith("/en/")) {
+    const chinesePath = normalisedPath.replace(
+      /^\/en/,
+      "",
+    );
+
+    return chinesePath || "/";
+  }
+
+  return normalisedPath;
+}
+
+function createEnglishPath(pathname: string): string {
+  const normalisedPath = normalisePath(pathname);
+
+  if (
+    normalisedPath === "/en/" ||
+    normalisedPath.startsWith("/en/")
+  ) {
+    return normalisedPath;
+  }
+
+  if (normalisedPath === "/") {
+    return "/en/";
+  }
+
+  return `/en${normalisedPath}`;
+}
+
+const chinesePath = createChinesePath(currentPath);
+const englishPath = createEnglishPath(currentPath);
+
+const languageSwitchPath = isEnglish
+  ? chinesePath
+  : englishPath;
+
+const navigationItems = isEnglish
   ? [
       {
         label: "Home",
-        href: "/en",
-        route: "/en",
+        href: "/en/",
       },
       {
         label: "About",
-        href: "/en/about",
-        route: "/en/about",
+        href: "/en/about/",
       },
       {
         label: "Services",
-        href: "/en/services",
-        route: "/en/services",
+        href: "/en/services/",
       },
       {
         label: "Programmes",
-        href: "/en/programmes",
-        route: "/en/programmes",
+        href: "/en/programmes/",
       },
       {
         label: "Research",
-        href: "/en/research",
-        route: "/en/research",
+        href: "/en/research/",
       },
       {
         label: "Resources",
-        href: "/en/resources",
-        route: "/en/resources",
+        href: "/en/resources/",
       },
       {
         label: "Contact",
-        href: "/en/contact",
-        route: "/en/contact",
+        href: "/en/contact/",
       },
     ]
   : [
       {
         label: "首頁",
         href: "/",
-        route: "/",
       },
       {
         label: "關於我們",
-        href: "/about",
-        route: "/about",
+        href: "/about/",
       },
       {
         label: "服務",
-        href: "/services",
-        route: "/services",
+        href: "/services/",
       },
       {
-        label: "課程與方案",
-        href: "/programmes",
-        route: "/programmes",
+        label: "課程方案",
+        href: "/programmes/",
       },
       {
-        label: "研究",
-        href: "/research",
-        route: "/research",
+        label: "教育研究",
+        href: "/research/",
       },
       {
-        label: "資源",
-        href: "/resources",
-        route: "/resources",
+        label: "教育資源",
+        href: "/resources/",
       },
       {
         label: "聯絡我們",
-        href: "/contact",
-        route: "/contact",
+        href: "/contact/",
       },
     ];
 
-const isActiveRoute = (route: string) => {
-  if (route === "/" || route === "/en") {
-    return currentPath === route;
+function isActiveLink(href: string): boolean {
+  const normalisedCurrentPath =
+    normalisePath(currentPath);
+
+  const normalisedHref =
+    normalisePath(href);
+
+  if (
+    normalisedHref === "/" ||
+    normalisedHref === "/en/"
+  ) {
+    return (
+      normalisedCurrentPath === normalisedHref
+    );
   }
 
-  return (
-    currentPath === route ||
-    currentPath.startsWith(`${route}/`)
+  return normalisedCurrentPath.startsWith(
+    normalisedHref,
   );
-};
+}
 
-const consultationHref = isEnglish
-  ? "/en/contact"
-  : "/contact";
+const menuOpenLabel = isEnglish
+  ? "Open navigation menu"
+  : "開啟導覽選單";
+
+const menuCloseLabel = isEnglish
+  ? "Close navigation menu"
+  : "關閉導覽選單";
+
+const languageLabel = isEnglish
+  ? "切換至繁體中文"
+  : "Switch to English";
+
+const languageText = isEnglish
+  ? "繁中"
+  : "EN";
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="header-container">
     <a
       class="brand"
-      href={isEnglish ? "/en" : "/"}
+      href={isEnglish ? "/en/" : "/"}
       aria-label={
         isEnglish
-          ? "iBridge Education English homepage"
-          : "iBridge Education 繁體中文首頁"
+          ? "iBridge Education home"
+          : "iBridge Education 首頁"
       }
     >
       <span class="brand-mark" aria-hidden="true">
-        iB
+        <span class="brand-mark-line"></span>
+        <span class="brand-mark-line"></span>
+        <span class="brand-mark-line"></span>
       </span>
 
-      <span class="brand-name">
-        iBridge Education
+      <span class="brand-copy">
+        <span class="brand-name">
+          iBridge
+        </span>
+
+        <span class="brand-description">
+          Education
+        </span>
       </span>
     </a>
 
-    <button
-      class="menu-toggle"
-      id="menu-toggle"
-      type="button"
+    <nav
+      class="desktop-navigation"
       aria-label={
         isEnglish
-          ? "Open navigation menu"
-          : "開啟導覽選單"
+          ? "Primary navigation"
+          : "主要導覽"
       }
-      aria-expanded="false"
-      aria-controls="primary-navigation"
     >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <div
-      class="navigation-wrapper"
-      id="primary-navigation"
-    >
-      <nav
-        class="primary-navigation"
-        aria-label={
-          isEnglish
-            ? "Primary navigation"
-            : "主要導覽"
-        }
-      >
+      <ul>
         {
-          navigation.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                "navigation-link",
-                {
-                  active: isActiveRoute(item.route),
-                },
-              ]}
-              aria-current={
-                isActiveRoute(item.route)
-                  ? "page"
-                  : undefined
-              }
-            >
-              {item.label}
-            </a>
+          navigationItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "navigation-link",
+                  {
+                    active: isActiveLink(
+                      item.href,
+                    ),
+                  },
+                ]}
+                aria-current={
+                  isActiveLink(item.href)
+                    ? "page"
+                    : undefined
+                }
+              >
+                {item.label}
+              </a>
+            </li>
           ))
         }
-      </nav>
+      </ul>
+    </nav>
 
-      <div class="header-actions">
+    <div class="header-actions">
+      <a
+        class="language-switch"
+        href={languageSwitchPath}
+        hreflang={
+          isEnglish
+            ? "zh-Hant"
+            : "en"
+        }
+        lang={
+          isEnglish
+            ? "zh-Hant"
+            : "en"
+        }
+        aria-label={languageLabel}
+      >
+        <span aria-hidden="true">
+          {languageText}
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        aria-label={menuOpenLabel}
+        data-menu-toggle
+        data-open-label={menuOpenLabel}
+        data-close-label={menuCloseLabel}
+      >
+        <span class="menu-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-navigation"
+    class="mobile-navigation"
+    aria-hidden="true"
+    data-mobile-navigation
+  >
+    <nav
+      aria-label={
+        isEnglish
+          ? "Mobile navigation"
+          : "手機版導覽"
+      }
+    >
+      <ul>
+        {
+          navigationItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "mobile-navigation-link",
+                  {
+                    active: isActiveLink(
+                      item.href,
+                    ),
+                  },
+                ]}
+                aria-current={
+                  isActiveLink(item.href)
+                    ? "page"
+                    : undefined
+                }
+              >
+                <span>{item.label}</span>
+
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mobile-language-section">
+        <span class="mobile-language-label">
+          {
+            isEnglish
+              ? "Language"
+              : "語言"
+          }
+        </span>
+
         <a
-          class="language-switch"
-          href={languageSwitchHref}
-          hreflang={isEnglish ? "zh-Hant" : "en"}
-          lang={isEnglish ? "zh-Hant" : "en"}
+          class="mobile-language-switch"
+          href={languageSwitchPath}
+          hreflang={
+            isEnglish
+              ? "zh-Hant"
+              : "en"
+          }
+          lang={
+            isEnglish
+              ? "zh-Hant"
+              : "en"
+          }
         >
           {
             isEnglish
-              ? "繁中"
-              : "EN"
+              ? "繁體中文"
+              : "English"
           }
-        </a>
 
-        <a
-          class="consultation-button"
-          href={consultationHref}
-        >
-          {
-            isEnglish
-              ? "Book a Consultation"
-              : "預約諮詢"
-          }
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 5l7 7-7 7"
+            ></path>
+          </svg>
         </a>
       </div>
-    </div>
+    </nav>
   </div>
 </header>
 
-<div
-  class="menu-overlay"
-  id="menu-overlay"
-  aria-hidden="true"
-></div>
+<script is:inline>
+  (() => {
+    const header =
+      document.querySelector(
+        "[data-site-header]",
+      );
 
-<script>
-  const menuToggle =
-    document.querySelector("#menu-toggle");
+    if (!header) {
+      return;
+    }
 
-  const navigationWrapper =
-    document.querySelector("#primary-navigation");
+    const toggle =
+      header.querySelector(
+        "[data-menu-toggle]",
+      );
 
-  const menuOverlay =
-    document.querySelector("#menu-overlay");
+    const mobileNavigation =
+      header.querySelector(
+        "[data-mobile-navigation]",
+      );
 
-  const closeMenu = () => {
     if (
-      !(menuToggle instanceof HTMLButtonElement) ||
-      !(navigationWrapper instanceof HTMLElement) ||
-      !(menuOverlay instanceof HTMLElement)
+      !(toggle instanceof HTMLButtonElement) ||
+      !(mobileNavigation instanceof HTMLElement)
     ) {
       return;
     }
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "false",
-    );
+    const openLabel =
+      toggle.dataset.openLabel ||
+      "Open navigation menu";
 
-    navigationWrapper.classList.remove("open");
-    menuOverlay.classList.remove("open");
-    document.body.classList.remove("menu-open");
-  };
+    const closeLabel =
+      toggle.dataset.closeLabel ||
+      "Close navigation menu";
 
-  const openMenu = () => {
-    if (
-      !(menuToggle instanceof HTMLButtonElement) ||
-      !(navigationWrapper instanceof HTMLElement) ||
-      !(menuOverlay instanceof HTMLElement)
-    ) {
-      return;
+    function setMenuState(isOpen) {
+      toggle.setAttribute(
+        "aria-expanded",
+        String(isOpen),
+      );
+
+      toggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? closeLabel
+          : openLabel,
+      );
+
+      mobileNavigation.setAttribute(
+        "aria-hidden",
+        String(!isOpen),
+      );
+
+      header.classList.toggle(
+        "menu-open",
+        isOpen,
+      );
+
+      document.documentElement.classList.toggle(
+        "navigation-open",
+        isOpen,
+      );
     }
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "true",
-    );
+    function closeMenu() {
+      setMenuState(false);
+    }
 
-    navigationWrapper.classList.add("open");
-    menuOverlay.classList.add("open");
-    document.body.classList.add("menu-open");
-  };
-
-  if (
-    menuToggle instanceof HTMLButtonElement &&
-    navigationWrapper instanceof HTMLElement &&
-    menuOverlay instanceof HTMLElement
-  ) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen =
-        menuToggle.getAttribute("aria-expanded") ===
-        "true";
-
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-
-    menuOverlay.addEventListener(
+    toggle.addEventListener(
       "click",
-      closeMenu,
+      () => {
+        const isOpen =
+          toggle.getAttribute(
+            "aria-expanded",
+          ) === "true";
+
+        setMenuState(!isOpen);
+      },
     );
 
-    navigationWrapper
+    mobileNavigation
       .querySelectorAll("a")
       .forEach((link) => {
         link.addEventListener(
@@ -306,404 +469,473 @@ const consultationHref = isEnglish
       (event) => {
         if (event.key === "Escape") {
           closeMenu();
+          toggle.focus();
         }
       },
     );
 
-    window.addEventListener(
-      "resize",
-      () => {
-        if (window.innerWidth > 1080) {
+    document.addEventListener(
+      "click",
+      (event) => {
+        const target = event.target;
+
+        if (!(target instanceof Node)) {
+          return;
+        }
+
+        const isOpen =
+          toggle.getAttribute(
+            "aria-expanded",
+          ) === "true";
+
+        if (
+          isOpen &&
+          !header.contains(target)
+        ) {
           closeMenu();
         }
       },
     );
-  }
+
+    const desktopMedia =
+      window.matchMedia(
+        "(min-width: 1001px)",
+      );
+
+    function handleDesktopChange(event) {
+      if (event.matches) {
+        closeMenu();
+      }
+    }
+
+    if (
+      typeof desktopMedia.addEventListener ===
+      "function"
+    ) {
+      desktopMedia.addEventListener(
+        "change",
+        handleDesktopChange,
+      );
+    } else {
+      desktopMedia.addListener(
+        handleDesktopChange,
+      );
+    }
+
+    setMenuState(false);
+  })();
 </script>
 
 <style>
   .site-header {
     position: sticky;
-    top: 0;
     z-index: 1000;
-
+    top: 0;
     width: 100%;
-
-    background: rgba(255, 255, 255, 0.94);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid #e4d7c5;
+    background: rgba(250, 247, 240, 0.97);
+    box-shadow: 0 4px 20px rgba(31, 41, 51, 0.04);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
 
   .header-container {
-    width: min(100% - 40px, 1440px);
-    min-height: 82px;
-    margin-inline: auto;
-
     display: flex;
+    width: min(1380px, calc(100% - 48px));
+    min-height: 82px;
     align-items: center;
     justify-content: space-between;
     gap: 28px;
+    margin: 0 auto;
   }
 
   .brand {
-    flex: 0 0 auto;
-
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
-    gap: 12px;
-
-    color: var(--navy);
+    gap: 13px;
+    color: #1f2933;
     text-decoration: none;
   }
 
   .brand-mark {
-    width: 42px;
-    height: 42px;
-
     display: grid;
-    place-items: center;
+    width: 34px;
+    height: 34px;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: end;
+    gap: 3px;
+    padding: 5px;
+    border-radius: 8px;
+    background: #a51c30;
+  }
 
-    color: var(--white);
-    background:
-      linear-gradient(
-        135deg,
-        var(--navy),
-        var(--teal)
-      );
+  .brand-mark-line {
+    display: block;
+    border-radius: 999px 999px 2px 2px;
+    background: #f7f1e3;
+  }
 
-    border-radius: 13px;
+  .brand-mark-line:nth-child(1) {
+    height: 47%;
+  }
 
-    font-size: 0.76rem;
-    font-weight: 850;
-    letter-spacing: -0.03em;
+  .brand-mark-line:nth-child(2) {
+    height: 75%;
+  }
+
+  .brand-mark-line:nth-child(3) {
+    height: 100%;
+  }
+
+  .brand-copy {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .brand-name,
+  .brand-description {
+    font-family:
+      "Helvetica Neue",
+      Helvetica,
+      Arial,
+      sans-serif;
+    line-height: 1;
   }
 
   .brand-name {
-    white-space: nowrap;
-
-    font-family:
-      Georgia,
-      "Times New Roman",
-      serif;
-
-    font-size: 1.05rem;
-    font-weight: 750;
+    color: #a51c30;
+    font-size: 1.23rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
   }
 
-  .navigation-wrapper {
-    flex: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 24px;
+  .brand-description {
+    color: #1f2933;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
   }
 
-  .primary-navigation {
+  .desktop-navigation {
+    flex: 1 1 auto;
+  }
+
+  .desktop-navigation ul {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 4px;
+    justify-content: center;
+    gap: clamp(14px, 1.6vw, 28px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .navigation-link {
     position: relative;
-
-    padding: 10px 10px;
-
-    color: var(--navy);
-    border-radius: 10px;
-
-    font-size: 0.88rem;
-    font-weight: 720;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: #1f2933;
+    font-size: 0.91rem;
+    font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
-
-    transition:
-      color 0.2s ease,
-      background 0.2s ease;
+    transition: color 160ms ease;
   }
 
-  .navigation-link:hover {
-    color: var(--teal);
-    background: var(--soft);
-  }
-
-  .navigation-link.active {
-    color: var(--teal);
-    background: var(--teal-light);
-  }
-
-  .navigation-link.active::after {
-    content: "";
-
+  .navigation-link::after {
     position: absolute;
-    right: 11px;
-    bottom: 5px;
-    left: 11px;
-
+    right: 0;
+    bottom: 3px;
+    left: 0;
     height: 2px;
+    border-radius: 999px;
+    background: #a51c30;
+    content: "";
+    opacity: 0;
+    transform: scaleX(0.25);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
 
-    background: var(--teal);
-    border-radius: 99px;
+  .navigation-link:hover,
+  .navigation-link:focus-visible,
+  .navigation-link.active {
+    color: #a51c30;
+  }
+
+  .navigation-link:hover::after,
+  .navigation-link:focus-visible::after,
+  .navigation-link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
   }
 
   .header-actions {
-    flex: 0 0 auto;
-
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 10px;
   }
 
   .language-switch {
-    min-width: 50px;
-    padding: 10px 12px;
-
     display: inline-flex;
+    min-width: 46px;
+    min-height: 42px;
     align-items: center;
     justify-content: center;
-
-    color: var(--navy);
-    border: 1px solid var(--line);
+    padding: 0 12px;
+    border: 1px solid #315c6b;
     border-radius: 999px;
-
-    font-size: 0.82rem;
-    font-weight: 800;
+    color: #315c6b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     text-decoration: none;
-
     transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background 0.2s ease;
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
   }
 
-  .language-switch:hover {
-    color: var(--teal);
-    background: var(--soft);
-    border-color: rgba(15, 124, 130, 0.3);
-  }
-
-  .consultation-button {
-    min-height: 44px;
-    padding: 11px 18px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    color: var(--white);
-    background:
-      linear-gradient(
-        135deg,
-        #1758a8,
-        var(--teal)
-      );
-
-    border-radius: 999px;
-    box-shadow: 0 10px 24px rgba(13, 74, 119, 0.17);
-
-    font-size: 0.84rem;
-    font-weight: 800;
-    text-decoration: none;
-    white-space: nowrap;
-
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .consultation-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(13, 74, 119, 0.23);
+  .language-switch:hover,
+  .language-switch:focus-visible {
+    border-color: #315c6b;
+    background: #315c6b;
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   .menu-toggle {
     display: none;
-
     width: 46px;
-    height: 46px;
-    padding: 11px;
-
-    border: 1px solid var(--line);
-    border-radius: 13px;
-    background: var(--white);
-
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #e4d7c5;
+    border-radius: 12px;
+    background: #faf7f0;
+    color: #1f2933;
     cursor: pointer;
   }
 
-  .menu-toggle span {
+  .menu-toggle-lines {
+    display: grid;
+    width: 20px;
+    gap: 4px;
+  }
+
+  .menu-toggle-lines span {
+    display: block;
     width: 100%;
     height: 2px;
-
-    display: block;
-
-    background: var(--navy);
-    border-radius: 99px;
-
+    border-radius: 999px;
+    background: currentColor;
+    transform-origin: center;
     transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
+      transform 180ms ease,
+      opacity 180ms ease;
   }
 
-  .menu-toggle span + span {
-    margin-top: 6px;
+  .menu-open .menu-toggle-lines span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
   }
 
-  .menu-toggle[aria-expanded="true"]
-    span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .menu-toggle[aria-expanded="true"]
-    span:nth-child(2) {
+  .menu-open .menu-toggle-lines span:nth-child(2) {
     opacity: 0;
   }
 
-  .menu-toggle[aria-expanded="true"]
-    span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+  .menu-open .menu-toggle-lines span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 
-  .menu-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 890;
-
+  .mobile-navigation {
     display: none;
-
-    background: rgba(4, 23, 44, 0.42);
-    backdrop-filter: blur(3px);
-  }
-
-  .menu-overlay.open {
-    display: block;
   }
 
   @media (max-width: 1180px) {
     .header-container {
-      width: min(100% - 30px, 1440px);
+      width: min(100% - 34px, 1380px);
+      gap: 20px;
     }
 
-    .navigation-wrapper {
+    .desktop-navigation ul {
       gap: 14px;
     }
 
     .navigation-link {
-      padding-inline: 7px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
     }
 
-    .consultation-button {
-      padding-inline: 14px;
+    .brand-description {
+      display: none;
     }
   }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1000px) {
+    :global(html.navigation-open) {
+      overflow: hidden;
+    }
+
     .header-container {
-      min-height: 74px;
+      min-height: 72px;
     }
 
-    .menu-toggle {
-      position: relative;
-      z-index: 1010;
-      display: block;
-    }
-
-    .navigation-wrapper {
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 1000;
-
-      width: min(88vw, 390px);
-      height: 100dvh;
-      padding:
-        98px
-        24px
-        30px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      gap: 26px;
-
-      overflow-y: auto;
-
-      background: var(--white);
-      border-left: 1px solid var(--line);
-      box-shadow: -18px 0 50px rgba(6, 29, 53, 0.16);
-
-      transform: translateX(105%);
-      visibility: hidden;
-
-      transition:
-        transform 0.25s ease,
-        visibility 0.25s ease;
-    }
-
-    .navigation-wrapper.open {
-      transform: translateX(0);
-      visibility: visible;
-    }
-
-    .primary-navigation {
-      display: grid;
-      gap: 7px;
-    }
-
-    .navigation-link {
-      width: 100%;
-      padding: 14px 15px;
-
-      display: block;
-
-      font-size: 1rem;
-    }
-
-    .navigation-link.active::after {
+    .desktop-navigation {
       display: none;
     }
 
-    .header-actions {
-      display: grid;
-      gap: 11px;
+    .brand-description {
+      display: inline;
     }
 
-    .language-switch,
-    .consultation-button {
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .mobile-navigation {
+      position: fixed;
+      top: 73px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      overflow-y: auto;
+      padding: 18px 22px 40px;
+      background: rgba(247, 241, 227, 0.99);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-12px);
+      visibility: hidden;
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease,
+        visibility 180ms ease;
+    }
+
+    .menu-open .mobile-navigation {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .mobile-navigation nav {
+      width: min(680px, 100%);
+      margin: 0 auto;
+    }
+
+    .mobile-navigation ul {
+      display: grid;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid #e4d7c5;
+      list-style: none;
+    }
+
+    .mobile-navigation li {
+      border-bottom: 1px solid #e4d7c5;
+    }
+
+    .mobile-navigation-link,
+    .mobile-language-switch {
+      display: flex;
       width: 100%;
+      min-height: 64px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #1f2933;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .mobile-navigation-link.active {
+      color: #a51c30;
+    }
+
+    .mobile-navigation-link svg,
+    .mobile-language-switch svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .mobile-language-section {
+      margin-top: 24px;
+      padding: 22px;
+      border: 1px solid #e4d7c5;
+      border-radius: 18px;
+      background: #faf7f0;
+    }
+
+    .mobile-language-label {
+      display: block;
+      margin-bottom: 6px;
+      color: #315c6b;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .mobile-language-switch {
       min-height: 48px;
+      color: #315c6b;
     }
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 560px) {
     .header-container {
-      width: min(100% - 24px, 1440px);
+      width: min(100% - 24px, 1380px);
+    }
+
+    .brand-copy {
+      gap: 5px;
     }
 
     .brand-name {
-      max-width: 185px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 0.96rem;
+      font-size: 1.1rem;
     }
 
-    .brand-mark {
-      width: 39px;
-      height: 39px;
+    .brand-description {
+      font-size: 0.82rem;
     }
 
-    .navigation-wrapper {
-      width: 92vw;
+    .language-switch {
+      min-width: 42px;
+      min-height: 40px;
+      padding: 0 10px;
+    }
+
+    .menu-toggle {
+      width: 43px;
+      height: 40px;
+    }
+
+    .mobile-navigation {
+      padding-right: 15px;
+      padding-left: 15px;
     }
   }
-</style>
 
-<style is:global>
-  body.menu-open {
-    overflow: hidden;
+  @media (prefers-reduced-motion: reduce) {
+    .navigation-link::after,
+    .language-switch,
+    .menu-toggle-lines span,
+    .mobile-navigation {
+      transition: none;
+    }
   }
 </style>
