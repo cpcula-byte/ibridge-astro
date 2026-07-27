@@ -26,3 +26,5 @@ pnpm-debug.log*
 # Cloudflare local files
 .wrangler/
 .dev.vars
+# Responsive audit output
+responsive-audit/
