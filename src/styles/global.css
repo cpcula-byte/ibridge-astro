@@ -1,837 +1,830 @@
 /* =========================================================
-   iBridge Education — Unified Brand Colour System
-   iBridge Education 統一品牌配色系統
+   iBridge Education
+   Final Brand Palette Override
+   Paste this block at the END of src/styles/global.css
    ========================================================= */
 
+/* =========================
+   1) Brand colour variables
+   ========================= */
 :root {
-  /* Primary brand colours */
-  --ibridge-primary: #a51c30;
-  --ibridge-primary-dark: #7b1422;
+  /* Core brand palette */
+  --color-primary: #A51C30;         /* Harvard Crimson */
+  --color-primary-dark: #7B1422;    /* Deep Crimson */
+  --color-background: #F7F1E3;      /* Warm Cream */
+  --color-surface: #FAF7F0;         /* Soft Ivory */
+  --color-text: #1F2933;            /* Charcoal Navy */
+  --color-accent: #315C6B;          /* Academic Teal */
+  --color-border: #E4D7C5;          /* Warm Sand */
+  --color-gold: #C48A2C;            /* Muted Gold */
 
-  /* Backgrounds */
-  --ibridge-background: #f7f1e3;
-  --ibridge-surface: #faf7f0;
+  /* Supporting tones */
+  --color-white: #FFFFFF;
+  --color-overlay-light: rgba(250, 247, 240, 0.82);
+  --color-overlay-soft: rgba(247, 241, 227, 0.78);
+  --color-shadow-soft: rgba(31, 41, 51, 0.06);
+  --color-shadow-medium: rgba(31, 41, 51, 0.10);
+  --color-shadow-strong: rgba(31, 41, 51, 0.14);
 
-  /* Text */
-  --ibridge-text: #1f2933;
-  --ibridge-text-muted: #52606d;
+  /* Typography */
+  --font-heading: "Neue Helvetica 75 Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Neue Helvetica 35 Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-chinese: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 
-  /* Secondary and decorative colours */
-  --ibridge-secondary: #315c6b;
-  --ibridge-border: #e4d7c5;
-  --ibridge-gold: #c48a2c;
+  /* Radius */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
-  /* Functional colours */
-  --ibridge-white: #ffffff;
-  --ibridge-focus: #315c6b;
+  /* Layout */
+  --container-max: 1200px;
 
-  /* Compatibility aliases for existing components */
-  --color-primary: var(--ibridge-primary);
-  --color-primary-dark: var(--ibridge-primary-dark);
-  --color-background: var(--ibridge-background);
-  --color-surface: var(--ibridge-surface);
-  --color-text: var(--ibridge-text);
-  --color-text-muted: var(--ibridge-text-muted);
-  --color-secondary: var(--ibridge-secondary);
-  --color-border: var(--ibridge-border);
-  --color-gold: var(--ibridge-gold);
-
-  --primary: var(--ibridge-primary);
-  --primary-dark: var(--ibridge-primary-dark);
-  --background: var(--ibridge-background);
-  --surface: var(--ibridge-surface);
-  --text: var(--ibridge-text);
-  --muted: var(--ibridge-text-muted);
-  --accent: var(--ibridge-secondary);
-  --border: var(--ibridge-border);
-  --gold: var(--ibridge-gold);
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
 }
 
-/* =========================================================
-   Global document colours
-   全站基本色彩
-   ========================================================= */
-
+/* =========================
+   2) Base page styling
+   ========================= */
 html {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-background);
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-background);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body), var(--font-chinese);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 main {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-background);
+  background: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 ::selection {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary);
+  background: rgba(165, 28, 48, 0.14);
+  color: var(--color-text);
 }
 
-/* =========================================================
-   Typography
-   文字與標題
-   ========================================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--ibridge-text);
-}
-
+/* =========================
+   3) Typography
+   ========================= */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
 .page-title,
 .section-title,
 .card-title,
 .resource-title,
 .programme-title,
-.service-title,
-.research-title,
-.article-title {
-  color: var(--ibridge-text);
-}
-
-.eyebrow,
-.kicker,
-.section-label,
-.overline,
-.subtitle-accent {
-  color: var(--ibridge-primary);
+.research-title {
+  color: var(--color-text);
+  font-family: var(--font-heading), var(--font-chinese);
+  letter-spacing: -0.02em;
 }
 
 p,
 li,
 dd,
 dt,
-blockquote,
-figcaption {
-  color: var(--ibridge-text);
-}
-
 small,
-.caption,
-.meta,
-.helper-text,
-.supporting-text,
-.text-muted {
-  color: var(--ibridge-text-muted);
+label,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-body), var(--font-chinese);
+  color: var(--color-text);
 }
 
-/* =========================================================
-   Links
-   連結
-   ========================================================= */
+strong,
+b {
+  color: var(--color-text);
+  font-weight: 700;
+}
 
 a {
-  color: var(--ibridge-secondary);
+  color: var(--color-accent);
+  text-decoration-color: rgba(49, 92, 107, 0.35);
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 }
 
 a:hover,
 a:focus-visible {
-  color: var(--ibridge-primary);
+  color: var(--color-primary);
+  text-decoration-color: rgba(165, 28, 48, 0.45);
 }
 
-main a:not(.button):not(.btn):not([class*="button"]) {
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--ibridge-secondary) 45%,
-    transparent
-  );
+/* =========================
+   4) Global containers / sections
+   ========================= */
+section,
+.section,
+.page-section,
+.content-section {
+  background: transparent;
 }
 
-main a:not(.button):not(.btn):not([class*="button"]):hover {
-  text-decoration-color: var(--ibridge-primary);
+.container,
+.page-container,
+.section-container,
+.wrapper {
+  width: min(100% - 2rem, var(--container-max));
+  margin-inline: auto;
 }
 
-/* =========================================================
-   Header and navigation
-   頁首與導覽列
-   ========================================================= */
-
+/* =========================
+   5) Header / navigation
+   ========================= */
 header,
 .site-header,
-.main-header,
-.primary-header,
+.topbar,
 .navbar,
-.navigation-wrapper {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-background);
-  border-color: var(--ibridge-border);
+.navigation-wrap {
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
 }
 
-nav,
-.site-nav,
-.primary-navigation,
-.main-navigation {
-  color: var(--ibridge-text);
-}
-
+.site-header a,
+.navbar a,
 nav a,
-.site-nav a,
-.primary-navigation a,
-.main-navigation a,
-.nav-link {
-  color: var(--ibridge-text);
+.navigation a,
+.menu a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
+.site-header a:hover,
+.navbar a:hover,
 nav a:hover,
-.site-nav a:hover,
-.primary-navigation a:hover,
-.main-navigation a:hover,
-.nav-link:hover {
-  color: var(--ibridge-primary);
+.navigation a:hover,
+.menu a:hover {
+  color: var(--color-primary);
 }
 
+nav .active,
 nav a[aria-current="page"],
-.site-nav a[aria-current="page"],
-.primary-navigation a[aria-current="page"],
-.main-navigation a[aria-current="page"],
-.nav-link.active,
-.nav-link.is-active {
-  color: var(--ibridge-primary);
-  border-color: var(--ibridge-primary);
+.navbar .active,
+.navigation .active,
+.menu .active,
+.site-header .active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .logo,
 .site-logo,
 .brand,
 .brand-name {
-  color: var(--ibridge-text);
+  color: var(--color-primary);
 }
 
 .logo-mark,
 .brand-mark,
-.logo-accent,
-.brand-accent {
-  color: var(--ibridge-primary);
-  fill: var(--ibridge-primary);
+.site-logo-mark {
+  color: var(--color-primary);
+  fill: var(--color-primary);
 }
 
-/* =========================================================
-   Language switcher and mobile navigation
-   語言切換與手機選單
-   ========================================================= */
-
+/* Language switcher / toggle */
 .language-switcher,
-.language-toggle,
+.lang-toggle,
 .locale-switcher,
-.mobile-menu-toggle,
-.menu-toggle,
-.hamburger-button {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+button.lang,
+a.lang {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
 }
 
 .language-switcher:hover,
-.language-toggle:hover,
+.lang-toggle:hover,
 .locale-switcher:hover,
-.mobile-menu-toggle:hover,
-.menu-toggle:hover,
-.hamburger-button:hover {
-  color: var(--ibridge-primary);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-primary);
+button.lang:hover,
+a.lang:hover {
+  border-color: var(--color-accent);
+  color: var(--color-primary);
+  background: var(--color-white);
 }
 
-.mobile-navigation,
-.mobile-menu,
-.navigation-drawer,
-.menu-panel {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+/* =========================
+   6) Hero / homepage banner
+   Fix the abrupt background issue
+   ========================= */
+.hero,
+.home-hero,
+.hero-section,
+.hero-wrapper,
+.visual-hero-section,
+.homepage-hero,
+.banner-section {
+  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%);
 }
 
-/* =========================================================
-   Primary buttons
-   主要按鈕
-   ========================================================= */
+/* Outer area behind the hero image */
+.hero-shell,
+.hero-stage,
+.hero-outer,
+.visual-stage,
+.home-hero-shell,
+.page-hero-wrap {
+  background: var(--color-background);
+}
 
-.button,
+/* Main hero card / image panel */
+.hero-card,
+.home-hero-card,
+.visual-hero,
+.hero-banner,
+.hero-panel,
+.visual-panel,
+.home-banner-card,
+.hero-image-card,
+.hero-media-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 28px var(--color-shadow-soft);
+  overflow: hidden;
+}
+
+/* Text side inside hero */
+.hero-content,
+.home-hero-content,
+.visual-hero-content,
+.banner-content {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.hero-title,
+.home-hero h1,
+.visual-hero h1,
+.banner-content h1 {
+  color: var(--color-primary);
+}
+
+.hero-subtitle,
+.hero-kicker,
+.visual-hero-subtitle,
+.banner-content .subtitle {
+  color: var(--color-accent);
+}
+
+.hero-description,
+.banner-content p,
+.visual-hero p {
+  color: var(--color-text);
+}
+
+/* If your hero area below image had cold grey/blue, make it warm */
+.hero-actions-wrap,
+.hero-actions-row,
+.home-hero-actions,
+.visual-hero-actions,
+.banner-actions-wrap,
+.cta-strip {
+  background: transparent;
+}
+
+/* Decorative highlight line */
+.hero-divider,
+.hero-accent-line,
+.section-accent-line {
+  background: var(--color-gold);
+}
+
+/* =========================
+   7) Buttons
+   ========================= */
+button,
 .btn,
+.button,
 .primary-button,
-.button-primary,
-.btn-primary,
+.secondary-button,
 .cta-button,
 .hero-button,
-.submit-button,
-button[type="submit"],
-input[type="submit"] {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary);
-  border-color: var(--ibridge-primary);
+a.button,
+a.btn {
+  font-family: var(--font-body), var(--font-chinese);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
-.button:hover,
-.btn:hover,
-.primary-button:hover,
-.button-primary:hover,
+/* Primary */
+.btn-primary,
+.button-primary,
+.primary-button,
+.cta-primary,
+.hero-button.primary,
+a.btn-primary,
+a.button-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 18px rgba(165, 28, 48, 0.15);
+}
+
 .btn-primary:hover,
-.cta-button:hover,
-.hero-button:hover,
-.submit-button:hover,
-button[type="submit"]:hover,
-input[type="submit"]:hover {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-  border-color: var(--ibridge-primary-dark);
+.button-primary:hover,
+.primary-button:hover,
+.cta-primary:hover,
+.hero-button.primary:hover,
+a.btn-primary:hover,
+a.button-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
 }
 
-.button:active,
-.btn:active,
-.primary-button:active,
-.button-primary:active,
-.btn-primary:active,
-.cta-button:active,
-.hero-button:active,
-.submit-button:active,
-button[type="submit"]:active,
-input[type="submit"]:active {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-  border-color: var(--ibridge-primary-dark);
-}
-
-/* =========================================================
-   Secondary buttons
-   次要按鈕
-   ========================================================= */
-
-.secondary-button,
-.button-secondary,
+/* Secondary */
 .btn-secondary,
-.outline-button,
-.button-outline,
-.ghost-button {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+.button-secondary,
+.secondary-button,
+.cta-secondary,
+.hero-button.secondary,
+a.btn-secondary,
+a.button-secondary {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border-color: var(--color-border);
 }
 
-.secondary-button:hover,
-.button-secondary:hover,
 .btn-secondary:hover,
-.outline-button:hover,
-.button-outline:hover,
-.ghost-button:hover {
-  color: var(--ibridge-primary-dark);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-primary);
+.button-secondary:hover,
+.secondary-button:hover,
+.cta-secondary:hover,
+.hero-button.secondary:hover,
+a.btn-secondary:hover,
+a.button-secondary:hover {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
 }
 
-/* =========================================================
-   Cards and content panels
-   卡片與內容面板
-   ========================================================= */
+/* Tertiary / text buttons */
+.btn-text,
+.link-button,
+.text-button {
+  background: transparent;
+  color: var(--color-accent);
+  border: none;
+}
 
+.btn-text:hover,
+.link-button:hover,
+.text-button:hover {
+  color: var(--color-primary);
+}
+
+/* =========================
+   8) Cards / panels / blocks
+   ========================= */
 .card,
-.resource-card,
-.download-card,
-.content-card,
-.programme-card,
-.service-card,
-.research-card,
-.article-card,
-.feature-card,
-.info-card,
-.contact-card,
-.form-card,
 .panel,
 .content-panel,
 .info-panel,
-.download-panel,
-.callout {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+.resource-card,
+.download-card,
+.programme-card,
+.research-card,
+.service-card,
+.feature-card,
+.article-card,
+.post-card,
+.contact-card,
+.value-card,
+.faq-item,
+.timeline-card,
+.quote-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 22px var(--color-shadow-soft);
+  color: var(--color-text);
+}
+
+.card h2,
+.card h3,
+.panel h2,
+.panel h3,
+.resource-card h3,
+.download-card h3,
+.programme-card h3,
+.research-card h3,
+.service-card h3,
+.feature-card h3 {
+  color: var(--color-text);
 }
 
 .card:hover,
+.panel:hover,
 .resource-card:hover,
 .download-card:hover,
-.content-card:hover,
 .programme-card:hover,
-.service-card:hover,
 .research-card:hover,
+.service-card:hover,
+.feature-card:hover,
 .article-card:hover,
-.feature-card:hover {
-  border-color: var(--ibridge-primary);
+.post-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 12px 28px var(--color-shadow-medium);
 }
 
-.card a,
-.resource-card a,
-.download-card a,
-.content-card a,
-.programme-card a,
-.service-card a,
-.research-card a,
-.article-card a {
-  color: var(--ibridge-secondary);
-}
-
-.card a:hover,
-.resource-card a:hover,
-.download-card a:hover,
-.content-card a:hover,
-.programme-card a:hover,
-.service-card a:hover,
-.research-card a:hover,
-.article-card a:hover {
-  color: var(--ibridge-primary);
-}
-
-/* =========================================================
-   Hero and banners
-   首頁主視覺與橫幅
-   ========================================================= */
-
-.hero,
-.page-hero,
-.visual-hero,
-.banner,
-.page-banner,
-.section-banner {
-  color: var(--ibridge-text);
-  border-color: var(--ibridge-border);
-}
-
-.hero-content,
-.page-hero-content,
-.visual-hero-content {
-  color: var(--ibridge-text);
-}
-
-.hero h1,
-.page-hero h1,
-.visual-hero h1 {
-  color: var(--ibridge-text);
-}
-
-.hero-dark,
-.dark-banner,
-.primary-banner,
-.crimson-banner {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-}
-
-.hero-dark h1,
-.hero-dark h2,
-.hero-dark h3,
-.dark-banner h1,
-.dark-banner h2,
-.dark-banner h3,
-.primary-banner h1,
-.primary-banner h2,
-.primary-banner h3,
-.crimson-banner h1,
-.crimson-banner h2,
-.crimson-banner h3 {
-  color: var(--ibridge-white);
-}
-
-/* =========================================================
-   Information elements
-   資訊型元素
-   ========================================================= */
-
-.icon,
-.info-icon,
-.resource-icon,
-.service-icon,
-.research-icon,
-.contact-icon {
-  color: var(--ibridge-secondary);
-  fill: currentColor;
-}
-
-.info-box,
-.note,
-.notice,
-.information-panel,
-.tip-box {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-secondary);
-}
-
-.info-box strong,
-.note strong,
-.notice strong,
-.information-panel strong,
-.tip-box strong {
-  color: var(--ibridge-secondary);
-}
-
-/* =========================================================
-   Gold decorative accents
-   金色裝飾
-   ========================================================= */
-
+/* =========================
+   9) Resource / download specific
+   ========================= */
+.resource-meta,
+.download-meta,
 .badge,
 .tag,
 .pill,
-.resource-label,
-.premium-label,
-.featured-label,
-.decorative-accent,
-.gold-accent {
-  color: var(--ibridge-primary-dark);
-  background-color: color-mix(
-    in srgb,
-    var(--ibridge-gold) 16%,
-    var(--ibridge-surface)
-  );
-  border-color: color-mix(
-    in srgb,
-    var(--ibridge-gold) 45%,
-    var(--ibridge-border)
-  );
+.label {
+  background: rgba(196, 138, 44, 0.10);
+  color: var(--color-gold);
+  border: 1px solid rgba(196, 138, 44, 0.22);
+  border-radius: 999px;
 }
 
-.badge-icon,
-.gold-icon,
-.decorative-icon {
-  color: var(--ibridge-gold);
-  fill: currentColor;
+.resource-link,
+.download-link,
+.card-link,
+.text-link {
+  color: var(--color-accent);
 }
 
-hr,
-.divider,
-.section-divider {
-  border-color: var(--ibridge-border);
+.resource-link:hover,
+.download-link:hover,
+.card-link:hover,
+.text-link:hover {
+  color: var(--color-primary);
 }
 
-/* =========================================================
-   Forms
-   表單
-   ========================================================= */
-
-label,
-legend {
-  color: var(--ibridge-text);
+.resource-grid article,
+.downloads-grid article,
+.cards-grid article {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
 }
 
+/* =========================
+   10) Forms
+   ========================= */
 input,
 textarea,
 select {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+  background: var(--color-white);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--ibridge-text-muted);
-}
-
-input:hover,
-textarea:hover,
-select:hover {
-  border-color: var(--ibridge-secondary);
+  color: rgba(31, 41, 51, 0.55);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: var(--ibridge-secondary);
-  outline-color: var(--ibridge-secondary);
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(49, 92, 107, 0.12);
+  background: var(--color-white);
 }
 
-input:disabled,
-textarea:disabled,
-select:disabled,
-button:disabled {
-  color: var(--ibridge-text-muted);
-  background-color: var(--ibridge-background);
-  border-color: var(--ibridge-border);
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
-/* =========================================================
-   Tables
-   表格
-   ========================================================= */
-
+/* =========================
+   11) Tables
+   ========================= */
 table {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-thead,
 th {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-  border-color: var(--ibridge-border);
+  background: rgba(165, 28, 48, 0.06);
+  color: var(--color-text);
+  font-family: var(--font-heading), var(--font-chinese);
 }
 
-td {
-  color: var(--ibridge-text);
-  background-color: var(--ibridge-surface);
-  border-color: var(--ibridge-border);
+td,
+th {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.9rem 1rem;
 }
 
-tbody tr:nth-child(even) td {
-  background-color: var(--ibridge-background);
+tr:last-child td {
+  border-bottom: none;
 }
 
-/* =========================================================
-   Breadcrumbs, pagination and tabs
-   麵包屑、分頁與頁籤
-   ========================================================= */
-
-.breadcrumb,
-.breadcrumbs,
-.pagination,
-.tabs,
-.tab-list {
-  color: var(--ibridge-text-muted);
+tbody tr:hover {
+  background: rgba(247, 241, 227, 0.7);
 }
 
-.breadcrumb a,
-.breadcrumbs a,
-.pagination a,
-.tabs a,
-.tab-list a {
-  color: var(--ibridge-secondary);
+/* =========================
+   12) Lists / dividers / misc UI
+   ========================= */
+hr,
+.divider,
+.section-divider {
+  border: 0;
+  border-top: 1px solid var(--color-border);
 }
 
-.breadcrumb a:hover,
-.breadcrumbs a:hover,
-.pagination a:hover,
-.tabs a:hover,
-.tab-list a:hover {
-  color: var(--ibridge-primary);
+blockquote {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--color-primary);
+  background: rgba(250, 247, 240, 0.9);
+  color: var(--color-text);
 }
 
-.pagination .active,
-.pagination [aria-current="page"],
-.tab.active,
-.tab[aria-selected="true"] {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary);
-  border-color: var(--ibridge-primary);
+code,
+pre {
+  border-radius: var(--radius-sm);
 }
 
-/* =========================================================
-   Footer
-   頁尾
-   ========================================================= */
+pre {
+  background: #fffdf8;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
 
+/* =========================
+   13) Footer
+   ========================= */
 footer,
 .site-footer,
-.main-footer {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-  border-color: var(--ibridge-primary-dark);
-}
-
-footer h2,
-footer h3,
-footer h4,
-.site-footer h2,
-.site-footer h3,
-.site-footer h4,
-.main-footer h2,
-.main-footer h3,
-.main-footer h4 {
-  color: var(--ibridge-white);
-}
-
-footer p,
-footer li,
-footer small,
-.site-footer p,
-.site-footer li,
-.site-footer small,
-.main-footer p,
-.main-footer li,
-.main-footer small {
-  color: color-mix(
-    in srgb,
-    var(--ibridge-white) 84%,
-    var(--ibridge-primary-dark)
-  );
+.footer,
+.page-footer {
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 footer a,
 .site-footer a,
-.main-footer a {
-  color: var(--ibridge-white);
+.footer a,
+.page-footer a {
+  color: rgba(255, 255, 255, 0.88);
 }
 
 footer a:hover,
 .site-footer a:hover,
-.main-footer a:hover {
-  color: var(--ibridge-gold);
+.footer a:hover,
+.page-footer a:hover {
+  color: #ffffff;
 }
 
-.footer-divider {
-  border-color: color-mix(
-    in srgb,
-    var(--ibridge-white) 24%,
-    var(--ibridge-primary-dark)
-  );
+.footer-title,
+.site-footer h2,
+.site-footer h3,
+.site-footer h4 {
+  color: #ffffff;
 }
 
-/* =========================================================
-   Accessibility
-   可及性
-   ========================================================= */
+.footer-badge,
+.footer-tag {
+  background: rgba(196, 138, 44, 0.18);
+  color: #f6d9a4;
+  border: 1px solid rgba(196, 138, 44, 0.3);
+}
 
-:focus-visible {
-  outline: 3px solid var(--ibridge-focus);
+/* =========================
+   14) Utility helpers
+   ========================= */
+.bg-primary {
+  background: var(--color-primary) !important;
+  color: var(--color-white) !important;
+}
+
+.bg-primary-dark {
+  background: var(--color-primary-dark) !important;
+  color: var(--color-white) !important;
+}
+
+.bg-cream {
+  background: var(--color-background) !important;
+}
+
+.bg-surface {
+  background: var(--color-surface) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.text-main {
+  color: var(--color-text) !important;
+}
+
+.border-sand {
+  border-color: var(--color-border) !important;
+}
+
+.text-gold {
+  color: var(--color-gold) !important;
+}
+
+/* =========================
+   15) Specific homepage support
+   (safe overrides for likely hero selectors)
+   ========================= */
+.visual-hero {
+  background: var(--color-surface);
+}
+
+.visual-hero picture,
+.visual-hero img,
+.hero-banner picture,
+.hero-banner img,
+.hero-card picture,
+.hero-card img,
+.home-hero-card picture,
+.home-hero-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-buttons,
+.hero-cta-group,
+.banner-buttons {
+  background: transparent;
+}
+
+.hero-buttons .btn-primary,
+.hero-cta-group .btn-primary,
+.banner-buttons .btn-primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.hero-buttons .btn-primary:hover,
+.hero-cta-group .btn-primary:hover,
+.banner-buttons .btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.hero-buttons .btn-secondary,
+.hero-cta-group .btn-secondary,
+.banner-buttons .btn-secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-accent);
+}
+
+.hero-buttons .btn-secondary:hover,
+.hero-cta-group .btn-secondary:hover,
+.banner-buttons .btn-secondary:hover {
+  background: var(--color-white);
+  border-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* =========================
+   16) Accessibility / focus states
+   ========================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(49, 92, 107, 0.25);
   outline-offset: 3px;
+  border-radius: 8px;
 }
 
-.skip-link {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary-dark);
-}
-
-.skip-link:focus {
-  color: var(--ibridge-white);
-  background-color: var(--ibridge-primary);
-}
-
-/* =========================================================
-   Explicit replacement of legacy colours
-   舊版異色覆寫
-   ========================================================= */
-
-/*
-  Legacy colour mapping:
-  舊色轉換規則：
-
-  #A51C30 → #A51C30
-  #7B1422 → #7B1422
-  #C48A2C → #C48A2C
-  #52606D → #52606D
-
-  White remains available for text on dark backgrounds.
-  白色保留作深色背景上的文字。
-*/
-
-/* Legacy crimson classes */
-.legacy-red,
-.bright-crimson,
-.old-primary {
-  color: var(--ibridge-primary);
-}
-
-.legacy-red-bg,
-.bright-crimson-bg,
-.old-primary-bg {
-  background-color: var(--ibridge-primary);
-}
-
-/* Legacy dark crimson classes */
-.legacy-dark-red,
-.old-primary-dark {
-  color: var(--ibridge-primary-dark);
-}
-
-.legacy-dark-red-bg,
-.old-primary-dark-bg {
-  background-color: var(--ibridge-primary-dark);
-}
-
-/* Legacy gold classes */
-.legacy-gold,
-.old-gold {
-  color: var(--ibridge-gold);
-}
-
-.legacy-gold-bg,
-.old-gold-bg {
-  background-color: var(--ibridge-gold);
-}
-
-/* Legacy muted text */
-.legacy-muted,
-.old-muted {
-  color: var(--ibridge-text-muted);
-}
-
-/* =========================================================
-   Dark-mode consistency
-   深色模式一致性
-   ========================================================= */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light;
-  }
-
-  html,
-  body,
-  main {
-    color: var(--ibridge-text);
-    background-color: var(--ibridge-background);
-  }
-
-  .card,
-  .resource-card,
-  .download-card,
-  .content-card,
-  .programme-card,
-  .service-card,
-  .research-card,
-  .article-card,
-  .feature-card,
-  .panel,
-  .content-panel {
-    color: var(--ibridge-text);
-    background-color: var(--ibridge-surface);
-    border-color: var(--ibridge-border);
+/* =========================
+   17) Mobile refinements
+   ========================= */
+@media (max-width: 900px) {
+  .hero-card,
+  .home-hero-card,
+  .visual-hero,
+  .hero-banner,
+  .hero-panel,
+  .visual-panel {
+    border-radius: 20px;
   }
 }
 
-/* =========================================================
-   Print colours
-   列印配色
-   ========================================================= */
-
-@media print {
-  html,
-  body,
-  main {
-    color: var(--ibridge-text);
-    background: var(--ibridge-white);
+@media (max-width: 720px) {
+  body {
+    background: var(--color-background);
   }
 
-  header,
-  footer,
-  nav,
-  .site-header,
-  .site-footer,
-  .mobile-menu-toggle,
-  .language-switcher {
-    display: none !important;
+  .container,
+  .page-container,
+  .section-container,
+  .wrapper {
+    width: min(100% - 1.25rem, var(--container-max));
   }
 
-  .card,
-  .resource-card,
-  .download-card,
-  .content-card,
-  .programme-card,
-  .service-card,
-  .research-card,
-  .article-card,
-  .panel {
-    color: var(--ibridge-text);
-    background: var(--ibridge-white);
-    border-color: var(--ibridge-border);
+  .hero-card,
+  .home-hero-card,
+  .visual-hero,
+  .hero-banner,
+  .hero-panel,
+  .visual-panel {
+    border-radius: 18px;
   }
 
-  a {
-    color: var(--ibridge-text);
+  .btn,
+  .button,
+  .primary-button,
+  .secondary-button,
+  .cta-button {
+    width: auto;
+    max-width: 100%;
   }
 }
+
+/* =========================
+   18) Reduce legacy blue/grey tones
+   These help neutralise older cold backgrounds
+   ========================= */
+.light-blue-bg,
+.cool-panel,
+.blue-panel,
+.grey-panel,
+.muted-panel {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+/* =========================
+   19) Common Astro page classes
+   ========================= */
+.page-hero,
+.page-banner,
+.intro-panel,
+.summary-panel,
+.overview-card,
+.download-panel,
+.contact-panel,
+.about-panel,
+.services-panel,
+.programmes-panel,
+.research-panel,
+.resources-panel,
+.privacy-panel,
+.terms-panel,
+.accessibility-panel,
+.thankyou-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 22px var(--color-shadow-soft);
+}
+
+/* =========================
+   20) Safety overrides
+   ========================= */
+[style*="#5"] .btn,
+[style*="#4"] .btn {
+  /* intentionally empty safety placeholder */
+}
+
+/* End of iBridge final palette override */
