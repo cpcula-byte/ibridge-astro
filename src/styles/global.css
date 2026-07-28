@@ -979,3 +979,318 @@ main .visual-hero-actions,
 
 /* ===== IBRIDGE COMPACT HERO END ===== */
 
+
+/* ===== IBRIDGE AUDIENCE PATHWAYS CSS START ===== */
+
+/* =========================================================
+   iBridge Education
+   Audience pathways
+   首頁使用者入口區塊
+
+   Applies to both:
+   同時適用：
+   - Traditional Chinese homepage
+   - English homepage
+   ========================================================= */
+
+.audience-pathways {
+  position: relative;
+  width: 100%;
+  padding: 78px 0 88px;
+
+  color: #1f2933;
+  background-color: #f7f1e3;
+  background-image: none;
+}
+
+.audience-pathways-container {
+  width: min(calc(100% - 32px), 1200px);
+  margin: 0 auto;
+}
+
+.audience-pathways-header {
+  max-width: 760px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.audience-pathways-eyebrow {
+  margin: 0 0 10px;
+
+  color: #a51c30;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.audience-pathways-header h2 {
+  margin: 0;
+
+  color: #1f2933;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.audience-pathways-introduction {
+  max-width: 680px;
+  margin: 18px auto 0;
+
+  color: #315c6b;
+
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.audience-pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.audience-pathway-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 360px;
+  padding: 26px 24px 24px;
+
+  overflow: hidden;
+
+  color: #1f2933;
+  background-color: #faf7f0;
+
+  border: 1px solid #e4d7c5;
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 22px rgba(31, 41, 51, 0.055);
+
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.audience-pathway-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0 auto auto 0;
+
+  width: 100%;
+  height: 4px;
+
+  background-color: #a51c30;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition: transform 0.22s ease;
+}
+
+.audience-pathway-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(165, 28, 48, 0.42);
+
+  box-shadow:
+    0 15px 34px rgba(31, 41, 51, 0.09);
+}
+
+.audience-pathway-card:hover::before {
+  transform: scaleX(1);
+}
+
+.audience-pathway-number {
+  position: absolute;
+  top: 21px;
+  right: 22px;
+
+  color: rgba(196, 138, 44, 0.55);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+.audience-pathway-icon {
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+
+  color: #315c6b;
+  background-color: rgba(49, 92, 107, 0.08);
+
+  border: 1px solid rgba(49, 92, 107, 0.18);
+  border-radius: 16px;
+}
+
+.audience-pathway-icon svg {
+  display: block;
+
+  width: 31px;
+  height: 31px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.audience-pathway-card h3 {
+  margin: 0 0 13px;
+
+  color: #1f2933;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.018em;
+}
+
+.audience-pathway-card p {
+  margin: 0 0 25px;
+
+  color: #1f2933;
+
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.audience-pathway-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  width: fit-content;
+  margin-top: auto;
+
+  color: #a51c30;
+
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.4;
+
+  text-decoration: none;
+  text-underline-offset: 4px;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.audience-pathway-link span {
+  font-size: 1.12rem;
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+}
+
+.audience-pathway-link:hover {
+  gap: 12px;
+  color: #7b1422;
+}
+
+.audience-pathway-link:hover span {
+  transform: translateX(2px);
+}
+
+.audience-pathway-link:focus-visible {
+  outline: 3px solid rgba(49, 92, 107, 0.28);
+  outline-offset: 5px;
+  border-radius: 5px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .audience-pathways {
+    padding: 68px 0 76px;
+  }
+
+  .audience-pathways-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .audience-pathway-card {
+    min-height: 330px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .audience-pathways {
+    padding: 52px 0 60px;
+  }
+
+  .audience-pathways-container {
+    width: calc(100% - 24px);
+  }
+
+  .audience-pathways-header {
+    margin-bottom: 28px;
+  }
+
+  .audience-pathways-header h2 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .audience-pathways-introduction {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+
+  .audience-pathways-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .audience-pathway-card {
+    min-height: 0;
+    padding: 23px 21px 22px;
+
+    border-radius: 18px;
+  }
+
+  .audience-pathway-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 19px;
+
+    border-radius: 14px;
+  }
+
+  .audience-pathway-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .audience-pathway-card,
+  .audience-pathway-card::before,
+  .audience-pathway-link,
+  .audience-pathway-link span {
+    transition: none;
+  }
+
+  .audience-pathway-card:hover,
+  .audience-pathway-link:hover span {
+    transform: none;
+  }
+}
+
+/* ===== IBRIDGE AUDIENCE PATHWAYS CSS END ===== */

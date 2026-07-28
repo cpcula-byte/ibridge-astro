@@ -34,3 +34,7 @@ interaction-audit/
 
 # Local CSS backup files
 src/styles/*.backup-*
+
+# Local Astro page backups
+src/pages/*.backup-*
+src/pages/en/*.backup-*
