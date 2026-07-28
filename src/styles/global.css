@@ -1,229 +1,81 @@
 /* =========================================================
-   iBridge Education
-   Global Typography and Colour System
-
-   Typography
-   - Neue Helvetica 75 Bold: titles, subtitles, navigation
-   - Neue Helvetica 35 Thin: body text
-
-   Colour palette
-   - Harvard Crimson: #A51C30
-   - Deep Crimson: #7B1422
-   - Warm Cream: #F7F1E3
-   - Soft Ivory: #FAF7F0
-   - Charcoal Navy: #1F2933
-   - Academic Teal: #315C6B
-   - Warm Sand: #E4D7C5
-   - Muted Gold: #C48A2C
-   ========================================================= */
-
-
-/* =========================================================
-   1. FONT FILES
-   ========================================================= */
-
-@font-face {
-  font-family: "Neue Helvetica";
-  src:
-    url("/fonts/neue-helvetica-35-thin.otf") format("opentype");
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Neue Helvetica";
-  src:
-    url("/fonts/neue-helvetica-75-bold.otf") format("opentype");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-
-/* =========================================================
-   2. DESIGN VARIABLES
+   iBridge Education — Unified Brand Colour System
+   iBridge Education 統一品牌配色系統
    ========================================================= */
 
 :root {
-  /* Brand colours */
-  --color-primary: #a51c30;
-  --color-primary-dark: #7b1422;
-  --color-background: #f7f1e3;
-  --color-surface: #faf7f0;
-  --color-text: #1f2933;
-  --color-text-soft: #52606d;
-  --color-accent: #315c6b;
-  --color-border: #e4d7c5;
-  --color-gold: #c48a2c;
-  --color-white: #ffffff;
+  /* Primary brand colours */
+  --ibridge-primary: #a51c30;
+  --ibridge-primary-dark: #7b1422;
 
-  /* Transparent colours */
-  --color-primary-08: rgba(165, 28, 48, 0.08);
-  --color-primary-12: rgba(165, 28, 48, 0.12);
-  --color-primary-18: rgba(165, 28, 48, 0.18);
-  --color-text-08: rgba(31, 41, 51, 0.08);
-  --color-text-12: rgba(31, 41, 51, 0.12);
-  --color-text-18: rgba(31, 41, 51, 0.18);
-  --color-white-12: rgba(255, 255, 255, 0.12);
-  --color-white-20: rgba(255, 255, 255, 0.2);
+  /* Backgrounds */
+  --ibridge-background: #f7f1e3;
+  --ibridge-surface: #faf7f0;
 
-  /* Typography */
-  --font-body:
-    "Neue Helvetica",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    "PingFang TC",
-    "Noto Sans TC",
-    sans-serif;
+  /* Text */
+  --ibridge-text: #1f2933;
+  --ibridge-text-muted: #52606d;
 
-  --font-heading:
-    "Neue Helvetica",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    "PingFang TC",
-    "Noto Sans TC",
-    sans-serif;
+  /* Secondary and decorative colours */
+  --ibridge-secondary: #315c6b;
+  --ibridge-border: #e4d7c5;
+  --ibridge-gold: #c48a2c;
 
-  --font-body-weight: 300;
-  --font-heading-weight: 700;
+  /* Functional colours */
+  --ibridge-white: #ffffff;
+  --ibridge-focus: #315c6b;
 
-  /* Layout */
-  --container-width: 1180px;
-  --page-padding: 48px;
-  --page-padding-mobile: 30px;
+  /* Compatibility aliases for existing components */
+  --color-primary: var(--ibridge-primary);
+  --color-primary-dark: var(--ibridge-primary-dark);
+  --color-background: var(--ibridge-background);
+  --color-surface: var(--ibridge-surface);
+  --color-text: var(--ibridge-text);
+  --color-text-muted: var(--ibridge-text-muted);
+  --color-secondary: var(--ibridge-secondary);
+  --color-border: var(--ibridge-border);
+  --color-gold: var(--ibridge-gold);
 
-  /* Radius */
-  --radius-small: 8px;
-  --radius-medium: 16px;
-  --radius-large: 24px;
-  --radius-extra-large: 30px;
-  --radius-pill: 999px;
-
-  /* Shadows */
-  --shadow-small:
-    0 8px 24px rgba(31, 41, 51, 0.06);
-
-  --shadow-medium:
-    0 18px 48px rgba(31, 41, 51, 0.08);
-
-  --shadow-large:
-    0 26px 70px rgba(31, 41, 51, 0.12);
-
-  /* Motion */
-  --transition-fast: 160ms ease;
-  --transition-standard: 220ms ease;
+  --primary: var(--ibridge-primary);
+  --primary-dark: var(--ibridge-primary-dark);
+  --background: var(--ibridge-background);
+  --surface: var(--ibridge-surface);
+  --text: var(--ibridge-text);
+  --muted: var(--ibridge-text-muted);
+  --accent: var(--ibridge-secondary);
+  --border: var(--ibridge-border);
+  --gold: var(--ibridge-gold);
 }
-
 
 /* =========================================================
-   3. RESET AND BASE DOCUMENT
+   Global document colours
+   全站基本色彩
    ========================================================= */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 html {
-  min-width: 320px;
-  scroll-behavior: smooth;
-  scroll-padding-top: 96px;
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-background);
 }
 
 body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-  background: var(--color-background) !important;
-  color: var(--color-text) !important;
-  font-family: var(--font-body) !important;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: var(--font-body-weight) !important;
-  line-height: 1.7;
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-background);
 }
 
 main {
-  display: block;
-  min-height: 60vh;
-  background: var(--color-background);
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-background);
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
+::selection {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary);
 }
-
-img {
-  height: auto;
-}
-
-button,
-input,
-textarea,
-select {
-  color: inherit;
-  font: inherit;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  border: 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-iframe {
-  max-width: 100%;
-  border: 0;
-}
-
 
 /* =========================================================
-   4. TYPOGRAPHY
+   Typography
+   文字與標題
    ========================================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong,
-b,
-legend,
-summary {
-  color: var(--color-text);
-  font-family: var(--font-heading) !important;
-  font-style: normal;
-  font-weight: var(--font-heading-weight) !important;
-  font-synthesis: none;
-}
 
 h1,
 h2,
@@ -231,32 +83,26 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0;
-  text-wrap: balance;
+  color: var(--ibridge-text);
 }
 
-h1 {
-  font-size: clamp(2.8rem, 6vw, 5.6rem);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+.page-title,
+.section-title,
+.card-title,
+.resource-title,
+.programme-title,
+.service-title,
+.research-title,
+.article-title {
+  color: var(--ibridge-text);
 }
 
-h2 {
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  line-height: 1.06;
-  letter-spacing: -0.045em;
-}
-
-h3 {
-  font-size: clamp(1.35rem, 2vw, 1.85rem);
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-}
-
-h4 {
-  font-size: 1rem;
-  line-height: 1.35;
-  letter-spacing: 0.01em;
+.eyebrow,
+.kicker,
+.section-label,
+.overline,
+.subtitle-accent {
+  color: var(--ibridge-primary);
 }
 
 p,
@@ -264,854 +110,728 @@ li,
 dd,
 dt,
 blockquote,
-figcaption,
-label,
-input,
-textarea,
-select {
-  font-family: var(--font-body) !important;
-  font-style: normal;
-  font-weight: var(--font-body-weight) !important;
+figcaption {
+  color: var(--ibridge-text);
 }
 
-p {
-  text-wrap: pretty;
+small,
+.caption,
+.meta,
+.helper-text,
+.supporting-text,
+.text-muted {
+  color: var(--ibridge-text-muted);
 }
-
-small {
-  font-family: var(--font-body);
-  font-weight: var(--font-body-weight);
-}
-
-strong,
-b {
-  font-weight: var(--font-heading-weight) !important;
-}
-
 
 /* =========================================================
-   5. LINKS
+   Links
+   連結
    ========================================================= */
 
 a {
-  color: var(--color-accent);
-  text-decoration-color: rgba(49, 92, 107, 0.35);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
-  transition:
-    color var(--transition-fast),
-    text-decoration-color var(--transition-fast),
-    background-color var(--transition-fast),
-    border-color var(--transition-fast),
-    transform var(--transition-fast);
+  color: var(--ibridge-secondary);
 }
 
-a:hover {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-primary);
+a:hover,
+a:focus-visible {
+  color: var(--ibridge-primary);
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-summary:focus-visible {
-  outline: 3px solid rgba(165, 28, 48, 0.35);
-  outline-offset: 3px;
+main a:not(.button):not(.btn):not([class*="button"]) {
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--ibridge-secondary) 45%,
+    transparent
+  );
 }
 
+main a:not(.button):not(.btn):not([class*="button"]):hover {
+  text-decoration-color: var(--ibridge-primary);
+}
 
 /* =========================================================
-   6. BUTTONS
-   ========================================================= */
-
-button,
-.button,
-.primary-button,
-.hero-button,
-.cta-button,
-.cta-card > a,
-.light-button {
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
-}
-
-.button,
-.primary-button,
-.hero-button,
-.cta-button {
-  display: inline-flex;
-  min-height: 50px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 24px;
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-pill);
-  background: var(--color-primary);
-  color: var(--color-white);
-  line-height: 1;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background-color var(--transition-fast),
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.button:hover,
-.primary-button:hover,
-.hero-button:hover,
-.cta-button:hover {
-  border-color: var(--color-primary-dark);
-  background: var(--color-primary-dark);
-  color: var(--color-white);
-  box-shadow: var(--shadow-small);
-  transform: translateY(-1px);
-}
-
-.secondary-button {
-  display: inline-flex;
-  min-height: 50px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 24px;
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--color-primary);
-  font-family: var(--font-heading);
-  font-weight: var(--font-heading-weight);
-  line-height: 1;
-  text-decoration: none;
-}
-
-.secondary-button:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-
-/* =========================================================
-   7. FORMS
-   ========================================================= */
-
-input,
-textarea,
-select {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  background: var(--color-surface);
-  color: var(--color-text);
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background-color var(--transition-fast);
-}
-
-input,
-select {
-  min-height: 50px;
-  padding: 0 15px;
-}
-
-textarea {
-  min-height: 150px;
-  padding: 14px 15px;
-  resize: vertical;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #7b8794;
-  opacity: 1;
-}
-
-input:hover,
-textarea:hover,
-select:hover {
-  border-color: rgba(49, 92, 107, 0.55);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--color-primary);
-  background: var(--color-white);
-  box-shadow: 0 0 0 4px var(--color-primary-12);
-  outline: none;
-}
-
-label {
-  display: inline-block;
-  margin-bottom: 8px;
-  color: var(--color-text);
-}
-
-
-/* =========================================================
-   8. COMMON CONTENT ELEMENTS
-   ========================================================= */
-
-hr {
-  height: 1px;
-  margin: 32px 0;
-  border: 0;
-  background: var(--color-border);
-}
-
-blockquote {
-  margin: 28px 0;
-  padding: 24px 28px;
-  border-left: 4px solid var(--color-primary);
-  background: var(--color-surface);
-  color: var(--color-text);
-}
-
-code,
-kbd,
-samp,
-pre {
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    "Liberation Mono",
-    monospace;
-}
-
-code {
-  padding: 0.12em 0.35em;
-  border-radius: 4px;
-  background: var(--color-primary-08);
-  color: var(--color-primary-dark);
-}
-
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  padding: 20px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-medium);
-  background: var(--color-text);
-  color: var(--color-white);
-}
-
-pre code {
-  padding: 0;
-  background: transparent;
-  color: inherit;
-}
-
-::selection {
-  background: rgba(165, 28, 48, 0.22);
-  color: var(--color-text);
-}
-
-
-/* =========================================================
-   9. GLOBAL CONTAINERS
-   ========================================================= */
-
-.container {
-  width: min(
-    var(--container-width),
-    calc(100% - var(--page-padding))
-  ) !important;
-  margin-right: auto !important;
-  margin-left: auto !important;
-}
-
-
-/* =========================================================
-   10. GLOBAL LABELS AND EYEBROWS
-   ========================================================= */
-
-.eyebrow,
-.section-label,
-.programme-subtitle,
-.area-header p,
-.duration small {
-  color: var(--color-primary) !important;
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.light-label,
-.cta-eyebrow {
-  color: #f2c66d !important;
-}
-
-
-/* =========================================================
-   11. PAGE HERO OVERRIDES
-   ========================================================= */
-
-.page-hero {
-  background:
-    radial-gradient(
-      circle at 88% 14%,
-      rgba(196, 138, 44, 0.1),
-      transparent 28%
-    ),
-    linear-gradient(
-      125deg,
-      var(--color-background) 0%,
-      var(--color-surface) 100%
-    ) !important;
-}
-
-.page-hero h1,
-.page-hero h2 {
-  color: var(--color-text) !important;
-  font-family: var(--font-heading) !important;
-}
-
-.page-hero h1 span,
-.page-hero h2 span {
-  color: var(--color-primary) !important;
-}
-
-.hero-copy p,
-.overview-copy p,
-.position-copy p {
-  color: var(--color-text-soft) !important;
-}
-
-
-/* Decorative page elements */
-
-.shape,
-.hero-ring,
-.hero-circle {
-  border-color: rgba(165, 28, 48, 0.16) !important;
-}
-
-.hero-rule,
-.hero-line {
-  background: rgba(165, 28, 48, 0.16) !important;
-}
-
-
-/* =========================================================
-   12. CARD AND PANEL OVERRIDES
-   ========================================================= */
-
-.service-card,
-.programme-card,
-.area-card,
-.partnership-card,
-.delivery-card,
-.resource-card,
-.download-card,
-.content-card,
-.contact-card,
-.info-card,
-.feature-card {
-  border-color: var(--color-border) !important;
-  background: var(--color-surface) !important;
-  box-shadow: var(--shadow-small);
-}
-
-.service-card:hover,
-.programme-card:hover,
-.area-card:hover,
-.partnership-card:hover,
-.delivery-card:hover,
-.resource-card:hover,
-.download-card:hover,
-.content-card:hover,
-.contact-card:hover,
-.info-card:hover,
-.feature-card:hover {
-  border-color: rgba(165, 28, 48, 0.32) !important;
-  box-shadow: var(--shadow-medium);
-}
-
-.service-card h3,
-.programme-card h3,
-.area-card h3,
-.partnership-card h3,
-.delivery-card h3,
-.resource-card h3,
-.download-card h3,
-.content-card h3,
-.contact-card h3,
-.info-card h3,
-.feature-card h3 {
-  color: var(--color-text) !important;
-  font-family: var(--font-heading) !important;
-}
-
-.service-summary,
-.programme-description,
-.area-description,
-.partnership-card p,
-.delivery-card p,
-.resource-card p,
-.download-card p,
-.content-card p {
-  color: var(--color-text-soft) !important;
-}
-
-
-/* =========================================================
-   13. LISTS AND NUMBER MARKERS
-   ========================================================= */
-
-.service-header > span,
-.programme-number,
-.area-header > span,
-.partnership-card > span,
-.delivery-card > span,
-.process-list span,
-.stage-list span,
-.principle-list span,
-.methods-list span,
-.audience-list span,
-.custom-features span {
-  color: var(--color-primary) !important;
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
-}
-
-.service-card li::before,
-.programme-details li::before,
-.questions li::before {
-  background: var(--color-primary) !important;
-}
-
-.format-list li {
-  background: var(--color-primary-08) !important;
-  color: var(--color-primary-dark) !important;
-}
-
-
-/* =========================================================
-   14. LIGHT AND ALTERNATE SECTIONS
-   ========================================================= */
-
-.services-section,
-.programmes-section,
-.areas-section,
-.partnership-section,
-.delivery-section {
-  background: var(--color-background) !important;
-}
-
-.overview-section,
-.position-section,
-.methods-section,
-.audience-section,
-.custom-section,
-.ethics-section {
-  background: var(--color-surface) !important;
-}
-
-.audience-card,
-.custom-card,
-.process-card {
-  border: 1px solid var(--color-border);
-  background:
-    linear-gradient(
-      130deg,
-      var(--color-surface) 0%,
-      var(--color-background) 100%
-    ) !important;
-}
-
-
-/* =========================================================
-   15. DARK SECTIONS
-   ========================================================= */
-
-.approach-section,
-.process-section,
-.principles-section {
-  background:
-    linear-gradient(
-      120deg,
-      var(--color-primary-dark) 0%,
-      #56101a 100%
-    ) !important;
-}
-
-.approach-section h2,
-.approach-section h3,
-.process-section h2,
-.process-section h3,
-.principles-section h2,
-.principles-section h3 {
-  color: var(--color-white) !important;
-}
-
-.approach-section p,
-.process-section p,
-.principles-section p {
-  color: rgba(255, 255, 255, 0.78) !important;
-}
-
-.approach-section .section-label,
-.process-section .section-label,
-.principles-section .section-label {
-  color: #f2c66d !important;
-}
-
-.process-list li,
-.stage-list li,
-.principle-list article {
-  border-color: var(--color-white-20) !important;
-}
-
-.light-button {
-  border-color: rgba(255, 255, 255, 0.48) !important;
-  background: transparent !important;
-  color: var(--color-white) !important;
-}
-
-.light-button:hover {
-  border-color: var(--color-white) !important;
-  background: var(--color-white) !important;
-  color: var(--color-primary-dark) !important;
-}
-
-
-/* =========================================================
-   16. CTA SECTIONS
-   ========================================================= */
-
-.cta-card {
-  background:
-    linear-gradient(
-      115deg,
-      var(--color-primary-dark) 0%,
-      var(--color-primary) 70%,
-      #b72e42 100%
-    ) !important;
-}
-
-.cta-card h2,
-.cta-card h3 {
-  color: var(--color-white) !important;
-}
-
-.cta-card p {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-
-.cta-card > a {
-  border: 1px solid var(--color-white) !important;
-  background: var(--color-white) !important;
-  color: var(--color-primary-dark) !important;
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
-}
-
-.cta-card > a:hover {
-  border-color: var(--color-gold) !important;
-  background: var(--color-gold) !important;
-  color: var(--color-text) !important;
-}
-
-
-/* =========================================================
-   17. HEADER OVERRIDES
+   Header and navigation
+   頁首與導覽列
    ========================================================= */
 
 header,
-.site-header {
-  border-bottom-color: var(--color-border) !important;
-  background: rgba(247, 241, 227, 0.96) !important;
-  color: var(--color-text) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+.site-header,
+.main-header,
+.primary-header,
+.navbar,
+.navigation-wrapper {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-background);
+  border-color: var(--ibridge-border);
 }
 
-header a,
-.site-header a,
-nav a {
-  color: var(--color-text) !important;
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
+nav,
+.site-nav,
+.primary-navigation,
+.main-navigation {
+  color: var(--ibridge-text);
 }
 
-header a:hover,
-.site-header a:hover,
+nav a,
+.site-nav a,
+.primary-navigation a,
+.main-navigation a,
+.nav-link {
+  color: var(--ibridge-text);
+}
+
 nav a:hover,
-header a[aria-current="page"],
-.site-header a[aria-current="page"],
+.site-nav a:hover,
+.primary-navigation a:hover,
+.main-navigation a:hover,
+.nav-link:hover {
+  color: var(--ibridge-primary);
+}
+
 nav a[aria-current="page"],
-.active {
-  color: var(--color-primary) !important;
+.site-nav a[aria-current="page"],
+.primary-navigation a[aria-current="page"],
+.main-navigation a[aria-current="page"],
+.nav-link.active,
+.nav-link.is-active {
+  color: var(--ibridge-primary);
+  border-color: var(--ibridge-primary);
 }
 
 .logo,
-.brand,
 .site-logo,
-.logo-name,
+.brand,
 .brand-name {
-  color: var(--color-text) !important;
-  font-family: var(--font-heading) !important;
-  font-weight: var(--font-heading-weight) !important;
+  color: var(--ibridge-text);
 }
 
 .logo-mark,
-.brand-mark {
-  background: var(--color-primary) !important;
-  color: var(--color-white) !important;
+.brand-mark,
+.logo-accent,
+.brand-accent {
+  color: var(--ibridge-primary);
+  fill: var(--ibridge-primary);
 }
-
-.language-switch,
-.language-button {
-  border-color: var(--color-border) !important;
-  background: var(--color-surface) !important;
-  color: var(--color-text) !important;
-}
-
-.language-switch:hover,
-.language-button:hover {
-  border-color: var(--color-primary) !important;
-  color: var(--color-primary) !important;
-}
-
 
 /* =========================================================
-   18. FOOTER OVERRIDES
+   Language switcher and mobile navigation
+   語言切換與手機選單
    ========================================================= */
 
-footer,
-.site-footer {
-  border-top-color: rgba(255, 255, 255, 0.14) !important;
-  background: var(--color-primary-dark) !important;
-  color: rgba(255, 255, 255, 0.82) !important;
+.language-switcher,
+.language-toggle,
+.locale-switcher,
+.mobile-menu-toggle,
+.menu-toggle,
+.hamburger-button {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
 }
 
-footer h2,
-footer h3,
-footer h4,
-footer strong,
-footer .footer-logo-name,
-.site-footer h2,
-.site-footer h3,
-.site-footer h4,
-.site-footer strong {
-  color: var(--color-white) !important;
+.language-switcher:hover,
+.language-toggle:hover,
+.locale-switcher:hover,
+.mobile-menu-toggle:hover,
+.menu-toggle:hover,
+.hamburger-button:hover {
+  color: var(--ibridge-primary);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-primary);
 }
 
-footer p,
-footer li,
-footer dd,
-footer dt,
-footer small,
-.site-footer p,
-.site-footer li,
-.site-footer dd,
-.site-footer dt,
-.site-footer small {
-  color: rgba(255, 255, 255, 0.72) !important;
+.mobile-navigation,
+.mobile-menu,
+.navigation-drawer,
+.menu-panel {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
 }
-
-footer a,
-.site-footer a {
-  color: rgba(255, 255, 255, 0.84) !important;
-}
-
-footer a:hover,
-.site-footer a:hover {
-  color: #f2c66d !important;
-}
-
-footer .footer-logo-mark,
-.site-footer .footer-logo-mark {
-  background: var(--color-primary) !important;
-  color: var(--color-white) !important;
-}
-
-footer .footer-bottom,
-.site-footer .footer-bottom {
-  border-top-color: rgba(255, 255, 255, 0.16) !important;
-}
-
 
 /* =========================================================
-   19. TABLES
+   Primary buttons
+   主要按鈕
    ========================================================= */
 
-table {
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-medium);
-  background: var(--color-surface);
+.button,
+.btn,
+.primary-button,
+.button-primary,
+.btn-primary,
+.cta-button,
+.hero-button,
+.submit-button,
+button[type="submit"],
+input[type="submit"] {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary);
+  border-color: var(--ibridge-primary);
 }
 
-th,
-td {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--color-border);
-  text-align: left;
-  vertical-align: top;
+.button:hover,
+.btn:hover,
+.primary-button:hover,
+.button-primary:hover,
+.btn-primary:hover,
+.cta-button:hover,
+.hero-button:hover,
+.submit-button:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
+  border-color: var(--ibridge-primary-dark);
 }
 
-th {
-  background: var(--color-primary-08);
-  color: var(--color-text);
-  font-family: var(--font-heading);
-  font-weight: var(--font-heading-weight);
+.button:active,
+.btn:active,
+.primary-button:active,
+.button-primary:active,
+.btn-primary:active,
+.cta-button:active,
+.hero-button:active,
+.submit-button:active,
+button[type="submit"]:active,
+input[type="submit"]:active {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
+  border-color: var(--ibridge-primary-dark);
 }
-
-tr:last-child td {
-  border-bottom: 0;
-}
-
 
 /* =========================================================
-   20. BADGES AND HIGHLIGHTS
+   Secondary buttons
+   次要按鈕
+   ========================================================= */
+
+.secondary-button,
+.button-secondary,
+.btn-secondary,
+.outline-button,
+.button-outline,
+.ghost-button {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
+}
+
+.secondary-button:hover,
+.button-secondary:hover,
+.btn-secondary:hover,
+.outline-button:hover,
+.button-outline:hover,
+.ghost-button:hover {
+  color: var(--ibridge-primary-dark);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-primary);
+}
+
+/* =========================================================
+   Cards and content panels
+   卡片與內容面板
+   ========================================================= */
+
+.card,
+.resource-card,
+.download-card,
+.content-card,
+.programme-card,
+.service-card,
+.research-card,
+.article-card,
+.feature-card,
+.info-card,
+.contact-card,
+.form-card,
+.panel,
+.content-panel,
+.info-panel,
+.download-panel,
+.callout {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
+}
+
+.card:hover,
+.resource-card:hover,
+.download-card:hover,
+.content-card:hover,
+.programme-card:hover,
+.service-card:hover,
+.research-card:hover,
+.article-card:hover,
+.feature-card:hover {
+  border-color: var(--ibridge-primary);
+}
+
+.card a,
+.resource-card a,
+.download-card a,
+.content-card a,
+.programme-card a,
+.service-card a,
+.research-card a,
+.article-card a {
+  color: var(--ibridge-secondary);
+}
+
+.card a:hover,
+.resource-card a:hover,
+.download-card a:hover,
+.content-card a:hover,
+.programme-card a:hover,
+.service-card a:hover,
+.research-card a:hover,
+.article-card a:hover {
+  color: var(--ibridge-primary);
+}
+
+/* =========================================================
+   Hero and banners
+   首頁主視覺與橫幅
+   ========================================================= */
+
+.hero,
+.page-hero,
+.visual-hero,
+.banner,
+.page-banner,
+.section-banner {
+  color: var(--ibridge-text);
+  border-color: var(--ibridge-border);
+}
+
+.hero-content,
+.page-hero-content,
+.visual-hero-content {
+  color: var(--ibridge-text);
+}
+
+.hero h1,
+.page-hero h1,
+.visual-hero h1 {
+  color: var(--ibridge-text);
+}
+
+.hero-dark,
+.dark-banner,
+.primary-banner,
+.crimson-banner {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
+}
+
+.hero-dark h1,
+.hero-dark h2,
+.hero-dark h3,
+.dark-banner h1,
+.dark-banner h2,
+.dark-banner h3,
+.primary-banner h1,
+.primary-banner h2,
+.primary-banner h3,
+.crimson-banner h1,
+.crimson-banner h2,
+.crimson-banner h3 {
+  color: var(--ibridge-white);
+}
+
+/* =========================================================
+   Information elements
+   資訊型元素
+   ========================================================= */
+
+.icon,
+.info-icon,
+.resource-icon,
+.service-icon,
+.research-icon,
+.contact-icon {
+  color: var(--ibridge-secondary);
+  fill: currentColor;
+}
+
+.info-box,
+.note,
+.notice,
+.information-panel,
+.tip-box {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-secondary);
+}
+
+.info-box strong,
+.note strong,
+.notice strong,
+.information-panel strong,
+.tip-box strong {
+  color: var(--ibridge-secondary);
+}
+
+/* =========================================================
+   Gold decorative accents
+   金色裝飾
    ========================================================= */
 
 .badge,
 .tag,
 .pill,
-.status-label {
-  display: inline-flex;
-  min-height: 28px;
-  align-items: center;
-  padding: 4px 11px;
-  border: 1px solid rgba(196, 138, 44, 0.35);
-  border-radius: var(--radius-pill);
-  background: rgba(196, 138, 44, 0.12);
-  color: #7b5416;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: var(--font-heading-weight);
+.resource-label,
+.premium-label,
+.featured-label,
+.decorative-accent,
+.gold-accent {
+  color: var(--ibridge-primary-dark);
+  background-color: color-mix(
+    in srgb,
+    var(--ibridge-gold) 16%,
+    var(--ibridge-surface)
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--ibridge-gold) 45%,
+    var(--ibridge-border)
+  );
 }
 
+.badge-icon,
+.gold-icon,
+.decorative-icon {
+  color: var(--ibridge-gold);
+  fill: currentColor;
+}
+
+hr,
+.divider,
+.section-divider {
+  border-color: var(--ibridge-border);
+}
 
 /* =========================================================
-   21. SKIP LINK
+   Forms
+   表單
    ========================================================= */
 
+label,
+legend {
+  color: var(--ibridge-text);
+}
+
+input,
+textarea,
+select {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ibridge-text-muted);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--ibridge-secondary);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--ibridge-secondary);
+  outline-color: var(--ibridge-secondary);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+  color: var(--ibridge-text-muted);
+  background-color: var(--ibridge-background);
+  border-color: var(--ibridge-border);
+}
+
+/* =========================================================
+   Tables
+   表格
+   ========================================================= */
+
+table {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
+}
+
+thead,
+th {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
+  border-color: var(--ibridge-border);
+}
+
+td {
+  color: var(--ibridge-text);
+  background-color: var(--ibridge-surface);
+  border-color: var(--ibridge-border);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--ibridge-background);
+}
+
+/* =========================================================
+   Breadcrumbs, pagination and tabs
+   麵包屑、分頁與頁籤
+   ========================================================= */
+
+.breadcrumb,
+.breadcrumbs,
+.pagination,
+.tabs,
+.tab-list {
+  color: var(--ibridge-text-muted);
+}
+
+.breadcrumb a,
+.breadcrumbs a,
+.pagination a,
+.tabs a,
+.tab-list a {
+  color: var(--ibridge-secondary);
+}
+
+.breadcrumb a:hover,
+.breadcrumbs a:hover,
+.pagination a:hover,
+.tabs a:hover,
+.tab-list a:hover {
+  color: var(--ibridge-primary);
+}
+
+.pagination .active,
+.pagination [aria-current="page"],
+.tab.active,
+.tab[aria-selected="true"] {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary);
+  border-color: var(--ibridge-primary);
+}
+
+/* =========================================================
+   Footer
+   頁尾
+   ========================================================= */
+
+footer,
+.site-footer,
+.main-footer {
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
+  border-color: var(--ibridge-primary-dark);
+}
+
+footer h2,
+footer h3,
+footer h4,
+.site-footer h2,
+.site-footer h3,
+.site-footer h4,
+.main-footer h2,
+.main-footer h3,
+.main-footer h4 {
+  color: var(--ibridge-white);
+}
+
+footer p,
+footer li,
+footer small,
+.site-footer p,
+.site-footer li,
+.site-footer small,
+.main-footer p,
+.main-footer li,
+.main-footer small {
+  color: color-mix(
+    in srgb,
+    var(--ibridge-white) 84%,
+    var(--ibridge-primary-dark)
+  );
+}
+
+footer a,
+.site-footer a,
+.main-footer a {
+  color: var(--ibridge-white);
+}
+
+footer a:hover,
+.site-footer a:hover,
+.main-footer a:hover {
+  color: var(--ibridge-gold);
+}
+
+.footer-divider {
+  border-color: color-mix(
+    in srgb,
+    var(--ibridge-white) 24%,
+    var(--ibridge-primary-dark)
+  );
+}
+
+/* =========================================================
+   Accessibility
+   可及性
+   ========================================================= */
+
+:focus-visible {
+  outline: 3px solid var(--ibridge-focus);
+  outline-offset: 3px;
+}
+
 .skip-link {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 9999;
-  padding: 12px 18px;
-  border: 0;
-  border-radius: var(--radius-small);
-  background: var(--color-primary);
-  color: var(--color-white);
-  font-family: var(--font-heading);
-  font-weight: var(--font-heading-weight);
-  text-decoration: none;
-  box-shadow: var(--shadow-medium);
-  transform: translateY(-160%);
-  transition: transform var(--transition-fast);
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary-dark);
 }
 
 .skip-link:focus {
-  color: var(--color-white);
-  transform: translateY(0);
+  color: var(--ibridge-white);
+  background-color: var(--ibridge-primary);
 }
-
 
 /* =========================================================
-   22. ACCESSIBILITY
+   Explicit replacement of legacy colours
+   舊版異色覆寫
    ========================================================= */
 
-[hidden] {
-  display: none !important;
+/*
+  Legacy colour mapping:
+  舊色轉換規則：
+
+  #A51C30 → #A51C30
+  #7B1422 → #7B1422
+  #C48A2C → #C48A2C
+  #52606D → #52606D
+
+  White remains available for text on dark backgrounds.
+  白色保留作深色背景上的文字。
+*/
+
+/* Legacy crimson classes */
+.legacy-red,
+.bright-crimson,
+.old-primary {
+  color: var(--ibridge-primary);
 }
 
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  margin: -1px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
+.legacy-red-bg,
+.bright-crimson-bg,
+.old-primary-bg {
+  background-color: var(--ibridge-primary);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
+/* Legacy dark crimson classes */
+.legacy-dark-red,
+.old-primary-dark {
+  color: var(--ibridge-primary-dark);
 }
 
+.legacy-dark-red-bg,
+.old-primary-dark-bg {
+  background-color: var(--ibridge-primary-dark);
+}
+
+/* Legacy gold classes */
+.legacy-gold,
+.old-gold {
+  color: var(--ibridge-gold);
+}
+
+.legacy-gold-bg,
+.old-gold-bg {
+  background-color: var(--ibridge-gold);
+}
+
+/* Legacy muted text */
+.legacy-muted,
+.old-muted {
+  color: var(--ibridge-text-muted);
+}
 
 /* =========================================================
-   23. RESPONSIVE TYPOGRAPHY AND LAYOUT
+   Dark-mode consistency
+   深色模式一致性
    ========================================================= */
 
-@media (max-width: 960px) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --page-padding: 40px;
+    color-scheme: light;
   }
 
-  h1 {
-    font-size: clamp(2.8rem, 9vw, 4.7rem);
+  html,
+  body,
+  main {
+    color: var(--ibridge-text);
+    background-color: var(--ibridge-background);
   }
 
-  h2 {
-    font-size: clamp(2rem, 6vw, 3.4rem);
+  .card,
+  .resource-card,
+  .download-card,
+  .content-card,
+  .programme-card,
+  .service-card,
+  .research-card,
+  .article-card,
+  .feature-card,
+  .panel,
+  .content-panel {
+    color: var(--ibridge-text);
+    background-color: var(--ibridge-surface);
+    border-color: var(--ibridge-border);
   }
 }
 
-@media (max-width: 720px) {
-  :root {
-    --page-padding: var(--page-padding-mobile);
+/* =========================================================
+   Print colours
+   列印配色
+   ========================================================= */
+
+@media print {
+  html,
+  body,
+  main {
+    color: var(--ibridge-text);
+    background: var(--ibridge-white);
   }
 
-  html {
-    font-size: 16px;
+  header,
+  footer,
+  nav,
+  .site-header,
+  .site-footer,
+  .mobile-menu-toggle,
+  .language-switcher {
+    display: none !important;
   }
 
-  body {
-    line-height: 1.72;
+  .card,
+  .resource-card,
+  .download-card,
+  .content-card,
+  .programme-card,
+  .service-card,
+  .research-card,
+  .article-card,
+  .panel {
+    color: var(--ibridge-text);
+    background: var(--ibridge-white);
+    border-color: var(--ibridge-border);
   }
 
-  h1 {
-    font-size: clamp(2.55rem, 13vw, 4rem);
-    line-height: 1;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 9vw, 3.1rem);
-  }
-
-  h3 {
-    font-size: 1.35rem;
-  }
-
-  .container {
-    width: min(
-      var(--container-width),
-      calc(100% - var(--page-padding-mobile))
-    ) !important;
-  }
-
-  .page-hero {
-    padding-top: 82px !important;
-    padding-bottom: 74px !important;
-  }
-
-  .button,
-  .primary-button,
-  .secondary-button,
-  .hero-button,
-  .cta-button {
-    width: 100%;
+  a {
+    color: var(--ibridge-text);
   }
 }
