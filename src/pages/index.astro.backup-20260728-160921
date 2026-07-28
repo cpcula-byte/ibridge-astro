@@ -1,87 +1,87 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const services = [
   {
     number: "01",
-    title: "Curriculum and Learning Design",
+    title: "課程與教學設計",
     description:
-      "Coherent and practical curriculum design shaped by school context, learner needs and international education frameworks.",
-    link: "/en/services",
+      "依據學校脈絡、學生需求與國際教育框架，設計具連貫性、挑戰性與實用性的課程。",
+    link: "/services",
   },
   {
     number: "02",
-    title: "Professional Development",
+    title: "教師專業發展",
     description:
-      "Workshops, consultancy and collaborative planning that connect research, technology and classroom practice.",
-    link: "/en/services",
+      "透過工作坊、顧問支持與共同規劃，協助教師將研究、科技與教學實務有效整合。",
+    link: "/services",
   },
   {
     number: "03",
-    title: "Educational Research and Innovation",
+    title: "教育研究與創新",
     description:
-      "Translating educational research, neuroscience, positive psychology and artificial intelligence into usable practice.",
-    link: "/en/research",
+      "將教育研究、神經科學、正向心理學與人工智慧轉化為可實施的教育方案。",
+    link: "/research",
   },
 ];
 
 const principles = [
   {
-    title: "Learner-centred",
+    title: "以學習者為核心",
     description:
-      "We begin with the learner’s experience, developmental stage, language profile and actual educational needs.",
+      "從學生的學習經驗、發展階段、語言能力與實際需求出發，而非只從課程文件出發。",
   },
   {
-    title: "Research-informed",
+    title: "以研究支持實務",
     description:
-      "Credible evidence is translated into clear and practical approaches that can work in real school settings.",
+      "將可信的教育研究轉化為清楚、可操作且能在真實學校情境中實施的方法。",
   },
   {
-    title: "Long-term development",
+    title: "重視長期能力",
     description:
-      "We value thinking, communication, self-management, resilience and independent learning alongside immediate outcomes.",
+      "不只處理短期成果，也重視思考、溝通、自我管理、韌性與獨立學習能力。",
   },
   {
-    title: "Sustainable systems",
+    title: "建立可持續系統",
     description:
-      "We help schools and teachers build structures that can continue, adapt and grow beyond a single intervention.",
+      "協助學校與教師建立可以延續、調整及擴展的課程與專業學習架構。",
   },
 ];
 
 const programmes = [
-  "International curriculum planning and review",
-  "MYP and DP vertical alignment",
-  "English and academic writing programmes",
-  "Teacher training and professional workshops",
-  "Artificial intelligence in education",
-  "Student learning and resilience programmes",
+  "國際課程規劃與檢視",
+  "MYP 與 DP 垂直銜接",
+  "英語與學術寫作課程",
+  "教師培訓與教學工作坊",
+  "人工智慧教育應用",
+  "學生學習與韌性方案",
 ];
 ---
 
 <BaseLayout
   title="iBridge Education"
-  description="iBridge Education connects international education, curriculum design, applied research and practical innovation for schools, educators and learners."
-  locale="en"
+  description="iBridge Education 連結國際教育、課程設計、應用研究與實務創新，為學校、教師與學習者提供專業支持。"
+  locale="zh-tw"
   zhPath="/"
   enPath="/en/"
   pageType="WebPage"
   breadcrumbs={[
     {
-      name: "Home",
-      path: "/en/",
+      name: "首頁",
+      path: "/",
     },
   ]}
 >
   <section class="visual-hero" aria-labelledby="home-hero-title">
     <div class="container visual-hero-container">
       <h1 id="home-hero-title" class="sr-only">
-        iBridge Education: Connecting Learning, Research and Innovation
+        iBridge Education：連結學習、研究與創新
       </h1>
 
       <picture class="visual-hero-picture">
         <img
-          src="/images/home/hero-en.png"
-          alt="iBridge Education: Connecting Learning, Research and Innovation. International Education, Curriculum Design and Professional Development."
+          src="/images/home/hero-zh-2026.png"
+          alt="iBridge Education：連結學習、研究與創新。國際教育、課程設計與教師專業發展。"
           width="1792"
           height="1024"
           loading="eager"
@@ -90,13 +90,13 @@ const programmes = [
         />
       </picture>
 
-      <div class="visual-hero-actions" aria-label="Primary home page actions">
-        <a class="button button-primary" href="/en/contact/">
-          Book a Consultation
+      <div class="visual-hero-actions" aria-label="首頁主要操作">
+        <a class="button button-primary" href="/contact/">
+          預約教育諮詢
         </a>
 
-        <a class="button button-secondary" href="/en/about/">
-          Discover iBridge
+        <a class="button button-secondary" href="/about/">
+          了解 iBridge
         </a>
       </div>
     </div>
@@ -105,26 +105,23 @@ const programmes = [
   <section class="intro-section">
     <div class="container intro-grid">
       <div>
-        <p class="section-label">Our position</p>
+        <p class="section-label">我們的定位</p>
 
         <h2>
-          Educational ideas must become
-          <span>meaningful learning experiences.</span>
+          教育理念必須能夠
+          <span>轉化為真實的學習經驗。</span>
         </h2>
       </div>
 
       <div class="intro-copy">
         <p>
-          iBridge Education works between educational research and school practice.
-          We help educators clarify objectives, build curriculum structures,
-          design learning experiences and evaluate whether programmes genuinely
-          respond to learner needs.
+          iBridge Education 位於教育研究與學校實務之間。我們協助教育工作者
+          釐清目標、建立課程架構、設計學習經驗，並評估方案是否真正回應學生需求。
         </p>
 
         <p>
-          We value rigour without unnecessary complexity. Every partnership is
-          designed to be clear, practical, sustainable and responsive to the
-          organisation’s context.
+          我們重視嚴謹性，但不讓教育工作被複雜術語限制。每一項合作都以清楚、
+          可操作、可持續及符合學校脈絡為原則。
         </p>
       </div>
     </div>
@@ -134,12 +131,12 @@ const programmes = [
     <div class="container">
       <div class="section-heading">
         <div>
-          <p class="section-label">Professional services</p>
-          <h2>From strategic planning to classroom practice</h2>
+          <p class="section-label">專業服務</p>
+          <h2>從策略規劃到教室實踐</h2>
         </div>
 
-        <a class="text-link" href="/en/services">
-          Explore all services
+        <a class="text-link" href="/services">
+          查看所有服務
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -155,7 +152,7 @@ const programmes = [
               <p>{service.description}</p>
 
               <a href={service.link}>
-                Learn more
+                深入了解
                 <span aria-hidden="true">↗</span>
               </a>
             </article>
@@ -168,18 +165,17 @@ const programmes = [
   <section class="principles-section">
     <div class="container principles-layout">
       <div class="principles-intro">
-        <p class="section-label light-label">Our principles</p>
+        <p class="section-label light-label">我們的原則</p>
 
-        <h2>Thoughtful, rigorous and focused on long-term development.</h2>
+        <h2>知性、穩健，並以長期發展為核心。</h2>
 
         <p>
-          Educational innovation should not be driven by novelty alone.
-          It should be grounded in clear purposes, credible evidence,
-          professional judgement and authentic learning needs.
+          教育創新不應只追求新穎，而應建立在清楚目標、可信證據、
+          專業判斷與真實學習需求之上。
         </p>
 
-        <a class="button button-light" href="/en/about">
-          Read about our approach
+        <a class="button button-light" href="/about">
+          閱讀我們的理念
         </a>
       </div>
 
@@ -200,18 +196,17 @@ const programmes = [
   <section class="programmes-section">
     <div class="container programmes-grid">
       <div class="programme-copy">
-        <p class="section-label">Areas of partnership</p>
+        <p class="section-label">合作方向</p>
 
-        <h2>Flexible programmes shaped around each educational context.</h2>
+        <h2>依據學校與學習者需求，建立合適的教育方案。</h2>
 
         <p>
-          iBridge Education supports one-off workshops, curriculum reviews
-          and consultancy, as well as longer-term curriculum development,
-          professional learning and research partnerships.
+          iBridge Education 提供彈性的合作方式，可從單次工作坊、
+          課程檢視與顧問諮詢，延伸至長期課程發展與研究合作。
         </p>
 
-        <a class="button button-primary" href="/en/programmes">
-          Explore programmes
+        <a class="button button-primary" href="/programmes">
+          查看課程與方案
         </a>
       </div>
 
@@ -233,19 +228,18 @@ const programmes = [
       <div class="research-number">R</div>
 
       <div class="research-content">
-        <p class="section-label">Research and practice</p>
+        <p class="section-label">研究與實務</p>
 
-        <h2>Making educational research understandable and usable.</h2>
+        <h2>讓教育研究成為可理解、可應用的專業資源。</h2>
 
         <p>
-          Our areas of interest include positive psychology, educational
-          neuroscience, self-regulated learning, artificial intelligence,
-          international curriculum design and student wellbeing.
-          We focus on how research can create value in real schools.
+          我們關注正向心理學、教育神經科學、自我調節學習、
+          人工智慧教育應用、國際課程設計與學生福祉，
+          並重視研究如何在真實學校情境中產生價值。
         </p>
 
-        <a class="text-link" href="/en/research">
-          Explore our research
+        <a class="text-link" href="/research">
+          探索研究方向
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -255,19 +249,18 @@ const programmes = [
   <section class="cta-section">
     <div class="container cta-card">
       <div>
-        <p class="eyebrow cta-eyebrow">Start a conversation</p>
+        <p class="eyebrow cta-eyebrow">開始對話</p>
 
-        <h2>Build deeper and more resilient learning experiences.</h2>
+        <h2>共同建立更深入、更具韌性的學習經驗。</h2>
 
         <p>
-          Contact us to discuss curriculum design, professional development,
-          AI integration, educational research, school consultancy or
-          student learning programmes.
+          歡迎與我們討論課程設計、教師專業發展、人工智慧整合、
+          教育研究、學校顧問或學生學習方案。
         </p>
       </div>
 
-      <a class="button button-white" href="/en/contact">
-        Contact iBridge
+      <a class="button button-white" href="/contact">
+        聯絡 iBridge
       </a>
     </div>
   </section>
@@ -348,7 +341,7 @@ const programmes = [
   }
 
   .hero h1 {
-    max-width: 850px;
+    max-width: 830px;
     margin: 0;
     color: #0a355b;
     font-family: Georgia, "Times New Roman", serif;
@@ -365,7 +358,7 @@ const programmes = [
   }
 
   .hero-description {
-    max-width: 730px;
+    max-width: 710px;
     margin: 34px 0 0;
     color: #49677e;
     font-size: 1.08rem;
@@ -436,7 +429,6 @@ const programmes = [
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.13em;
-    text-transform: uppercase;
   }
 
   .hero-panel ul {

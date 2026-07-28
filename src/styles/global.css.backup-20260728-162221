@@ -1,0 +1,1296 @@
+/* =========================================================
+   iBridge Education
+   Homepage Hero Final Colour Correction
+   首頁主視覺最終配色修正
+   ---------------------------------------------------------
+   Applies to:
+   適用於：
+   - Traditional Chinese homepage / 繁中首頁
+   - English homepage / 英文首頁
+   ========================================================= */
+
+/* =========================================================
+   1. Approved iBridge colour palette
+   iBridge 核准品牌配色
+   ========================================================= */
+
+:root {
+  --ibridge-primary: #a51c30;
+  --ibridge-primary-dark: #7b1422;
+
+  --ibridge-background: #f7f1e3;
+  --ibridge-surface: #faf7f0;
+
+  --ibridge-text: #1f2933;
+  --ibridge-secondary: #315c6b;
+
+  --ibridge-border: #e4d7c5;
+  --ibridge-gold: #c48a2c;
+
+  --ibridge-white: #ffffff;
+
+  --ibridge-shadow-soft: rgba(31, 41, 51, 0.06);
+  --ibridge-shadow-medium: rgba(31, 41, 51, 0.1);
+}
+
+/* =========================================================
+   2. Whole-page background
+   全頁背景
+   ========================================================= */
+
+html,
+body {
+  background-color: var(--ibridge-background) !important;
+  color: var(--ibridge-text) !important;
+}
+
+body {
+  min-height: 100vh;
+}
+
+main,
+#main-content,
+.page-main,
+.site-main {
+  background-color: var(--ibridge-background) !important;
+}
+
+/* =========================================================
+   3. Homepage hero outer section
+   首頁主視覺外層區域
+   ========================================================= */
+
+.visual-hero,
+section.visual-hero,
+main .visual-hero,
+#main-content .visual-hero {
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 28px 0 40px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--ibridge-background) 0%,
+      var(--ibridge-surface) 58%,
+      var(--ibridge-background) 100%
+    ) !important;
+
+  color: var(--ibridge-text) !important;
+}
+
+/* =========================================================
+   4. Hero container
+   主視覺內容容器
+   ========================================================= */
+
+.visual-hero-container,
+.visual-hero .visual-hero-container,
+main .visual-hero-container,
+#main-content .visual-hero-container {
+  width: min(100% - 32px, 1200px) !important;
+  max-width: 1200px !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   5. Hero image wrapper
+   主視覺圖片外框
+   ========================================================= */
+
+.visual-hero-picture,
+.visual-hero .visual-hero-picture,
+main .visual-hero-picture,
+#main-content .visual-hero-picture {
+  display: block !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  background-color: var(--ibridge-surface) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-border) !important;
+  border-radius: 24px !important;
+
+  box-shadow:
+    0 10px 28px var(--ibridge-shadow-soft) !important;
+}
+
+/* =========================================================
+   6. Hero image
+   主視覺圖片
+   ========================================================= */
+
+.visual-hero-picture img,
+.visual-hero picture img,
+.visual-hero img {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: cover !important;
+  object-position: center center !important;
+
+  background-color: var(--ibridge-surface) !important;
+
+  border: 0 !important;
+  border-radius: 23px !important;
+
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   7. Button area beneath image
+   圖片下方按鈕區
+   ========================================================= */
+
+.visual-hero-actions,
+.visual-hero .visual-hero-actions,
+main .visual-hero-actions,
+#main-content .visual-hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 14px !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 20px 16px 0 !important;
+
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* =========================================================
+   8. Remove old blue-grey backgrounds
+   移除舊版冷灰藍背景
+   ========================================================= */
+
+.visual-hero::before,
+.visual-hero::after,
+.visual-hero-container::before,
+.visual-hero-container::after,
+.visual-hero-actions::before,
+.visual-hero-actions::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Actual homepage wrappers that may carry the old blue */
+.home-page,
+.homepage,
+.home-main,
+.home-content,
+.hero-section,
+.hero-wrapper,
+.hero-background,
+.home-hero,
+.home-hero-wrapper {
+  background-color: var(--ibridge-background) !important;
+  background-image: none !important;
+}
+
+/* =========================================================
+   9. Primary homepage CTA
+   首頁主要行動按鈕
+   ========================================================= */
+
+.visual-hero-actions a:first-child,
+.visual-hero-actions .primary-button,
+.visual-hero-actions .button-primary,
+.visual-hero-actions .primary-cta,
+.visual-hero-actions .cta-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 46px !important;
+  padding: 11px 22px !important;
+
+  color: var(--ibridge-white) !important;
+  background-color: var(--ibridge-primary) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-primary) !important;
+  border-radius: 999px !important;
+
+  box-shadow:
+    0 7px 18px rgba(165, 28, 48, 0.14) !important;
+
+  text-decoration: none !important;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease !important;
+}
+
+.visual-hero-actions a:first-child:hover,
+.visual-hero-actions .primary-button:hover,
+.visual-hero-actions .button-primary:hover,
+.visual-hero-actions .primary-cta:hover,
+.visual-hero-actions .cta-primary:hover {
+  color: var(--ibridge-white) !important;
+  background-color: var(--ibridge-primary-dark) !important;
+
+  border-color: var(--ibridge-primary-dark) !important;
+
+  box-shadow:
+    0 9px 22px rgba(123, 20, 34, 0.18) !important;
+
+  transform: translateY(-1px) !important;
+}
+
+/* =========================================================
+   10. Secondary homepage CTA
+   首頁次要行動按鈕
+   ========================================================= */
+
+.visual-hero-actions a:not(:first-child),
+.visual-hero-actions .secondary-button,
+.visual-hero-actions .button-secondary,
+.visual-hero-actions .secondary-cta,
+.visual-hero-actions .cta-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 46px !important;
+  padding: 11px 22px !important;
+
+  color: var(--ibridge-secondary) !important;
+  background-color: var(--ibridge-surface) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-border) !important;
+  border-radius: 999px !important;
+
+  box-shadow:
+    0 5px 14px rgba(31, 41, 51, 0.05) !important;
+
+  text-decoration: none !important;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease !important;
+}
+
+.visual-hero-actions a:not(:first-child):hover,
+.visual-hero-actions .secondary-button:hover,
+.visual-hero-actions .button-secondary:hover,
+.visual-hero-actions .secondary-cta:hover,
+.visual-hero-actions .cta-secondary:hover {
+  color: var(--ibridge-primary-dark) !important;
+  background-color: var(--ibridge-white) !important;
+
+  border-color: var(--ibridge-primary) !important;
+
+  box-shadow:
+    0 8px 18px rgba(31, 41, 51, 0.08) !important;
+
+  transform: translateY(-1px) !important;
+}
+
+/* =========================================================
+   11. Section immediately after the hero
+   主視覺後方第一區塊
+   ========================================================= */
+
+.visual-hero + section,
+.visual-hero + .section,
+.visual-hero + .page-section,
+.visual-hero + .content-section {
+  background-color: var(--ibridge-background) !important;
+  background-image: none !important;
+}
+
+/* =========================================================
+   12. Header consistency
+   頁首配色統一
+   ========================================================= */
+
+.site-header,
+header,
+.header,
+.main-header {
+  background-color: var(--ibridge-background) !important;
+  border-bottom-color: var(--ibridge-border) !important;
+}
+
+.site-header nav a,
+header nav a,
+.header nav a {
+  color: var(--ibridge-text) !important;
+}
+
+.site-header nav a:hover,
+header nav a:hover,
+.header nav a:hover,
+.site-header nav a[aria-current="page"],
+header nav a[aria-current="page"],
+.header nav a[aria-current="page"] {
+  color: var(--ibridge-primary) !important;
+}
+
+/* =========================================================
+   13. Language button
+   語言切換按鈕
+   ========================================================= */
+
+.language-switcher,
+.language-toggle,
+.locale-switcher,
+.lang-switch,
+.lang-toggle {
+  color: var(--ibridge-secondary) !important;
+  background-color: var(--ibridge-surface) !important;
+
+  border-color: var(--ibridge-border) !important;
+}
+
+.language-switcher:hover,
+.language-toggle:hover,
+.locale-switcher:hover,
+.lang-switch:hover,
+.lang-toggle:hover {
+  color: var(--ibridge-primary) !important;
+  background-color: var(--ibridge-white) !important;
+
+  border-color: var(--ibridge-primary) !important;
+}
+
+/* =========================================================
+   14. Footer consistency
+   頁尾配色統一
+   ========================================================= */
+
+footer,
+.site-footer,
+.main-footer,
+.page-footer {
+  color: var(--ibridge-white) !important;
+  background-color: var(--ibridge-primary-dark) !important;
+  background-image: none !important;
+
+  border-color: var(--ibridge-primary-dark) !important;
+}
+
+footer a,
+.site-footer a,
+.main-footer a,
+.page-footer a {
+  color: var(--ibridge-white) !important;
+}
+
+footer a:hover,
+.site-footer a:hover,
+.main-footer a:hover,
+.page-footer a:hover {
+  color: var(--ibridge-gold) !important;
+}
+
+/* =========================================================
+   15. Accessibility focus
+   無障礙焦點樣式
+   ========================================================= */
+
+.visual-hero-actions a:focus-visible {
+  outline: 3px solid var(--ibridge-secondary) !important;
+  outline-offset: 3px !important;
+}
+
+/* =========================================================
+   16. Tablet
+   平板版
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .visual-hero,
+  section.visual-hero {
+    padding: 24px 0 34px !important;
+  }
+
+  .visual-hero-container {
+    width: min(100% - 28px, 1200px) !important;
+  }
+
+  .visual-hero-picture {
+    border-radius: 22px !important;
+  }
+
+  .visual-hero-picture img {
+    border-radius: 21px !important;
+  }
+}
+
+/* =========================================================
+   17. Mobile
+   手機版
+   ========================================================= */
+
+@media (max-width: 720px) {
+  .visual-hero,
+  section.visual-hero,
+  main .visual-hero {
+    padding: 16px 0 28px !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        var(--ibridge-background) 0%,
+        var(--ibridge-surface) 65%,
+        var(--ibridge-background) 100%
+      ) !important;
+  }
+
+  .visual-hero-container,
+  .visual-hero .visual-hero-container {
+    width: calc(100% - 20px) !important;
+  }
+
+  .visual-hero-picture,
+  .visual-hero .visual-hero-picture {
+    border-radius: 18px !important;
+
+    box-shadow:
+      0 7px 20px rgba(31, 41, 51, 0.05) !important;
+  }
+
+  .visual-hero-picture img,
+  .visual-hero picture img,
+  .visual-hero img {
+    border-radius: 17px !important;
+  }
+
+  .visual-hero-actions,
+  .visual-hero .visual-hero-actions {
+    gap: 10px !important;
+    padding: 16px 4px 0 !important;
+  }
+
+  .visual-hero-actions a {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+}
+
+/* =========================================================
+   18. Very small mobile devices
+   小型手機
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .visual-hero-container {
+    width: calc(100% - 16px) !important;
+  }
+
+  .visual-hero-actions a {
+    min-height: 44px !important;
+    padding: 10px 18px !important;
+  }
+}
+
+/* =========================================================
+   19. Force light branded appearance
+   強制維持品牌淺色模式
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  main,
+  #main-content,
+  .visual-hero,
+  .visual-hero-container {
+    color: var(--ibridge-text) !important;
+    background-color: var(--ibridge-background) !important;
+  }
+
+  .visual-hero-picture {
+    background-color: var(--ibridge-surface) !important;
+    border-color: var(--ibridge-border) !important;
+  }
+}
+
+/* =========================================================
+   End of homepage hero colour correction
+   首頁主視覺配色修正結束
+   ========================================================= */
+
+/* ===== IBRIDGE COMPACT HERO START ===== */
+
+/* =========================================================
+   iBridge Education
+   Compact bilingual homepage hero
+   繁中／英文首頁主視覺高度修正
+
+   Desktop: 16:7, maximum 520px
+   Tablet:  maximum 420px
+   Mobile:  maximum 300px
+   ========================================================= */
+
+/* 品牌色／Brand colours */
+:root {
+  --ibridge-primary: #a51c30;
+  --ibridge-primary-dark: #7b1422;
+  --ibridge-background: #f7f1e3;
+  --ibridge-surface: #faf7f0;
+  --ibridge-text: #1f2933;
+  --ibridge-secondary: #315c6b;
+  --ibridge-border: #e4d7c5;
+  --ibridge-gold: #c48a2c;
+  --ibridge-white: #ffffff;
+}
+
+/* ---------------------------------------------------------
+   1. 首頁主視覺外層
+   Homepage hero outer section
+   --------------------------------------------------------- */
+
+.visual-hero,
+section.visual-hero,
+main .visual-hero,
+#main-content .visual-hero {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 24px 0 34px !important;
+
+  color: var(--ibridge-text) !important;
+  background-color: var(--ibridge-background) !important;
+  background-image: none !important;
+}
+
+/* ---------------------------------------------------------
+   2. 主視覺內容寬度
+   Hero content width
+   --------------------------------------------------------- */
+
+.visual-hero-container,
+.visual-hero .visual-hero-container,
+main .visual-hero-container,
+#main-content .visual-hero-container {
+  width: min(calc(100% - 32px), 1200px) !important;
+  max-width: 1200px !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   3. 圖片容器
+   Hero image container
+   --------------------------------------------------------- */
+
+.visual-hero-picture,
+.visual-hero .visual-hero-picture,
+main .visual-hero-picture,
+#main-content .visual-hero-picture {
+  display: block !important;
+
+  position: relative !important;
+  width: 100% !important;
+
+  /* 桌面版縮短高度 */
+  aspect-ratio: 16 / 7 !important;
+  max-height: 520px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  background-color: var(--ibridge-surface) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-border) !important;
+  border-radius: 24px !important;
+
+  box-shadow:
+    0 8px 22px rgba(31, 41, 51, 0.06) !important;
+}
+
+/* ---------------------------------------------------------
+   4. 圖片本身
+   Hero image
+   --------------------------------------------------------- */
+
+.visual-hero-picture img,
+.visual-hero .visual-hero-picture img,
+.visual-hero picture img,
+.visual-hero img {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  max-height: 520px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  /* 填滿容器但不變形 */
+  object-fit: cover !important;
+
+  /*
+   保留左上品牌文字與右側橋樑。
+   Preserve the upper-left branding and bridge.
+  */
+  object-position: center center !important;
+
+  background-color: var(--ibridge-surface) !important;
+
+  border: 0 !important;
+  border-radius: 23px !important;
+
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   5. 移除可能造成額外高度的 picture 設定
+   Remove picture-element height conflicts
+   --------------------------------------------------------- */
+
+.visual-hero-picture picture,
+.visual-hero picture {
+  display: block !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   6. 圖片下方按鈕區
+   Hero action area
+   --------------------------------------------------------- */
+
+.visual-hero-actions,
+.visual-hero .visual-hero-actions,
+main .visual-hero-actions,
+#main-content .visual-hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  gap: 14px !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 18px 16px 0 !important;
+
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   7. 主要按鈕
+   Primary call-to-action
+   --------------------------------------------------------- */
+
+.visual-hero-actions a:first-child {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 44px !important;
+  padding: 10px 22px !important;
+
+  color: var(--ibridge-white) !important;
+  background-color: var(--ibridge-primary) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-primary) !important;
+  border-radius: 999px !important;
+
+  box-shadow:
+    0 7px 18px rgba(165, 28, 48, 0.14) !important;
+
+  text-decoration: none !important;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease !important;
+}
+
+.visual-hero-actions a:first-child:hover,
+.visual-hero-actions a:first-child:focus-visible {
+  color: var(--ibridge-white) !important;
+
+  background-color:
+    var(--ibridge-primary-dark) !important;
+
+  border-color:
+    var(--ibridge-primary-dark) !important;
+
+  box-shadow:
+    0 9px 22px rgba(123, 20, 34, 0.18) !important;
+
+  transform: translateY(-1px) !important;
+}
+
+/* ---------------------------------------------------------
+   8. 次要按鈕
+   Secondary call-to-action
+   --------------------------------------------------------- */
+
+.visual-hero-actions a:not(:first-child) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 44px !important;
+  padding: 10px 22px !important;
+
+  color: var(--ibridge-secondary) !important;
+  background-color: var(--ibridge-surface) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--ibridge-border) !important;
+  border-radius: 999px !important;
+
+  box-shadow:
+    0 5px 14px rgba(31, 41, 51, 0.05) !important;
+
+  text-decoration: none !important;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease !important;
+}
+
+.visual-hero-actions a:not(:first-child):hover,
+.visual-hero-actions a:not(:first-child):focus-visible {
+  color: var(--ibridge-primary-dark) !important;
+  background-color: var(--ibridge-white) !important;
+
+  border-color: var(--ibridge-primary) !important;
+
+  box-shadow:
+    0 8px 18px rgba(31, 41, 51, 0.08) !important;
+
+  transform: translateY(-1px) !important;
+}
+
+/* ---------------------------------------------------------
+   9. 移除舊版偽元素背景
+   Remove legacy pseudo-element backgrounds
+   --------------------------------------------------------- */
+
+.visual-hero::before,
+.visual-hero::after,
+.visual-hero-container::before,
+.visual-hero-container::after,
+.visual-hero-picture::before,
+.visual-hero-picture::after,
+.visual-hero-actions::before,
+.visual-hero-actions::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* ---------------------------------------------------------
+   10. 平板版
+   Tablet
+   --------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .visual-hero,
+  section.visual-hero,
+  main .visual-hero {
+    padding: 20px 0 30px !important;
+  }
+
+  .visual-hero-container,
+  .visual-hero .visual-hero-container {
+    width: min(calc(100% - 28px), 1200px) !important;
+  }
+
+  .visual-hero-picture,
+  .visual-hero .visual-hero-picture {
+    aspect-ratio: 16 / 8 !important;
+    max-height: 420px !important;
+
+    border-radius: 21px !important;
+  }
+
+  .visual-hero-picture img,
+  .visual-hero .visual-hero-picture img,
+  .visual-hero picture img,
+  .visual-hero img {
+    max-height: 420px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   11. 手機版
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .visual-hero,
+  section.visual-hero,
+  main .visual-hero {
+    padding: 14px 0 24px !important;
+  }
+
+  .visual-hero-container,
+  .visual-hero .visual-hero-container {
+    width: calc(100% - 20px) !important;
+  }
+
+  .visual-hero-picture,
+  .visual-hero .visual-hero-picture {
+    /*
+     手機使用較高比例，避免品牌文字被裁切。
+     A taller mobile ratio prevents excessive text cropping.
+    */
+    aspect-ratio: 16 / 10 !important;
+    max-height: 300px !important;
+
+    border-radius: 17px !important;
+
+    box-shadow:
+      0 6px 18px rgba(31, 41, 51, 0.05) !important;
+  }
+
+  .visual-hero-picture img,
+  .visual-hero .visual-hero-picture img,
+  .visual-hero picture img,
+  .visual-hero img {
+    max-height: 300px !important;
+
+    object-position: center center !important;
+
+    border-radius: 16px !important;
+  }
+
+  .visual-hero-actions,
+  .visual-hero .visual-hero-actions {
+    flex-direction: column !important;
+    gap: 10px !important;
+
+    padding: 14px 4px 0 !important;
+  }
+
+  .visual-hero-actions a {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   12. 小型手機
+   Small mobile devices
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+  .visual-hero-container,
+  .visual-hero .visual-hero-container {
+    width: calc(100% - 16px) !important;
+  }
+
+  .visual-hero-picture,
+  .visual-hero .visual-hero-picture {
+    aspect-ratio: 16 / 11 !important;
+    max-height: 280px !important;
+  }
+
+  .visual-hero-picture img,
+  .visual-hero .visual-hero-picture img,
+  .visual-hero picture img,
+  .visual-hero img {
+    max-height: 280px !important;
+  }
+
+  .visual-hero-actions a {
+    min-height: 44px !important;
+    padding: 10px 18px !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   13. 無障礙：減少動畫
+   Accessibility: reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .visual-hero-actions a {
+    transition: none !important;
+  }
+
+  .visual-hero-actions a:hover {
+    transform: none !important;
+  }
+}
+
+/* ===== IBRIDGE COMPACT HERO END ===== */
+
+
+/* ===== IBRIDGE AUDIENCE PATHWAYS CSS START ===== */
+
+/* =========================================================
+   iBridge Education
+   Audience pathways
+   首頁使用者入口區塊
+
+   Applies to both:
+   同時適用：
+   - Traditional Chinese homepage
+   - English homepage
+   ========================================================= */
+
+.audience-pathways {
+  position: relative;
+  width: 100%;
+  padding: 78px 0 88px;
+
+  color: #1f2933;
+  background-color: #f7f1e3;
+  background-image: none;
+}
+
+.audience-pathways-container {
+  width: min(calc(100% - 32px), 1200px);
+  margin: 0 auto;
+}
+
+.audience-pathways-header {
+  max-width: 760px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.audience-pathways-eyebrow {
+  margin: 0 0 10px;
+
+  color: #a51c30;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.audience-pathways-header h2 {
+  margin: 0;
+
+  color: #1f2933;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.audience-pathways-introduction {
+  max-width: 680px;
+  margin: 18px auto 0;
+
+  color: #315c6b;
+
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.audience-pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.audience-pathway-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 360px;
+  padding: 26px 24px 24px;
+
+  overflow: hidden;
+
+  color: #1f2933;
+  background-color: #faf7f0;
+
+  border: 1px solid #e4d7c5;
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 22px rgba(31, 41, 51, 0.055);
+
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.audience-pathway-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0 auto auto 0;
+
+  width: 100%;
+  height: 4px;
+
+  background-color: #a51c30;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition: transform 0.22s ease;
+}
+
+.audience-pathway-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(165, 28, 48, 0.42);
+
+  box-shadow:
+    0 15px 34px rgba(31, 41, 51, 0.09);
+}
+
+.audience-pathway-card:hover::before {
+  transform: scaleX(1);
+}
+
+.audience-pathway-number {
+  position: absolute;
+  top: 21px;
+  right: 22px;
+
+  color: rgba(196, 138, 44, 0.55);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+.audience-pathway-icon {
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+
+  color: #315c6b;
+  background-color: rgba(49, 92, 107, 0.08);
+
+  border: 1px solid rgba(49, 92, 107, 0.18);
+  border-radius: 16px;
+}
+
+.audience-pathway-icon svg {
+  display: block;
+
+  width: 31px;
+  height: 31px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.audience-pathway-card h3 {
+  margin: 0 0 13px;
+
+  color: #1f2933;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.018em;
+}
+
+.audience-pathway-card p {
+  margin: 0 0 25px;
+
+  color: #1f2933;
+
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.audience-pathway-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  width: fit-content;
+  margin-top: auto;
+
+  color: #a51c30;
+
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.4;
+
+  text-decoration: none;
+  text-underline-offset: 4px;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.audience-pathway-link span {
+  font-size: 1.12rem;
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+}
+
+.audience-pathway-link:hover {
+  gap: 12px;
+  color: #7b1422;
+}
+
+.audience-pathway-link:hover span {
+  transform: translateX(2px);
+}
+
+.audience-pathway-link:focus-visible {
+  outline: 3px solid rgba(49, 92, 107, 0.28);
+  outline-offset: 5px;
+  border-radius: 5px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .audience-pathways {
+    padding: 68px 0 76px;
+  }
+
+  .audience-pathways-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .audience-pathway-card {
+    min-height: 330px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .audience-pathways {
+    padding: 52px 0 60px;
+  }
+
+  .audience-pathways-container {
+    width: calc(100% - 24px);
+  }
+
+  .audience-pathways-header {
+    margin-bottom: 28px;
+  }
+
+  .audience-pathways-header h2 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .audience-pathways-introduction {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+
+  .audience-pathways-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .audience-pathway-card {
+    min-height: 0;
+    padding: 23px 21px 22px;
+
+    border-radius: 18px;
+  }
+
+  .audience-pathway-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 19px;
+
+    border-radius: 14px;
+  }
+
+  .audience-pathway-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .audience-pathway-card,
+  .audience-pathway-card::before,
+  .audience-pathway-link,
+  .audience-pathway-link span {
+    transition: none;
+  }
+
+  .audience-pathway-card:hover,
+  .audience-pathway-link:hover span {
+    transform: none;
+  }
+}
+
+/* ===== IBRIDGE AUDIENCE PATHWAYS CSS END ===== */

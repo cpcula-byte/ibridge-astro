@@ -1,1296 +1,1117 @@
 /* =========================================================
    iBridge Education
-   Homepage Hero Final Colour Correction
-   首頁主視覺最終配色修正
-   ---------------------------------------------------------
-   Applies to:
-   適用於：
-   - Traditional Chinese homepage / 繁中首頁
-   - English homepage / 英文首頁
+   Global Typography and Colour System
+
+   Typography
+   - Neue Helvetica 75 Bold: titles, subtitles, navigation
+   - Neue Helvetica 35 Thin: body text
+
+   Colour palette
+   - Harvard Crimson: #A51C30
+   - Deep Crimson: #7B1422
+   - Warm Cream: #F7F1E3
+   - Soft Ivory: #FAF7F0
+   - Charcoal Navy: #1F2933
+   - Academic Teal: #315C6B
+   - Warm Sand: #E4D7C5
+   - Muted Gold: #C48A2C
    ========================================================= */
+
 
 /* =========================================================
-   1. Approved iBridge colour palette
-   iBridge 核准品牌配色
+   1. FONT FILES
    ========================================================= */
 
-:root {
-  --ibridge-primary: #a51c30;
-  --ibridge-primary-dark: #7b1422;
-
-  --ibridge-background: #f7f1e3;
-  --ibridge-surface: #faf7f0;
-
-  --ibridge-text: #1f2933;
-  --ibridge-secondary: #315c6b;
-
-  --ibridge-border: #e4d7c5;
-  --ibridge-gold: #c48a2c;
-
-  --ibridge-white: #ffffff;
-
-  --ibridge-shadow-soft: rgba(31, 41, 51, 0.06);
-  --ibridge-shadow-medium: rgba(31, 41, 51, 0.1);
+@font-face {
+  font-family: "Neue Helvetica";
+  src:
+    url("/fonts/neue-helvetica-35-thin.otf") format("opentype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
 }
 
-/* =========================================================
-   2. Whole-page background
-   全頁背景
-   ========================================================= */
-
-html,
-body {
-  background-color: var(--ibridge-background) !important;
-  color: var(--ibridge-text) !important;
-}
-
-body {
-  min-height: 100vh;
-}
-
-main,
-#main-content,
-.page-main,
-.site-main {
-  background-color: var(--ibridge-background) !important;
-}
-
-/* =========================================================
-   3. Homepage hero outer section
-   首頁主視覺外層區域
-   ========================================================= */
-
-.visual-hero,
-section.visual-hero,
-main .visual-hero,
-#main-content .visual-hero {
-  width: 100% !important;
-
-  margin: 0 !important;
-  padding: 28px 0 40px !important;
-
-  background:
-    linear-gradient(
-      180deg,
-      var(--ibridge-background) 0%,
-      var(--ibridge-surface) 58%,
-      var(--ibridge-background) 100%
-    ) !important;
-
-  color: var(--ibridge-text) !important;
-}
-
-/* =========================================================
-   4. Hero container
-   主視覺內容容器
-   ========================================================= */
-
-.visual-hero-container,
-.visual-hero .visual-hero-container,
-main .visual-hero-container,
-#main-content .visual-hero-container {
-  width: min(100% - 32px, 1200px) !important;
-  max-width: 1200px !important;
-
-  margin: 0 auto !important;
-  padding: 0 !important;
-
-  background-color: transparent !important;
-  background-image: none !important;
-
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* =========================================================
-   5. Hero image wrapper
-   主視覺圖片外框
-   ========================================================= */
-
-.visual-hero-picture,
-.visual-hero .visual-hero-picture,
-main .visual-hero-picture,
-#main-content .visual-hero-picture {
-  display: block !important;
-
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-
-  overflow: hidden !important;
-
-  background-color: var(--ibridge-surface) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-border) !important;
-  border-radius: 24px !important;
-
-  box-shadow:
-    0 10px 28px var(--ibridge-shadow-soft) !important;
-}
-
-/* =========================================================
-   6. Hero image
-   主視覺圖片
-   ========================================================= */
-
-.visual-hero-picture img,
-.visual-hero picture img,
-.visual-hero img {
-  display: block !important;
-
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  object-fit: cover !important;
-  object-position: center center !important;
-
-  background-color: var(--ibridge-surface) !important;
-
-  border: 0 !important;
-  border-radius: 23px !important;
-
-  box-shadow: none !important;
-}
-
-/* =========================================================
-   7. Button area beneath image
-   圖片下方按鈕區
-   ========================================================= */
-
-.visual-hero-actions,
-.visual-hero .visual-hero-actions,
-main .visual-hero-actions,
-#main-content .visual-hero-actions {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 14px !important;
-
-  width: 100% !important;
-
-  margin: 0 !important;
-  padding: 20px 16px 0 !important;
-
-  background-color: transparent !important;
-  background-image: none !important;
-
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* =========================================================
-   8. Remove old blue-grey backgrounds
-   移除舊版冷灰藍背景
-   ========================================================= */
-
-.visual-hero::before,
-.visual-hero::after,
-.visual-hero-container::before,
-.visual-hero-container::after,
-.visual-hero-actions::before,
-.visual-hero-actions::after {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
-/* Actual homepage wrappers that may carry the old blue */
-.home-page,
-.homepage,
-.home-main,
-.home-content,
-.hero-section,
-.hero-wrapper,
-.hero-background,
-.home-hero,
-.home-hero-wrapper {
-  background-color: var(--ibridge-background) !important;
-  background-image: none !important;
-}
-
-/* =========================================================
-   9. Primary homepage CTA
-   首頁主要行動按鈕
-   ========================================================= */
-
-.visual-hero-actions a:first-child,
-.visual-hero-actions .primary-button,
-.visual-hero-actions .button-primary,
-.visual-hero-actions .primary-cta,
-.visual-hero-actions .cta-primary {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  min-height: 46px !important;
-  padding: 11px 22px !important;
-
-  color: var(--ibridge-white) !important;
-  background-color: var(--ibridge-primary) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-primary) !important;
-  border-radius: 999px !important;
-
-  box-shadow:
-    0 7px 18px rgba(165, 28, 48, 0.14) !important;
-
-  text-decoration: none !important;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.visual-hero-actions a:first-child:hover,
-.visual-hero-actions .primary-button:hover,
-.visual-hero-actions .button-primary:hover,
-.visual-hero-actions .primary-cta:hover,
-.visual-hero-actions .cta-primary:hover {
-  color: var(--ibridge-white) !important;
-  background-color: var(--ibridge-primary-dark) !important;
-
-  border-color: var(--ibridge-primary-dark) !important;
-
-  box-shadow:
-    0 9px 22px rgba(123, 20, 34, 0.18) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-/* =========================================================
-   10. Secondary homepage CTA
-   首頁次要行動按鈕
-   ========================================================= */
-
-.visual-hero-actions a:not(:first-child),
-.visual-hero-actions .secondary-button,
-.visual-hero-actions .button-secondary,
-.visual-hero-actions .secondary-cta,
-.visual-hero-actions .cta-secondary {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  min-height: 46px !important;
-  padding: 11px 22px !important;
-
-  color: var(--ibridge-secondary) !important;
-  background-color: var(--ibridge-surface) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-border) !important;
-  border-radius: 999px !important;
-
-  box-shadow:
-    0 5px 14px rgba(31, 41, 51, 0.05) !important;
-
-  text-decoration: none !important;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.visual-hero-actions a:not(:first-child):hover,
-.visual-hero-actions .secondary-button:hover,
-.visual-hero-actions .button-secondary:hover,
-.visual-hero-actions .secondary-cta:hover,
-.visual-hero-actions .cta-secondary:hover {
-  color: var(--ibridge-primary-dark) !important;
-  background-color: var(--ibridge-white) !important;
-
-  border-color: var(--ibridge-primary) !important;
-
-  box-shadow:
-    0 8px 18px rgba(31, 41, 51, 0.08) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-/* =========================================================
-   11. Section immediately after the hero
-   主視覺後方第一區塊
-   ========================================================= */
-
-.visual-hero + section,
-.visual-hero + .section,
-.visual-hero + .page-section,
-.visual-hero + .content-section {
-  background-color: var(--ibridge-background) !important;
-  background-image: none !important;
-}
-
-/* =========================================================
-   12. Header consistency
-   頁首配色統一
-   ========================================================= */
-
-.site-header,
-header,
-.header,
-.main-header {
-  background-color: var(--ibridge-background) !important;
-  border-bottom-color: var(--ibridge-border) !important;
-}
-
-.site-header nav a,
-header nav a,
-.header nav a {
-  color: var(--ibridge-text) !important;
-}
-
-.site-header nav a:hover,
-header nav a:hover,
-.header nav a:hover,
-.site-header nav a[aria-current="page"],
-header nav a[aria-current="page"],
-.header nav a[aria-current="page"] {
-  color: var(--ibridge-primary) !important;
-}
-
-/* =========================================================
-   13. Language button
-   語言切換按鈕
-   ========================================================= */
-
-.language-switcher,
-.language-toggle,
-.locale-switcher,
-.lang-switch,
-.lang-toggle {
-  color: var(--ibridge-secondary) !important;
-  background-color: var(--ibridge-surface) !important;
-
-  border-color: var(--ibridge-border) !important;
-}
-
-.language-switcher:hover,
-.language-toggle:hover,
-.locale-switcher:hover,
-.lang-switch:hover,
-.lang-toggle:hover {
-  color: var(--ibridge-primary) !important;
-  background-color: var(--ibridge-white) !important;
-
-  border-color: var(--ibridge-primary) !important;
-}
-
-/* =========================================================
-   14. Footer consistency
-   頁尾配色統一
-   ========================================================= */
-
-footer,
-.site-footer,
-.main-footer,
-.page-footer {
-  color: var(--ibridge-white) !important;
-  background-color: var(--ibridge-primary-dark) !important;
-  background-image: none !important;
-
-  border-color: var(--ibridge-primary-dark) !important;
-}
-
-footer a,
-.site-footer a,
-.main-footer a,
-.page-footer a {
-  color: var(--ibridge-white) !important;
-}
-
-footer a:hover,
-.site-footer a:hover,
-.main-footer a:hover,
-.page-footer a:hover {
-  color: var(--ibridge-gold) !important;
-}
-
-/* =========================================================
-   15. Accessibility focus
-   無障礙焦點樣式
-   ========================================================= */
-
-.visual-hero-actions a:focus-visible {
-  outline: 3px solid var(--ibridge-secondary) !important;
-  outline-offset: 3px !important;
-}
-
-/* =========================================================
-   16. Tablet
-   平板版
-   ========================================================= */
-
-@media (max-width: 1024px) {
-  .visual-hero,
-  section.visual-hero {
-    padding: 24px 0 34px !important;
-  }
-
-  .visual-hero-container {
-    width: min(100% - 28px, 1200px) !important;
-  }
-
-  .visual-hero-picture {
-    border-radius: 22px !important;
-  }
-
-  .visual-hero-picture img {
-    border-radius: 21px !important;
-  }
-}
-
-/* =========================================================
-   17. Mobile
-   手機版
-   ========================================================= */
-
-@media (max-width: 720px) {
-  .visual-hero,
-  section.visual-hero,
-  main .visual-hero {
-    padding: 16px 0 28px !important;
-
-    background:
-      linear-gradient(
-        180deg,
-        var(--ibridge-background) 0%,
-        var(--ibridge-surface) 65%,
-        var(--ibridge-background) 100%
-      ) !important;
-  }
-
-  .visual-hero-container,
-  .visual-hero .visual-hero-container {
-    width: calc(100% - 20px) !important;
-  }
-
-  .visual-hero-picture,
-  .visual-hero .visual-hero-picture {
-    border-radius: 18px !important;
-
-    box-shadow:
-      0 7px 20px rgba(31, 41, 51, 0.05) !important;
-  }
-
-  .visual-hero-picture img,
-  .visual-hero picture img,
-  .visual-hero img {
-    border-radius: 17px !important;
-  }
-
-  .visual-hero-actions,
-  .visual-hero .visual-hero-actions {
-    gap: 10px !important;
-    padding: 16px 4px 0 !important;
-  }
-
-  .visual-hero-actions a {
-    width: 100% !important;
-    max-width: 320px !important;
-  }
-}
-
-/* =========================================================
-   18. Very small mobile devices
-   小型手機
-   ========================================================= */
-
-@media (max-width: 420px) {
-  .visual-hero-container {
-    width: calc(100% - 16px) !important;
-  }
-
-  .visual-hero-actions a {
-    min-height: 44px !important;
-    padding: 10px 18px !important;
-  }
-}
-
-/* =========================================================
-   19. Force light branded appearance
-   強制維持品牌淺色模式
-   ========================================================= */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light;
-  }
-
-  html,
-  body,
-  main,
-  #main-content,
-  .visual-hero,
-  .visual-hero-container {
-    color: var(--ibridge-text) !important;
-    background-color: var(--ibridge-background) !important;
-  }
-
-  .visual-hero-picture {
-    background-color: var(--ibridge-surface) !important;
-    border-color: var(--ibridge-border) !important;
-  }
-}
-
-/* =========================================================
-   End of homepage hero colour correction
-   首頁主視覺配色修正結束
-   ========================================================= */
-
-/* ===== IBRIDGE COMPACT HERO START ===== */
-
-/* =========================================================
-   iBridge Education
-   Compact bilingual homepage hero
-   繁中／英文首頁主視覺高度修正
-
-   Desktop: 16:7, maximum 520px
-   Tablet:  maximum 420px
-   Mobile:  maximum 300px
-   ========================================================= */
-
-/* 品牌色／Brand colours */
-:root {
-  --ibridge-primary: #a51c30;
-  --ibridge-primary-dark: #7b1422;
-  --ibridge-background: #f7f1e3;
-  --ibridge-surface: #faf7f0;
-  --ibridge-text: #1f2933;
-  --ibridge-secondary: #315c6b;
-  --ibridge-border: #e4d7c5;
-  --ibridge-gold: #c48a2c;
-  --ibridge-white: #ffffff;
-}
-
-/* ---------------------------------------------------------
-   1. 首頁主視覺外層
-   Homepage hero outer section
-   --------------------------------------------------------- */
-
-.visual-hero,
-section.visual-hero,
-main .visual-hero,
-#main-content .visual-hero {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 24px 0 34px !important;
-
-  color: var(--ibridge-text) !important;
-  background-color: var(--ibridge-background) !important;
-  background-image: none !important;
-}
-
-/* ---------------------------------------------------------
-   2. 主視覺內容寬度
-   Hero content width
-   --------------------------------------------------------- */
-
-.visual-hero-container,
-.visual-hero .visual-hero-container,
-main .visual-hero-container,
-#main-content .visual-hero-container {
-  width: min(calc(100% - 32px), 1200px) !important;
-  max-width: 1200px !important;
-
-  margin: 0 auto !important;
-  padding: 0 !important;
-
-  background-color: transparent !important;
-  background-image: none !important;
-
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* ---------------------------------------------------------
-   3. 圖片容器
-   Hero image container
-   --------------------------------------------------------- */
-
-.visual-hero-picture,
-.visual-hero .visual-hero-picture,
-main .visual-hero-picture,
-#main-content .visual-hero-picture {
-  display: block !important;
-
-  position: relative !important;
-  width: 100% !important;
-
-  /* 桌面版縮短高度 */
-  aspect-ratio: 16 / 7 !important;
-  max-height: 520px !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  overflow: hidden !important;
-
-  background-color: var(--ibridge-surface) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-border) !important;
-  border-radius: 24px !important;
-
-  box-shadow:
-    0 8px 22px rgba(31, 41, 51, 0.06) !important;
-}
-
-/* ---------------------------------------------------------
-   4. 圖片本身
-   Hero image
-   --------------------------------------------------------- */
-
-.visual-hero-picture img,
-.visual-hero .visual-hero-picture img,
-.visual-hero picture img,
-.visual-hero img {
-  display: block !important;
-
-  width: 100% !important;
-  max-width: none !important;
-  height: 100% !important;
-  max-height: 520px !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  /* 填滿容器但不變形 */
-  object-fit: cover !important;
-
-  /*
-   保留左上品牌文字與右側橋樑。
-   Preserve the upper-left branding and bridge.
-  */
-  object-position: center center !important;
-
-  background-color: var(--ibridge-surface) !important;
-
-  border: 0 !important;
-  border-radius: 23px !important;
-
-  box-shadow: none !important;
-}
-
-/* ---------------------------------------------------------
-   5. 移除可能造成額外高度的 picture 設定
-   Remove picture-element height conflicts
-   --------------------------------------------------------- */
-
-.visual-hero-picture picture,
-.visual-hero picture {
-  display: block !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* ---------------------------------------------------------
-   6. 圖片下方按鈕區
-   Hero action area
-   --------------------------------------------------------- */
-
-.visual-hero-actions,
-.visual-hero .visual-hero-actions,
-main .visual-hero-actions,
-#main-content .visual-hero-actions {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-
-  gap: 14px !important;
-
-  width: 100% !important;
-
-  margin: 0 !important;
-  padding: 18px 16px 0 !important;
-
-  background-color: transparent !important;
-  background-image: none !important;
-
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* ---------------------------------------------------------
-   7. 主要按鈕
-   Primary call-to-action
-   --------------------------------------------------------- */
-
-.visual-hero-actions a:first-child {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  min-height: 44px !important;
-  padding: 10px 22px !important;
-
-  color: var(--ibridge-white) !important;
-  background-color: var(--ibridge-primary) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-primary) !important;
-  border-radius: 999px !important;
-
-  box-shadow:
-    0 7px 18px rgba(165, 28, 48, 0.14) !important;
-
-  text-decoration: none !important;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.visual-hero-actions a:first-child:hover,
-.visual-hero-actions a:first-child:focus-visible {
-  color: var(--ibridge-white) !important;
-
-  background-color:
-    var(--ibridge-primary-dark) !important;
-
-  border-color:
-    var(--ibridge-primary-dark) !important;
-
-  box-shadow:
-    0 9px 22px rgba(123, 20, 34, 0.18) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-/* ---------------------------------------------------------
-   8. 次要按鈕
-   Secondary call-to-action
-   --------------------------------------------------------- */
-
-.visual-hero-actions a:not(:first-child) {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  min-height: 44px !important;
-  padding: 10px 22px !important;
-
-  color: var(--ibridge-secondary) !important;
-  background-color: var(--ibridge-surface) !important;
-  background-image: none !important;
-
-  border: 1px solid var(--ibridge-border) !important;
-  border-radius: 999px !important;
-
-  box-shadow:
-    0 5px 14px rgba(31, 41, 51, 0.05) !important;
-
-  text-decoration: none !important;
-
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease !important;
-}
-
-.visual-hero-actions a:not(:first-child):hover,
-.visual-hero-actions a:not(:first-child):focus-visible {
-  color: var(--ibridge-primary-dark) !important;
-  background-color: var(--ibridge-white) !important;
-
-  border-color: var(--ibridge-primary) !important;
-
-  box-shadow:
-    0 8px 18px rgba(31, 41, 51, 0.08) !important;
-
-  transform: translateY(-1px) !important;
-}
-
-/* ---------------------------------------------------------
-   9. 移除舊版偽元素背景
-   Remove legacy pseudo-element backgrounds
-   --------------------------------------------------------- */
-
-.visual-hero::before,
-.visual-hero::after,
-.visual-hero-container::before,
-.visual-hero-container::after,
-.visual-hero-picture::before,
-.visual-hero-picture::after,
-.visual-hero-actions::before,
-.visual-hero-actions::after {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
-/* ---------------------------------------------------------
-   10. 平板版
-   Tablet
-   --------------------------------------------------------- */
-
-@media (max-width: 1024px) {
-  .visual-hero,
-  section.visual-hero,
-  main .visual-hero {
-    padding: 20px 0 30px !important;
-  }
-
-  .visual-hero-container,
-  .visual-hero .visual-hero-container {
-    width: min(calc(100% - 28px), 1200px) !important;
-  }
-
-  .visual-hero-picture,
-  .visual-hero .visual-hero-picture {
-    aspect-ratio: 16 / 8 !important;
-    max-height: 420px !important;
-
-    border-radius: 21px !important;
-  }
-
-  .visual-hero-picture img,
-  .visual-hero .visual-hero-picture img,
-  .visual-hero picture img,
-  .visual-hero img {
-    max-height: 420px !important;
-    border-radius: 20px !important;
-  }
-}
-
-/* ---------------------------------------------------------
-   11. 手機版
-   Mobile
-   --------------------------------------------------------- */
-
-@media (max-width: 720px) {
-  .visual-hero,
-  section.visual-hero,
-  main .visual-hero {
-    padding: 14px 0 24px !important;
-  }
-
-  .visual-hero-container,
-  .visual-hero .visual-hero-container {
-    width: calc(100% - 20px) !important;
-  }
-
-  .visual-hero-picture,
-  .visual-hero .visual-hero-picture {
-    /*
-     手機使用較高比例，避免品牌文字被裁切。
-     A taller mobile ratio prevents excessive text cropping.
-    */
-    aspect-ratio: 16 / 10 !important;
-    max-height: 300px !important;
-
-    border-radius: 17px !important;
-
-    box-shadow:
-      0 6px 18px rgba(31, 41, 51, 0.05) !important;
-  }
-
-  .visual-hero-picture img,
-  .visual-hero .visual-hero-picture img,
-  .visual-hero picture img,
-  .visual-hero img {
-    max-height: 300px !important;
-
-    object-position: center center !important;
-
-    border-radius: 16px !important;
-  }
-
-  .visual-hero-actions,
-  .visual-hero .visual-hero-actions {
-    flex-direction: column !important;
-    gap: 10px !important;
-
-    padding: 14px 4px 0 !important;
-  }
-
-  .visual-hero-actions a {
-    width: 100% !important;
-    max-width: 320px !important;
-  }
-}
-
-/* ---------------------------------------------------------
-   12. 小型手機
-   Small mobile devices
-   --------------------------------------------------------- */
-
-@media (max-width: 420px) {
-  .visual-hero-container,
-  .visual-hero .visual-hero-container {
-    width: calc(100% - 16px) !important;
-  }
-
-  .visual-hero-picture,
-  .visual-hero .visual-hero-picture {
-    aspect-ratio: 16 / 11 !important;
-    max-height: 280px !important;
-  }
-
-  .visual-hero-picture img,
-  .visual-hero .visual-hero-picture img,
-  .visual-hero picture img,
-  .visual-hero img {
-    max-height: 280px !important;
-  }
-
-  .visual-hero-actions a {
-    min-height: 44px !important;
-    padding: 10px 18px !important;
-  }
-}
-
-/* ---------------------------------------------------------
-   13. 無障礙：減少動畫
-   Accessibility: reduced motion
-   --------------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  .visual-hero-actions a {
-    transition: none !important;
-  }
-
-  .visual-hero-actions a:hover {
-    transform: none !important;
-  }
-}
-
-/* ===== IBRIDGE COMPACT HERO END ===== */
-
-
-/* ===== IBRIDGE AUDIENCE PATHWAYS CSS START ===== */
-
-/* =========================================================
-   iBridge Education
-   Audience pathways
-   首頁使用者入口區塊
-
-   Applies to both:
-   同時適用：
-   - Traditional Chinese homepage
-   - English homepage
-   ========================================================= */
-
-.audience-pathways {
-  position: relative;
-  width: 100%;
-  padding: 78px 0 88px;
-
-  color: #1f2933;
-  background-color: #f7f1e3;
-  background-image: none;
-}
-
-.audience-pathways-container {
-  width: min(calc(100% - 32px), 1200px);
-  margin: 0 auto;
-}
-
-.audience-pathways-header {
-  max-width: 760px;
-  margin: 0 auto 38px;
-  text-align: center;
-}
-
-.audience-pathways-eyebrow {
-  margin: 0 0 10px;
-
-  color: #a51c30;
-
-  font-size: 0.78rem;
+@font-face {
+  font-family: "Neue Helvetica";
+  src:
+    url("/fonts/neue-helvetica-75-bold.otf") format("opentype");
+  font-style: normal;
   font-weight: 700;
-  line-height: 1.4;
+  font-display: swap;
+}
+
+
+/* =========================================================
+   2. DESIGN VARIABLES
+   ========================================================= */
+
+:root {
+  /* Brand colours */
+  --color-primary: #a51c30;
+  --color-primary-dark: #7b1422;
+  --color-background: #f7f1e3;
+  --color-surface: #faf7f0;
+  --color-text: #1f2933;
+  --color-text-soft: #52606d;
+  --color-accent: #315c6b;
+  --color-border: #e4d7c5;
+  --color-gold: #c48a2c;
+  --color-white: #ffffff;
+
+  /* Transparent colours */
+  --color-primary-08: rgba(165, 28, 48, 0.08);
+  --color-primary-12: rgba(165, 28, 48, 0.12);
+  --color-primary-18: rgba(165, 28, 48, 0.18);
+  --color-text-08: rgba(31, 41, 51, 0.08);
+  --color-text-12: rgba(31, 41, 51, 0.12);
+  --color-text-18: rgba(31, 41, 51, 0.18);
+  --color-white-12: rgba(255, 255, 255, 0.12);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+
+  /* Typography */
+  --font-body:
+    "Neue Helvetica",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "PingFang TC",
+    "Noto Sans TC",
+    sans-serif;
+
+  --font-heading:
+    "Neue Helvetica",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "PingFang TC",
+    "Noto Sans TC",
+    sans-serif;
+
+  --font-body-weight: 300;
+  --font-heading-weight: 700;
+
+  /* Layout */
+  --container-width: 1180px;
+  --page-padding: 48px;
+  --page-padding-mobile: 30px;
+
+  /* Radius */
+  --radius-small: 8px;
+  --radius-medium: 16px;
+  --radius-large: 24px;
+  --radius-extra-large: 30px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-small:
+    0 8px 24px rgba(31, 41, 51, 0.06);
+
+  --shadow-medium:
+    0 18px 48px rgba(31, 41, 51, 0.08);
+
+  --shadow-large:
+    0 26px 70px rgba(31, 41, 51, 0.12);
+
+  /* Motion */
+  --transition-fast: 160ms ease;
+  --transition-standard: 220ms ease;
+}
+
+
+/* =========================================================
+   3. RESET AND BASE DOCUMENT
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-background) !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-body) !important;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: var(--font-body-weight) !important;
+  line-height: 1.7;
+}
+
+main {
+  display: block;
+  min-height: 60vh;
+  background: var(--color-background);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  border: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+iframe {
+  max-width: 100%;
+  border: 0;
+}
+
+
+/* =========================================================
+   4. TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b,
+legend,
+summary {
+  color: var(--color-text);
+  font-family: var(--font-heading) !important;
+  font-style: normal;
+  font-weight: var(--font-heading-weight) !important;
+  font-synthesis: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+p,
+li,
+dd,
+dt,
+blockquote,
+figcaption,
+label,
+input,
+textarea,
+select {
+  font-family: var(--font-body) !important;
+  font-style: normal;
+  font-weight: var(--font-body-weight) !important;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+small {
+  font-family: var(--font-body);
+  font-weight: var(--font-body-weight);
+}
+
+strong,
+b {
+  font-weight: var(--font-heading-weight) !important;
+}
+
+
+/* =========================================================
+   5. LINKS
+   ========================================================= */
+
+a {
+  color: var(--color-accent);
+  text-decoration-color: rgba(49, 92, 107, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition:
+    color var(--transition-fast),
+    text-decoration-color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(165, 28, 48, 0.35);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   6. BUTTONS
+   ========================================================= */
+
+button,
+.button,
+.primary-button,
+.hero-button,
+.cta-button,
+.cta-card > a,
+.light-button {
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+.button,
+.primary-button,
+.hero-button,
+.cta-button {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-white);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.button:hover,
+.primary-button:hover,
+.hero-button:hover,
+.cta-button:hover {
+  border-color: var(--color-primary-dark);
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  box-shadow: var(--shadow-small);
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  line-height: 1;
+  text-decoration: none;
+}
+
+.secondary-button:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+
+/* =========================================================
+   7. FORMS
+   ========================================================= */
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+input,
+select {
+  min-height: 50px;
+  padding: 0 15px;
+}
+
+textarea {
+  min-height: 150px;
+  padding: 14px 15px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7b8794;
+  opacity: 1;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(49, 92, 107, 0.55);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  background: var(--color-white);
+  box-shadow: 0 0 0 4px var(--color-primary-12);
+  outline: none;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+
+/* =========================================================
+   8. COMMON CONTENT ELEMENTS
+   ========================================================= */
+
+hr {
+  height: 1px;
+  margin: 32px 0;
+  border: 0;
+  background: var(--color-border);
+}
+
+blockquote {
+  margin: 28px 0;
+  padding: 24px 28px;
+  border-left: 4px solid var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+}
+
+code {
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+  background: var(--color-primary-08);
+  color: var(--color-primary-dark);
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-text);
+  color: var(--color-white);
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+::selection {
+  background: rgba(165, 28, 48, 0.22);
+  color: var(--color-text);
+}
+
+
+/* =========================================================
+   9. GLOBAL CONTAINERS
+   ========================================================= */
+
+.container {
+  width: min(
+    var(--container-width),
+    calc(100% - var(--page-padding))
+  ) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+
+/* =========================================================
+   10. GLOBAL LABELS AND EYEBROWS
+   ========================================================= */
+
+.eyebrow,
+.section-label,
+.programme-subtitle,
+.area-header p,
+.duration small {
+  color: var(--color-primary) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.audience-pathways-header h2 {
-  margin: 0;
-
-  color: #1f2933;
-
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
+.light-label,
+.cta-eyebrow {
+  color: #f2c66d !important;
 }
 
-.audience-pathways-introduction {
-  max-width: 680px;
-  margin: 18px auto 0;
 
-  color: #315c6b;
+/* =========================================================
+   11. PAGE HERO OVERRIDES
+   ========================================================= */
 
-  font-size: clamp(1rem, 1.6vw, 1.12rem);
-  line-height: 1.75;
+.page-hero {
+  background:
+    radial-gradient(
+      circle at 88% 14%,
+      rgba(196, 138, 44, 0.1),
+      transparent 28%
+    ),
+    linear-gradient(
+      125deg,
+      var(--color-background) 0%,
+      var(--color-surface) 100%
+    ) !important;
 }
 
-.audience-pathways-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+.page-hero h1,
+.page-hero h2 {
+  color: var(--color-text) !important;
+  font-family: var(--font-heading) !important;
 }
 
-.audience-pathway-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+.page-hero h1 span,
+.page-hero h2 span {
+  color: var(--color-primary) !important;
+}
 
-  min-width: 0;
-  min-height: 360px;
-  padding: 26px 24px 24px;
+.hero-copy p,
+.overview-copy p,
+.position-copy p {
+  color: var(--color-text-soft) !important;
+}
 
+
+/* Decorative page elements */
+
+.shape,
+.hero-ring,
+.hero-circle {
+  border-color: rgba(165, 28, 48, 0.16) !important;
+}
+
+.hero-rule,
+.hero-line {
+  background: rgba(165, 28, 48, 0.16) !important;
+}
+
+
+/* =========================================================
+   12. CARD AND PANEL OVERRIDES
+   ========================================================= */
+
+.service-card,
+.programme-card,
+.area-card,
+.partnership-card,
+.delivery-card,
+.resource-card,
+.download-card,
+.content-card,
+.contact-card,
+.info-card,
+.feature-card {
+  border-color: var(--color-border) !important;
+  background: var(--color-surface) !important;
+  box-shadow: var(--shadow-small);
+}
+
+.service-card:hover,
+.programme-card:hover,
+.area-card:hover,
+.partnership-card:hover,
+.delivery-card:hover,
+.resource-card:hover,
+.download-card:hover,
+.content-card:hover,
+.contact-card:hover,
+.info-card:hover,
+.feature-card:hover {
+  border-color: rgba(165, 28, 48, 0.32) !important;
+  box-shadow: var(--shadow-medium);
+}
+
+.service-card h3,
+.programme-card h3,
+.area-card h3,
+.partnership-card h3,
+.delivery-card h3,
+.resource-card h3,
+.download-card h3,
+.content-card h3,
+.contact-card h3,
+.info-card h3,
+.feature-card h3 {
+  color: var(--color-text) !important;
+  font-family: var(--font-heading) !important;
+}
+
+.service-summary,
+.programme-description,
+.area-description,
+.partnership-card p,
+.delivery-card p,
+.resource-card p,
+.download-card p,
+.content-card p {
+  color: var(--color-text-soft) !important;
+}
+
+
+/* =========================================================
+   13. LISTS AND NUMBER MARKERS
+   ========================================================= */
+
+.service-header > span,
+.programme-number,
+.area-header > span,
+.partnership-card > span,
+.delivery-card > span,
+.process-list span,
+.stage-list span,
+.principle-list span,
+.methods-list span,
+.audience-list span,
+.custom-features span {
+  color: var(--color-primary) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+.service-card li::before,
+.programme-details li::before,
+.questions li::before {
+  background: var(--color-primary) !important;
+}
+
+.format-list li {
+  background: var(--color-primary-08) !important;
+  color: var(--color-primary-dark) !important;
+}
+
+
+/* =========================================================
+   14. LIGHT AND ALTERNATE SECTIONS
+   ========================================================= */
+
+.services-section,
+.programmes-section,
+.areas-section,
+.partnership-section,
+.delivery-section {
+  background: var(--color-background) !important;
+}
+
+.overview-section,
+.position-section,
+.methods-section,
+.audience-section,
+.custom-section,
+.ethics-section {
+  background: var(--color-surface) !important;
+}
+
+.audience-card,
+.custom-card,
+.process-card {
+  border: 1px solid var(--color-border);
+  background:
+    linear-gradient(
+      130deg,
+      var(--color-surface) 0%,
+      var(--color-background) 100%
+    ) !important;
+}
+
+
+/* =========================================================
+   15. DARK SECTIONS
+   ========================================================= */
+
+.approach-section,
+.process-section,
+.principles-section {
+  background:
+    linear-gradient(
+      120deg,
+      var(--color-primary-dark) 0%,
+      #56101a 100%
+    ) !important;
+}
+
+.approach-section h2,
+.approach-section h3,
+.process-section h2,
+.process-section h3,
+.principles-section h2,
+.principles-section h3 {
+  color: var(--color-white) !important;
+}
+
+.approach-section p,
+.process-section p,
+.principles-section p {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.approach-section .section-label,
+.process-section .section-label,
+.principles-section .section-label {
+  color: #f2c66d !important;
+}
+
+.process-list li,
+.stage-list li,
+.principle-list article {
+  border-color: var(--color-white-20) !important;
+}
+
+.light-button {
+  border-color: rgba(255, 255, 255, 0.48) !important;
+  background: transparent !important;
+  color: var(--color-white) !important;
+}
+
+.light-button:hover {
+  border-color: var(--color-white) !important;
+  background: var(--color-white) !important;
+  color: var(--color-primary-dark) !important;
+}
+
+
+/* =========================================================
+   16. CTA SECTIONS
+   ========================================================= */
+
+.cta-card {
+  background:
+    linear-gradient(
+      115deg,
+      var(--color-primary-dark) 0%,
+      var(--color-primary) 70%,
+      #b72e42 100%
+    ) !important;
+}
+
+.cta-card h2,
+.cta-card h3 {
+  color: var(--color-white) !important;
+}
+
+.cta-card p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.cta-card > a {
+  border: 1px solid var(--color-white) !important;
+  background: var(--color-white) !important;
+  color: var(--color-primary-dark) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+.cta-card > a:hover {
+  border-color: var(--color-gold) !important;
+  background: var(--color-gold) !important;
+  color: var(--color-text) !important;
+}
+
+
+/* =========================================================
+   17. HEADER OVERRIDES
+   ========================================================= */
+
+header,
+.site-header {
+  border-bottom-color: var(--color-border) !important;
+  background: rgba(247, 241, 227, 0.96) !important;
+  color: var(--color-text) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+header a,
+.site-header a,
+nav a {
+  color: var(--color-text) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+header a:hover,
+.site-header a:hover,
+nav a:hover,
+header a[aria-current="page"],
+.site-header a[aria-current="page"],
+nav a[aria-current="page"],
+.active {
+  color: var(--color-primary) !important;
+}
+
+.logo,
+.brand,
+.site-logo,
+.logo-name,
+.brand-name {
+  color: var(--color-text) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+.logo-mark,
+.brand-mark {
+  background: var(--color-primary) !important;
+  color: var(--color-white) !important;
+}
+
+.language-switch,
+.language-button {
+  border-color: var(--color-border) !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+}
+
+.language-switch:hover,
+.language-button:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+
+/* =========================================================
+   18. FOOTER OVERRIDES
+   ========================================================= */
+
+footer,
+.site-footer {
+  border-top-color: rgba(255, 255, 255, 0.14) !important;
+  background: var(--color-primary-dark) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+footer h2,
+footer h3,
+footer h4,
+footer strong,
+footer .footer-logo-name,
+.site-footer h2,
+.site-footer h3,
+.site-footer h4,
+.site-footer strong {
+  color: var(--color-white) !important;
+}
+
+footer p,
+footer li,
+footer dd,
+footer dt,
+footer small,
+.site-footer p,
+.site-footer li,
+.site-footer dd,
+.site-footer dt,
+.site-footer small {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+footer a,
+.site-footer a {
+  color: rgba(255, 255, 255, 0.84) !important;
+}
+
+footer a:hover,
+.site-footer a:hover {
+  color: #f2c66d !important;
+}
+
+footer .footer-logo-mark,
+.site-footer .footer-logo-mark {
+  background: var(--color-primary) !important;
+  color: var(--color-white) !important;
+}
+
+footer .footer-bottom,
+.site-footer .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+
+/* =========================================================
+   19. TABLES
+   ========================================================= */
+
+table {
   overflow: hidden;
-
-  color: #1f2933;
-  background-color: #faf7f0;
-
-  border: 1px solid #e4d7c5;
-  border-radius: 22px;
-
-  box-shadow:
-    0 8px 22px rgba(31, 41, 51, 0.055);
-
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    box-shadow 0.22s ease;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
 }
 
-.audience-pathway-card::before {
-  content: "";
-
-  position: absolute;
-  inset: 0 auto auto 0;
-
-  width: 100%;
-  height: 4px;
-
-  background-color: #a51c30;
-
-  transform: scaleX(0);
-  transform-origin: left center;
-
-  transition: transform 0.22s ease;
+th,
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
 }
 
-.audience-pathway-card:hover {
-  transform: translateY(-4px);
-
-  border-color: rgba(165, 28, 48, 0.42);
-
-  box-shadow:
-    0 15px 34px rgba(31, 41, 51, 0.09);
+th {
+  background: var(--color-primary-08);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
 }
 
-.audience-pathway-card:hover::before {
-  transform: scaleX(1);
+tr:last-child td {
+  border-bottom: 0;
 }
 
-.audience-pathway-number {
-  position: absolute;
-  top: 21px;
-  right: 22px;
 
-  color: rgba(196, 138, 44, 0.55);
+/* =========================================================
+   20. BADGES AND HIGHLIGHTS
+   ========================================================= */
 
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.1em;
-}
-
-.audience-pathway-icon {
-  display: grid;
-  place-items: center;
-
-  width: 58px;
-  height: 58px;
-  margin-bottom: 24px;
-
-  color: #315c6b;
-  background-color: rgba(49, 92, 107, 0.08);
-
-  border: 1px solid rgba(49, 92, 107, 0.18);
-  border-radius: 16px;
-}
-
-.audience-pathway-icon svg {
-  display: block;
-
-  width: 31px;
-  height: 31px;
-
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.audience-pathway-card h3 {
-  margin: 0 0 13px;
-
-  color: #1f2933;
-
-  font-size: 1.3rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.018em;
-}
-
-.audience-pathway-card p {
-  margin: 0 0 25px;
-
-  color: #1f2933;
-
-  font-size: 0.98rem;
-  line-height: 1.72;
-}
-
-.audience-pathway-link {
+.badge,
+.tag,
+.pill,
+.status-label {
   display: inline-flex;
+  min-height: 28px;
   align-items: center;
-  gap: 9px;
+  padding: 4px 11px;
+  border: 1px solid rgba(196, 138, 44, 0.35);
+  border-radius: var(--radius-pill);
+  background: rgba(196, 138, 44, 0.12);
+  color: #7b5416;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: var(--font-heading-weight);
+}
 
-  width: fit-content;
-  margin-top: auto;
 
-  color: #a51c30;
+/* =========================================================
+   21. SKIP LINK
+   ========================================================= */
 
-  font-size: 0.94rem;
-  font-weight: 700;
-  line-height: 1.4;
-
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
   text-decoration: none;
-  text-underline-offset: 4px;
-
-  transition:
-    color 0.2s ease,
-    gap 0.2s ease;
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-160%);
+  transition: transform var(--transition-fast);
 }
 
-.audience-pathway-link span {
-  font-size: 1.12rem;
-  line-height: 1;
-
-  transition: transform 0.2s ease;
+.skip-link:focus {
+  color: var(--color-white);
+  transform: translateY(0);
 }
 
-.audience-pathway-link:hover {
-  gap: 12px;
-  color: #7b1422;
+
+/* =========================================================
+   22. ACCESSIBILITY
+   ========================================================= */
+
+[hidden] {
+  display: none !important;
 }
 
-.audience-pathway-link:hover span {
-  transform: translateX(2px);
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
 }
 
-.audience-pathway-link:focus-visible {
-  outline: 3px solid rgba(49, 92, 107, 0.28);
-  outline-offset: 5px;
-  border-radius: 5px;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .audience-pathways {
-    padding: 68px 0 76px;
-  }
-
-  .audience-pathways-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .audience-pathway-card {
-    min-height: 330px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 720px) {
-  .audience-pathways {
-    padding: 52px 0 60px;
-  }
-
-  .audience-pathways-container {
-    width: calc(100% - 24px);
-  }
-
-  .audience-pathways-header {
-    margin-bottom: 28px;
-  }
-
-  .audience-pathways-header h2 {
-    font-size: clamp(1.8rem, 8vw, 2.4rem);
-  }
-
-  .audience-pathways-introduction {
-    margin-top: 14px;
-    font-size: 1rem;
-  }
-
-  .audience-pathways-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .audience-pathway-card {
-    min-height: 0;
-    padding: 23px 21px 22px;
-
-    border-radius: 18px;
-  }
-
-  .audience-pathway-icon {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 19px;
-
-    border-radius: 14px;
-  }
-
-  .audience-pathway-icon svg {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .audience-pathway-card,
-  .audience-pathway-card::before,
-  .audience-pathway-link,
-  .audience-pathway-link span {
-    transition: none;
-  }
-
-  .audience-pathway-card:hover,
-  .audience-pathway-link:hover span {
-    transform: none;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
-/* ===== IBRIDGE AUDIENCE PATHWAYS CSS END ===== */
+
+/* =========================================================
+   23. RESPONSIVE TYPOGRAPHY AND LAYOUT
+   ========================================================= */
+
+@media (max-width: 960px) {
+  :root {
+    --page-padding: 40px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 9vw, 4.7rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 6vw, 3.4rem);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-padding: var(--page-padding-mobile);
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    line-height: 1.72;
+  }
+
+  h1 {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 9vw, 3.1rem);
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
+
+  .container {
+    width: min(
+      var(--container-width),
+      calc(100% - var(--page-padding-mobile))
+    ) !important;
+  }
+
+  .page-hero {
+    padding-top: 82px !important;
+    padding-bottom: 74px !important;
+  }
+
+  .button,
+  .primary-button,
+  .secondary-button,
+  .hero-button,
+  .cta-button {
+    width: 100%;
+  }
+}
