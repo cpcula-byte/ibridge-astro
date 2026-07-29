@@ -1,0 +1,507 @@
+---
+interface Props {
+  locale?: "zh" | "en";
+}
+
+const { locale = "zh" } = Astro.props;
+
+const isEnglish = locale === "en";
+
+const content = isEnglish
+  ? {
+      eyebrow: "EXPLORE BY ROLE",
+      title: "Find the right starting point",
+      introduction:
+        "Choose the pathway that best reflects your role and explore relevant educational resources, programmes and professional support.",
+      sectionLabel: "Explore iBridge Education by role",
+      cards: [
+        {
+          number: "01",
+          title: "IB Teachers",
+          description:
+            "Explore teaching resources, curriculum planning, assessment approaches and classroom-ready educational materials.",
+          linkText: "Browse teaching resources",
+          href: "/en/resources/",
+          ariaLabel: "Browse educational resources for IB teachers",
+          icon: "teacher",
+        },
+        {
+          number: "02",
+          title: "IB Coordinators",
+          description:
+            "Strengthen curriculum coherence, MYP–DP alignment, assessment systems and collaborative planning across the school.",
+          linkText: "Explore programmes",
+          href: "/en/programmes/",
+          ariaLabel: "Explore programmes for IB coordinators",
+          icon: "coordinator",
+        },
+        {
+          number: "03",
+          title: "School Leaders",
+          description:
+            "Plan curriculum development, professional learning, educational research and long-term school improvement.",
+          linkText: "View professional services",
+          href: "/en/services/",
+          ariaLabel: "View professional services for school leaders",
+          icon: "school",
+        },
+        {
+          number: "04",
+          title: "Students and Parents",
+          description:
+            "Learn about academic writing, learning strategies, self-management, resilience and personalised educational support.",
+          linkText: "Discuss support options",
+          href: "/en/contact/",
+          ariaLabel:
+            "Contact iBridge Education about support for students and parents",
+          icon: "family",
+        },
+      ],
+    }
+  : {
+      eyebrow: "依身分探索",
+      title: "找到適合您的起點",
+      introduction:
+        "依照您的角色，快速前往相關的教育資源、課程方案與專業支援。",
+      sectionLabel: "依使用者身分探索 iBridge Education",
+      cards: [
+        {
+          number: "01",
+          title: "IB 教師",
+          description:
+            "探索教學資源、課程規劃、評量方法，以及可應用於課堂的教育材料。",
+          linkText: "瀏覽教學資源",
+          href: "/resources/",
+          ariaLabel: "瀏覽適合 IB 教師的教育資源",
+          icon: "teacher",
+        },
+        {
+          number: "02",
+          title: "IB 協調員",
+          description:
+            "強化課程一致性、MYP 與 DP 銜接、評量系統及全校共同規劃。",
+          linkText: "探索課程方案",
+          href: "/programmes/",
+          ariaLabel: "探索適合 IB 協調員的課程方案",
+          icon: "coordinator",
+        },
+        {
+          number: "03",
+          title: "學校領導者",
+          description:
+            "規劃課程發展、教師專業學習、教育研究與學校長期改進策略。",
+          linkText: "查看專業服務",
+          href: "/services/",
+          ariaLabel: "查看適合學校領導者的專業服務",
+          icon: "school",
+        },
+        {
+          number: "04",
+          title: "學生與家長",
+          description:
+            "了解學術寫作、學習策略、自我管理、心理韌性及個人化教育支援。",
+          linkText: "討論支援方式",
+          href: "/contact/",
+          ariaLabel: "聯絡 iBridge Education 了解學生與家長支援",
+          icon: "family",
+        },
+      ],
+    };
+
+const iconPaths = {
+  teacher: `
+    <path d="M7 10.5h13c3.3 0 6 2.7 6 6v21H13c-3.3 0-6-2.7-6-6v-21Z"/>
+    <path d="M41 10.5H28c-3.3 0-6 2.7-6 6v21h13c3.3 0 6-2.7 6-6v-21Z"/>
+    <path d="M24 16v22"/>
+  `,
+  coordinator: `
+    <circle cx="24" cy="11" r="5"/>
+    <circle cx="11" cy="33" r="5"/>
+    <circle cx="37" cy="33" r="5"/>
+    <path d="M24 16v8"/>
+    <path d="m16 29 6-5"/>
+    <path d="m32 29-6-5"/>
+    <path d="M16 33h16"/>
+  `,
+  school: `
+    <path d="M7 39h34"/>
+    <path d="M11 39V19h26v20"/>
+    <path d="M8 19 24 8l16 11"/>
+    <path d="M19 39V27h10v12"/>
+    <path d="M16 23h3"/>
+    <path d="M29 23h3"/>
+  `,
+  family: `
+    <circle cx="17" cy="15" r="6"/>
+    <circle cx="34" cy="18" r="5"/>
+    <path d="M6 40c0-8 4.9-13 11-13s11 5 11 13"/>
+    <path d="M27 30c1.8-2 4.2-3 7-3 5 0 9 4.5 9 11"/>
+  `,
+};
+---
+
+<section
+  class="audience-pathways"
+  aria-labelledby="audience-pathways-title"
+  aria-label={content.sectionLabel}
+>
+  <div class="audience-pathways__inner">
+    <header class="audience-pathways__header">
+      <p class="audience-pathways__eyebrow">
+        {content.eyebrow}
+      </p>
+
+      <h2
+        id="audience-pathways-title"
+        class="audience-pathways__title"
+      >
+        {content.title}
+      </h2>
+
+      <p class="audience-pathways__introduction">
+        {content.introduction}
+      </p>
+    </header>
+
+    <div class="audience-pathways__grid">
+      {
+        content.cards.map((card) => (
+          <article class="audience-card">
+            <span
+              class="audience-card__number"
+              aria-hidden="true"
+            >
+              {card.number}
+            </span>
+
+            <div
+              class="audience-card__icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 48 48"
+                focusable="false"
+                set:html={iconPaths[card.icon as keyof typeof iconPaths]}
+              />
+            </div>
+
+            <h3 class="audience-card__title">
+              {card.title}
+            </h3>
+
+            <p class="audience-card__description">
+              {card.description}
+            </p>
+
+            <a
+              class="audience-card__link"
+              href={card.href}
+              aria-label={card.ariaLabel}
+            >
+              <span>{card.linkText}</span>
+
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M4 10h11" />
+                <path d="m11 6 4 4-4 4" />
+              </svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-pathways {
+    width: 100%;
+    padding: clamp(4rem, 7vw, 6.25rem) 0;
+
+    color: #1f2933;
+    background-color: #f7f1e3;
+
+    border-top: 1px solid #e4d7c5;
+  }
+
+  .audience-pathways__inner {
+    width: min(calc(100% - 2rem), 1200px);
+    margin: 0 auto;
+  }
+
+  .audience-pathways__header {
+    max-width: 760px;
+    margin: 0 auto clamp(2rem, 4vw, 3rem);
+
+    text-align: center;
+  }
+
+  .audience-pathways__eyebrow {
+    margin: 0 0 0.75rem;
+
+    color: #a51c30;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .audience-pathways__title {
+    margin: 0;
+
+    color: #1f2933;
+
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  .audience-pathways__introduction {
+    max-width: 680px;
+    margin: 1rem auto 0;
+
+    color: #315c6b;
+
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.75;
+  }
+
+  .audience-pathways__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .audience-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 350px;
+    padding: 1.65rem 1.5rem 1.5rem;
+
+    overflow: hidden;
+
+    color: #1f2933;
+    background-color: #faf7f0;
+
+    border: 1px solid #e4d7c5;
+    border-radius: 1.35rem;
+
+    box-shadow:
+      0 8px 22px rgba(31, 41, 51, 0.055);
+
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .audience-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: #a51c30;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    transition: transform 180ms ease;
+  }
+
+  .audience-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(165, 28, 48, 0.34);
+
+    box-shadow:
+      0 15px 32px rgba(31, 41, 51, 0.09);
+  }
+
+  .audience-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .audience-card__number {
+    position: absolute;
+    top: 1.3rem;
+    right: 1.35rem;
+
+    color: #c48a2c;
+
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.1em;
+
+    opacity: 0.7;
+  }
+
+  .audience-card__icon {
+    display: grid;
+    place-items: center;
+
+    width: 3.6rem;
+    height: 3.6rem;
+    margin-bottom: 1.4rem;
+
+    color: #315c6b;
+    background-color: rgba(49, 92, 107, 0.08);
+
+    border: 1px solid rgba(49, 92, 107, 0.2);
+    border-radius: 1rem;
+  }
+
+  .audience-card__icon :global(svg) {
+    display: block;
+
+    width: 1.95rem;
+    height: 1.95rem;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .audience-card__title {
+    margin: 0 0 0.75rem;
+
+    color: #1f2933;
+
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.018em;
+  }
+
+  .audience-card__description {
+    margin: 0 0 1.5rem;
+
+    color: #1f2933;
+
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  .audience-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    width: fit-content;
+    margin-top: auto;
+
+    color: #a51c30;
+
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.4;
+
+    text-decoration: none;
+
+    transition:
+      color 160ms ease,
+      gap 160ms ease;
+  }
+
+  .audience-card__link svg {
+    width: 1.15rem;
+    height: 1.15rem;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition: transform 160ms ease;
+  }
+
+  .audience-card__link:hover {
+    gap: 0.75rem;
+    color: #7b1422;
+  }
+
+  .audience-card__link:hover svg {
+    transform: translateX(2px);
+  }
+
+  .audience-card__link:focus-visible {
+    outline: 3px solid #315c6b;
+    outline-offset: 5px;
+    border-radius: 0.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .audience-pathways__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .audience-card {
+      min-height: 315px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .audience-pathways {
+      padding: 3.5rem 0;
+    }
+
+    .audience-pathways__inner {
+      width: calc(100% - 1.5rem);
+    }
+
+    .audience-pathways__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .audience-pathways__header {
+      margin-bottom: 2rem;
+    }
+
+    .audience-card {
+      min-height: 0;
+      padding: 1.4rem 1.25rem 1.3rem;
+
+      border-radius: 1.1rem;
+    }
+
+    .audience-card__icon {
+      width: 3.25rem;
+      height: 3.25rem;
+      margin-bottom: 1.15rem;
+
+      border-radius: 0.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .audience-card,
+    .audience-card::before,
+    .audience-card__link,
+    .audience-card__link svg {
+      transition: none;
+    }
+
+    .audience-card:hover,
+    .audience-card__link:hover svg {
+      transform: none;
+    }
+  }
+</style>
