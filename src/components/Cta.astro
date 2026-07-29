@@ -1,0 +1,5 @@
+---
+interface Props { eyebrow: string; title: string; copy: string; label: string; href: string; }
+const { eyebrow, title, copy, label, href } = Astro.props;
+---
+<section class="cta-wrap"><div class="container cta"><div><p class="eyebrow eyebrow-light">{eyebrow}</p><h2>{title}</h2><p>{copy}</p></div><a class="button button-light" href={href}>{label}</a></div></section>

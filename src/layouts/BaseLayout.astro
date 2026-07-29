@@ -1,191 +1,114 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import SEO from "../components/SEO.astro";
-import StructuredData from "../components/StructuredData.astro";
 import "../styles/global.css";
 
-interface BreadcrumbItem {
-  name: string;
-  path: string;
-}
-
 interface Props {
-  title?: string;
-  description?: string;
-  locale?: "zh-tw" | "en";
+  title: string;
+  description: string;
+  locale?: "zh-Hant" | "en";
   zhPath?: string;
   enPath?: string;
-  image?: string;
-  noindex?: boolean;
-  type?: "website" | "article";
-  pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
-  publishedTime?: string;
-  modifiedTime?: string;
-  breadcrumbs?: BreadcrumbItem[];
 }
 
-const pathname = Astro.url.pathname;
-
-const pathnameIsEnglish =
-  pathname === "/en" ||
-  pathname === "/en/" ||
-  pathname.startsWith("/en/");
-
-const requestedLocale = Astro.props.locale;
-
-const isEnglish =
-  requestedLocale === "en" ||
-  (requestedLocale !== "zh-tw" && pathnameIsEnglish);
-
-const resolvedLocale: "zh-tw" | "en" =
-  isEnglish ? "en" : "zh-tw";
-
-const defaultTitle = "iBridge Education";
-
-const defaultDescription = isEnglish
-  ? "iBridge Education connects international education, educational research and practical innovation."
-  : "iBridge Education 連結國際教育、教育研究與實務創新，協助學校、教師與學生建立更深入且更具韌性的學習經驗。";
-
 const {
-  title = defaultTitle,
-  description = defaultDescription,
-  zhPath,
-  enPath,
-  image,
-  noindex = false,
-  type = "website",
-  pageType = "WebPage",
-  publishedTime,
-  modifiedTime,
-  breadcrumbs = [],
+  title,
+  description,
+  locale = "zh-Hant",
+  zhPath = "/",
+  enPath = "/en/",
 } = Astro.props;
 
-const htmlLanguage = isEnglish
-  ? "en"
-  : "zh-Hant";
+const isEn = locale === "en";
+const path = Astro.url.pathname;
+const siteName = "iBridge Education";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const canonical = new URL(path, Astro.site ?? "https://ibridge.info");
+const nav = isEn
+  ? [
+      ["Home", "/en/"], ["About", "/en/about/"], ["Services", "/en/services/"],
+      ["Programmes", "/en/programmes/"], ["Research", "/en/research/"],
+      ["Resources", "/en/resources/"], ["Contact", "/en/contact/"]
+    ]
+  : [
+      ["首頁", "/"], ["關於我們", "/about/"], ["服務", "/services/"],
+      ["課程方案", "/programmes/"], ["教育研究", "/research/"],
+      ["教育資源", "/resources/"], ["聯絡我們", "/contact/"]
+    ];
+const legal = isEn
+  ? [["Privacy", "/en/privacy/"], ["Terms", "/en/terms/"], ["Accessibility", "/en/accessibility/"]]
+  : [["隱私權政策", "/privacy/"], ["使用條款", "/terms/"], ["無障礙聲明", "/accessibility/"]];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: siteName,
+  url: "https://ibridge.info",
+  email: "hello@ibridge.info",
+  areaServed: ["Taiwan", "International"]
+};
 ---
-
 <!doctype html>
-
-<html lang={htmlLanguage}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-
-    <meta
-      name="color-scheme"
-      content="light"
-    />
-
-    <meta
-      name="format-detection"
-      content="telephone=no"
-    />
-
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
-    />
-
-    <link
-      rel="manifest"
-      href="/site.webmanifest"
-    />
-
-    <SEO
-      title={title}
-      description={description}
-      locale={resolvedLocale}
-      zhPath={zhPath}
-      enPath={enPath}
-      image={image}
-      noindex={noindex}
-      type={type}
-      publishedTime={publishedTime}
-      modifiedTime={modifiedTime}
-    />
-
-    {
-      !noindex && (
-        <StructuredData
-          title={title}
-          description={description}
-          locale={resolvedLocale}
-          image={image}
-          pageType={pageType}
-          breadcrumbs={breadcrumbs}
-        />
-      )
-    }
-
-    <slot name="head" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#7b1422" />
+    <meta name="color-scheme" content="light" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="zh-Hant" href={new URL(zhPath, Astro.site ?? "https://ibridge.info")} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, Astro.site ?? "https://ibridge.info")} />
+    <link rel="alternate" hreflang="x-default" href={new URL(zhPath, Astro.site ?? "https://ibridge.info")} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <title>{fullTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
   </head>
-
   <body>
-    <a
-      class="skip-link"
-      href="#main-content"
-    >
-      {
-        isEnglish
-          ? "Skip to main content"
-          : "跳至主要內容"
-      }
-    </a>
-
-    <Header locale={resolvedLocale} />
-
-    <main id="main-content">
-      <slot />
-    </main>
-
-    <Footer locale={resolvedLocale} />
+    <a class="skip-link" href="#main-content">{isEn ? "Skip to content" : "跳至主要內容"}</a>
+    <header class="site-header">
+      <div class="container navbar">
+        <a class="brand" href={isEn ? "/en/" : "/"} aria-label={isEn ? "iBridge Education home" : "iBridge Education 首頁"}>
+          <span class="brand-mark">iB</span><span>iBridge Education</span>
+        </a>
+        <nav id="site-navigation" class="nav-links" aria-label={isEn ? "Main navigation" : "主要導覽"}>
+          {nav.map(([label, href]) => <a href={href} aria-current={path === href ? "page" : undefined}>{label}</a>)}
+        </nav>
+        <div class="nav-actions">
+          <a class="lang-link" href={isEn ? zhPath : enPath} hreflang={isEn ? "zh-Hant" : "en"}>{isEn ? "繁中" : "EN"}</a>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label={isEn ? "Open menu" : "開啟選單"}>☰</button>
+        </div>
+      </div>
+    </header>
+    <main id="main-content"><slot /></main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h2>iBridge Education</h2>
+            <p>{isEn ? "Connecting international education, curriculum design, research and practical innovation for schools, educators and learners." : "連結國際教育、課程設計、教育研究與實務創新，為學校、教師與學習者提供專業支持。"}</p>
+          </div>
+          <div><h3>{isEn ? "Explore" : "探索網站"}</h3><ul class="footer-links">{nav.slice(0,4).map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></div>
+          <div><h3>{isEn ? "Resources" : "教育內容"}</h3><ul class="footer-links">{nav.slice(4,7).map(([label,href]) => <li><a href={href}>{label}</a></li>)}</ul></div>
+          <div><h3>{isEn ? "Contact" : "聯絡資訊"}</h3><p><a href="mailto:hello@ibridge.info">hello@ibridge.info</a><br />ibridge.info<br />{isEn ? "Taiwan and international partnerships" : "臺灣及國際合作"}</p></div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 iBridge Education. {isEn ? "All rights reserved." : "保留所有權利。"}</p>
+          <p>{legal.map(([label,href],i) => <><a href={href}>{label}</a>{i < legal.length - 1 ? " · " : ""}</>)}</p>
+        </div>
+      </div>
+    </footer>
+    <script is:inline>
+      const button = document.querySelector('.menu-button');
+      const nav = document.querySelector('.nav-links');
+      button?.addEventListener('click', () => {
+        const open = nav?.classList.toggle('open') ?? false;
+        button.setAttribute('aria-expanded', String(open));
+        document.body.classList.toggle('menu-open', open);
+      });
+      nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        nav.classList.remove('open'); button?.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
+      }));
+    </script>
   </body>
 </html>
-
-<style is:global>
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 96px;
-  }
-
-  body {
-    min-width: 320px;
-    margin: 0;
-    background: #ffffff;
-    color: #102f50;
-  }
-
-  main {
-    min-height: 60vh;
-  }
-
-  .skip-link {
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 9999;
-    padding: 12px 18px;
-    border: 0;
-    border-radius: 8px;
-    background: #ffffff;
-    color: #073b62;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 12px 32px rgba(7, 47, 76, 0.2);
-    transform: translateY(-160%);
-    transition: transform 160ms ease;
-  }
-
-  .skip-link:focus {
-    transform: translateY(0);
-    outline: 3px solid #0b6675;
-    outline-offset: 3px;
-  }
-</style>
