@@ -1,0 +1,489 @@
+---
+import {
+  categoryLabels,
+  resources,
+  type ResourceLanguage,
+} from "../data/resourceLibrary";
+
+interface Props {
+  lang?: "zh" | "en";
+}
+
+const { lang = "zh" } = Astro.props;
+const isEnglish = lang === "en";
+
+const text = isEnglish
+  ? {
+      eyebrow: "Educational resources",
+      title: "Find clear, usable and adaptable educational resources.",
+      intro:
+        "Search by programme, resource type, language and availability. Each resource displays its intended level, format, page count, update date and download status.",
+      searchLabel: "Search resources",
+      searchPlaceholder: "Search by title, subject, programme or keyword",
+      categoryLabel: "Programme or category",
+      allCategories: "All categories",
+      typeLabel: "Resource type",
+      allTypes: "All resource types",
+      languageLabel: "Language",
+      allLanguages: "All languages",
+      availabilityLabel: "Availability",
+      allAvailability: "All availability",
+      available: "Available now",
+      comingSoon: "Coming soon",
+      sortLabel: "Sort",
+      newest: "Newest first",
+      titleAZ: "Title A–Z",
+      categorySort: "Category",
+      clear: "Clear filters",
+      results: "resources shown",
+      oneResult: "resource shown",
+      noResultsTitle: "No matching resources",
+      noResultsText:
+        "Try removing one or more filters or using a broader search term.",
+      featured: "Featured",
+      level: "Level",
+      type: "Type",
+      language: "Language",
+      format: "Format",
+      pages: "Pages",
+      updated: "Updated",
+      size: "File size",
+      bilingual: "Bilingual",
+      chinese: "Traditional Chinese",
+      english: "English",
+      download: "Download resource",
+      unavailable: "Publishing progressively",
+      downloadTitle: "Confirm resource download",
+      downloadIntro:
+        "Review the file information before downloading.",
+      cancel: "Cancel",
+      confirm: "Download file",
+      close: "Close",
+      openFilters: "Filters",
+      publishingNoteTitle: "Publishing workflow",
+      publishingNote:
+        "Download buttons appear automatically when a file is marked as available and its download URL is added to the resource data file.",
+    }
+  : {
+      eyebrow: "教育資源",
+      title: "快速找到清楚、實用且可調整的教育資源。",
+      intro:
+        "可依課程、資源類型、語言及上線狀態搜尋與篩選。每項資源均顯示適用程度、格式、頁數、更新日期與下載狀態。",
+      searchLabel: "搜尋教育資源",
+      searchPlaceholder: "輸入標題、學科、課程或關鍵字",
+      categoryLabel: "課程或分類",
+      allCategories: "所有分類",
+      typeLabel: "資源類型",
+      allTypes: "所有資源類型",
+      languageLabel: "語言",
+      allLanguages: "所有語言",
+      availabilityLabel: "上線狀態",
+      allAvailability: "所有狀態",
+      available: "可立即下載",
+      comingSoon: "即將上線",
+      sortLabel: "排序方式",
+      newest: "最新更新",
+      titleAZ: "標題 A–Z",
+      categorySort: "依分類",
+      clear: "清除篩選",
+      results: "項資源",
+      oneResult: "項資源",
+      noResultsTitle: "找不到符合條件的資源",
+      noResultsText: "請移除部分篩選條件，或改用較廣泛的搜尋字詞。",
+      featured: "精選",
+      level: "適用程度",
+      type: "資源類型",
+      language: "語言",
+      format: "檔案格式",
+      pages: "頁數",
+      updated: "更新日期",
+      size: "檔案大小",
+      bilingual: "中英雙語",
+      chinese: "繁體中文",
+      english: "英文",
+      download: "下載資源",
+      unavailable: "資源陸續上線中",
+      downloadTitle: "確認下載資源",
+      downloadIntro: "下載前請確認檔案資訊。",
+      cancel: "取消",
+      confirm: "確認下載",
+      close: "關閉",
+      openFilters: "篩選條件",
+      publishingNoteTitle: "資源上線流程",
+      publishingNote:
+        "當資源資料中的狀態設為 available，並加入下載網址後，下載按鈕會自動啟用。",
+    };
+
+const uniqueResourceTypes = Array.from(
+  new Map(
+    resources.map((item) => [
+      item.resourceTypeEn,
+      {
+        value: item.resourceTypeEn,
+        label: isEnglish ? item.resourceTypeEn : item.resourceTypeZh,
+      },
+    ]),
+  ).values(),
+);
+
+const languageLabel = (language: ResourceLanguage) => {
+  if (language === "bilingual") return text.bilingual;
+  if (language === "zh") return text.chinese;
+  return text.english;
+};
+
+const formattedDate = (date: string) =>
+  new Intl.DateTimeFormat(isEnglish ? "en-GB" : "zh-TW", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(`${date}T00:00:00`));
+---
+
+<main class="resource-page" data-resource-library data-lang={lang}>
+  <a class="skip-link" href="#resource-results">
+    {isEnglish ? "Skip to resource results" : "跳至資源結果"}
+  </a>
+
+  <section class="resource-hero" aria-labelledby="resource-page-title">
+    <div class="resource-container resource-hero__inner">
+      <p class="resource-eyebrow">{text.eyebrow}</p>
+      <h1 id="resource-page-title">{text.title}</h1>
+      <p class="resource-lead">{text.intro}</p>
+    </div>
+  </section>
+
+  <section class="resource-search-section" aria-labelledby="resource-search-title">
+    <div class="resource-container">
+      <h2 id="resource-search-title" class="sr-only">
+        {isEnglish ? "Search and filter educational resources" : "搜尋與篩選教育資源"}
+      </h2>
+
+      <form class="resource-filter-panel" data-resource-filter-form>
+        <div class="resource-search-field">
+          <label for={`resource-search-${lang}`}>{text.searchLabel}</label>
+          <div class="resource-search-control">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"></path>
+            </svg>
+            <input
+              id={`resource-search-${lang}`}
+              type="search"
+              name="query"
+              autocomplete="off"
+              placeholder={text.searchPlaceholder}
+              data-resource-search
+            />
+          </div>
+        </div>
+
+        <details class="resource-mobile-filters" data-mobile-filter-details>
+          <summary>
+            <span>{text.openFilters}</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </summary>
+
+          <div class="resource-filter-grid">
+            <div class="resource-field">
+              <label for={`resource-category-${lang}`}>{text.categoryLabel}</label>
+              <select
+                id={`resource-category-${lang}`}
+                name="category"
+                data-resource-filter="category"
+              >
+                <option value="">{text.allCategories}</option>
+                {Object.entries(categoryLabels).map(([value, labels]) => (
+                  <option value={value}>
+                    {isEnglish ? labels.en : labels.zh}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div class="resource-field">
+              <label for={`resource-type-${lang}`}>{text.typeLabel}</label>
+              <select
+                id={`resource-type-${lang}`}
+                name="type"
+                data-resource-filter="type"
+              >
+                <option value="">{text.allTypes}</option>
+                {uniqueResourceTypes.map((item) => (
+                  <option value={item.value}>{item.label}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="resource-field">
+              <label for={`resource-language-${lang}`}>{text.languageLabel}</label>
+              <select
+                id={`resource-language-${lang}`}
+                name="language"
+                data-resource-filter="language"
+              >
+                <option value="">{text.allLanguages}</option>
+                <option value="bilingual">{text.bilingual}</option>
+                <option value="zh">{text.chinese}</option>
+                <option value="en">{text.english}</option>
+              </select>
+            </div>
+
+            <div class="resource-field">
+              <label for={`resource-status-${lang}`}>{text.availabilityLabel}</label>
+              <select
+                id={`resource-status-${lang}`}
+                name="status"
+                data-resource-filter="status"
+              >
+                <option value="">{text.allAvailability}</option>
+                <option value="available">{text.available}</option>
+                <option value="coming-soon">{text.comingSoon}</option>
+              </select>
+            </div>
+
+            <div class="resource-field">
+              <label for={`resource-sort-${lang}`}>{text.sortLabel}</label>
+              <select id={`resource-sort-${lang}`} name="sort" data-resource-sort>
+                <option value="newest">{text.newest}</option>
+                <option value="title">{text.titleAZ}</option>
+                <option value="category">{text.categorySort}</option>
+              </select>
+            </div>
+          </div>
+        </details>
+
+        <div class="resource-filter-actions">
+          <p
+            class="resource-result-count"
+            aria-live="polite"
+            aria-atomic="true"
+            data-resource-count
+          >
+            {resources.length} {resources.length === 1 ? text.oneResult : text.results}
+          </p>
+
+          <button type="reset" class="resource-clear-button" data-clear-filters>
+            {text.clear}
+          </button>
+        </div>
+      </form>
+
+      <div class="resource-publishing-note">
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M12 8v5m0 3h.01M10.3 3.7 2.6 17a2 2 0 0 0 1.73 3h15.34a2 2 0 0 0 1.73-3L13.7 3.7a2 2 0 0 0-3.4 0Z"></path>
+        </svg>
+        <div>
+          <h2>{text.publishingNoteTitle}</h2>
+          <p>{text.publishingNote}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="resource-results"
+    class="resource-results-section"
+    aria-labelledby="resource-results-title"
+    tabindex="-1"
+  >
+    <div class="resource-container">
+      <h2 id="resource-results-title" class="sr-only">
+        {isEnglish ? "Resource results" : "教育資源搜尋結果"}
+      </h2>
+
+      <div class="resource-grid" data-resource-grid>
+        {resources.map((resource) => {
+          const title = isEnglish ? resource.titleEn : resource.titleZh;
+          const summary = isEnglish ? resource.summaryEn : resource.summaryZh;
+          const level = isEnglish ? resource.levelEn : resource.levelZh;
+          const type = isEnglish
+            ? resource.resourceTypeEn
+            : resource.resourceTypeZh;
+          const category =
+            categoryLabels[resource.category][isEnglish ? "en" : "zh"];
+          const fileName = resource.downloadUrl
+            ? resource.downloadUrl.split("/").pop()
+            : "";
+
+          return (
+            <article
+              class="resource-card"
+              data-resource-card
+              data-category={resource.category}
+              data-type={resource.resourceTypeEn}
+              data-language={resource.language}
+              data-status={resource.status}
+              data-updated={resource.updated}
+              data-title={title}
+              data-search={[
+                resource.titleZh,
+                resource.titleEn,
+                resource.summaryZh,
+                resource.summaryEn,
+                resource.subject,
+                resource.category,
+                resource.resourceTypeZh,
+                resource.resourceTypeEn,
+                resource.levelZh,
+                resource.levelEn,
+              ].join(" ")}
+            >
+              <div class="resource-card__topline">
+                <span class="resource-category-badge">{resource.category}</span>
+                {resource.featured && (
+                  <span class="resource-featured-badge">{text.featured}</span>
+                )}
+              </div>
+
+              <p class="resource-card__category">{category}</p>
+              <h3>{title}</h3>
+              <p class="resource-card__summary">{summary}</p>
+
+              <dl class="resource-metadata">
+                <div>
+                  <dt>{text.level}</dt>
+                  <dd>{level}</dd>
+                </div>
+                <div>
+                  <dt>{text.type}</dt>
+                  <dd>{type}</dd>
+                </div>
+                <div>
+                  <dt>{text.language}</dt>
+                  <dd>{languageLabel(resource.language)}</dd>
+                </div>
+                <div>
+                  <dt>{text.format}</dt>
+                  <dd>{resource.format}</dd>
+                </div>
+                <div>
+                  <dt>{text.pages}</dt>
+                  <dd>{resource.pages ?? "—"}</dd>
+                </div>
+                <div>
+                  <dt>{text.updated}</dt>
+                  <dd>
+                    <time datetime={resource.updated}>
+                      {formattedDate(resource.updated)}
+                    </time>
+                  </dd>
+                </div>
+                <div>
+                  <dt>{text.size}</dt>
+                  <dd>{resource.fileSize}</dd>
+                </div>
+              </dl>
+
+              <div class="resource-card__footer">
+                {resource.status === "available" && resource.downloadUrl ? (
+                  <button
+                    type="button"
+                    class="resource-download-button"
+                    data-open-download
+                    data-download-title={title}
+                    data-download-category={category}
+                    data-download-format={resource.format}
+                    data-download-pages={resource.pages ?? "—"}
+                    data-download-size={resource.fileSize}
+                    data-download-updated={formattedDate(resource.updated)}
+                    data-download-url={resource.downloadUrl}
+                    data-download-filename={fileName}
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                      <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path>
+                    </svg>
+                    {text.download}
+                  </button>
+                ) : (
+                  <span class="resource-coming-soon" aria-disabled="true">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                      <path d="M12 8v4l3 2m6-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                    </svg>
+                    {text.unavailable}
+                  </span>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div class="resource-empty-state" data-resource-empty hidden>
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"></path>
+        </svg>
+        <h3>{text.noResultsTitle}</h3>
+        <p>{text.noResultsText}</p>
+        <button type="button" class="resource-clear-button" data-empty-clear>
+          {text.clear}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="resource-download-dialog" data-download-dialog>
+    <div class="resource-dialog__header">
+      <div>
+        <p class="resource-eyebrow">{text.download}</p>
+        <h2 data-dialog-title>{text.downloadTitle}</h2>
+      </div>
+      <button
+        type="button"
+        class="resource-dialog__close"
+        aria-label={text.close}
+        data-close-download
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <p>{text.downloadIntro}</p>
+
+    <dl class="resource-dialog__metadata">
+      <div>
+        <dt>{text.categoryLabel}</dt>
+        <dd data-dialog-category>—</dd>
+      </div>
+      <div>
+        <dt>{text.format}</dt>
+        <dd data-dialog-format>—</dd>
+      </div>
+      <div>
+        <dt>{text.pages}</dt>
+        <dd data-dialog-pages>—</dd>
+      </div>
+      <div>
+        <dt>{text.size}</dt>
+        <dd data-dialog-size>—</dd>
+      </div>
+      <div>
+        <dt>{text.updated}</dt>
+        <dd data-dialog-updated>—</dd>
+      </div>
+    </dl>
+
+    <div class="resource-dialog__actions">
+      <button type="button" class="resource-dialog__cancel" data-close-download>
+        {text.cancel}
+      </button>
+      <a
+        class="resource-dialog__confirm"
+        href="#"
+        data-confirm-download
+        download
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path>
+        </svg>
+        {text.confirm}
+      </a>
+    </div>
+  </dialog>
+</main>
+
+<link rel="stylesheet" href="/styles/ibridge-resource-library.css" />
+<script is:inline src="/scripts/resource-library.js"></script>

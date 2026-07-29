@@ -1,0 +1,189 @@
+:root {
+  --site-nav-navy: #082a4a;
+  --site-nav-dark: #041f38;
+  --site-nav-teal: #004f5c;
+  --site-nav-line: #b8c6d2;
+  --site-nav-focus: #b45309;
+}
+
+.site-skip-link {
+  position: fixed;
+  z-index: 100000;
+  top: 12px;
+  left: 12px;
+  min-height: 48px;
+  padding: 12px 18px;
+  color: #fff !important;
+  background: var(--site-nav-dark);
+  border-radius: 10px;
+  transform: translateY(-170%);
+  transition: transform 160ms ease;
+}
+
+.site-skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-menu-toggle {
+  width: 48px !important;
+  min-width: 48px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  color: var(--site-nav-navy) !important;
+  background: #fff !important;
+  border: 1.5px solid #657d90 !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+}
+
+.site-menu-toggle:hover {
+  color: #fff !important;
+  background: var(--site-nav-teal) !important;
+  border-color: var(--site-nav-teal) !important;
+}
+
+.site-menu-overlay {
+  position: fixed;
+  z-index: 9980;
+  inset: 0;
+  background: rgba(4, 31, 56, 0.68);
+  opacity: 0;
+  backdrop-filter: blur(2px);
+  transition: opacity 180ms ease;
+}
+
+.site-menu-overlay.is-visible {
+  opacity: 1;
+}
+
+.site-menu-open {
+  overflow: hidden;
+}
+
+:is(
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  summary,
+  [tabindex]
+):focus-visible {
+  outline: 3px solid var(--site-nav-focus) !important;
+  outline-offset: 3px !important;
+}
+
+:is(
+  .button,
+  .btn,
+  [class*="button"],
+  [class*="btn"],
+  input[type="submit"],
+  input[type="button"]
+) {
+  min-height: 48px;
+}
+
+@media (min-width: 901px) {
+  .site-menu-toggle {
+    display: none !important;
+  }
+
+  .site-menu-overlay {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-menu-toggle {
+    display: inline-flex !important;
+    position: relative;
+    z-index: 10020;
+  }
+
+  .site-primary-navigation {
+    position: fixed !important;
+    z-index: 10010 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    width: min(88vw, 390px) !important;
+    max-width: 100% !important;
+    height: 100dvh !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 86px 22px 30px !important;
+    overflow-y: auto !important;
+    color: var(--site-nav-navy) !important;
+    background: #fff !important;
+    border-left: 1px solid var(--site-nav-line) !important;
+    box-shadow: -24px 0 60px rgba(4, 31, 56, 0.22) !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: translateX(102%) !important;
+    transition:
+      transform 200ms ease,
+      opacity 180ms ease,
+      visibility 200ms ease !important;
+  }
+
+  .site-primary-navigation.is-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  .site-primary-navigation :is(ul, ol) {
+    display: flex !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .site-primary-navigation li {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .site-primary-navigation a {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    align-items: center !important;
+    padding: 12px 14px !important;
+    color: var(--site-nav-navy) !important;
+    background: transparent !important;
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+  }
+
+  .site-primary-navigation a:hover,
+  .site-primary-navigation a[aria-current="page"],
+  .site-primary-navigation a.active {
+    color: #fff !important;
+    background: var(--site-nav-teal) !important;
+  }
+
+  header.menu-is-open {
+    z-index: 10015;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-skip-link,
+  .site-menu-overlay,
+  .site-primary-navigation {
+    transition: none !important;
+  }
+}
