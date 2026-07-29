@@ -31,3 +31,5 @@ responsive-audit/
 
 # Interaction audit output
 interaction-audit/
+.ibridge-backups/
+*.backup-*
