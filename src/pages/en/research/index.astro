@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CurriculumHub from "../../../components/CurriculumHub.astro";
+import "../../../styles/curriculum-hub.css";
+---
+
+<BaseLayout
+  title="Educational Research"
+  description="Educational research strands, questions and improvement processes connected to MYP, DP, the DP Core, academic writing and international tests."
+  locale="en"
+  zhPath="/research/"
+  enPath="/en/research/"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "Home", path: "/en/" },
+    { name: "Educational Research", path: "/en/research/" },
+  ]}
+>
+  <CurriculumHub lang="en" mode="research" />
+</BaseLayout>
+

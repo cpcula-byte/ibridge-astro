@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CurriculumHub from "../../components/CurriculumHub.astro";
+import "../../styles/curriculum-hub.css";
+---
+
+<BaseLayout
+  title="教育資源"
+  description="依 MYP、DP、DP 核心、英文寫作、IELTS、SAT 與 TOEFL 分類搜尋 iBridge Education 教育資源。"
+  locale="zh-tw"
+  zhPath="/resources/"
+  enPath="/en/resources/"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "首頁", path: "/" },
+    { name: "教育資源", path: "/resources/" },
+  ]}
+>
+  <CurriculumHub lang="zh" mode="resources" />
+</BaseLayout>
+

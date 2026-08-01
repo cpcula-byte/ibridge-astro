@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CurriculumHub from "../../../components/CurriculumHub.astro";
+import "../../../styles/curriculum-hub.css";
+---
+
+<BaseLayout
+  title="Educational Resources"
+  description="Search iBridge Education resources by MYP, DP, the DP Core, English writing, IELTS, SAT and TOEFL."
+  locale="en"
+  zhPath="/resources/"
+  enPath="/en/resources/"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "Home", path: "/en/" },
+    { name: "Educational Resources", path: "/en/resources/" },
+  ]}
+>
+  <CurriculumHub lang="en" mode="resources" />
+</BaseLayout>
+

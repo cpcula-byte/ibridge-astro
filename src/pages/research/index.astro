@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CurriculumHub from "../../components/CurriculumHub.astro";
+import "../../styles/curriculum-hub.css";
+---
+
+<BaseLayout
+  title="教育研究"
+  description="連結 MYP、DP、DP 核心、學術寫作與國際檢定課程的教育研究方向、研究問題與改善流程。"
+  locale="zh-tw"
+  zhPath="/research/"
+  enPath="/en/research/"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "首頁", path: "/" },
+    { name: "教育研究", path: "/research/" },
+  ]}
+>
+  <CurriculumHub lang="zh" mode="research" />
+</BaseLayout>
+

@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CurriculumHub from "../../components/CurriculumHub.astro";
+import "../../styles/curriculum-hub.css";
+---
+
+<BaseLayout
+  title="課程方案"
+  description="iBridge Education 的 MYP、DP、DP 核心、英文寫作、IELTS、SAT 與 TOEFL 課程方案。"
+  locale="zh-tw"
+  zhPath="/programmes/"
+  enPath="/en/programmes/"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "首頁", path: "/" },
+    { name: "課程方案", path: "/programmes/" },
+  ]}
+>
+  <CurriculumHub lang="zh" mode="programmes" />
+</BaseLayout>
+

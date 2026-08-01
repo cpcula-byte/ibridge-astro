@@ -1,0 +1,518 @@
+---
+import {
+  courseFamilies,
+  courseTracks,
+  getTrack,
+  researchStrands,
+  type CatalogueMode,
+  type SiteLanguage,
+} from "../data/courseCatalog";
+
+interface Props {
+  lang?: SiteLanguage;
+  mode: CatalogueMode;
+}
+
+const { lang = "zh", mode } = Astro.props;
+const isEnglish = lang === "en";
+const text = (zh: string, en: string) => (isEnglish ? en : zh);
+
+const programmeCopy = {
+  eyebrow: text("課程方案", "Programmes"),
+  title: text(
+    "從 MYP、DP 到國際檢定，建立清楚且可持續的學習路徑。",
+    "Build clear, sustainable learning pathways from MYP and DP to international examinations.",
+  ),
+  intro: text(
+    "課程依學生年級、能力、目標與可用時間調整。每一項方案都連結內容知識、技能進程、評量證據與後續改善。",
+    "Each programme is adapted to learner stage, current performance, goals and available time. Content, skills progression, assessment evidence and improvement are planned together.",
+  ),
+  sectionEyebrow: text("完整課程目錄", "Complete programme catalogue"),
+  sectionTitle: text(
+    "四大課程群組，十七條明確學習路徑。",
+    "Four programme families and seventeen clearly defined pathways.",
+  ),
+  focus: text("學習重點", "Learning focus"),
+  outcomes: text("預期成果", "Expected outcomes"),
+  modelEyebrow: text("實施方式", "Delivery models"),
+  modelTitle: text(
+    "依學生、教師或學校需求調整合作深度。",
+    "Adapt the depth of support to learners, educators or schools.",
+  ),
+};
+
+const researchCopy = {
+  eyebrow: text("教育研究", "Educational Research"),
+  title: text(
+    "以課程、學習證據與評量資料支持持續改進。",
+    "Use curriculum, learning evidence and assessment data to support continuous improvement.",
+  ),
+  intro: text(
+    "研究方向直接對應目前提供的 MYP、DP、DP 核心、學術寫作與國際檢定課程，不另設與課程無關的研究類別。",
+    "Research strands correspond directly to the MYP, DP, DP Core, academic-writing and international-test programmes currently offered.",
+  ),
+  sectionEyebrow: text("研究分類", "Research strands"),
+  sectionTitle: text(
+    "六個可直接連結教學與課程改善的研究方向。",
+    "Six research strands directly connected to teaching and curriculum improvement.",
+  ),
+  questions: text("核心研究問題", "Core research questions"),
+  related: text("相關課程", "Related programmes"),
+  processEyebrow: text("研究流程", "Research process"),
+  processTitle: text(
+    "從問題界定到可執行的改進建議。",
+    "From a clearly defined problem to actionable improvement.",
+  ),
+};
+
+const resourceCopy = {
+  eyebrow: text("教育資源", "Educational Resources"),
+  title: text(
+    "依課程群組、學科與學習階段整理教材。",
+    "Organise materials by programme family, subject and learning stage.",
+  ),
+  intro: text(
+    "資源目錄完整對應目前提供的十七條課程路徑。尚未正式上架的教材會清楚標示，不建立無效下載連結。",
+    "The directory mirrors all seventeen programme pathways. Materials not yet published are clearly identified, with no inactive download links.",
+  ),
+  searchLabel: text("搜尋課程或資源", "Search programmes or resources"),
+  searchPlaceholder: text(
+    "例如：MYP 數學、TOK、IELTS、寫作",
+    "For example: MYP Mathematics, TOK, IELTS, writing",
+  ),
+  familyLabel: text("課程群組", "Programme family"),
+  familyAll: text("全部群組", "All families"),
+  subjectLabel: text("學科或類型", "Subject or type"),
+  subjectAll: text("全部學科", "All subjects"),
+  clear: text("清除篩選", "Clear filters"),
+  results: text("項資源分類", "resource categories"),
+  resourceTypes: text("規劃中的資源", "Planned resources"),
+  status: text("分類已建立・資源分階段上線", "Category established · resources published progressively"),
+  noResultsTitle: text("找不到符合條件的分類", "No matching category"),
+  noResultsText: text(
+    "請調整搜尋文字或清除篩選條件。",
+    "Change the search terms or clear the filters.",
+  ),
+};
+
+const deliveryModels = [
+  {
+    number: "01",
+    titleZh: "個別課程與學習診斷",
+    titleEn: "Individual Tuition and Learning Diagnosis",
+    descriptionZh:
+      "先確認學生目前能力、目標與主要困難，再建立可追蹤的課程進度與作業回饋。",
+    descriptionEn:
+      "Identify current performance, goals and priority needs before building a trackable learning and feedback plan.",
+  },
+  {
+    number: "02",
+    titleZh: "小組課程與考試準備",
+    titleEn: "Small-group Courses and Test Preparation",
+    descriptionZh:
+      "以共同目標、分層任務、模擬評量與針對性回饋支持穩定進步。",
+    descriptionEn:
+      "Use shared goals, differentiated tasks, mock assessment and targeted feedback to support consistent progress.",
+  },
+  {
+    number: "03",
+    titleZh: "學校課程規劃與垂直銜接",
+    titleEn: "School Curriculum Planning and Vertical Alignment",
+    descriptionZh:
+      "建立年級進程、單元架構、共同評量、教師資源與 MYP 至 DP 的銜接。",
+    descriptionEn:
+      "Develop year-level progression, unit architecture, common assessment, educator resources and MYP-to-DP alignment.",
+  },
+  {
+    number: "04",
+    titleZh: "教材開發與專業學習",
+    titleEn: "Resource Development and Professional Learning",
+    descriptionZh:
+      "依課程需求共同開發教材、評量工具、教師指南與實施工作坊。",
+    descriptionEn:
+      "Co-develop teaching materials, assessment tools, educator guidance and implementation workshops.",
+  },
+];
+
+const researchProcess = [
+  {
+    number: "01",
+    titleZh: "界定問題與成功標準",
+    titleEn: "Define the Problem and Success Criteria",
+    descriptionZh: "確認學習者、課程脈絡、現有證據與預期改變。",
+    descriptionEn: "Clarify learners, curriculum context, existing evidence and intended change.",
+  },
+  {
+    number: "02",
+    titleZh: "選擇適切資料與方法",
+    titleEn: "Select Appropriate Evidence and Methods",
+    descriptionZh: "依問題選擇量化、質性、文件分析或混合方法。",
+    descriptionEn: "Choose quantitative, qualitative, document-analysis or mixed methods according to the question.",
+  },
+  {
+    number: "03",
+    titleZh: "分析學習與評量證據",
+    titleEn: "Analyse Learning and Assessment Evidence",
+    descriptionZh: "辨識表現模式、實施限制、差異與可能解釋。",
+    descriptionEn: "Identify performance patterns, implementation constraints, differences and plausible explanations.",
+  },
+  {
+    number: "04",
+    titleZh: "轉化為課程改善",
+    titleEn: "Translate Findings into Curriculum Improvement",
+    descriptionZh: "形成可執行建議、修訂教材並安排後續評估。",
+    descriptionEn: "Develop actionable recommendations, revise materials and plan follow-up evaluation.",
+  },
+];
+
+const subjectOptions = [
+  { value: "Mathematics", zh: "數學", en: "Mathematics" },
+  { value: "English", zh: "英語與寫作", en: "English and Writing" },
+  { value: "Biology", zh: "生物", en: "Biology" },
+  { value: "Psychology", zh: "心理學", en: "Psychology" },
+  { value: "DP Core", zh: "DP 核心", en: "DP Core" },
+  { value: "Examinations", zh: "國際檢定", en: "Examinations" },
+];
+---
+
+<div
+  class={`curriculum-hub curriculum-hub--${mode}`}
+  data-resource-directory={mode === "resources" ? "true" : undefined}
+  data-language={lang}
+>
+  <section class="curriculum-hero" aria-labelledby={`${mode}-page-title`}>
+    <div class="curriculum-container curriculum-hero__inner">
+      <p class="curriculum-eyebrow">
+        {mode === "programmes"
+          ? programmeCopy.eyebrow
+          : mode === "research"
+            ? researchCopy.eyebrow
+            : resourceCopy.eyebrow}
+      </p>
+      <h1 id={`${mode}-page-title`}>
+        {mode === "programmes"
+          ? programmeCopy.title
+          : mode === "research"
+            ? researchCopy.title
+            : resourceCopy.title}
+      </h1>
+      <p class="curriculum-hero__intro">
+        {mode === "programmes"
+          ? programmeCopy.intro
+          : mode === "research"
+            ? researchCopy.intro
+            : resourceCopy.intro}
+      </p>
+
+      <div class="curriculum-stat-grid" aria-label={text("課程摘要", "Programme summary")}>
+        <div class="curriculum-stat">
+          <strong>{courseFamilies.length}</strong>
+          <span>{text("課程群組", "programme families")}</span>
+        </div>
+        <div class="curriculum-stat">
+          <strong>{courseTracks.length}</strong>
+          <span>{text("明確課程路徑", "defined pathways")}</span>
+        </div>
+        <div class="curriculum-stat">
+          <strong>2</strong>
+          <span>{text("網站語言", "site languages")}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    mode === "programmes" && (
+      <>
+        <section class="curriculum-section" aria-labelledby="programme-catalogue-title">
+          <div class="curriculum-container">
+            <header class="curriculum-section-heading">
+              <p class="curriculum-eyebrow">{programmeCopy.sectionEyebrow}</p>
+              <h2 id="programme-catalogue-title">{programmeCopy.sectionTitle}</h2>
+            </header>
+
+            <nav class="curriculum-anchor-nav" aria-label={text("課程群組導覽", "Programme-family navigation")}>
+              {courseFamilies.map((family) => (
+                <a href={`#${family.id}`}>
+                  {text(family.titleZh, family.titleEn)}
+                </a>
+              ))}
+            </nav>
+
+            <div class="curriculum-family-list">
+              {courseFamilies.map((family) => {
+                const tracks = courseTracks.filter((track) => track.family === family.id);
+
+                return (
+                  <section class="curriculum-family" id={family.id} aria-labelledby={`${family.id}-title`}>
+                    <div class="curriculum-family__heading">
+                      <p class="curriculum-family__count">
+                        {String(courseFamilies.indexOf(family) + 1).padStart(2, "0")}
+                      </p>
+                      <div>
+                        <h3 id={`${family.id}-title`}>
+                          {text(family.titleZh, family.titleEn)}
+                        </h3>
+                        <p>{text(family.descriptionZh, family.descriptionEn)}</p>
+                      </div>
+                    </div>
+
+                    <div class="curriculum-card-grid">
+                      {tracks.map((track) => (
+                        <article class="curriculum-card">
+                          <div class="curriculum-card__topline">
+                            <span class="curriculum-code">{track.code}</span>
+                            <span class="curriculum-level">
+                              {text(track.levelZh, track.levelEn)}
+                            </span>
+                          </div>
+                          <h4>{text(track.titleZh, track.titleEn)}</h4>
+                          <p class="curriculum-card__description">
+                            {text(track.descriptionZh, track.descriptionEn)}
+                          </p>
+
+                          <div class="curriculum-card__details">
+                            <div>
+                              <h5>{programmeCopy.focus}</h5>
+                              <ul>
+                                {(isEnglish ? track.focusEn : track.focusZh).map((item) => (
+                                  <li>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <h5>{programmeCopy.outcomes}</h5>
+                              <ul>
+                                {(isEnglish ? track.outcomesEn : track.outcomesZh).map((item) => (
+                                  <li>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section class="curriculum-section curriculum-section--muted" aria-labelledby="delivery-model-title">
+          <div class="curriculum-container">
+            <header class="curriculum-section-heading">
+              <p class="curriculum-eyebrow">{programmeCopy.modelEyebrow}</p>
+              <h2 id="delivery-model-title">{programmeCopy.modelTitle}</h2>
+            </header>
+
+            <div class="curriculum-process-grid">
+              {deliveryModels.map((model) => (
+                <article class="curriculum-process-card">
+                  <span>{model.number}</span>
+                  <h3>{text(model.titleZh, model.titleEn)}</h3>
+                  <p>{text(model.descriptionZh, model.descriptionEn)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  {
+    mode === "research" && (
+      <>
+        <section class="curriculum-section" aria-labelledby="research-strands-title">
+          <div class="curriculum-container">
+            <header class="curriculum-section-heading">
+              <p class="curriculum-eyebrow">{researchCopy.sectionEyebrow}</p>
+              <h2 id="research-strands-title">{researchCopy.sectionTitle}</h2>
+            </header>
+
+            <div class="research-strand-list">
+              {researchStrands.map((strand) => (
+                <article class="research-strand">
+                  <div class="research-strand__number" aria-hidden="true">
+                    {strand.number}
+                  </div>
+                  <div class="research-strand__body">
+                    <h3>{text(strand.titleZh, strand.titleEn)}</h3>
+                    <p class="research-strand__description">
+                      {text(strand.descriptionZh, strand.descriptionEn)}
+                    </p>
+
+                    <div class="research-strand__columns">
+                      <div>
+                        <h4>{researchCopy.questions}</h4>
+                        <ul>
+                          {(isEnglish ? strand.questionsEn : strand.questionsZh).map((question) => (
+                            <li>{question}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4>{researchCopy.related}</h4>
+                        <div class="curriculum-tag-list">
+                          {strand.trackIds.map((trackId) => {
+                            const track = getTrack(trackId);
+                            return track ? (
+                              <span>{text(track.titleZh, track.titleEn)}</span>
+                            ) : null;
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="curriculum-section curriculum-section--muted" aria-labelledby="research-process-title">
+          <div class="curriculum-container">
+            <header class="curriculum-section-heading">
+              <p class="curriculum-eyebrow">{researchCopy.processEyebrow}</p>
+              <h2 id="research-process-title">{researchCopy.processTitle}</h2>
+            </header>
+
+            <div class="curriculum-process-grid">
+              {researchProcess.map((step) => (
+                <article class="curriculum-process-card">
+                  <span>{step.number}</span>
+                  <h3>{text(step.titleZh, step.titleEn)}</h3>
+                  <p>{text(step.descriptionZh, step.descriptionEn)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  {
+    mode === "resources" && (
+      <section class="curriculum-section" aria-labelledby="resource-directory-title">
+        <div class="curriculum-container">
+          <header class="curriculum-section-heading">
+            <p class="curriculum-eyebrow">{text("資源目錄", "Resource directory")}</p>
+            <h2 id="resource-directory-title">
+              {text(
+                "搜尋目前課程架構下的教材分類。",
+                "Search the resource categories within the current programme structure.",
+              )}
+            </h2>
+          </header>
+
+          <form class="resource-filter-panel" data-resource-filter-form>
+            <div class="resource-filter-grid">
+              <label class="resource-field resource-field--search">
+                <span>{resourceCopy.searchLabel}</span>
+                <input
+                  type="search"
+                  name="q"
+                  placeholder={resourceCopy.searchPlaceholder}
+                  autocomplete="off"
+                  data-resource-search
+                />
+              </label>
+
+              <label class="resource-field">
+                <span>{resourceCopy.familyLabel}</span>
+                <select name="family" data-resource-family>
+                  <option value="">{resourceCopy.familyAll}</option>
+                  {courseFamilies.map((family) => (
+                    <option value={family.id}>
+                      {text(family.titleZh, family.titleEn)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label class="resource-field">
+                <span>{resourceCopy.subjectLabel}</span>
+                <select name="subject" data-resource-subject>
+                  <option value="">{resourceCopy.subjectAll}</option>
+                  {subjectOptions.map((option) => (
+                    <option value={option.value}>
+                      {text(option.zh, option.en)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            <div class="resource-filter-footer">
+              <p aria-live="polite" data-resource-count>
+                {courseTracks.length} {resourceCopy.results}
+              </p>
+              <button type="reset" data-resource-reset>
+                {resourceCopy.clear}
+              </button>
+            </div>
+          </form>
+
+          <div class="resource-directory-grid" data-resource-grid>
+            {courseTracks.map((track) => {
+              const family = courseFamilies.find((item) => item.id === track.family);
+              const searchText = [
+                track.code,
+                track.titleZh,
+                track.titleEn,
+                track.levelZh,
+                track.levelEn,
+                track.descriptionZh,
+                track.descriptionEn,
+                ...track.keywordsZh,
+                ...track.keywordsEn,
+                ...track.resourceTypesZh,
+                ...track.resourceTypesEn,
+              ].join(" ");
+
+              return (
+                <article
+                  class="resource-directory-card"
+                  data-resource-card
+                  data-family={track.family}
+                  data-subject={track.subject}
+                  data-search={searchText}
+                >
+                  <div class="resource-directory-card__topline">
+                    <span>{family ? text(family.titleZh, family.titleEn) : ""}</span>
+                    <span>{text(track.levelZh, track.levelEn)}</span>
+                  </div>
+                  <h3>{text(track.titleZh, track.titleEn)}</h3>
+                  <p>{text(track.descriptionZh, track.descriptionEn)}</p>
+
+                  <div class="resource-directory-card__types">
+                    <h4>{resourceCopy.resourceTypes}</h4>
+                    <ul>
+                      {(isEnglish ? track.resourceTypesEn : track.resourceTypesZh).map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <p class="resource-directory-card__status">
+                    {resourceCopy.status}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+
+          <div class="resource-empty-state" hidden data-resource-empty>
+            <h3>{resourceCopy.noResultsTitle}</h3>
+            <p>{resourceCopy.noResultsText}</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <script is:inline src="/scripts/course-resource-filter.js"></script>
+</div>
+
