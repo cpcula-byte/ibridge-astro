@@ -1,238 +1,132 @@
 ---
+import "../styles/header.css";
+
+type Locale = "zh" | "en";
+
 interface Props {
-  locale?: "zh-tw" | "en";
+  locale?: Locale;
 }
 
-const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const inferredLocale: Locale =
+  pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
+const locale: Locale = Astro.props.locale ?? inferredLocale;
+const isEnglish = locale === "en";
 
-const currentPath = Astro.url.pathname;
+const normalizePath = (value: string): string => {
+  const withoutQuery = value.split("?")[0].split("#")[0];
+  if (withoutQuery === "/") return "/";
+  return withoutQuery.replace(/\/+$/, "");
+};
 
-const isEnglish =
-  locale === "en" ||
-  currentPath === "/en" ||
-  currentPath.startsWith("/en/");
+const currentPath = normalizePath(pathname);
 
-function normalisePath(pathname: string): string {
-  if (!pathname || pathname === "") {
-    return "/";
-  }
+const zhNav = [
+  { label: "首頁", href: "/" },
+  { label: "關於我們", href: "/about/" },
+  { label: "服務", href: "/services/" },
+  { label: "課程方案", href: "/programmes/" },
+  { label: "教育研究", href: "/research/" },
+  { label: "教育資源", href: "/resources/" },
+  { label: "聯絡我們", href: "/contact/" },
+];
 
-  if (pathname === "/en") {
-    return "/en/";
-  }
+const enNav = [
+  { label: "Home", href: "/en/" },
+  { label: "About", href: "/en/about/" },
+  { label: "Services", href: "/en/services/" },
+  { label: "Programmes", href: "/en/programmes/" },
+  { label: "Research", href: "/en/research/" },
+  { label: "Resources", href: "/en/resources/" },
+  { label: "Contact", href: "/en/contact/" },
+];
 
-  if (
-    pathname !== "/" &&
-    !pathname.endsWith("/") &&
-    !pathname.includes(".")
-  ) {
-    return `${pathname}/`;
-  }
+const navigation = isEnglish ? enNav : zhNav;
+const homeHref = isEnglish ? "/en/" : "/";
 
-  return pathname;
-}
+const chineseEquivalent = pathname
+  .replace(/^\/en(?=\/|$)/, "")
+  .replace(/^$/, "/");
 
-function createChinesePath(pathname: string): string {
-  const normalisedPath = normalisePath(pathname);
+const englishEquivalent =
+  pathname === "/"
+    ? "/en/"
+    : `/en${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
 
-  if (
-    normalisedPath === "/en/" ||
-    normalisedPath === "/en"
-  ) {
-    return "/";
-  }
-
-  if (normalisedPath.startsWith("/en/")) {
-    const chinesePath = normalisedPath.replace(
-      /^\/en/,
-      "",
-    );
-
-    return chinesePath || "/";
-  }
-
-  return normalisedPath;
-}
-
-function createEnglishPath(pathname: string): string {
-  const normalisedPath = normalisePath(pathname);
-
-  if (
-    normalisedPath === "/en/" ||
-    normalisedPath.startsWith("/en/")
-  ) {
-    return normalisedPath;
-  }
-
-  if (normalisedPath === "/") {
-    return "/en/";
-  }
-
-  return `/en${normalisedPath}`;
-}
-
-const chinesePath = createChinesePath(currentPath);
-const englishPath = createEnglishPath(currentPath);
-
-const languageSwitchPath = isEnglish
-  ? chinesePath
-  : englishPath;
-
-const navigationItems = isEnglish
-  ? [
-      {
-        label: "Home",
-        href: "/en/",
-      },
-      {
-        label: "About",
-        href: "/en/about/",
-      },
-      {
-        label: "Services",
-        href: "/en/services/",
-      },
-      {
-        label: "Programmes",
-        href: "/en/programmes/",
-      },
-      {
-        label: "Research",
-        href: "/en/research/",
-      },
-      {
-        label: "Resources",
-        href: "/en/resources/",
-      },
-      {
-        label: "Contact",
-        href: "/en/contact/",
-      },
-    ]
-  : [
-      {
-        label: "首頁",
-        href: "/",
-      },
-      {
-        label: "關於我們",
-        href: "/about/",
-      },
-      {
-        label: "服務",
-        href: "/services/",
-      },
-      {
-        label: "課程方案",
-        href: "/programmes/",
-      },
-      {
-        label: "教育研究",
-        href: "/research/",
-      },
-      {
-        label: "教育資源",
-        href: "/resources/",
-      },
-      {
-        label: "聯絡我們",
-        href: "/contact/",
-      },
-    ];
-
-function isActiveLink(href: string): boolean {
-  const normalisedCurrentPath =
-    normalisePath(currentPath);
-
-  const normalisedHref =
-    normalisePath(href);
-
-  if (
-    normalisedHref === "/" ||
-    normalisedHref === "/en/"
-  ) {
-    return (
-      normalisedCurrentPath === normalisedHref
-    );
-  }
-
-  return normalisedCurrentPath.startsWith(
-    normalisedHref,
-  );
-}
-
-const menuOpenLabel = isEnglish
-  ? "Open navigation menu"
-  : "開啟導覽選單";
-
-const menuCloseLabel = isEnglish
-  ? "Close navigation menu"
-  : "關閉導覽選單";
-
-const languageLabel = isEnglish
+const languageHref = isEnglish ? chineseEquivalent : englishEquivalent;
+const languageLabel = isEnglish ? "繁中" : "EN";
+const languageAriaLabel = isEnglish
   ? "切換至繁體中文"
   : "Switch to English";
 
-const languageText = isEnglish
-  ? "繁中"
-  : "EN";
+const isActive = (href: string): boolean => {
+  const target = normalizePath(href);
+
+  if (target === "/" || target === "/en") {
+    return currentPath === target;
+  }
+
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
 ---
 
 <header class="site-header" data-site-header>
-  <div class="header-container">
+  <div class="site-header__inner">
     <a
-      class="brand"
-      href={isEnglish ? "/en/" : "/"}
-      aria-label={
-        isEnglish
-          ? "iBridge Education home"
-          : "iBridge Education 首頁"
-      }
+      class="site-brand"
+      href={homeHref}
+      aria-label={isEnglish ? "iBridge Education home" : "iBridge Education 首頁"}
     >
-      <span class="brand-mark" aria-hidden="true">
-        <span class="brand-mark-line"></span>
-        <span class="brand-mark-line"></span>
-        <span class="brand-mark-line"></span>
+      <span class="site-brand__logo" aria-hidden="true">
+        <picture>
+          <source
+            srcset="/images/brand/ibridge-header-logo.webp"
+            type="image/webp"
+          />
+          <img
+            src="/images/brand/ibridge-header-logo.png"
+            alt=""
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
       </span>
 
-      <span class="brand-copy">
-        <span class="brand-name">
-          iBridge
-        </span>
-
-        <span class="brand-description">
-          Education
-        </span>
-      </span>
+      <span class="site-brand__name">iBridge Education</span>
     </a>
 
-    <nav
-      class="desktop-navigation"
-      aria-label={
-        isEnglish
-          ? "Primary navigation"
-          : "主要導覽"
-      }
+    <button
+      class="site-menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label={isEnglish ? "Open navigation menu" : "開啟導覽選單"}
+      data-menu-button
     >
-      <ul>
+      <span class="site-menu-button__line"></span>
+      <span class="site-menu-button__line"></span>
+      <span class="site-menu-button__line"></span>
+    </button>
+
+    <nav
+      class="site-navigation"
+      id="primary-navigation"
+      aria-label={isEnglish ? "Primary navigation" : "主要導覽"}
+      data-navigation
+    >
+      <ul class="site-navigation__list">
         {
-          navigationItems.map((item) => (
-            <li>
+          navigation.map((item) => (
+            <li class="site-navigation__item">
               <a
-                href={item.href}
                 class:list={[
-                  "navigation-link",
-                  {
-                    active: isActiveLink(
-                      item.href,
-                    ),
-                  },
+                  "site-navigation__link",
+                  { "is-active": isActive(item.href) },
                 ]}
-                aria-current={
-                  isActiveLink(item.href)
-                    ? "page"
-                    : undefined
-                }
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -242,702 +136,63 @@ const languageText = isEnglish
       </ul>
     </nav>
 
-    <div class="header-actions">
-      <a
-        class="language-switch"
-        href={languageSwitchPath}
-        hreflang={
-          isEnglish
-            ? "zh-Hant"
-            : "en"
-        }
-        lang={
-          isEnglish
-            ? "zh-Hant"
-            : "en"
-        }
-        aria-label={languageLabel}
-      >
-        <span aria-hidden="true">
-          {languageText}
-        </span>
-      </a>
-
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-navigation"
-        aria-label={menuOpenLabel}
-        data-menu-toggle
-        data-open-label={menuOpenLabel}
-        data-close-label={menuCloseLabel}
-      >
-        <span class="menu-toggle-lines" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <div
-    id="mobile-navigation"
-    class="mobile-navigation"
-    aria-hidden="true"
-    data-mobile-navigation
-  >
-    <nav
-      aria-label={
-        isEnglish
-          ? "Mobile navigation"
-          : "手機版導覽"
-      }
+    <a
+      class="site-language-switcher"
+      href={languageHref}
+      hreflang={isEnglish ? "zh-Hant" : "en"}
+      lang={isEnglish ? "zh-Hant" : "en"}
+      aria-label={languageAriaLabel}
     >
-      <ul>
-        {
-          navigationItems.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class:list={[
-                  "mobile-navigation-link",
-                  {
-                    active: isActiveLink(
-                      item.href,
-                    ),
-                  },
-                ]}
-                aria-current={
-                  isActiveLink(item.href)
-                    ? "page"
-                    : undefined
-                }
-              >
-                <span>{item.label}</span>
-
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="mobile-language-section">
-        <span class="mobile-language-label">
-          {
-            isEnglish
-              ? "Language"
-              : "語言"
-          }
-        </span>
-
-        <a
-          class="mobile-language-switch"
-          href={languageSwitchPath}
-          hreflang={
-            isEnglish
-              ? "zh-Hant"
-              : "en"
-          }
-          lang={
-            isEnglish
-              ? "zh-Hant"
-              : "en"
-          }
-        >
-          {
-            isEnglish
-              ? "繁體中文"
-              : "English"
-          }
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="M8 5l7 7-7 7"
-            ></path>
-          </svg>
-        </a>
-      </div>
-    </nav>
+      {languageLabel}
+    </a>
   </div>
 </header>
-<script is:inline src="/scripts/site-navigation.js"></script>
-
 
 <script is:inline>
   (() => {
-    const header =
-      document.querySelector(
-        "[data-site-header]",
-      );
+    const headers = document.querySelectorAll("[data-site-header]");
 
-    if (!header) {
-      return;
-    }
+    headers.forEach((header) => {
+      const button = header.querySelector("[data-menu-button]");
+      const navigation = header.querySelector("[data-navigation]");
 
-    const toggle =
-      header.querySelector(
-        "[data-menu-toggle]",
-      );
+      if (!(button instanceof HTMLButtonElement) || !(navigation instanceof HTMLElement)) {
+        return;
+      }
 
-    const mobileNavigation =
-      header.querySelector(
-        "[data-mobile-navigation]",
-      );
+      const closeMenu = () => {
+        button.setAttribute("aria-expanded", "false");
+        header.classList.remove("is-menu-open");
+      };
 
-    if (
-      !(toggle instanceof HTMLButtonElement) ||
-      !(mobileNavigation instanceof HTMLElement)
-    ) {
-      return;
-    }
-
-    const openLabel =
-      toggle.dataset.openLabel ||
-      "Open navigation menu";
-
-    const closeLabel =
-      toggle.dataset.closeLabel ||
-      "Close navigation menu";
-
-    function setMenuState(isOpen) {
-      toggle.setAttribute(
-        "aria-expanded",
-        String(isOpen),
-      );
-
-      toggle.setAttribute(
-        "aria-label",
-        isOpen
-          ? closeLabel
-          : openLabel,
-      );
-
-      mobileNavigation.setAttribute(
-        "aria-hidden",
-        String(!isOpen),
-      );
-
-      header.classList.toggle(
-        "menu-open",
-        isOpen,
-      );
-
-      document.documentElement.classList.toggle(
-        "navigation-open",
-        isOpen,
-      );
-    }
-
-    function closeMenu() {
-      setMenuState(false);
-    }
-
-    toggle.addEventListener(
-      "click",
-      () => {
-        const isOpen =
-          toggle.getAttribute(
-            "aria-expanded",
-          ) === "true";
-
-        setMenuState(!isOpen);
-      },
-    );
-
-    mobileNavigation
-      .querySelectorAll("a")
-      .forEach((link) => {
-        link.addEventListener(
-          "click",
-          closeMenu,
-        );
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!isOpen));
+        header.classList.toggle("is-menu-open", !isOpen);
       });
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
+      navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           closeMenu();
-          toggle.focus();
+          button.focus();
         }
-      },
-    );
+      });
 
-    document.addEventListener(
-      "click",
-      (event) => {
-        const target = event.target;
-
-        if (!(target instanceof Node)) {
-          return;
-        }
-
-        const isOpen =
-          toggle.getAttribute(
-            "aria-expanded",
-          ) === "true";
-
-        if (
-          isOpen &&
-          !header.contains(target)
-        ) {
+      document.addEventListener("click", (event) => {
+        if (event.target instanceof Node && !header.contains(event.target)) {
           closeMenu();
         }
-      },
-    );
+      });
 
-    const desktopMedia =
-      window.matchMedia(
-        "(min-width: 1001px)",
-      );
-
-    function handleDesktopChange(event) {
-      if (event.matches) {
-        closeMenu();
-      }
-    }
-
-    if (
-      typeof desktopMedia.addEventListener ===
-      "function"
-    ) {
-      desktopMedia.addEventListener(
-        "change",
-        handleDesktopChange,
-      );
-    } else {
-      desktopMedia.addListener(
-        handleDesktopChange,
-      );
-    }
-
-    setMenuState(false);
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 960) {
+          closeMenu();
+        }
+      });
+    });
   })();
 </script>
-
-<style>
-  .site-header {
-    position: sticky;
-    z-index: 1000;
-    top: 0;
-    width: 100%;
-    border-bottom: 1px solid #e4d7c5;
-    background: rgba(250, 247, 240, 0.97);
-    box-shadow: 0 4px 20px rgba(31, 41, 51, 0.04);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-
-  .header-container {
-    display: flex;
-    width: min(1380px, calc(100% - 48px));
-    min-height: 82px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-    margin: 0 auto;
-  }
-
-  .brand {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 13px;
-    color: #1f2933;
-    text-decoration: none;
-  }
-
-  .brand-mark {
-    display: grid;
-    width: 34px;
-    height: 34px;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: end;
-    gap: 3px;
-    padding: 5px;
-    border-radius: 8px;
-    background: #a51c30;
-  }
-
-  .brand-mark-line {
-    display: block;
-    border-radius: 999px 999px 2px 2px;
-    background: #f7f1e3;
-  }
-
-  .brand-mark-line:nth-child(1) {
-    height: 47%;
-  }
-
-  .brand-mark-line:nth-child(2) {
-    height: 75%;
-  }
-
-  .brand-mark-line:nth-child(3) {
-    height: 100%;
-  }
-
-  .brand-copy {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    white-space: nowrap;
-  }
-
-  .brand-name,
-  .brand-description {
-    font-family:
-      "Helvetica Neue",
-      Helvetica,
-      Arial,
-      sans-serif;
-    line-height: 1;
-  }
-
-  .brand-name {
-    color: #a51c30;
-    font-size: 1.23rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-  }
-
-  .brand-description {
-    color: #1f2933;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .desktop-navigation {
-    flex: 1 1 auto;
-  }
-
-  .desktop-navigation ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(14px, 1.6vw, 28px);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .navigation-link {
-    position: relative;
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-    color: #1f2933;
-    font-size: 0.91rem;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: color 160ms ease;
-  }
-
-  .navigation-link::after {
-    position: absolute;
-    right: 0;
-    bottom: 3px;
-    left: 0;
-    height: 2px;
-    border-radius: 999px;
-    background: #a51c30;
-    content: "";
-    opacity: 0;
-    transform: scaleX(0.25);
-    transition:
-      opacity 160ms ease,
-      transform 160ms ease;
-  }
-
-  .navigation-link:hover,
-  .navigation-link:focus-visible,
-  .navigation-link.active {
-    color: #a51c30;
-  }
-
-  .navigation-link:hover::after,
-  .navigation-link:focus-visible::after,
-  .navigation-link.active::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  .header-actions {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .language-switch {
-    display: inline-flex;
-    min-width: 46px;
-    min-height: 42px;
-    align-items: center;
-    justify-content: center;
-    padding: 0 12px;
-    border: 1px solid #315c6b;
-    border-radius: 999px;
-    color: #315c6b;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition:
-      border-color 160ms ease,
-      background 160ms ease,
-      color 160ms ease,
-      transform 160ms ease;
-  }
-
-  .language-switch:hover,
-  .language-switch:focus-visible {
-    border-color: #315c6b;
-    background: #315c6b;
-    color: #ffffff;
-    transform: translateY(-1px);
-  }
-
-  .menu-toggle {
-    display: none;
-    width: 46px;
-    height: 42px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: 1px solid #e4d7c5;
-    border-radius: 12px;
-    background: #faf7f0;
-    color: #1f2933;
-    cursor: pointer;
-  }
-
-  .menu-toggle-lines {
-    display: grid;
-    width: 20px;
-    gap: 4px;
-  }
-
-  .menu-toggle-lines span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    border-radius: 999px;
-    background: currentColor;
-    transform-origin: center;
-    transition:
-      transform 180ms ease,
-      opacity 180ms ease;
-  }
-
-  .menu-open .menu-toggle-lines span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-
-  .menu-open .menu-toggle-lines span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-open .menu-toggle-lines span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-
-  .mobile-navigation {
-    display: none;
-  }
-
-  @media (max-width: 1180px) {
-    .header-container {
-      width: min(100% - 34px, 1380px);
-      gap: 20px;
-    }
-
-    .desktop-navigation ul {
-      gap: 14px;
-    }
-
-    .navigation-link {
-      font-size: 0.84rem;
-    }
-
-    .brand-description {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1000px) {
-    :global(html.navigation-open) {
-      overflow: hidden;
-    }
-
-    .header-container {
-      min-height: 72px;
-    }
-
-    .desktop-navigation {
-      display: none;
-    }
-
-    .brand-description {
-      display: inline;
-    }
-
-    .menu-toggle {
-      display: inline-flex;
-    }
-
-    .mobile-navigation {
-      position: fixed;
-      top: 73px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: block;
-      overflow-y: auto;
-      padding: 18px 22px 40px;
-      background: rgba(247, 241, 227, 0.99);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-12px);
-      visibility: hidden;
-      transition:
-        opacity 180ms ease,
-        transform 180ms ease,
-        visibility 180ms ease;
-    }
-
-    .menu-open .mobile-navigation {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-      visibility: visible;
-    }
-
-    .mobile-navigation nav {
-      width: min(680px, 100%);
-      margin: 0 auto;
-    }
-
-    .mobile-navigation ul {
-      display: grid;
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid #e4d7c5;
-      list-style: none;
-    }
-
-    .mobile-navigation li {
-      border-bottom: 1px solid #e4d7c5;
-    }
-
-    .mobile-navigation-link,
-    .mobile-language-switch {
-      display: flex;
-      width: 100%;
-      min-height: 64px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      color: #1f2933;
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .mobile-navigation-link.active {
-      color: #a51c30;
-    }
-
-    .mobile-navigation-link svg,
-    .mobile-language-switch svg {
-      width: 19px;
-      height: 19px;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 2;
-    }
-
-    .mobile-language-section {
-      margin-top: 24px;
-      padding: 22px;
-      border: 1px solid #e4d7c5;
-      border-radius: 18px;
-      background: #faf7f0;
-    }
-
-    .mobile-language-label {
-      display: block;
-      margin-bottom: 6px;
-      color: #315c6b;
-      font-size: 0.73rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .mobile-language-switch {
-      min-height: 48px;
-      color: #315c6b;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .header-container {
-      width: min(100% - 24px, 1380px);
-    }
-
-    .brand-copy {
-      gap: 5px;
-    }
-
-    .brand-name {
-      font-size: 1.1rem;
-    }
-
-    .brand-description {
-      font-size: 0.82rem;
-    }
-
-    .language-switch {
-      min-width: 42px;
-      min-height: 40px;
-      padding: 0 10px;
-    }
-
-    .menu-toggle {
-      width: 43px;
-      height: 40px;
-    }
-
-    .mobile-navigation {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .navigation-link::after,
-    .language-switch,
-    .menu-toggle-lines span,
-    .mobile-navigation {
-      transition: none;
-    }
-  }
-</style>
