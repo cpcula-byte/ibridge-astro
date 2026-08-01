@@ -69,22 +69,25 @@ const schema = {
     <header class="site-header">
       <div class="container navbar">
         <a class="brand" href={isEn ? "/en/" : "/"} aria-label={isEn ? "iBridge Education home" : "iBridge Education 首頁"}>
-          <span class="ibridge-active-logo" aria-hidden="true">
-  <picture>
-    <source
-      srcset="/images/brand/ibridge-header-logo.webp?v=20260801-logo-02"
-      type="image/webp"
-    />
-    <img
-      src="/images/brand/ibridge-header-logo.png?v=20260801-logo-02"
-      alt=""
-      width="512"
-      height="512"
-      loading="eager"
-      decoding="async"
-    />
-  </picture>
-</span><span>iBridge Education</span>
+          <span class="brand-mark">
+        <picture
+          style="display:block;width:100%;height:100%;"
+        >
+          <source
+            srcset="/images/brand/ibridge-header-logo.webp?v=20260801-final-logo-01"
+            type="image/webp"
+          />
+          <img
+            src="/images/brand/ibridge-header-logo.png?v=20260801-final-logo-01"
+            alt=""
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="async"
+            style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit;"
+          />
+        </picture>
+      </span><span>iBridge Education</span>
         </a>
         <nav id="site-navigation" class="nav-links" aria-label={isEn ? "Main navigation" : "主要導覽"}>
           {nav.map(([label, href]) => <a href={href} aria-current={path === href ? "page" : undefined}>{label}</a>)}
