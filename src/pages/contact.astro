@@ -1,32 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-const topics = ["課程與單元設計", "教師專業學習", "教育研究與方案評估", "人工智慧教育應用", "學生學習與韌性方案", "教育資源合作", "其他合作"];
+import ContactForm from "../components/ContactForm.astro";
+import "../styles/contact.css";
 ---
-<BaseLayout title="聯絡我們" description="聯絡 iBridge Education，洽詢課程設計、教師專業發展、教育研究、人工智慧教育、資源或學校合作。" locale="zh-Hant" zhPath="/contact/" enPath="/en/contact/">
-  <PageHero eyebrow="聯絡我們" title="從清楚說明需求開始，" accent="建立合適的合作方式。" copy="請提供目前需求、參與對象、預期成果與大致時間範圍。我們將依內容安排書面回覆或進一步討論。" />
-  <section class="section section-white"><div class="container contact-grid">
-    <div><p class="eyebrow">聯絡資訊</p><h2>讓我們了解您的教育情境。</h2><div class="contact-details">
-      <div class="contact-detail"><small>電子郵件</small><a href="mailto:hello@ibridge.info">hello@ibridge.info</a></div>
-      <div class="contact-detail"><small>服務區域</small><span>臺灣及國際合作</span></div>
-      <div class="contact-detail"><small>合作方式</small><span>線上、實體或混合模式</span></div>
-    </div></div>
-    <div class="card"><form id="contact-form">
-      <div class="form-row"><div><label for="name">姓名</label><input id="name" name="name" autocomplete="name" required /></div><div><label for="email">電子郵件</label><input id="email" name="email" type="email" autocomplete="email" required /></div></div>
-      <div><label for="organisation">學校／機構</label><input id="organisation" name="organisation" autocomplete="organization" /></div>
-      <div><label for="topic">合作主題</label><select id="topic" name="topic" required><option value="">請選擇</option>{topics.map((topic) => <option value={topic}>{topic}</option>)}</select></div>
-      <div><label for="message">需求說明</label><textarea id="message" name="message" required placeholder="請說明參與對象、預期成果、時間範圍及其他重要資訊。"></textarea></div>
-      <button class="button button-primary" type="submit">以電子郵件送出</button>
-      <p class="form-note">送出後將開啟您裝置的預設電子郵件程式；網站不會儲存表單內容。</p>
-    </form></div>
-  </div></section>
-  <script is:inline>
-    document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const subject = `iBridge Education 合作洽詢｜${data.get('topic') || '一般洽詢'}`;
-      const body = [`姓名：${data.get('name') || ''}`, `電子郵件：${data.get('email') || ''}`, `學校／機構：${data.get('organisation') || ''}`, `合作主題：${data.get('topic') || ''}`, '', '需求說明：', `${data.get('message') || ''}`].join('\n');
-      window.location.href = `mailto:hello@ibridge.info?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    });
-  </script>
+
+<BaseLayout
+  title="聯絡我們"
+  description="聯絡 iBridge Education，洽詢課程設計、教師專業發展、教育研究、人工智慧教育、教育資源或學校合作。"
+  locale="zh-Hant"
+  zhPath="/contact/"
+  enPath="/en/contact/"
+>
+  <PageHero
+    eyebrow="聯絡我們"
+    title="從清楚說明需求開始，"
+    accent="建立合適的合作方式。"
+    copy="請提供目前需求、參與對象、預期成果與大致時間範圍。我們將依內容安排書面回覆或進一步討論。"
+  />
+
+  <ContactForm lang="zh" />
 </BaseLayout>

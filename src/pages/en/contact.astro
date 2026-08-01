@@ -1,32 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-const topics = ["Curriculum and unit design", "Professional learning", "Educational research and evaluation", "AI in education", "Student learning and resilience", "Educational resources", "Other partnership"];
+import ContactForm from "../../components/ContactForm.astro";
+import "../../styles/contact.css";
 ---
-<BaseLayout title="Contact" description="Contact iBridge Education about curriculum design, professional development, educational research, AI in education, resources or school partnerships." locale="en" zhPath="/contact/" enPath="/en/contact/">
-  <PageHero eyebrow="Contact" title="Begin with a clear description" accent="of your educational context." copy="Please include the current need, intended participants, expected outcomes and approximate timeframe. We will respond in writing or arrange a further discussion as appropriate." />
-  <section class="section section-white"><div class="container contact-grid">
-    <div><p class="eyebrow">Contact details</p><h2>Help us understand your educational context.</h2><div class="contact-details">
-      <div class="contact-detail"><small>Email</small><a href="mailto:hello@ibridge.info">hello@ibridge.info</a></div>
-      <div class="contact-detail"><small>Service area</small><span>Taiwan and international partnerships</span></div>
-      <div class="contact-detail"><small>Delivery</small><span>Online, in person or blended</span></div>
-    </div></div>
-    <div class="card"><form id="contact-form">
-      <div class="form-row"><div><label for="name">Name</label><input id="name" name="name" autocomplete="name" required /></div><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div></div>
-      <div><label for="organisation">School or organisation</label><input id="organisation" name="organisation" autocomplete="organization" /></div>
-      <div><label for="topic">Enquiry topic</label><select id="topic" name="topic" required><option value="">Select a topic</option>{topics.map((topic) => <option value={topic}>{topic}</option>)}</select></div>
-      <div><label for="message">Your requirements</label><textarea id="message" name="message" required placeholder="Include participants, expected outcomes, timeframe and other important information."></textarea></div>
-      <button class="button button-primary" type="submit">Send by email</button>
-      <p class="form-note">Submitting opens your device’s default email application. The website does not store the form content.</p>
-    </form></div>
-  </div></section>
-  <script is:inline>
-    document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const subject = `iBridge Education enquiry | ${data.get('topic') || 'General enquiry'}`;
-      const body = [`Name: ${data.get('name') || ''}`, `Email: ${data.get('email') || ''}`, `School/organisation: ${data.get('organisation') || ''}`, `Topic: ${data.get('topic') || ''}`, '', 'Requirements:', `${data.get('message') || ''}`].join('\n');
-      window.location.href = `mailto:hello@ibridge.info?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    });
-  </script>
+
+<BaseLayout
+  title="Contact"
+  description="Contact iBridge Education about curriculum design, professional development, educational research, AI in education, educational resources or school partnerships."
+  locale="en"
+  zhPath="/contact/"
+  enPath="/en/contact/"
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Begin with a clear description"
+    accent="of your educational context."
+    copy="Please include the current need, intended participants, expected outcomes and approximate timeframe. We will respond in writing or arrange a further discussion as appropriate."
+  />
+
+  <ContactForm lang="en" />
 </BaseLayout>

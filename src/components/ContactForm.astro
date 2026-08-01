@@ -1,0 +1,437 @@
+---
+interface Props {
+  lang?: "zh" | "en";
+}
+
+const { lang = "zh" } = Astro.props;
+const isEnglish = lang === "en";
+const idPrefix = isEnglish ? "en-contact" : "zh-contact";
+const privacyPath = isEnglish ? "/en/privacy/" : "/privacy/";
+const formEndpoint = "https://formspree.io/f/mrenyjjk";
+
+const text = isEnglish
+  ? {
+      eyebrow: "Contact iBridge",
+      sidebarTitle: "Tell us what you are trying to achieve.",
+      sidebarIntro:
+        "A concise description helps us determine the most suitable next step, whether that is a written response, a consultation or a longer-term partnership.",
+      emailLabel: "Email",
+      emailValue: "hello@ibridge.info",
+      serviceLabel: "Service area",
+      serviceValue: "Taiwan and international partnerships",
+      deliveryLabel: "Delivery",
+      deliveryValue: "Online, in person or blended",
+      responseLabel: "Response time",
+      responseValue: "Usually within three to five working days",
+      guidanceTitle: "Before submitting",
+      guidanceItems: [
+        "Describe the current educational need or challenge.",
+        "Identify the intended participants or learner group.",
+        "Include the expected outcome and approximate timeframe.",
+      ],
+      formEyebrow: "Partnership enquiry",
+      formTitle: "Send a clear, structured enquiry.",
+      requiredNote: "Fields marked with * are required.",
+      name: "Name",
+      email: "Email address",
+      organisation: "School or organisation",
+      topic: "Enquiry topic",
+      topicPlaceholder: "Select a topic",
+      topics: [
+        "Curriculum and unit design",
+        "Professional learning",
+        "Educational research and evaluation",
+        "AI in education",
+        "Student learning and resilience",
+        "Educational resources",
+        "Other partnership",
+      ],
+      timeframe: "Approximate timeframe",
+      timeframePlaceholder: "Select a timeframe",
+      timeframes: [
+        "As soon as possible",
+        "Within one month",
+        "Within three months",
+        "Within six months",
+        "Exploratory enquiry",
+      ],
+      message: "Requirements",
+      messagePlaceholder:
+        "Please include participants, expected outcomes, timeframe and other information needed to understand the request.",
+      consentBefore:
+        "I have read the",
+      consentLink: "privacy policy",
+      consentAfter:
+        "and confirm that this message does not contain student names, health information, grades or other sensitive personal information.",
+      submit: "Send enquiry",
+      sending: "Sending enquiry…",
+      success:
+        "Thank you. Your enquiry has been sent successfully. We usually reply within three to five working days.",
+      error:
+        "The form could not be sent. Please try again, or email hello@ibridge.info directly.",
+      formNote:
+        "Your enquiry is sent securely through Formspree to the iBridge Education contact address.",
+      sensitiveNote:
+        "Do not submit student names, health information, grades or other sensitive personal information.",
+      subject: "New iBridge Education website enquiry",
+      languageValue: "en",
+    }
+  : {
+      eyebrow: "聯絡 iBridge",
+      sidebarTitle: "請告訴我們您希望解決的教育需求。",
+      sidebarIntro:
+        "清楚且精簡的說明，有助於我們判斷最合適的下一步，包括書面回覆、顧問諮詢或較長期的合作方案。",
+      emailLabel: "電子郵件",
+      emailValue: "hello@ibridge.info",
+      serviceLabel: "服務區域",
+      serviceValue: "臺灣及國際合作",
+      deliveryLabel: "合作方式",
+      deliveryValue: "線上、實體或混合模式",
+      responseLabel: "回覆時間",
+      responseValue: "通常於三至五個工作天內回覆",
+      guidanceTitle: "送出前請準備",
+      guidanceItems: [
+        "說明目前的教育需求或問題。",
+        "指出參與對象或學生群體。",
+        "提供預期成果與大致時間範圍。",
+      ],
+      formEyebrow: "合作洽詢",
+      formTitle: "送出清楚、有結構的需求說明。",
+      requiredNote: "標示 * 的欄位為必填。",
+      name: "姓名",
+      email: "電子郵件",
+      organisation: "學校／機構",
+      topic: "合作主題",
+      topicPlaceholder: "請選擇合作主題",
+      topics: [
+        "課程與單元設計",
+        "教師專業學習",
+        "教育研究與方案評估",
+        "人工智慧教育應用",
+        "學生學習與韌性方案",
+        "教育資源合作",
+        "其他合作",
+      ],
+      timeframe: "大致時間範圍",
+      timeframePlaceholder: "請選擇時間範圍",
+      timeframes: [
+        "希望儘快開始",
+        "一個月內",
+        "三個月內",
+        "六個月內",
+        "目前為初步了解",
+      ],
+      message: "需求說明",
+      messagePlaceholder:
+        "請說明參與對象、預期成果、時間範圍，以及理解此需求所需的其他重要資訊。",
+      consentBefore: "我已閱讀",
+      consentLink: "隱私權政策",
+      consentAfter:
+        "，並確認本訊息不包含學生姓名、健康資訊、成績或其他敏感個人資料。",
+      submit: "送出洽詢",
+      sending: "正在送出…",
+      success:
+        "謝謝您，洽詢已成功送出。我們通常會於三至五個工作天內回覆。",
+      error:
+        "表單目前無法送出。請稍後再試，或直接寄信至 hello@ibridge.info。",
+      formNote:
+        "您的洽詢會透過 Formspree 安全傳送至 iBridge Education 聯絡信箱。",
+      sensitiveNote:
+        "請勿提交學生姓名、健康資訊、成績或其他敏感個人資料。",
+      subject: "iBridge Education 網站新詢問",
+      languageValue: "zh-tw",
+    };
+---
+
+<section class="section section-white ib-contact-section" aria-labelledby={`${idPrefix}-form-title`}>
+  <div class="container ib-contact-grid">
+    <aside class="ib-contact-sidebar" aria-labelledby={`${idPrefix}-sidebar-title`}>
+      <p class="eyebrow">{text.eyebrow}</p>
+      <h2 id={`${idPrefix}-sidebar-title`}>{text.sidebarTitle}</h2>
+      <p class="ib-contact-sidebar__intro">{text.sidebarIntro}</p>
+
+      <div class="ib-contact-facts">
+        <div class="ib-contact-fact">
+          <span>{text.emailLabel}</span>
+          <a href="mailto:hello@ibridge.info">{text.emailValue}</a>
+        </div>
+        <div class="ib-contact-fact">
+          <span>{text.serviceLabel}</span>
+          <strong>{text.serviceValue}</strong>
+        </div>
+        <div class="ib-contact-fact">
+          <span>{text.deliveryLabel}</span>
+          <strong>{text.deliveryValue}</strong>
+        </div>
+        <div class="ib-contact-fact">
+          <span>{text.responseLabel}</span>
+          <strong>{text.responseValue}</strong>
+        </div>
+      </div>
+
+      <div class="ib-contact-guidance">
+        <h3>{text.guidanceTitle}</h3>
+        <ol>
+          {text.guidanceItems.map((item) => <li>{item}</li>)}
+        </ol>
+      </div>
+    </aside>
+
+    <div class="ib-contact-card">
+      <header class="ib-contact-card__header">
+        <p class="ib-contact-card__eyebrow">{text.formEyebrow}</p>
+        <h2 id={`${idPrefix}-form-title`}>{text.formTitle}</h2>
+        <p>{text.requiredNote}</p>
+      </header>
+
+      <form
+        class="ib-contact-form"
+        action={formEndpoint}
+        method="POST"
+        target="_top"
+        data-ib-contact-form
+        data-sending-message={text.sending}
+        data-success-message={text.success}
+        data-error-message={text.error}
+      >
+        <input type="hidden" name="_subject" value={text.subject} />
+        <input type="hidden" name="_language" value={text.languageValue} />
+        <input type="hidden" name="source" value="ibridge.info contact page" />
+        <input type="hidden" name="page_language" value={lang} />
+
+        <div class="ib-contact-honeypot" aria-hidden="true">
+          <label for={`${idPrefix}-website`}>Website</label>
+          <input
+            id={`${idPrefix}-website`}
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="ib-contact-form__row">
+          <div class="ib-contact-field">
+            <label for={`${idPrefix}-name`}>
+              {text.name} <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id={`${idPrefix}-name`}
+              name="name"
+              type="text"
+              autocomplete="name"
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="ib-contact-field">
+            <label for={`${idPrefix}-email`}>
+              {text.email} <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id={`${idPrefix}-email`}
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              maxlength="160"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="ib-contact-field">
+          <label for={`${idPrefix}-organisation`}>{text.organisation}</label>
+          <input
+            id={`${idPrefix}-organisation`}
+            name="organisation"
+            type="text"
+            autocomplete="organization"
+            maxlength="160"
+          />
+        </div>
+
+        <div class="ib-contact-form__row">
+          <div class="ib-contact-field">
+            <label for={`${idPrefix}-topic`}>
+              {text.topic} <span aria-hidden="true">*</span>
+            </label>
+            <select id={`${idPrefix}-topic`} name="topic" required>
+              <option value="">{text.topicPlaceholder}</option>
+              {text.topics.map((topic) => <option value={topic}>{topic}</option>)}
+            </select>
+          </div>
+
+          <div class="ib-contact-field">
+            <label for={`${idPrefix}-timeframe`}>{text.timeframe}</label>
+            <select id={`${idPrefix}-timeframe`} name="timeframe">
+              <option value="">{text.timeframePlaceholder}</option>
+              {text.timeframes.map((timeframe) => (
+                <option value={timeframe}>{timeframe}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div class="ib-contact-field">
+          <label for={`${idPrefix}-message`}>
+            {text.message} <span aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id={`${idPrefix}-message`}
+            name="message"
+            minlength="30"
+            maxlength="4000"
+            rows="8"
+            required
+            placeholder={text.messagePlaceholder}
+            aria-describedby={`${idPrefix}-sensitive-note`}
+          ></textarea>
+          <p id={`${idPrefix}-sensitive-note`} class="ib-contact-field__help">
+            {text.sensitiveNote}
+          </p>
+        </div>
+
+        <label class="ib-contact-consent" for={`${idPrefix}-privacy`}>
+          <input
+            id={`${idPrefix}-privacy`}
+            name="privacy_consent"
+            type="checkbox"
+            value="confirmed"
+            required
+          />
+          <span>
+            {text.consentBefore}
+            {" "}
+            <a href={privacyPath}>{text.consentLink}</a>
+            {text.consentAfter}
+          </span>
+        </label>
+
+        <div class="ib-contact-submit">
+          <button
+            class="button button-primary ib-contact-submit__button"
+            type="submit"
+            data-submit-button
+          >
+            <span data-submit-label>{text.submit}</span>
+          </button>
+          <p class="ib-contact-form__note">{text.formNote}</p>
+        </div>
+
+        <div
+          class="ib-contact-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          tabindex="-1"
+          hidden
+          data-form-status
+        ></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const forms = document.querySelectorAll("[data-ib-contact-form]");
+
+    forms.forEach((form) => {
+      if (!(form instanceof HTMLFormElement) || form.dataset.enhanced === "true") {
+        return;
+      }
+
+      form.dataset.enhanced = "true";
+
+      const submitButton = form.querySelector("[data-submit-button]");
+      const submitLabel = form.querySelector("[data-submit-label]");
+      const status = form.querySelector("[data-form-status]");
+
+      const originalLabel =
+        submitLabel instanceof HTMLElement ? submitLabel.textContent || "" : "";
+
+      const setStatus = (kind, message) => {
+        if (!(status instanceof HTMLElement)) return;
+
+        status.hidden = false;
+        status.classList.remove(
+          "ib-contact-status--sending",
+          "ib-contact-status--success",
+          "ib-contact-status--error",
+        );
+        status.classList.add(`ib-contact-status--${kind}`);
+        status.textContent = message;
+      };
+
+      form.addEventListener("submit", async (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          form.reportValidity();
+          return;
+        }
+
+        event.preventDefault();
+
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.setAttribute("aria-busy", "true");
+        }
+
+        if (submitLabel instanceof HTMLElement) {
+          submitLabel.textContent =
+            form.dataset.sendingMessage || originalLabel;
+        }
+
+        setStatus(
+          "sending",
+          form.dataset.sendingMessage || "Sending…",
+        );
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Form submission failed");
+          }
+
+          form.reset();
+          setStatus(
+            "success",
+            form.dataset.successMessage || "Your message has been sent.",
+          );
+
+          if (status instanceof HTMLElement) {
+            status.focus();
+          }
+        } catch (error) {
+          setStatus(
+            "error",
+            form.dataset.errorMessage ||
+              "The form could not be sent. Please try again.",
+          );
+
+          if (status instanceof HTMLElement) {
+            status.focus();
+          }
+        } finally {
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = false;
+            submitButton.removeAttribute("aria-busy");
+          }
+
+          if (submitLabel instanceof HTMLElement) {
+            submitLabel.textContent = originalLabel;
+          }
+        }
+      });
+    });
+  })();
+</script>

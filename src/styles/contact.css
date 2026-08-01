@@ -1,0 +1,374 @@
+/* =========================================================
+   iBridge Education
+   Bilingual contact form
+   Scoped styles: ib-contact-*
+   ========================================================= */
+
+.ib-contact-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.ib-contact-section::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(196, 138, 44, 0.45),
+    transparent
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.ib-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(36px, 6vw, 78px);
+  align-items: start;
+}
+
+.ib-contact-sidebar {
+  position: sticky;
+  top: 112px;
+}
+
+.ib-contact-sidebar h2 {
+  max-width: 12ch;
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 3.8vw, 3.65rem);
+  line-height: 1.08;
+}
+
+.ib-contact-sidebar__intro {
+  max-width: 58ch;
+  margin: 0 0 28px;
+  color: var(--color-text-soft, #52606d);
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.ib-contact-facts {
+  display: grid;
+  gap: 12px;
+}
+
+.ib-contact-fact {
+  display: grid;
+  gap: 5px;
+  padding: 18px 20px;
+  border: 1px solid var(--color-border, #e4d7c5);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(250, 247, 240, 0.92)
+    );
+  box-shadow: 0 12px 30px rgba(31, 41, 51, 0.05);
+}
+
+.ib-contact-fact span {
+  color: var(--color-primary-dark, #7b1422);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.ib-contact-fact strong,
+.ib-contact-fact a {
+  color: var(--color-text, #1f2933);
+  font-weight: 700;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.ib-contact-fact a:hover {
+  color: var(--color-primary, #a51c30);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.ib-contact-guidance {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid rgba(49, 92, 107, 0.22);
+  border-radius: 18px;
+  background: rgba(49, 92, 107, 0.07);
+}
+
+.ib-contact-guidance h3 {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+}
+
+.ib-contact-guidance ol {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.ib-contact-guidance li {
+  padding-left: 0.35rem;
+  color: var(--color-text, #1f2933);
+  line-height: 1.65;
+}
+
+.ib-contact-guidance li + li {
+  margin-top: 8px;
+}
+
+.ib-contact-card {
+  padding: clamp(26px, 4vw, 46px);
+  border: 1px solid var(--color-border, #e4d7c5);
+  border-radius: 26px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(196, 138, 44, 0.11),
+      transparent 34%
+    ),
+    var(--color-surface, #faf7f0);
+  box-shadow: 0 24px 64px rgba(31, 41, 51, 0.11);
+}
+
+.ib-contact-card__header {
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--color-border, #e4d7c5);
+}
+
+.ib-contact-card__eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-primary, #a51c30);
+  font-size: 0.79rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.ib-contact-card__header h2 {
+  margin-bottom: 10px;
+  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  line-height: 1.12;
+}
+
+.ib-contact-card__header p:last-child {
+  margin: 0;
+  color: var(--color-text-soft, #52606d);
+  font-size: 0.92rem;
+}
+
+.ib-contact-form {
+  display: grid;
+  gap: 20px;
+}
+
+.ib-contact-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ib-contact-field {
+  min-width: 0;
+}
+
+.ib-contact-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--color-text, #1f2933);
+  font-weight: 700;
+}
+
+.ib-contact-field label span {
+  color: var(--color-primary, #a51c30);
+}
+
+.ib-contact-field input,
+.ib-contact-field select,
+.ib-contact-field textarea {
+  width: 100%;
+  border: 1px solid #b8a88f;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--color-text, #1f2933);
+  box-shadow: inset 0 1px 0 rgba(31, 41, 51, 0.02);
+}
+
+.ib-contact-field input,
+.ib-contact-field select {
+  min-height: 52px;
+  padding: 0 14px;
+}
+
+.ib-contact-field textarea {
+  min-height: 180px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.ib-contact-field input:hover,
+.ib-contact-field select:hover,
+.ib-contact-field textarea:hover {
+  border-color: #8f7d64;
+}
+
+.ib-contact-field input:focus,
+.ib-contact-field select:focus,
+.ib-contact-field textarea:focus {
+  border-color: var(--color-primary, #a51c30);
+  outline: 3px solid rgba(165, 28, 48, 0.16);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px rgba(165, 28, 48, 0.08);
+}
+
+.ib-contact-field__help {
+  margin: 7px 0 0;
+  color: var(--color-text-soft, #52606d);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.ib-contact-consent {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--color-border, #e4d7c5);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+}
+
+.ib-contact-consent input {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--color-primary, #a51c30);
+}
+
+.ib-contact-consent span {
+  color: var(--color-text, #1f2933);
+  font-size: 0.91rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.ib-contact-consent a {
+  font-weight: 700;
+}
+
+.ib-contact-submit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.ib-contact-submit__button {
+  min-width: 154px;
+}
+
+.ib-contact-submit__button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.ib-contact-form__note {
+  margin: 0;
+  color: var(--color-text-soft, #52606d);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.ib-contact-status {
+  padding: 15px 17px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.ib-contact-status:focus {
+  outline: 3px solid rgba(165, 28, 48, 0.24);
+  outline-offset: 3px;
+}
+
+.ib-contact-status--sending {
+  border-color: rgba(49, 92, 107, 0.32);
+  background: rgba(49, 92, 107, 0.09);
+  color: #234957;
+}
+
+.ib-contact-status--success {
+  border-color: rgba(29, 106, 72, 0.35);
+  background: rgba(29, 106, 72, 0.1);
+  color: #155c3c;
+}
+
+.ib-contact-status--error {
+  border-color: rgba(165, 28, 48, 0.35);
+  background: rgba(165, 28, 48, 0.09);
+  color: #7b1422;
+}
+
+.ib-contact-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1000px) {
+  .ib-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ib-contact-sidebar {
+    position: static;
+  }
+
+  .ib-contact-sidebar h2 {
+    max-width: 18ch;
+  }
+
+  .ib-contact-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .ib-contact-card {
+    padding: 25px 21px;
+    border-radius: 21px;
+  }
+
+  .ib-contact-form__row,
+  .ib-contact-facts,
+  .ib-contact-submit {
+    grid-template-columns: 1fr;
+  }
+
+  .ib-contact-submit__button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ib-contact-field input,
+  .ib-contact-field select,
+  .ib-contact-field textarea,
+  .ib-contact-submit__button {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}
