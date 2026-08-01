@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">iBridge Education icon</title>
+  <desc id="desc">A centred cream iB monogram and gold open-book symbol on a crimson rounded square.</desc>
+
+  <rect x="16" y="16" width="480" height="480" rx="138" fill="#972B34"/>
+  <rect x="76" y="82" width="360" height="350" rx="92" fill="#841E2C"/>
+
+  <text
+    x="256"
+    y="298"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="194"
+    font-weight="700"
+    letter-spacing="-12"
+    fill="#FDF7E1"
+  >iB</text>
+
+  <g fill="none" stroke="#C99A2E" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M164 348 C198 334 225 337 256 358 C287 337 314 334 348 348"/>
+    <path d="M164 348 L164 367 C198 352 225 355 256 376"/>
+    <path d="M348 348 L348 367 C314 352 287 355 256 376"/>
+    <path d="M256 358 L256 376"/>
+  </g>
+</svg>

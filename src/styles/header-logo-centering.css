@@ -1,107 +1,71 @@
-/* ==========================================================
-   iBridge Education — Header Icon Logo Centering
-   iBridge Education — 網站左上角 Icon Logo 置中
-
-   This file only affects the header logo image and the element
-   immediately containing it. It does not alter the approved image,
-   navigation, homepage hero images, or page content.
-
-   本檔案只修正 Header Logo 圖片及其直接外框，不變更已核准圖片、
-   導覽、首頁主視覺或其他頁面內容。
-   ========================================================== */
+/*
+ * iBridge Education — header logo visual centring
+ * 繁中與英文網站共用 / Shared by Traditional Chinese and English routes
+ */
 
 :root {
-  /* Keep these at 0px for true mathematical centring.
-     如需日後進行極小幅度的視覺微調，只需調整這兩個變數。 */
-  --ibridge-logo-optical-x: 0px;
-  --ibridge-logo-optical-y: 0px;
+  --ibridge-header-logo-size: 88px;
 }
 
-/* Centre common logo-mark wrappers used by the shared header. */
-header :where(
-  .brand-mark,
-  .brand-icon,
-  .logo-mark,
-  .logo-icon,
-  .site-logo-mark,
-  .site-logo-icon,
-  .header-logo-mark,
-  .header-logo-icon,
-  [class*="brand"][class*="mark"],
-  [class*="brand"][class*="icon"],
-  [class*="logo"][class*="mark"],
-  [class*="logo"][class*="icon"]
-) {
-  display: inline-grid !important;
+header :where(a, div, span, figure, picture):has(> img.site-brand-logo) {
+  display: grid !important;
   place-items: center !important;
   align-content: center !important;
   justify-content: center !important;
+  flex: 0 0 auto !important;
   line-height: 0 !important;
   text-align: center !important;
+  margin-block: 0 !important;
+  padding-block: 0 !important;
 }
 
-/*
-   The installer adds .ibridge-header-logo to the actual logo <img>.
-   :has() then centres whichever wrapper directly contains that image,
-   without relying on the old class name.
-*/
-header :where(a, div, span, figure, picture):has(> img.ibridge-header-logo),
-header :where(a, div, span, figure, picture):has(> picture > img.ibridge-header-logo) {
-  display: inline-grid !important;
-  place-items: center !important;
-  align-content: center !important;
-  justify-content: center !important;
-  line-height: 0 !important;
-  text-align: center !important;
-}
-
-/* The image itself is centred inside the available frame. */
-header img.ibridge-header-logo {
+header img.site-brand-logo {
   display: block !important;
   position: static !important;
   inset: auto !important;
   float: none !important;
 
-  margin-top: auto !important;
-  margin-right: auto !important;
-  margin-bottom: auto !important;
-  margin-left: auto !important;
+  width: var(--ibridge-header-logo-size) !important;
+  height: var(--ibridge-header-logo-size) !important;
+  min-width: var(--ibridge-header-logo-size) !important;
+  min-height: var(--ibridge-header-logo-size) !important;
+  max-width: var(--ibridge-header-logo-size) !important;
+  max-height: var(--ibridge-header-logo-size) !important;
 
+  margin: 0 auto !important;
   padding: 0 !important;
+  border: 0 !important;
+
   object-fit: contain !important;
   object-position: 50% 50% !important;
   vertical-align: middle !important;
 
-  translate: var(--ibridge-logo-optical-x) var(--ibridge-logo-optical-y) !important;
-  transform: none !important;
-  transform-origin: center center !important;
-
   align-self: center !important;
   justify-self: center !important;
-  flex: 0 0 auto !important;
+
+  translate: none !important;
+  transform: none !important;
+  transform-origin: 50% 50% !important;
 }
 
-/* If the logo is inside a <picture>, centre the picture as well. */
-header picture:has(> img.ibridge-header-logo) {
-  display: inline-grid !important;
-  place-items: center !important;
-  line-height: 0 !important;
-  margin: 0 auto !important;
+header :where(a, div, span):has(img.site-brand-logo) {
+  align-items: center !important;
 }
 
-/* Keep exactly the same centring behaviour on phones and tablets. */
 @media (max-width: 900px) {
-  header img.ibridge-header-logo {
-    margin: auto !important;
-    object-position: 50% 50% !important;
-    align-self: center !important;
-    justify-self: center !important;
+  :root {
+    --ibridge-header-logo-size: 76px;
   }
 }
 
-/* Respect reduced-motion settings and prevent inherited logo movement. */
+@media (max-width: 640px) {
+  :root {
+    --ibridge-header-logo-size: 68px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  header img.ibridge-header-logo {
+  header img.site-brand-logo {
     transition: none !important;
     animation: none !important;
   }
