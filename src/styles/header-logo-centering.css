@@ -1,72 +1,120 @@
 /*
- * iBridge Education — header logo visual centring
- * 繁中與英文網站共用 / Shared by Traditional Chinese and English routes
+ * iBridge Education
+ * Final full-bleed header logo
+ *
+ * This stylesheet targets the actual header markup
+ * rendered by src/layouts/BaseLayout.astro.
  */
 
 :root {
-  --ibridge-header-logo-size: 88px;
+  --ibridge-header-logo-size: 58px;
+  --ibridge-header-logo-radius: 16px;
 }
 
-header :where(a, div, span, figure, picture):has(> img.site-brand-logo) {
-  display: grid !important;
-  place-items: center !important;
-  align-content: center !important;
-  justify-content: center !important;
-  flex: 0 0 auto !important;
-  line-height: 0 !important;
-  text-align: center !important;
-  margin-block: 0 !important;
-  padding-block: 0 !important;
-}
+html body header.site-header
+.header-container
+a.brand
+> span.brand-mark {
+  position: relative !important;
 
-header img.site-brand-logo {
+  width:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  height:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  min-width:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  min-height:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  max-width:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  max-height:
+    var(--ibridge-header-logo-size)
+    !important;
+
+  flex:
+    0 0 var(--ibridge-header-logo-size)
+    !important;
+
   display: block !important;
-  position: static !important;
-  inset: auto !important;
-  float: none !important;
 
-  width: var(--ibridge-header-logo-size) !important;
-  height: var(--ibridge-header-logo-size) !important;
-  min-width: var(--ibridge-header-logo-size) !important;
-  min-height: var(--ibridge-header-logo-size) !important;
-  max-width: var(--ibridge-header-logo-size) !important;
-  max-height: var(--ibridge-header-logo-size) !important;
-
-  margin: 0 auto !important;
+  margin: 0 !important;
   padding: 0 !important;
+
+  overflow: hidden !important;
+
+  line-height: 0 !important;
+
+  background: #a51c30 !important;
+
+  border:
+    1px solid
+    rgba(123, 20, 34, 0.34)
+    !important;
+
+  border-radius:
+    var(--ibridge-header-logo-radius)
+    !important;
+
+  box-shadow:
+    0 5px 14px
+    rgba(123, 20, 34, 0.2)
+    !important;
+
+  isolation: isolate;
+}
+
+html body header.site-header
+.header-container
+a.brand
+> span.brand-mark
+> img.site-brand-logo {
+  position: absolute !important;
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  min-width: 100% !important;
+  min-height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
   border: 0 !important;
+  border-radius: inherit !important;
 
-  object-fit: contain !important;
-  object-position: 50% 50% !important;
-  vertical-align: middle !important;
+  object-fit: cover !important;
+  object-position: center !important;
 
-  align-self: center !important;
-  justify-self: center !important;
-
-  translate: none !important;
-  transform: none !important;
-  transform-origin: 50% 50% !important;
+  transform: scale(1.06) !important;
+  transform-origin: center !important;
 }
 
-header :where(a, div, span):has(img.site-brand-logo) {
-  align-items: center !important;
-}
-
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   :root {
-    --ibridge-header-logo-size: 76px;
+    --ibridge-header-logo-size: 52px;
+    --ibridge-header-logo-radius: 15px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 560px) {
   :root {
-    --ibridge-header-logo-size: 68px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  header img.site-brand-logo {
-    transition: none !important;
-    animation: none !important;
+    --ibridge-header-logo-size: 48px;
+    --ibridge-header-logo-radius: 14px;
   }
 }
