@@ -1,0 +1,198 @@
+---
+import "../styles/header-logo-centering.css";
+import "../styles/header.css";
+
+type Locale = "zh" | "en";
+
+interface Props {
+  locale?: Locale;
+}
+
+const pathname = Astro.url.pathname;
+const inferredLocale: Locale =
+  pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
+const locale: Locale = Astro.props.locale ?? inferredLocale;
+const isEnglish = locale === "en";
+
+const normalizePath = (value: string): string => {
+  const withoutQuery = value.split("?")[0].split("#")[0];
+  if (withoutQuery === "/") return "/";
+  return withoutQuery.replace(/\/+$/, "");
+};
+
+const currentPath = normalizePath(pathname);
+
+const zhNav = [
+  { label: "首頁", href: "/" },
+  { label: "關於我們", href: "/about/" },
+  { label: "服務", href: "/services/" },
+  { label: "課程方案", href: "/programmes/" },
+  { label: "教育研究", href: "/research/" },
+  { label: "教育資源", href: "/resources/" },
+  { label: "聯絡我們", href: "/contact/" },
+];
+
+const enNav = [
+  { label: "Home", href: "/en/" },
+  { label: "About", href: "/en/about/" },
+  { label: "Services", href: "/en/services/" },
+  { label: "Programmes", href: "/en/programmes/" },
+  { label: "Research", href: "/en/research/" },
+  { label: "Resources", href: "/en/resources/" },
+  { label: "Contact", href: "/en/contact/" },
+];
+
+const navigation = isEnglish ? enNav : zhNav;
+const homeHref = isEnglish ? "/en/" : "/";
+
+const chineseEquivalent = pathname
+  .replace(/^\/en(?=\/|$)/, "")
+  .replace(/^$/, "/");
+
+const englishEquivalent =
+  pathname === "/"
+    ? "/en/"
+    : `/en${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
+
+const languageHref = isEnglish ? chineseEquivalent : englishEquivalent;
+const languageLabel = isEnglish ? "繁中" : "EN";
+const languageAriaLabel = isEnglish
+  ? "切換至繁體中文"
+  : "Switch to English";
+
+const isActive = (href: string): boolean => {
+  const target = normalizePath(href);
+
+  if (target === "/" || target === "/en") {
+    return currentPath === target;
+  }
+
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <a
+      class="site-brand"
+      href={homeHref}
+      aria-label={isEnglish ? "iBridge Education home" : "iBridge Education 首頁"}
+    >
+      <span class="site-brand__logo" aria-hidden="true">
+        <picture>
+          <source
+            srcset="/images/brand/ibridge-header-logo.webp"
+            type="image/webp"
+          />
+          <img
+            src="/images/brand/ibridge-icon-centered.svg?v=20260801-visual-center-1"
+            alt=""
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="async" class="site-brand-logo" data-ibridge-logo="visual-centred" />
+        </picture>
+      </span>
+
+      <span class="site-brand__name">iBridge Education</span>
+    </a>
+
+    <button
+      class="site-menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label={isEnglish ? "Open navigation menu" : "開啟導覽選單"}
+      data-menu-button
+    >
+      <span class="site-menu-button__line"></span>
+      <span class="site-menu-button__line"></span>
+      <span class="site-menu-button__line"></span>
+    </button>
+
+    <nav
+      class="site-navigation"
+      id="primary-navigation"
+      aria-label={isEnglish ? "Primary navigation" : "主要導覽"}
+      data-navigation
+    >
+      <ul class="site-navigation__list">
+        {
+          navigation.map((item) => (
+            <li class="site-navigation__item">
+              <a
+                class:list={[
+                  "site-navigation__link",
+                  { "is-active": isActive(item.href) },
+                ]}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a
+      class="site-language-switcher"
+      href={languageHref}
+      hreflang={isEnglish ? "zh-Hant" : "en"}
+      lang={isEnglish ? "zh-Hant" : "en"}
+      aria-label={languageAriaLabel}
+    >
+      {languageLabel}
+    </a>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const headers = document.querySelectorAll("[data-site-header]");
+
+    headers.forEach((header) => {
+      const button = header.querySelector("[data-menu-button]");
+      const navigation = header.querySelector("[data-navigation]");
+
+      if (!(button instanceof HTMLButtonElement) || !(navigation instanceof HTMLElement)) {
+        return;
+      }
+
+      const closeMenu = () => {
+        button.setAttribute("aria-expanded", "false");
+        header.classList.remove("is-menu-open");
+      };
+
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!isOpen));
+        header.classList.toggle("is-menu-open", !isOpen);
+      });
+
+      navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+          button.focus();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (event.target instanceof Node && !header.contains(event.target)) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 960) {
+          closeMenu();
+        }
+      });
+    });
+  })();
+</script>
