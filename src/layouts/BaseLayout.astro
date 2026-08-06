@@ -70,17 +70,19 @@ const schema = {
     <header class="site-header">
       <div class="container navbar">
         <a class="brand" href={isEn ? "/en/" : "/"} aria-label={isEn ? "iBridge Education home" : "iBridge Education 首頁"}>
-          <span class="brand-mark">
-      <img
-        class="site-brand-logo"
-        src="/images/brand/ibridge-header-logo-full-v2.png?v=20260803-full-bleed-02"
-        alt=""
-        width="58"
-        height="58"
-        loading="eager"
-        decoding="sync"
-      />
-          </span><span>iBridge Education</span>
+          <span class="brand-mark" aria-hidden="true">
+            <img
+              class="site-brand-logo"
+              src="/images/brand/ibridge-header-logo-transparent.png?v=20260806-transparent-b"
+              alt=""
+              width="963"
+              height="768"
+              loading="eager"
+              decoding="async"
+            />
+          </span>
+
+          <span class="brand-name">iBridge Education</span>
         </a>
         <nav id="site-navigation" class="nav-links" aria-label={isEn ? "Main navigation" : "主要導覽"}>
           {nav.map(([label, href]) => <a href={href} aria-current={path === href ? "page" : undefined}>{label}</a>)}
