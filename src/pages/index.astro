@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeHero from "../components/HomeHero.astro";
 import Cta from "../components/Cta.astro";
 
 const services = [
@@ -47,41 +48,39 @@ const programmes = [
   zhPath="/"
   enPath="/en/"
 >
-  <section class="visual-hero" aria-labelledby="home-hero-title">
-    <div class="container visual-hero-container">
-      <h1 id="home-hero-title" class="sr-only">
-        iBridge Education：連結學習、研究與創新
-      </h1>
+  <div class="ib-home">
+  <HomeHero />
 
-      <picture class="visual-hero-picture">
-        <source
-          srcset="/images/home/hero-zh-2026.webp?v=20260729-approved-01"
-          type="image/webp"
-        />
-        <img
-          src="/images/home/hero-zh-2026.png?v=20260729-approved-01"
-          alt="iBridge Education：連結學習，啟發未來。"
-          width="1672"
-          height="941"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </picture>
 
-      <div class="visual-hero-actions" aria-label="首頁主要操作">
-        <a class="button button-primary" href="/contact/">
-          預約教育諮詢
-        </a>
 
-        <a class="button button-secondary" href="/about/">
-          了解 iBridge
-        </a>
+  <section class="section section-white home-services">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">專業服務</p>
+          <h2>從策略規劃到教室實踐</h2>
+        </div>
+        <a class="text-link" href="/services/">查看所有服務 →</a>
+      </div>
+
+      <div class="grid-3">
+        {
+          services.map(([number, title, description, link]) => (
+            <article class="card">
+              <svg class="home-service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" aria-hidden="true">
+                {number === "01" ? <><path d="M24 12C18 7 10 6 4 8v31c7-2 14-1 20 4 6-5 13-6 20-4V8c-6-2-14-1-20 4Z"/><path d="M24 12v31M8 12v23c5-1 10 0 13 2M40 12v23c-5-1-10 0-13 2"/></> : number === "02" ? <><circle cx="24" cy="13" r="6"/><circle cx="9" cy="18" r="4"/><circle cx="39" cy="18" r="4"/><path d="M13 40v-7a11 11 0 0 1 22 0v7M3 38v-6a6 6 0 0 1 8-6M45 38v-6a6 6 0 0 0-8-6"/></> : <><path d="M6 28h7v16H6zM20 17h7v27h-7zM34 4h7v40h-7z"/></>}
+              </svg>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <a class="text-link" href={link}>深入了解 ↗</a>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="section section-ivory">
+  <section class="section section-ivory home-position">
     <div class="container split">
       <div>
         <p class="eyebrow">我們的定位</p>
@@ -97,31 +96,6 @@ const programmes = [
           我們重視嚴謹性，但不讓教育工作被複雜術語限制。每一項合作都以清楚、
           可操作、可持續及符合學校脈絡為原則。
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-white">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">專業服務</p>
-          <h2>從策略規劃到教室實踐</h2>
-        </div>
-        <a class="text-link" href="/services/">查看所有服務 →</a>
-      </div>
-
-      <div class="grid-3">
-        {
-          services.map(([number, title, description, link]) => (
-            <article class="card">
-              <span class="card-number">{number}</span>
-              <h3>{title}</h3>
-              <p>{description}</p>
-              <a class="text-link" href={link}>深入了解 ↗</a>
-            </article>
-          ))
-        }
       </div>
     </div>
   </section>
@@ -193,4 +167,5 @@ const programmes = [
     label="聯絡 iBridge"
     href="/contact/"
   />
+  </div>
 </BaseLayout>

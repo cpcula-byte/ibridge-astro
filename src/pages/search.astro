@@ -1,0 +1,7 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteSearch from "../components/SiteSearch.astro";
+---
+<BaseLayout title="站內搜尋" description="搜尋 iBridge Education 的課程、研究、服務與教育資源。" locale="zh-Hant" zhPath="/search/" enPath="/en/search/" noindex={true}>
+  <SiteSearch isEn={false} />
+</BaseLayout>

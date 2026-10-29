@@ -10,6 +10,7 @@
     "check": "node scripts/static-check-public-aware.mjs"
   },
   "dependencies": {
-    "astro": "^5.13.0"
+    "astro": "^5.13.0",
+    "parse5": "^7.3.0"
   }
 }

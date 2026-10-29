@@ -1,0 +1,56 @@
+---
+import { courseFamilies, researchStrands } from "../data/courseCatalog";
+import "../styles/search-navigation.css";
+interface Props { isEn: boolean; zhPath: string; enPath: string; }
+const { isEn, zhPath, enPath } = Astro.props;
+const text = (zh: string, en: string) => isEn ? en : zh;
+const prefix = isEn ? "/en" : "";
+const route = (slug: string) => `${prefix}/${slug}${slug ? "/" : ""}`;
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+const serviceLabels = isEn
+  ? ["Curriculum and learning design", "Professional development", "AI in education", "Research and evaluation", "Learning and resilience", "School consultancy"]
+  : ["課程與教學設計", "教師專業發展", "人工智慧教育整合", "教育研究與方案評估", "學生學習與韌性方案", "學校與課程顧問服務"];
+const groups = [
+  { label: text("首頁", "Home"), href: route(""), children: [] },
+  { label: text("關於我們", "About"), href: route("about"), children: [] },
+  { label: text("服務", "Services"), href: route("services"), children: serviceLabels.map((label, i) => ({ label, href: `${route("services")}#service-${String(i + 1).padStart(2, "0")}` })) },
+  { label: text("課程方案", "Programmes"), href: route("programmes"), children: courseFamilies.map(f => ({ label: text(f.titleZh, f.titleEn), href: `${route("programmes")}#${f.id}` })) },
+  { label: text("教育研究", "Research"), href: route("research"), children: researchStrands.map(s => ({ label: text(s.titleZh, s.titleEn), href: `${route("research")}#research-${s.id}` })) },
+  { label: text("教育資源", "Resources"), href: route("resources"), children: courseFamilies.map(f => ({ label: text(f.titleZh, f.titleEn), href: `${route("resources")}?family=${encodeURIComponent(f.id)}#resource-directory-title` })) },
+  { label: text("聯絡我們", "Contact"), href: route("contact"), children: [] },
+];
+---
+<header class="site-header ibx-header" data-ibx-header>
+  <div class="ibx-bar">
+    <a class="brand" href={route("")} aria-label={text("iBridge Education 首頁", "iBridge Education home")}>
+      <span class="brand-mark" aria-hidden="true"><img class="site-brand-logo" src="/images/brand/ibridge-header-logo-transparent.png?v=20260806-transparent-b" alt="" width="963" height="768" loading="eager" decoding="async" /></span>
+      <span class="brand-name">iBridge Education</span>
+    </a>
+    <nav class="ibx-nav" id="ibx-navigation" aria-label={text("主要導覽", "Main navigation")}>
+      <ul class="ibx-nav-list">
+        {groups.map((group, i) => <li class="ibx-item">
+          <div class="ibx-item-top">
+            <a href={group.href} aria-current={path === group.href ? "page" : undefined}>{group.label}</a>
+            {group.children.length > 0 && <button type="button" class="ibx-expand" aria-expanded="false" aria-controls={`ibx-sub-${i}`} aria-label={`${text("展開子選單：", "Toggle submenu: ")}${group.label}`}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" /></svg></button>}
+          </div>
+          {group.children.length > 0 && <ul class="ibx-submenu" id={`ibx-sub-${i}`} hidden>
+            <li><a href={group.href}>{text("查看全部", "View all")} · {group.label}</a></li>
+            {group.children.map(child => <li><a href={child.href}>{child.label}</a></li>)}
+          </ul>}
+        </li>)}
+      </ul>
+    </nav>
+    <form class="ibx-search" role="search" action={route("search")} method="get">
+      <label class="ibx-sr-only" for="ibx-header-query">{text("搜尋網站", "Search the site")}</label>
+      <input id="ibx-header-query" type="search" name="q" maxlength="160" required placeholder={text("搜尋網站…", "Search the site…")} />
+      <button type="submit" aria-label={text("搜尋", "Search")}><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2"/></svg></button>
+    </form>
+    <div class="ibx-actions">
+      <a class="ibx-language" href={isEn ? zhPath : enPath} hreflang={isEn ? "zh-Hant" : "en"} lang={isEn ? "zh-Hant" : "en"}>{isEn ? "繁中" : "EN"}</a>
+      <button class="ibx-mobile-toggle" type="button" aria-expanded="false" aria-controls="ibx-navigation" aria-label={text("開啟或關閉選單", "Toggle navigation")}><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/></svg></button>
+    </div>
+  </div>
+</header>
+<script>
+  import "../scripts/search-navigation";
+</script>

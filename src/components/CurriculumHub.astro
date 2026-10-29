@@ -259,7 +259,7 @@ const subjectOptions = [
 
                     <div class="curriculum-card-grid">
                       {tracks.map((track) => (
-                        <article class="curriculum-card">
+                        <article class="curriculum-card" id={`programme-${track.id}`} data-ib-search-section>
                           <div class="curriculum-card__topline">
                             <span class="curriculum-code">{track.code}</span>
                             <span class="curriculum-level">
@@ -333,7 +333,7 @@ const subjectOptions = [
 
             <div class="research-strand-list">
               {researchStrands.map((strand) => (
-                <article class="research-strand">
+                <article class="research-strand" id={`research-${strand.id}`} data-ib-search-section>
                   <div class="research-strand__number" aria-hidden="true">
                     {strand.number}
                   </div>
@@ -475,6 +475,8 @@ const subjectOptions = [
               return (
                 <article
                   class="resource-directory-card"
+                  id={`resource-${track.id}`}
+                  data-ib-search-section
                   data-resource-card
                   data-family={track.family}
                   data-subject={track.subject}
@@ -513,6 +515,5 @@ const subjectOptions = [
     )
   }
 
-  <script is:inline src="/scripts/course-resource-filter.js"></script>
+  <script>import "../scripts/resource-filter";</script>
 </div>
-

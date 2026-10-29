@@ -1,0 +1,25 @@
+---
+interface Props { isEn?: boolean; }
+const { isEn = false } = Astro.props;
+const text = (zh: string, en: string) => isEn ? en : zh;
+---
+<section class="ibx-results-page" data-ibx-search-page data-language={isEn ? "en" : "zh"}>
+  <p class="eyebrow">iBridge Education</p>
+  <h1>{text("搜尋網站", "Search the site")}</h1>
+  <p>{text("尋找課程、教學服務、研究方向與教育資源。", "Find programmes, professional services, research and educational resources.")}</p>
+  <form class="ibx-results-form" role="search" method="get">
+    <div class="ibx-query-field">
+      <label for="ibx-query">{text("搜尋關鍵字", "Search keywords")}</label>
+      <input type="search" id="ibx-query" name="q" maxlength="160" placeholder={text("例如：心理學、MYP、IELTS", "For example: psychology, MYP, IELTS")} required />
+    </div>
+    <button type="submit">{text("搜尋", "Search")}</button>
+    <label class="ibx-scope"><input type="checkbox" name="all" value="1" />{text("同時搜尋繁中及英文內容", "Include Chinese and English content")}</label>
+  </form>
+  <noscript><p>{text("請開啟瀏覽器 JavaScript 以使用站內搜尋。", "Please enable JavaScript in your browser to use site search.")}</p></noscript>
+  <p class="ibx-results-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <ol class="ibx-results-list"></ol>
+  <button type="button" class="ibx-more" hidden>{text("顯示更多結果", "Show more results")}</button>
+</section>
+<script>
+  import "../scripts/site-search";
+</script>

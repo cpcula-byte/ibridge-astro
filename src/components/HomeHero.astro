@@ -1,0 +1,22 @@
+---
+import "../styles/home-editorial.css";
+interface Props { isEn?: boolean; }
+const { isEn = false } = Astro.props;
+const prefix = isEn ? "/en" : "";
+---
+<section class:list={["ib-home-hero", { "ib-home-hero-en": isEn }]} aria-labelledby="home-hero-title">
+  <div class="ib-home-hero-inner">
+    <div class="ib-home-hero-copy">
+      <p class="ib-home-kicker" lang="en">iBridge Education</p>
+      <h1 id="home-hero-title">{isEn ? <><span>Connecting learning.</span><span>Inspiring futures.</span></> : <><span>連結學習，</span><span>啟發未來。</span></>}</h1>
+      <p class="ib-home-intro">{isEn ? "Connecting international education, curriculum design and educational research to support schools, educators and learners." : <>連結國際教育、課程設計與教育研究，<br class="ib-home-copy-break" />為學校、教師與學習者提供專業支持。</>}</p>
+      <div class="ib-home-hero-actions" aria-label={isEn ? "Primary home page actions" : "首頁主要操作"}>
+        <a class="ib-home-button ib-home-button-primary" href={`${prefix}/contact/`}>{isEn ? "Book a Consultation" : "預約教育諮詢"}</a>
+        <a class="ib-home-button ib-home-button-secondary" href={`${prefix}/about/`}>{isEn ? "Discover iBridge" : "了解 iBridge"}</a>
+      </div>
+    </div>
+    <div class="ib-home-bridge" aria-hidden="true">
+      <img src="/images/home/ib-bridge-gold-2026.png" alt="" width="1971" height="798" loading="eager" fetchpriority="high" decoding="async" />
+    </div>
+  </div>
+</section>
