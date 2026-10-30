@@ -1,10 +1,8 @@
 ---
+import EditorialHero from "./EditorialHero.astro";
 interface Props { eyebrow: string; title: string; accent?: string; copy: string; }
 const { eyebrow, title, accent = "", copy } = Astro.props;
+const route = Astro.url.pathname.replace(/^\/en\//, "/");
+const art = ["/services/", "/about/"].includes(route) ? "bridge" : route === "/contact/" ? "books" : "none";
 ---
-<section class="page-hero">
-  <div class="container page-hero-grid">
-    <div><p class="eyebrow">{eyebrow}</p><h1>{title} {accent && <span>{accent}</span>}</h1></div>
-    <div class="page-hero-copy"><p class="lead">{copy}</p></div>
-  </div>
-</section>
+<EditorialHero {eyebrow} {title} {accent} {copy} {art} cta={route === "/services/"} />

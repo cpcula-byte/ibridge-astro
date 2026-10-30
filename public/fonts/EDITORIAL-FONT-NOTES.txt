@@ -1,0 +1,13 @@
+iBridge Traditional Chinese heading font
+
+Source: Google Fonts, Noto Serif TC variable font, SIL Open Font License 1.1.
+https://github.com/google/fonts/tree/main/ofl/notoseriftc
+License: NotoSerifTC-OFL.txt (included unchanged).
+
+ibridge-serif-tc.woff2 is a self-hosted WOFF2 subset containing characters used in
+this release's Astro/TypeScript/CSS source and Latin characters U+0020–U+00FF.
+Weight range: 200–900 in the original; website requests 400–700.
+Font loading uses font-display: swap. New characters fall back to Songti TC,
+Noto Serif TC or PMingLiU. No third-party font request is made by visitors.
+For extensive new Chinese copy, regenerate the subset or supply the full font.
+English headings use Georgia with Times New Roman as a system fallback.

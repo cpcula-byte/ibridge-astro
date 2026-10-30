@@ -51,7 +51,7 @@ for (const file of astroFiles) {
 
   for (const match of text.matchAll(/href=["'](\/[^"'#?]*)["']/g)) {
     const href = match[1];
-    if (href.startsWith("/images/") || href.startsWith("/fonts/")) continue;
+    if (existsSync(join(root, "public", href))) continue;
 
     const route = href === "/" || href.endsWith("/") ? href : `${href}/`;
     if (!routes.has(route)) {
@@ -63,8 +63,9 @@ for (const file of astroFiles) {
 const requiredCodeFiles = [
   "public/_headers",
   "public/sitemap.xml",
-  "public/images/home/hero-zh-2026.png",
-  "public/images/home/hero-en-2026.png",
+  "public/images/home/ib-bridge-gold-2026.png",
+  "public/images/editorial/books-compass-gold.png",
+  "public/fonts/ibridge-serif-tc.woff2",
   "src/styles/global.css",
   "src/pages/index.astro",
   "src/pages/en/index.astro",
@@ -78,18 +79,16 @@ for (const item of requiredCodeFiles) {
 
 const zhHome = readFileSync(join(root, "src/pages/index.astro"), "utf8");
 const enHome = readFileSync(join(root, "src/pages/en/index.astro"), "utf8");
-const css = readFileSync(join(root, "src/styles/global.css"), "utf8");
+const css = readFileSync(join(root, "src/styles/site-editorial.css"), "utf8");
+const homeHero = readFileSync(join(root, "src/components/HomeHero.astro"), "utf8");
 
-if (!zhHome.includes("/images/home/hero-zh-2026.png?v=20260729-approved-01")) {
-  errors.push("Traditional Chinese homepage does not use the approved versioned hero image path");
+for (const [name, home] of [["Traditional Chinese", zhHome], ["English", enHome]]) {
+  if (!home.includes("<HomeHero") || !homeHero.includes("/images/home/ib-bridge-gold-2026.png")) {
+    errors.push(`${name} homepage must use the approved shared IB bridge hero`);
+  }
 }
-
-if (!enHome.includes("/images/home/hero-en-2026.png?v=20260729-approved-01")) {
-  errors.push("English homepage does not use the approved versioned hero image path");
-}
-
-if (!css.includes("--text: #18212b") || !css.includes("--text-soft: #34414d")) {
-  errors.push("high-contrast text colour variables are missing");
+if (!css.includes("--ed-ink:#123353") || !css.includes("--ed-muted:#536579")) {
+  errors.push("Editorial text colour variables are missing");
 }
 
 if (errors.length) {
@@ -101,5 +100,5 @@ if (errors.length) {
 }
 
 console.log(
-  `Static validation passed: ${astroFiles.length} Astro files, ${routes.size} routes, approved bilingual hero images, accurate dimensions and high-contrast colours confirmed.`,
+  `Static validation passed: ${astroFiles.length} Astro files, ${routes.size} routes, shared bilingual hero and editorial assets confirmed.`,
 );

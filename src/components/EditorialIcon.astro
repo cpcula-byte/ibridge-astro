@@ -1,0 +1,13 @@
+---
+interface Props { number: string; }
+const { number } = Astro.props;
+const paths: Record<string, string> = {
+  "01": "M24 12C18 8 10 7 4 9v31c7-2 14-1 20 3m0-31c6-4 14-5 20-3v31c-7-2-14-1-20 3V12M9 14v20m30-20v20",
+  "02": "M18 15a6 6 0 1 0 12 0 6 6 0 0 0-12 0M13 42v-8c0-12 22-12 22 0v8M4 40v-8c0-5 4-8 8-8m24 0c4 0 8 3 8 8v8M4 17a4 4 0 1 0 8 0 4 4 0 0 0-8 0m32 0a4 4 0 1 0 8 0 4 4 0 0 0-8 0",
+  "03": "M16 10h16v28H16zM10 16h6m-6 8h6m-6 8h6m16-16h6m-6 8h6m-6 8h6M21 4v6m6-6v6m-6 28v6m6-6v6M21 18h6v12h-6z",
+  "04": "M6 42V28h7v14zm14 0V18h7v24zm14 0V6h7v36z",
+  "05": "M24 43V20M24 30C8 31 5 21 6 14c11 0 18 5 18 16zm0-8c0-12 7-18 18-18 1 10-5 18-18 18M12 43c5-8 19-8 24 0",
+  "06": "M8 43V16L24 5l16 11v27H8zm12 0V30h8v13M14 20h4v4h-4zm16 0h4v4h-4zM22 14h4v4h-4z"
+};
+---
+<svg class="editorial-icon" viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[number] || paths["01"]} /></svg>

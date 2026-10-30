@@ -1,0 +1,33 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+  copy: string;
+  label?: string;
+  art?: "bridge" | "books" | "none";
+  cta?: boolean;
+}
+const { eyebrow, title, accent = "", copy, label = eyebrow, art = "none", cta = false } = Astro.props;
+const isEn = Astro.url.pathname.startsWith("/en/");
+const home = isEn ? "/en/" : "/";
+---
+<section class:list={["editorial-hero", { "editorial-hero--plain": art === "none" }]}>
+  <div class="container">
+    <nav class="editorial-breadcrumb" aria-label={isEn ? "Breadcrumb" : "麵包屑導覽"}>
+      <a href={home}>{isEn ? "Home" : "首頁"}</a><span aria-hidden="true">/</span><span aria-current="page">{label}</span>
+    </nav>
+    <div class="editorial-hero-grid">
+      <div class="editorial-hero-copy">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}{accent && <><span class="editorial-title-space"> </span><span class="editorial-title-accent">{accent}</span></>}</h1>
+        <p class="lead">{copy}</p>
+        {cta && <a class="button button-primary" href={`${home}contact/`}>{isEn ? "Discuss your needs" : "預約教育諮詢"}<span aria-hidden="true">↗</span></a>}
+      </div>
+      {art !== "none" && <div class:list={["editorial-art", `editorial-art--${art}`]} aria-hidden="true">
+        <img src={art === "bridge" ? "/images/home/ib-bridge-gold-2026.png" : "/images/editorial/books-compass-gold.png"} alt="" width={art === "bridge" ? 1971 : 1536} height={art === "bridge" ? 798 : 1024} decoding="async" />
+      </div>}
+    </div>
+    <slot />
+  </div>
+</section>

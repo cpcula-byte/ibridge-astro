@@ -1,4 +1,5 @@
 ---
+import EditorialHero from "./EditorialHero.astro";
 import {
   courseFamilies,
   courseTracks,
@@ -20,8 +21,8 @@ const text = (zh: string, en: string) => (isEnglish ? en : zh);
 const programmeCopy = {
   eyebrow: text("課程方案", "Programmes"),
   title: text(
-    "從 MYP、DP 到國際檢定，建立清楚且可持續的學習路徑。",
-    "Build clear, sustainable learning pathways from MYP and DP to international examinations.",
+    "為每個學習階段，找到方向。",
+    "A clear direction for every stage of learning.",
   ),
   intro: text(
     "課程依學生年級、能力、目標與可用時間調整。每一項方案都連結內容知識、技能進程、評量證據與後續改善。",
@@ -44,8 +45,8 @@ const programmeCopy = {
 const researchCopy = {
   eyebrow: text("教育研究", "Educational Research"),
   title: text(
-    "以課程、學習證據與評量資料支持持續改進。",
-    "Use curriculum, learning evidence and assessment data to support continuous improvement.",
+    "讓研究，走進真實的學習。",
+    "Research that informs everyday learning.",
   ),
   intro: text(
     "研究方向直接對應目前提供的 MYP、DP、DP 核心、學術寫作與國際檢定課程，不另設與課程無關的研究類別。",
@@ -68,12 +69,12 @@ const researchCopy = {
 const resourceCopy = {
   eyebrow: text("教育資源", "Educational Resources"),
   title: text(
-    "依課程群組、學科與學習階段整理教材。",
-    "Organise materials by programme family, subject and learning stage.",
+    "讓好資源，支持每一次學習。",
+    "Thoughtful resources for every learning journey.",
   ),
   intro: text(
-    "資源目錄完整對應目前提供的十七條課程路徑。尚未正式上架的教材會清楚標示，不建立無效下載連結。",
-    "The directory mirrors all seventeen programme pathways. Materials not yet published are clearly identified, with no inactive download links.",
+    "依課程群組、學科與學習階段探索教材分類。資源分階段上線，您可以先了解各類教材的規劃方向。",
+    "Explore materials by programme, subject and learning stage. Resources are being published in stages; browse the planned categories below.",
   ),
   searchLabel: text("搜尋課程或資源", "Search programmes or resources"),
   searchPlaceholder: text(
@@ -180,46 +181,17 @@ const subjectOptions = [
   data-resource-directory={mode === "resources" ? "true" : undefined}
   data-language={lang}
 >
-  <section class="curriculum-hero" aria-labelledby={`${mode}-page-title`}>
-    <div class="curriculum-container curriculum-hero__inner">
-      <p class="curriculum-eyebrow">
-        {mode === "programmes"
-          ? programmeCopy.eyebrow
-          : mode === "research"
-            ? researchCopy.eyebrow
-            : resourceCopy.eyebrow}
-      </p>
-      <h1 id={`${mode}-page-title`}>
-        {mode === "programmes"
-          ? programmeCopy.title
-          : mode === "research"
-            ? researchCopy.title
-            : resourceCopy.title}
-      </h1>
-      <p class="curriculum-hero__intro">
-        {mode === "programmes"
-          ? programmeCopy.intro
-          : mode === "research"
-            ? researchCopy.intro
-            : resourceCopy.intro}
-      </p>
-
-      <div class="curriculum-stat-grid" aria-label={text("課程摘要", "Programme summary")}>
-        <div class="curriculum-stat">
-          <strong>{courseFamilies.length}</strong>
-          <span>{text("課程群組", "programme families")}</span>
-        </div>
-        <div class="curriculum-stat">
-          <strong>{courseTracks.length}</strong>
-          <span>{text("明確課程路徑", "defined pathways")}</span>
-        </div>
-        <div class="curriculum-stat">
-          <strong>2</strong>
-          <span>{text("網站語言", "site languages")}</span>
-        </div>
-      </div>
+  <EditorialHero
+    eyebrow={mode === "programmes" ? programmeCopy.eyebrow : mode === "research" ? researchCopy.eyebrow : resourceCopy.eyebrow}
+    title={mode === "programmes" ? programmeCopy.title : mode === "research" ? researchCopy.title : resourceCopy.title}
+    copy={mode === "programmes" ? programmeCopy.intro : mode === "research" ? researchCopy.intro : resourceCopy.intro}
+    art="books"
+  >
+    <div class="editorial-summary" aria-label={text("內容摘要", "At a glance")}>
+      <span><strong>{mode === "research" ? researchStrands.length : courseFamilies.length}</strong> {mode === "research" ? text("研究方向", "research strands") : text("課程群組", "programme families")}</span>
+      <span><strong>{courseTracks.length}</strong> {text("課程路徑", "learning pathways")}</span>
     </div>
-  </section>
+  </EditorialHero>
 
   {
     mode === "programmes" && (

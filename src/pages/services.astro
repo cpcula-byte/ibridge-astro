@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import EditorialIcon from "../components/EditorialIcon.astro";
 import Cta from "../components/Cta.astro";
 const services = [
   ["01","課程與教學設計","協助學校與教師建立連貫、具挑戰性且符合學生需求的課程架構。",["MYP 與 DP 課程規劃","單元與學習活動設計","課程垂直銜接","學習目標與評量對齊","跨學科課程發展","課程文件與教材檢視"]],
@@ -12,8 +13,8 @@ const services = [
 ];
 ---
 <BaseLayout title="專業服務" description="探索 iBridge Education 的課程設計、教師專業發展、教育研究、人工智慧整合與學校顧問服務。" locale="zh-Hant" zhPath="/services/" enPath="/en/services/">
-  <PageHero eyebrow="專業服務" title="從教育理念出發，" accent="建立能夠真正實施的方案。" copy="合作內容可依據組織規模、學生需求、教師經驗與發展階段進行調整。" />
-  <section class="section section-white"><div class="container"><div class="section-heading"><div><p class="eyebrow">服務領域</p><h2>完整支援課程、教師、學生與學校發展。</h2></div></div><div class="grid-2">{services.map(([n,t,s,items])=><article class="card" id={`service-${n}`} data-ib-search-section><span class="card-number">{n}</span><h3>{t}</h3><p>{s}</p><ul>{items.map((x)=><li>{x}</li>)}</ul></article>)}</div></div></section>
+  <PageHero eyebrow="專業服務" title="讓教育理念，" accent="成為真實改變。" copy="合作內容可依據組織規模、學生需求、教師經驗與發展階段進行調整。" />
+  <section class="section section-white"><div class="container"><div class="section-heading"><div><p class="eyebrow">服務領域</p><h2>完整支援課程、教師、學生與學校發展。</h2></div></div><div class="grid-2">{services.map(([n,t,s,items])=><article class="card editorial-service" id={`service-${n}`} data-ib-search-section><div class="editorial-service-mark"><span class="card-number">{n}</span><EditorialIcon number={String(n)} /></div><h3>{t}</h3><p>{s}</p><ul>{items.map((x)=><li>{x}</li>)}</ul></article>)}</div></div></section>
   <section class="section section-dark"><div class="container"><div class="section-heading"><div><p class="eyebrow eyebrow-light">合作流程</p><h2>每一項服務都從理解實際教育情境開始。</h2></div></div><div class="grid-4">{[["01","需求釐清","了解目前情況、優勢與主要挑戰。"],["02","目標與範圍設定","確定目的、優先事項、工作範圍與成果。"],["03","方案設計","依教育脈絡設計課程、工作坊、研究或顧問支持。"],["04","實施、評估與調整","提供支持並根據資料、觀察與回饋持續改善。"]].map(([n,t,d])=><article class="card dark-card"><span class="card-number">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>
   <section class="section section-ivory"><div class="container"><div class="section-heading"><div><p class="eyebrow">合作形式</p><h2>依據需求選擇合適的合作深度。</h2></div></div><div class="grid-3">{[["01","單次工作坊","針對特定教學、課程、評量或人工智慧主題進行集中培訓。"],["02","短期專案","適合單元設計、課程檢視、教師培訓或特定教育方案。"],["03","長期顧問合作","適合需要持續課程發展、教師支持、研究評估或學校改進的組織。"]].map(([n,t,d])=><article class="card"><span class="card-number">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>
   <Cta eyebrow="開始合作" title="討論最適合您的學校或教育團隊的服務方案。" copy="請提供目前需求、目標、參與對象及預計時程，我們將協助整理合適方向。" label="聯絡 iBridge" href="/contact/" />
